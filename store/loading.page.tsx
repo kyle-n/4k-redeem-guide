@@ -11,6 +11,6 @@ const LoadingPage = () => {
   );
 };
 
-Navigation.registerComponent('startup', () => LoadingPage);
+Navigation.registerComponent('LoadingPage', () => LoadingPage);
 
 export default LoadingPage;

@@ -1,13 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * Generated with the TypeScript template
- * https://github.com/react-native-community/react-native-template-typescript
- *
- * @format
- */
-
 import React from 'react';
 import {
   View,
@@ -21,14 +11,14 @@ Navigation.events().registerAppLaunchedListener(async () => {
     root: {
       stack: {
         children: [
-          {component: {name: 'startup'}}
+          {component: {name: 'LoadingPage'}}
         ]
       }
     }
   });
-  await Navigation.push('startup', {
+  await Navigation.push('LoadingPage', {
     component: {
-      name: 'startup',
+      name: 'LoadingPage',
       options: {
         topBar: {title: {text: 'Loading..'}}
       }
@@ -37,9 +27,10 @@ Navigation.events().registerAppLaunchedListener(async () => {
 });
 
 const App = () => {
+  console.log('rendered')
   return (
     <View>
-      <Text>Hello</Text>
+      <Text>Hello 3</Text>
     </View>
   );
 };
