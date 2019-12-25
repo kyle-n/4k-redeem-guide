@@ -7,8 +7,11 @@
     "test": "jest"
   },
   "dependencies": {
+    "gsheets": "^2.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "react": "16.8.6",
-    "react-native": "0.60.5"
+    "react-native": "0.60.5",
+    "react-native-navigation": "^4.0.9"
   },
   "devDependencies": {
     "@babel/core": "^7.5.0",
