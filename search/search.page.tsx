@@ -1,11 +1,16 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Button, Text, View} from 'react-native';
+import LoadingRedirect from './loading-redirect';
+import {getMovies} from '../store';
 
-const SearchPage = () => {
-  console.log('searching page')
+const SearchPage = (props: any) => {
+  const navToLoadingPage = () => props.navigation.navigate('LoadingPage');
+  console.log(getMovies().length)
   return (
     <View>
+      <LoadingRedirect redirect={navToLoadingPage}/>
       <Text>Search</Text>
+      <Button title="Go load" onPress={() => props.navigation.navigate('LoadingPage')} />
     </View>
   );
 };
