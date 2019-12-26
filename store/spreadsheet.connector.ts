@@ -1,4 +1,4 @@
-import {getWorksheet} from 'gsheets';
+import {getWorksheet} from './gsheets.js';
 import {GoogleSheetsResponse, Movie, sheetMovieToMovie} from '../models';
 
 const spreadsheetId = '1ZsJkCX4DIv2oeCKQ7zp2ArkR1qKEXCUuCMBbUtHtmh4';
