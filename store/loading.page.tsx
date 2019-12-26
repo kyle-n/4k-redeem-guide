@@ -4,7 +4,6 @@ import {initializeStore} from './movies.store';
 
 const LoadingPage = (props: any) => {
   initializeStore().then(() => {
-    console.log('done with init')
     props.navigation.navigate('Home')
   });
   return (
