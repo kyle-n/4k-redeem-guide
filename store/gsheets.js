@@ -98,27 +98,27 @@ export var getWorksheet;
   }
 
   function parseCellsIntoRows(cells) {
-    var cellsData = cells.map(getCellData);
-    var headerCells = cellsData.filter(function (d) {
-      return d.row === 2;
-    });
-    var headers = headerCells.map(function (d) {
-      return '' + d.value;
-    });
-    var headersByCol = headerCells.reduce(function (byCol, d) {
-      byCol[d.col] = d.value;
-      return byCol;
-    }, {});
-    var bodyCells = cellsData.filter(function (d) {
-      return d.row !== 2;
-    });
-    var bodyByRow = bodyCells.reduce(function (byRow, d) {
-      var row = byRow[d.row] || createRowFromHeaders(headers);
-      var key = headersByCol[d.col];
-      row[key] = d.value;
-      byRow[d.row] = row;
-      return byRow;
-    }, {});
+
+    const headers = [];
+    const headersByCol = {};
+    for (let i = 0; i < cells.length; i++) {
+      const cell = getCellData(cells[i]);
+      if (cell.row === 2) {
+        headers.push('' + cell.value);
+        headersByCol[cell.col] = cell.value;
+      }
+    }
+
+    const bodyByRow = {};
+    for (let i = 0; i < cells.length; i++) {
+      const cell = getCellData(cells[i]);
+      if (cell.row > 2) {
+        const row = bodyByRow[cell.row] || createRowFromHeaders(headers);
+        const key = headersByCol[cell.col];
+        row[key] = cell.value;
+        bodyByRow[cell.row] = row;
+      }
+    }
 
     return Object.keys(bodyByRow).sort(function (a, b) {
       return +a - +b;
