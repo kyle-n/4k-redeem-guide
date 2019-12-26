@@ -5,8 +5,18 @@ import {LoadingPage} from './store';
 import SearchPage from './search/search.page';
 
 const MainNavigator = createStackNavigator({
-  Home: SearchPage,
-  Startup: LoadingPage
+  Home: {
+    screen: SearchPage,
+    navigationOptions: {
+      title: 'Search'
+    }
+  },
+  LoadingPage: {
+    screen: LoadingPage,
+    navigationOptions: {
+      headerShown: false
+    }
+  }
 });
 const AppContainer = createAppContainer(MainNavigator);
 
