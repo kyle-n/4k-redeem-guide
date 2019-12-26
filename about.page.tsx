@@ -8,6 +8,7 @@ export const AboutPage = () => (
   <View>
     <Text>About this app</Text>
     <Text>Icon: The Twemoji Project</Text>
+    <text>Google Sheets parser: gsheets on npm</text>
   </View>
 );
 
