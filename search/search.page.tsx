@@ -32,9 +32,9 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
         <LoadingRedirect redirect={this.navToLoadingPage}/>
         <Text>Search</Text>
         <Button title="Go load" onPress={this.navToLoadingPage} />
-        {this.state.movies.map(movie => {
+        {this.state.movies.map((movie, i) => {
           return (
-            <Text key={movie.title}>{movie.title}</Text>
+            <Text key={i}>{movie.title}</Text>
           );
         })}
       </View>

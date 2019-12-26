@@ -110,7 +110,7 @@ export var getWorksheet;
       return byCol;
     }, {});
     var bodyCells = cellsData.filter(function (d) {
-      return d.row > 2;
+      return d.row !== 2;
     });
     var bodyByRow = bodyCells.reduce(function (byRow, d) {
       var row = byRow[d.row] || createRowFromHeaders(headers);
