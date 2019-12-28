@@ -1,6 +1,6 @@
 import {spreadsheetDateToJsDate} from './utils';
 
-export interface Movie {
+export type Movie = {
   imageUrl: string;
   title: string;
   studio: string;
@@ -31,8 +31,8 @@ export const sheetMovieToMovie = (sheetMovie: SheetMovie): Movie => {
     vuduUhd: sheetMovie['UHD in Vudu'] === 'YES',
     fandangoNowUhd: sheetMovie['UHD in FandangoNOW'] === 'YES',
     itunesUhd: sheetMovie['UHD at iTunes (at some point)'] === 'YES',
-    dolbyVision: sheetMovie['Dolby Vision or HDR'] && sheetMovie['Dolby Vision or HDR'].includes('DV'),
-    hdr: sheetMovie['Dolby Vision or HDR'] && sheetMovie['Dolby Vision or HDR'].includes('HDR'),
+    dolbyVision: <boolean>(sheetMovie['Dolby Vision or HDR'] && sheetMovie['Dolby Vision or HDR'].includes('DV')),
+    hdr: <boolean>(sheetMovie['Dolby Vision or HDR'] && sheetMovie['Dolby Vision or HDR'].includes('HDR')),
     itunesCodeRedeemsUhd: sheetMovie['iTunes code (HD or 4K) redeems 4K '] === 'YES',
     moviesAnywhere: sheetMovie['Movies Anywhere'] === 'YES',
     knownIssues: sheetMovie['Known Issues'],
@@ -45,15 +45,15 @@ export const sheetMovieToMovie = (sheetMovie: SheetMovie): Movie => {
 };
 
 
-export interface GoogleSheetsResponse {
+export type GoogleSheetsResponse = {
   data: SheetMovie[];
   updated: string;
   title: string;
 }
 
-type YesNo = 'YES' | 'NO';
+export type YesNo = 'YES' | 'NO';
 
-interface SheetMovie {
+type SheetMovie = {
   '#ERROR!': YesNo;
   '#s bottom of the slip to verify UHD': number;
   'Dolby Vision or HDR': string;
