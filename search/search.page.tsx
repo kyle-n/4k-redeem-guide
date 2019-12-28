@@ -4,6 +4,7 @@ import LoadingRedirect from './loading-redirect';
 import {getMovies} from '../store';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {Movie} from '../models';
+import MovieCard from './movie-card';
 
 type SearchPageProps = NavigationStackScreenProps;
 type SearchPageState = {
@@ -34,7 +35,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
         <Button title="Go load" onPress={this.navToLoadingPage} />
         {this.state.movies.map((movie, i) => {
           return (
-            <Text key={i}>{movie.title}</Text>
+            <MovieCard key={i} movie={movie}/>
           );
         })}
       </View>
