@@ -1,7 +1,7 @@
 import {Movie} from '../models';
 
 export const testMovie: Movie = {
-  imageUrl: '../bp-poster.jpg',
+  imageUrl: 'http://images2.vudu.com/poster2/876950',
   title: 'Black Panther (2019)',
   studio: 'Marvel Studios',
   maCodeLocation: 'Redeem on Movies anywhere to get a code',
