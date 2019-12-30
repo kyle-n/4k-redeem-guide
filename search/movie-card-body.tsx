@@ -1,7 +1,7 @@
 import React from 'react';
-import {CardItem, Container, Text, View} from 'native-base';
+import {View} from 'native-base';
 import {Movie} from '../models';
-import {StyleSheet} from 'react-native';
+import TextInfoPairDisplay from './movie-card-text-info';
 
 type TextInfoPair = {
   property: string;
@@ -27,15 +27,6 @@ type MovieCardBodyProps = {
   movie: Movie
 };
 
-const movieCardBodyStyles = StyleSheet.create({
-  label: {
-    fontWeight: 'bold'
-  },
-  labelContainer: {
-    paddingBottom: 0
-  },
-});
-
 const MovieCardBody = (props: MovieCardBodyProps) => {
   return (
     <View>
@@ -52,25 +43,5 @@ const MovieCardBody = (props: MovieCardBodyProps) => {
     </View>
   );
 };
-
-type TextInfoPairDisplayProps = {
-  property: string;
-  value: string;
-}
-
-const TextInfoPairDisplay = (props: TextInfoPairDisplayProps) => (
-  <View>
-    <CardItem style={movieCardBodyStyles.labelContainer}>
-      <Text style={movieCardBodyStyles.label}>
-        {props.property}
-      </Text>
-    </CardItem>
-    <CardItem>
-      <Text>
-        {props.value}
-      </Text>
-    </CardItem>
-  </View>
-);
 
 export default MovieCardBody;
