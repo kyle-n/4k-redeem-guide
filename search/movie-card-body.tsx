@@ -29,19 +29,23 @@ type MovieCardBodyProps = {
 
 const MovieCardBody = (props: MovieCardBodyProps) => {
   return (
-    <View>
-      {textInfoPairs.map(pair => {
-        // @ts-ignore
-        const value = props.movie[pair.moviePropertyName];
-        if (value) return (
-          <TextInfoPairDisplay property={pair.property}
-                               value={value}
-                               key={pair.property} />
-        );
-        else return null;
-      })}
-    </View>
+    <TextInfoPairs movie={props.movie}/>
   );
 };
+
+const TextInfoPairs = (props: MovieCardBodyProps) => (
+  <View>
+    {textInfoPairs.map(pair => {
+      // @ts-ignore
+      const value = props.movie[pair.moviePropertyName];
+      if (value) return (
+        <TextInfoPairDisplay property={pair.property}
+                             value={value}
+                             key={pair.property}/>
+      );
+      else return null;
+    })}
+  </View>
+);
 
 export default MovieCardBody;
