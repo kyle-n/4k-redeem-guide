@@ -7,14 +7,8 @@ type MovieCardInfoProps = {
   movie: Movie;
 }
 
-const movieCardInfoStyles = StyleSheet.create({
-  main: {
-    color: baseColor
-  }
-});
-
 const MovieCardInfo = (props: MovieCardInfoProps) => (
-  <View style={movieCardInfoStyles.main} nativeID="movie-card-info">
+  <View nativeID="movie-card-info">
     <View nativeID="uhd-statuses">
       <Text>UHD Status</Text>
       <View>

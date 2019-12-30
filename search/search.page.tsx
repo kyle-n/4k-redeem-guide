@@ -1,5 +1,6 @@
 import React from 'react';
-import {Button, StyleSheet, Text, View} from 'react-native';
+import {Button, StyleSheet, View} from 'react-native';
+import {Container, Content, Text, Card, CardItem, Body} from 'native-base';
 import LoadingRedirect from './loading-redirect';
 import {getMovies} from '../store';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
@@ -11,14 +12,6 @@ type SearchPageProps = NavigationStackScreenProps;
 type SearchPageState = {
   movies: Movie[]
 }
-
-const searchPageStyles = StyleSheet.create({
-  main: {
-    backgroundColor: baseBackgroundColor,
-    color: baseColor,
-    height: '100%'
-  }
-});
 
 class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
   constructor(props: SearchPageProps) {
@@ -38,15 +31,16 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
   render() {
     return (
-      <View style={searchPageStyles.main}>
+      <Container>
         <LoadingRedirect redirect={this.navToLoadingPage}/>
-        <Button title="Go load" onPress={this.navToLoadingPage} />
-        {this.state.movies.map((movie, i) => {
-          return (
-            <MovieCard key={i} movie={movie}/>
-          );
-        })}
-      </View>
+        <Content>
+          {this.state.movies.map((movie, i) => {
+            return (
+              <MovieCard key={i} movie={movie}/>
+            );
+          })}
+        </Content>
+      </Container>
     );
   }
 }
