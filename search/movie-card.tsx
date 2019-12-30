@@ -1,7 +1,8 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Movie} from '../models';
-import {baseFontSize} from '../styles';
+import {baseColor, baseFontSize} from '../styles';
+import MovieCardInfo from './movie-card-info';
 
 type MovieCardProps = {
   movie: Movie;
@@ -10,12 +11,12 @@ type MovieCardProps = {
 const movieCardStyle = StyleSheet.create({
   mainCard: {
     flexDirection: 'column',
-    borderColor: 'black',
+    borderColor: baseColor,
     borderWidth: 1,
     borderStyle: 'solid',
     width: '95%',
     borderRadius: 10,
-    shadowColor: 'black',
+    shadowColor: baseColor,
     shadowOffset: {width: 5, height: 5},
     shadowOpacity: 50,
     shadowRadius: 5,
@@ -25,21 +26,26 @@ const movieCardStyle = StyleSheet.create({
     alignSelf: 'center',
     marginVertical: baseFontSize
   },
+  header: {
+  },
   title: {
-    fontSize: 2 * baseFontSize
+    fontSize: 2 * baseFontSize,
+    color: baseColor
   },
   regular: {
-    fontSize: baseFontSize
+    fontSize: baseFontSize,
+    color: baseColor
   }
 });
 
 const MovieCard = (props: MovieCardProps) => (
   <View style={movieCardStyle.mainCard}>
-    <View>
+    <View style={movieCardStyle.header}>
       <Text style={movieCardStyle.title}>{props.movie.title}</Text>
     </View>
     <View>
       <Text style={movieCardStyle.regular}>{props.movie.studio}</Text>
+      <MovieCardInfo movie={props.movie}/>
     </View>
   </View>
 );
