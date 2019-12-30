@@ -3,6 +3,7 @@ import {spreadsheetDateToJsDate} from './utils';
 export type Movie = {
   imageUrl: string;
   title: string;
+  year?: number;
   studio: string;
   maCodeLocation: string;
   vuduFandangoCodeLocation: string;
@@ -22,9 +23,19 @@ export type Movie = {
 }
 
 export const sheetMovieToMovie = (sheetMovie: SheetMovie): Movie => {
+  let title: string = sheetMovie.Title;
+  let year: number = 0;
+  const yearPattern: RegExp = /\(\d{4}\)/;
+  const yearMatches = sheetMovie.Title.match(yearPattern);
+  if (yearMatches && yearMatches.length) {
+    const matchingYear = yearMatches[yearMatches.length - 1];
+    year = parseInt(matchingYear);
+    title = title.replace('(' + matchingYear + ')', '');
+  }
   return {
     imageUrl: `http://images2.vudu.com/poster2/${sheetMovie.undefined}`,
-    title: sheetMovie.Title,
+    title,
+    year,
     studio: sheetMovie.Studio,
     maCodeLocation: sheetMovie['Where to redeem a code to get 4K at Movies Anywhere (Must be a 4K code for MA/Vudu/FN redeem. HD or 4K for iTunes redeem)'],
     vuduFandangoCodeLocation: sheetMovie['Movies that are not a part of Movies Anywhere. Where to redeem to get 4K at Vudu or FandangoNow only (Will not port anywhere)'],
