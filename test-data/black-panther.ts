@@ -6,7 +6,7 @@ export const testMovie: Movie = {
   year: 2019,
   studio: 'Marvel Studios',
   maCodeLocation: 'Redeem on Movies anywhere to get a code',
-  vuduFandangoCodeLocation: '',
+  vuduFandangoCodeLocation: 'N/A',
   vuduUhd: true,
   fandangoNowUhd: true,
   itunesUhd: true,

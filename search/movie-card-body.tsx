@@ -3,6 +3,18 @@ import {View} from 'native-base';
 import {Movie} from '../models';
 import TextInfoPairDisplay from './movie-card-text-info';
 
+type MovieCardBodyProps = {
+  movie: Movie
+};
+
+const MovieCardBody = (props: MovieCardBodyProps) => {
+  return (
+    <View>
+      <TextInfoPairs movie={props.movie}/>
+    </View>
+  );
+};
+
 type TextInfoPair = {
   property: string;
   moviePropertyName: string;
@@ -22,16 +34,6 @@ const textInfoPairs: TextInfoPair[] = [
     moviePropertyName: 'knownIssues'
   }
 ];
-
-type MovieCardBodyProps = {
-  movie: Movie
-};
-
-const MovieCardBody = (props: MovieCardBodyProps) => {
-  return (
-    <TextInfoPairs movie={props.movie}/>
-  );
-};
 
 const TextInfoPairs = (props: MovieCardBodyProps) => (
   <View>
