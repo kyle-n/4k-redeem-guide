@@ -7,7 +7,7 @@ export const testMovie: Movie = {
   studio: 'Marvel Studios',
   maCodeLocation: 'Redeem on Movies anywhere to get a code',
   vuduFandangoCodeLocation: 'N/A',
-  vuduUhd: true,
+  vuduUhd: false,
   fandangoNowUhd: true,
   itunesUhd: true,
   dolbyVision: true,
@@ -18,7 +18,7 @@ export const testMovie: Movie = {
   modifiedAt: new Date(),
   uhdVerificationNumber: 1,
   googlePlayUhd: true,
-  amazonVideoUhd: true,
+  amazonVideoUhd: false,
   microsoftUhd: true
 };
 
