@@ -89,3 +89,8 @@ type SheetMovie = {
   'iTunes code (HD or 4K) redeems 4K ': YesNo;
   'undefined': number;
 }
+
+export type MoviePropertyDisplayPair = {
+  displayName: string;
+  moviePropertyName: string;
+}
