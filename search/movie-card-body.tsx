@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'native-base';
-import {Movie} from '../models';
+import {Movie, MoviePropertyDisplayPair} from '../models';
 import TextInfoPairDisplay from './movie-card-text-info';
 import CheckmarkChart from './checkmark-chart';
 
@@ -17,22 +17,17 @@ const MovieCardBody = (props: MovieCardBodyProps) => {
   );
 };
 
-type TextInfoPair = {
-  property: string;
-  moviePropertyName: string;
-}
-
-const textInfoPairs: TextInfoPair[] = [
+const textInfoPairs: MoviePropertyDisplayPair[] = [
   {
-    property: 'Movies Anywhere 4K location',
+    displayName: 'Movies Anywhere 4K location',
     moviePropertyName: 'maCodeLocation'
   },
   {
-    property: 'Vudu / FandangoNOW 4K location',
+    displayName: 'Vudu / FandangoNOW 4K location',
     moviePropertyName: 'vuduFandangoCodeLocation'
   },
   {
-    property: 'Known Issues',
+    displayName: 'Known Issues',
     moviePropertyName: 'knownIssues'
   }
 ];
@@ -43,9 +38,9 @@ const TextInfoPairs = (props: MovieCardBodyProps) => (
       // @ts-ignore
       const value = props.movie[pair.moviePropertyName];
       if (value) return (
-        <TextInfoPairDisplay property={pair.property}
+        <TextInfoPairDisplay property={pair.displayName}
                              value={value}
-                             key={pair.property}/>
+                             key={pair.displayName}/>
       );
       else return null;
     })}
