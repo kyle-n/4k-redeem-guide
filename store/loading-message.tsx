@@ -14,7 +14,8 @@ const goofyMessages = [
   'Gathering all of Kathryn Hahn\'s great supporting performances (this might take a minute)',
   'Getting far from the shallows now',
   'Defending Spider-Man 3',
-  'Deleting the Snyder cut'
+  'Deleting the Snyder cut',
+  'Hot Rod is an American masterpiece on the crisis in American masculinity. In this essay, I will'
 ];
 
 type LoadingMessageProps = {
@@ -29,7 +30,10 @@ type LoadingMessageState = {
 
 class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessageState> {
   private static extractMessage(messageGroup: string[]): [string, string[]] {
-    const editedMessageGroup = messageGroup.slice();
+    let editedMessageGroup: string[];
+    if (messageGroup.length) editedMessageGroup = messageGroup.slice();
+    else editedMessageGroup = loadingMessages.slice();
+
     const index = Math.floor(Math.random() * messageGroup.length);
     const message: string = editedMessageGroup.splice(index, 1)[0];
     return [message, editedMessageGroup];
@@ -48,20 +52,20 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
     let updateMessage: number;
     props.navigation.addListener('willFocus', () => {
       updateMessage = setInterval(() => {
-        let messageGroupToUpdate: string[];
-        let message = '';
-        const update: any = {message: null, messageGroup: null, goGoofy: !this.state.goGoofy};
-        let newMessageGroup: string[];
+        let messageGroupName: string;
 
-        if (this.state.goGoofy) messageGroupToUpdate = this.state.goofyMessages;
-        else messageGroupToUpdate = this.state.loadingMessages;
+        if (this.state.goGoofy) messageGroupName = 'goofyMessages';
+        else messageGroupName = 'loadingMessages';
 
-        [message, newMessageGroup] = LoadingMessage.extractMessage(messageGroupToUpdate);
-        update.message = message;
-        update.messageGroup = newMessageGroup;
+        let newMessageGroup: string[], message: string;
+        // @ts-ignore
+        [message, newMessageGroup] = LoadingMessage.extractMessage(this.state[messageGroupName]);
 
-        this.setState(update);
-      }, 2 * 1000);
+        const update: any = {message, goGoofy: !this.state.goGoofy};
+        update[messageGroupName] = newMessageGroup;
+
+        this.setState(update, () => console.log(this.state));
+      }, 5 * 1000);
     });
 
     props.navigation.addListener('willBlur', () => clearInterval(updateMessage));
@@ -71,6 +75,7 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
     return (
       <Text>
         {this.state.message}
+        {this.state.message ? '...' : ''}
       </Text>
     );
   }
