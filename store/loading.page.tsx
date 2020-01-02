@@ -25,7 +25,7 @@ type LoadingPageProps = NavigationStackScreenProps;
 
 const LoadingPage = (props: LoadingPageProps) => {
   initializeStore().then(() => {
-    // props.navigation.navigate('Home')
+    props.navigation.navigate('Home')
   });
   return (
     <View style={loadingPageStyles.topContainer}>

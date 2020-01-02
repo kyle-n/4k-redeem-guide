@@ -16,8 +16,8 @@ const goofyMessages = [
   'Defending Spider-Man 3',
   'Deleting the Snyder cut',
   'Hot Rod is an American masterpiece on the crisis in American masculinity. In this essay, I will',
-  'Revving the mortal engines',
-  'Re-sizing the little women',
+  'Revving mortal engines',
+  'Re-sizing little women',
   'Repeatedly yelling "My man!"',
   'Dropping the "the"',
   'Buying a boat called "Craw Daddy"'
