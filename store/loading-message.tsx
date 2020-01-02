@@ -42,7 +42,7 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
       message: '',
       loadingMessages: loadingMessages.slice(),
       goofyMessages: goofyMessages.slice(),
-      goGoofy: true
+      goGoofy: false
     };
 
     let updateMessage: number;

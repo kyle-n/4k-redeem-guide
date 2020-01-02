@@ -3,6 +3,7 @@ import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {initializeStore} from './movies.store';
 import LoadingMessage from './loading-message';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
+import {baseFontSize} from '../styles';
 
 const loadingPageStyles = StyleSheet.create({
   topContainer: {
@@ -14,7 +15,9 @@ const loadingPageStyles = StyleSheet.create({
   innerContainer: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    paddingHorizontal: 2 * baseFontSize,
+    marginBottom: baseFontSize
   }
 });
 
@@ -27,8 +30,10 @@ const LoadingPage = (props: LoadingPageProps) => {
   return (
     <View style={loadingPageStyles.topContainer}>
       <View style={loadingPageStyles.innerContainer}>
-        <LoadingMessage navigation={props.navigation} />
         <ActivityIndicator size="large" />
+      </View>
+      <View style={loadingPageStyles.innerContainer}>
+        <LoadingMessage navigation={props.navigation} />
       </View>
     </View>
   );
