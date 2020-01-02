@@ -1,14 +1,30 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import {initializeStore} from './movies.store';
+
+const loadingPageStyles = StyleSheet.create({
+  topContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1,
+    justifyContent: 'center'
+  },
+  innerContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  }
+});
 
 const LoadingPage = (props: any) => {
   initializeStore().then(() => {
-    props.navigation.navigate('Home')
+    // props.navigation.navigate('Home')
   });
   return (
-    <View>
-      <Text>Loading movies</Text>
+    <View style={loadingPageStyles.topContainer}>
+      <View style={loadingPageStyles.innerContainer}>
+        <ActivityIndicator size="large" />
+      </View>
     </View>
   );
 };
