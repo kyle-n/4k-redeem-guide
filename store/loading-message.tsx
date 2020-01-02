@@ -31,6 +31,7 @@ type LoadingMessageState = {
   loadingMessages: string[];
   goofyMessages: string[];
   goGoofy: boolean;
+  intervalId: number;
 };
 
 class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessageState> {
@@ -51,12 +52,12 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
       message: '',
       loadingMessages: loadingMessages.slice(),
       goofyMessages: goofyMessages.slice(),
-      goGoofy: false
+      goGoofy: false,
+      intervalId: -1
     };
 
-    let updateMessage: number;
     props.navigation.addListener('willFocus', () => {
-      updateMessage = setInterval(() => {
+      const intervalId = setInterval(() => {
         let messageGroupName: string;
 
         if (this.state.goGoofy) messageGroupName = 'goofyMessages';
@@ -71,9 +72,21 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
 
         this.setState(update, () => console.log(this.state));
       }, 5 * 1000);
+      this.setState({intervalId});
     });
 
-    props.navigation.addListener('willBlur', () => clearInterval(updateMessage));
+    props.navigation.addListener('willBlur', this.destroyInterval);
+  }
+
+  destroyInterval = () => {
+    if (this.state.intervalId) {
+      clearInterval(this.state.intervalId);
+      this.setState({intervalId: 0});
+    }
+  };
+
+  componentWillUnmount(): void {
+    this.destroyInterval();
   }
 
   render() {
