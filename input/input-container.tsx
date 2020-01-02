@@ -1,6 +1,6 @@
 import React from 'react';
 import {Input, Item} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Text} from 'react-native';
 import {baseFontSize} from '../styles';
 
 const inputContainerStyles = StyleSheet.create({
@@ -9,7 +9,9 @@ const inputContainerStyles = StyleSheet.create({
   }
 });
 
-type InputContainerProps = {};
+type InputContainerProps = {
+  setQuery: (query: string) => void;
+};
 type InputContainerState = {
   query: string;
 };
@@ -22,14 +24,14 @@ class InputContainer extends React.Component<InputContainerProps, InputContainer
   }
 
   setQuery = (query: string) => {
-    this.setState({query});
+    this.setState({query}, () => this.props.setQuery(this.state.query));
   };
 
   render() {
     return (
       <Item style={inputContainerStyles.wrapper}>
         <Input value={this.state.query}
-               onChange={(e: any) => this.setQuery(e.nativeEvent.target.value)}
+               onChange={(e) => this.setQuery(e.nativeEvent.text)}
                placeholder="Search for movie titles"
         />
       </Item>

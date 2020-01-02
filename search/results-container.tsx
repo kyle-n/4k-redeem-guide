@@ -1,8 +1,10 @@
 import React from 'react';
 import {Movie} from '../models';
-import {Content, Item} from 'native-base';
+import {Item} from 'native-base';
 import MovieCard from './movie-card';
 import {StyleSheet} from 'react-native';
+import {testMovie} from '../test-data/black-panther';
+import {bvsTestMovie} from '../test-data/bvs';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -23,6 +25,14 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
     super(props);
 
     this.state = {movies: []};
+  }
+
+  componentDidUpdate(
+    prevProps: Readonly<ResultsContainerProps>
+  ): void {
+    if (prevProps !== this.props && this.props.query) {
+      this.setState({movies: [testMovie, bvsTestMovie]});
+    }
   }
 
   render() {

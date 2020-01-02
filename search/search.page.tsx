@@ -1,15 +1,17 @@
 import React from 'react';
-import {Container, Content, Item} from 'native-base';
+import {Container, Content} from 'native-base';
 import LoadingRedirect from './loading-redirect';
 import {getMovies} from '../store';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {Movie} from '../models';
 import {StyleSheet} from 'react-native';
 import InputContainer from '../input/input-container';
+import ResultsContainer from './results-container';
 
 type SearchPageProps = NavigationStackScreenProps;
 type SearchPageState = {
-  movies: Movie[]
+  movies: Movie[];
+  query: string;
 }
 
 const movieCardStyles = StyleSheet.create({
@@ -22,7 +24,10 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
   constructor(props: SearchPageProps) {
     super(props);
 
-    this.state = {movies: []};
+    this.state = {
+      movies: [],
+      query: ''
+    };
 
     props.navigation.addListener('willFocus', () => {
       const movies = getMovies();
@@ -34,12 +39,15 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
   navToLoadingPage = () => this.props.navigation.navigate('LoadingPage');
 
+  setQuery = (query: string): void => this.setState({query});
+
   render() {
     return (
       <Container>
         <LoadingRedirect redirect={this.navToLoadingPage}/>
         <Content contentContainerStyle={movieCardStyles.content}>
-          <InputContainer/>
+          <InputContainer setQuery={this.setQuery} />
+          <ResultsContainer query={this.state.query} />
         </Content>
       </Container>
     );
