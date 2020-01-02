@@ -28,7 +28,10 @@ class InputContainer extends React.Component<InputContainerProps, InputContainer
   render() {
     return (
       <Item style={inputContainerStyles.wrapper}>
-        <Input value={this.state.query} onChange={(e: any) => this.setQuery(e.nativeEvent.target.value)} />
+        <Input value={this.state.query}
+               onChange={(e: any) => this.setQuery(e.nativeEvent.target.value)}
+               placeholder="Search for movie titles"
+        />
       </Item>
     );
   }
