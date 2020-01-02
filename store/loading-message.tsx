@@ -2,6 +2,7 @@ import React from 'react';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {NavigationStackProp} from 'react-navigation-stack/src/types';
 import {NavigationParams, NavigationRoute} from 'react-navigation';
+import {Text} from 'native-base';
 
 const loadingMessages: string[] = [
   'Downloading 4K movie database',
@@ -65,4 +66,14 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
 
     props.navigation.addListener('willBlur', () => clearInterval(updateMessage));
   }
+
+  render() {
+    return (
+      <Text>
+        {this.state.message}
+      </Text>
+    );
+  }
 }
+
+export default LoadingMessage;
