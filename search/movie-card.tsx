@@ -18,7 +18,8 @@ const MovieCard = (props: MovieCardProps) => (
   <Card style={movieCardStyles.card}>
     <MovieCardHeader imageUrl={props.movie.imageUrl}
                      title={props.movie.title}
-                     studio={props.movie.studio} />
+                     studio={props.movie.studio}
+                     year={props.movie.year} />
     <MovieCardBody movie={props.movie} />
   </Card>
 );
