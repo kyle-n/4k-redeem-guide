@@ -1,11 +1,10 @@
 import React from 'react';
-import {Container, Content, Text, Card, CardItem, Body} from 'native-base';
+import {Container, Content} from 'native-base';
 import LoadingRedirect from './loading-redirect';
 import {getMovies} from '../store';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {Movie} from '../models';
 import MovieCard from './movie-card';
-import {baseBackgroundColor, baseColor} from '../styles';
 import {StyleSheet} from 'react-native';
 
 type SearchPageProps = NavigationStackScreenProps;

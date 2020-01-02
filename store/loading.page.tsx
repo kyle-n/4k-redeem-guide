@@ -16,7 +16,7 @@ const loadingPageStyles = StyleSheet.create({
   }
 });
 
-const LoadingPage = (props: any) => {
+const LoadingPage = () => {
   initializeStore().then(() => {
     // props.navigation.navigate('Home')
   });
