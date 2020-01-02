@@ -1,10 +1,9 @@
 import React from 'react';
 import {Movie} from '../models';
-import {Item} from 'native-base';
+import {Item, Text} from 'native-base';
 import MovieCard from './movie-card';
 import {StyleSheet} from 'react-native';
-import {testMovie} from '../test-data/black-panther';
-import {bvsTestMovie} from '../test-data/bvs';
+import {searchMovies} from '../store';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -31,7 +30,8 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
     prevProps: Readonly<ResultsContainerProps>
   ): void {
     if (prevProps !== this.props && this.props.query) {
-      this.setState({movies: [testMovie, bvsTestMovie]});
+      const movies = searchMovies(this.props.query);
+      this.setState({movies});
     }
   }
 
