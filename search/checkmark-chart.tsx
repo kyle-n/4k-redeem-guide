@@ -81,18 +81,17 @@ const MoviePropertyStatus = (props: MoviePropertyStatusProps) => (
 const checkmarkStyles: StyleProp<any> = StyleSheet.create({
   icon: {
     backgroundColor: 'rgba(0,0,0,0)',
-    display: 'flex',
-    justifyContent: 'center',
+    textAlign: 'center'
   }
 });
 
-const yesColor: StyleProp<any> = StyleSheet.create({
+const yesIconStyle: StyleProp<any> = StyleSheet.create({
   icon: {
     color: 'green'
   }
 });
 
-const noColor: StyleProp<any> = StyleSheet.create({
+const noIconStyle: StyleProp<any> = StyleSheet.create({
   icon: {
     color: 'lightgray'
   }
@@ -108,13 +107,13 @@ const Checkmark = (props: CheckmarkProps) => (
         <Icon name="ios-checkmark-circle"
               ios="ios-checkmark-circle"
               android="md-checkmark"
-              style={[checkmarkStyles.icon, yesColor.icon]}/>
+              style={[checkmarkStyles.icon, yesIconStyle.icon]}/>
       ) : (
         <Icon name="ios-close"
               ios="ios-close"
               android="md-close"
               type="Ionicons"
-              style={[checkmarkStyles.icon, noColor.icon]}/>
+              style={[checkmarkStyles.icon, noIconStyle.icon]}/>
       )}
   </Right>
 );
