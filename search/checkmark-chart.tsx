@@ -1,7 +1,6 @@
 import React from 'react';
-import {Button, Icon, Left, List, ListItem, Right, Text, View} from 'native-base';
+import {Icon, Left, List, ListItem, Right, Text} from 'native-base';
 import {Movie, MoviePropertyDisplayPair} from '../models';
-import {baseFontSize} from '../styles';
 import {StyleProp, StyleSheet} from 'react-native';
 
 const checkmarkValues: MoviePropertyDisplayPair[] = [
@@ -87,13 +86,17 @@ const checkmarkStyles: StyleProp<any> = StyleSheet.create({
   }
 });
 
-const yesColors: StyleProp<any> = StyleSheet.create({
+const yesColor: StyleProp<any> = StyleSheet.create({
   icon: {
     color: 'green'
   }
 });
 
-const yesStyles: StyleProp<any> = StyleSheet.compose(checkmarkStyles, yesColors);
+const noColor: StyleProp<any> = StyleSheet.create({
+  icon: {
+    color: 'lightgray'
+  }
+});
 
 type CheckmarkProps = {
   true: boolean;
@@ -102,10 +105,16 @@ type CheckmarkProps = {
 const Checkmark = (props: CheckmarkProps) => (
   <Right>
       {props.true ? (
-        <Icon ios="ios-checkmark-circle" android="md-checkmark"
-              style={yesStyles}/>
+        <Icon name="ios-checkmark-circle"
+              ios="ios-checkmark-circle"
+              android="md-checkmark"
+              style={[checkmarkStyles.icon, yesColor.icon]}/>
       ) : (
-        <Icon ios="ios-close" android="md-close" type="Ionicons" style={checkmarkStyles.icon}/>
+        <Icon name="ios-close"
+              ios="ios-close"
+              android="md-close"
+              type="Ionicons"
+              style={[checkmarkStyles.icon, noColor.icon]}/>
       )}
   </Right>
 );
