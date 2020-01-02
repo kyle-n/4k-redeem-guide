@@ -4,7 +4,6 @@ import LoadingRedirect from './loading-redirect';
 import {getMovies} from '../store';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {Movie} from '../models';
-import MovieCard from './movie-card';
 import {StyleSheet} from 'react-native';
 import InputContainer from '../input/input-container';
 
@@ -16,10 +15,6 @@ type SearchPageState = {
 const movieCardStyles = StyleSheet.create({
   content: {
     alignItems: 'center',
-  },
-  results: {
-    display: 'flex',
-    flexDirection: 'column'
   }
 });
 
@@ -45,13 +40,6 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
         <LoadingRedirect redirect={this.navToLoadingPage}/>
         <Content contentContainerStyle={movieCardStyles.content}>
           <InputContainer/>
-          <Item style={movieCardStyles.results}>
-            {this.state.movies.map((movie, i) => {
-              return (
-                <MovieCard key={i} movie={movie}/>
-              );
-            })}
-          </Item>
         </Content>
       </Container>
     );
