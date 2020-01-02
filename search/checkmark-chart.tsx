@@ -5,16 +5,12 @@ import {StyleProp, StyleSheet} from 'react-native';
 
 const checkmarkValues: MoviePropertyDisplayPair[] = [
   {
-    displayName: 'UHD on Vudu',
-    moviePropertyName: 'vuduUhd'
+    displayName: 'Movies Anywhere',
+    moviePropertyName: 'moviesAnywhere'
   },
   {
-    displayName: 'UHD on FandangoNOW',
-    moviePropertyName: 'fandangoNowUhd'
-  },
-  {
-    displayName: 'UHD on iTunes',
-    moviePropertyName: 'itunesUhd'
+    displayName: 'iTunes code redeems in UHD',
+    moviePropertyName: 'itunesCodeRedeemsUhd'
   },
   {
     displayName: 'Dolby Vision',
@@ -25,12 +21,16 @@ const checkmarkValues: MoviePropertyDisplayPair[] = [
     moviePropertyName: 'hdr'
   },
   {
-    displayName: 'iTunes code redeems UHD',
-    moviePropertyName: 'itunesCodeRedeemsUhd'
+    displayName: 'UHD on iTunes',
+    moviePropertyName: 'itunesUhd'
   },
   {
-    displayName: 'Movies Anywhere',
-    moviePropertyName: 'moviesAnywhere'
+    displayName: 'UHD on Vudu',
+    moviePropertyName: 'vuduUhd'
+  },
+  {
+    displayName: 'UHD on FandangoNOW',
+    moviePropertyName: 'fandangoNowUhd'
   },
   {
     displayName: 'UHD on Google Play',
