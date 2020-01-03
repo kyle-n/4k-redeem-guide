@@ -1,7 +1,7 @@
 import React from 'react';
 import {Movie} from '../models';
 import {Item, Text} from 'native-base';
-import MovieCard from './movie-card';
+import MovieCard from '../movie-card/movie-card';
 import {StyleSheet} from 'react-native';
 import {searchMovies} from '../store';
 
