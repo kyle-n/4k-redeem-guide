@@ -1,7 +1,8 @@
 import React from 'react';
-import {Input, Item} from 'native-base';
-import {StyleSheet, Text} from 'react-native';
+import {StyleSheet} from 'react-native';
+import {Item, Input} from 'native-base';
 import {baseFontSize} from '../styles';
+import {debounce} from 'throttle-debounce';
 
 const inputContainerStyles = StyleSheet.create({
   wrapper: {
@@ -24,8 +25,12 @@ class InputContainer extends React.Component<InputContainerProps, InputContainer
   }
 
   setQuery = (query: string) => {
-    this.setState({query}, () => this.props.setQuery(this.state.query));
+    this.setState({query}, () => this.debouncedPassToPropUpdateQuery(this.state.query));
   };
+
+  debouncedPassToPropUpdateQuery = debounce(400, (query: string) => {
+    this.props.setQuery(query);
+  });
 
   render() {
     return (
