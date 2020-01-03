@@ -1,6 +1,7 @@
 import React from 'react';
 import {CardItem, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
+import isUrl from 'is-url';
 
 const movieCardBodyStyles = StyleSheet.create({
   label: {
@@ -29,6 +30,14 @@ const TextInfoPairDisplay = (props: TextInfoPairDisplayProps) => (
       </Text>
     </CardItem>
   </View>
+);
+
+type InfoLinkProps = {
+  link: string;
+};
+
+const InfoLink = (props: InfoLinkProps) => (
+  <Text></Text>
 );
 
 export default TextInfoPairDisplay;
