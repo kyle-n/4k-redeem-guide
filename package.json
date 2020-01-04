@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "axios": "^0.19.0",
+    "extract-domain": "^2.2.1",
     "gsheets": "^2.0.0",
     "is-url": "^1.2.4",
     "native-base": "^2.13.8",
