@@ -121,6 +121,7 @@ def enableHermes = project.ext.react.get("enableHermes", false);
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion "25.0.1"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -188,6 +189,11 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-screens')
+    compile project(':react-native-reanimated')
+    compile project(':react-native-gesture-handler')
+    compile project(':react-native-custom-tabs')
+    compile "com.android.support:appcompat-v7:25.0.1"
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation 'androidx.appcompat:appcompat:1.1.0-rc01'

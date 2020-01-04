@@ -1,6 +1,10 @@
 package com.uhdredeemguide;
 
 import com.facebook.react.ReactActivity;
+import com.swmansion.rnscreens.RNScreensPackage;
+import com.swmansion.reanimated.ReanimatedPackage;
+import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
+import com.github.droibit.android.reactnative.customtabs.CustomTabsPackage;
 import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import com.swmansion.gesturehandler.react.RNGestureHandlerEnabledRootView;
