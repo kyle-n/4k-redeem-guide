@@ -28,7 +28,7 @@ class InputContainer extends React.Component<InputContainerProps, InputContainer
     this.setState({query}, () => this.debouncedPassToPropUpdateQuery(this.state.query));
   };
 
-  debouncedPassToPropUpdateQuery = debounce(400, (query: string) => {
+  debouncedPassToPropUpdateQuery = debounce(2 * 1000, (query: string) => {
     this.props.setQuery(query);
   });
 
