@@ -26,9 +26,7 @@ const TextInfoPairDisplay = (props: TextInfoPairDisplayProps) => (
       </Text>
     </CardItem>
     <CardItem>
-      <Text>
-        {props.value}
-      </Text>
+      <TextOrLink text={props.value}/>
     </CardItem>
   </View>
 );
@@ -57,9 +55,9 @@ const InfoLink = (props: InfoLinkProps) => {
     });
   };
   return (
-    <a onClick={openLink}>
+    <Text onPress={openLink}>
       {props.link}
-    </a>
+    </Text>
   );
 };
 
