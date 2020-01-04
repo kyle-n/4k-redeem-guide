@@ -2,6 +2,7 @@ import React from 'react';
 import {CardItem, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import isUrl from 'is-url';
+import {CustomTabs} from 'react-native-custom-tabs';
 
 const movieCardBodyStyles = StyleSheet.create({
   label: {
@@ -32,12 +33,34 @@ const TextInfoPairDisplay = (props: TextInfoPairDisplayProps) => (
   </View>
 );
 
+type TextOrLinkProps = {
+  text: string;
+};
+
+const TextOrLink = (props: TextOrLinkProps) => {
+  return isUrl(props.text) ? (
+    <InfoLink link={props.text} />
+  ) : (
+    <Text>{props.text}</Text>
+  );
+};
+
 type InfoLinkProps = {
   link: string;
 };
 
-const InfoLink = (props: InfoLinkProps) => (
-  <Text></Text>
-);
+const InfoLink = (props: InfoLinkProps) => {
+  const openLink = () => {
+    return CustomTabs.openURL(props.link, {
+      enableUrlBarHiding: true,
+      showPageTitle: true,
+    });
+  };
+  return (
+    <a onClick={openLink}>
+      {props.link}
+    </a>
+  );
+};
 
 export default TextInfoPairDisplay;
