@@ -45,20 +45,20 @@ export const getMovies = (): Movie[] => {
 
 
 // need to group property types - iterate over all text props the same way, all booleans, etc
-export const searchMovies = (query: string): Movie[] => {
+export const searchMovies = (query: string, offset: number = 0): Movie[] => {
 
   // helpers
   const transformToMatchableText = (s: string): string => {
     return s.replace(/[\s-]/g, '').toLowerCase();
   };
-  const limit = 25;
+  const limit = 1;
 
   // setup
   const transformedQuery = transformToMatchableText(query);
   const results: Movie[] = [];
 
   // iterate over movies
-  for (let i = 0; i < movies.length; i++) {
+  for (let i = offset; i < movies.length; i++) {
     if (transformToMatchableText(movies[i].title).includes(transformedQuery)) {
       results.push(movies[i]);
       if (results.length === limit) break;
