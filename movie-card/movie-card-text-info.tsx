@@ -43,11 +43,15 @@ const TextOrLink = (props: TextOrLinkProps) => {
       <InfoLink link={props.text}/>
     );
   } else if (props.text.includes(' ')) {
-    return extractUrls(props.text).map(url => {
-      return (
-        <InfoLink key={url} link={url} />
-      );
-    });
+    return (
+      <View>
+        {extractUrls(props.text).map(url => {
+          return (
+          <InfoLink key={url} link={url} />
+          );
+        })}
+      </View>
+    );
   } else {
     return (
       <Text>{props.text}</Text>
