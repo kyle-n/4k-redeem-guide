@@ -1,8 +1,10 @@
 import React from 'react';
-import {CardItem, Text, View} from 'native-base';
+import {Button, CardItem, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import isUrl from 'is-url';
+import extractDomain from 'extract-domain';
 import {CustomTabs} from 'react-native-custom-tabs';
+import {extractUrls} from '../utils';
 
 const movieCardBodyStyles = StyleSheet.create({
   label: {
@@ -36,11 +38,21 @@ type TextOrLinkProps = {
 };
 
 const TextOrLink = (props: TextOrLinkProps) => {
-  return isUrl(props.text) ? (
-    <InfoLink link={props.text} />
-  ) : (
-    <Text>{props.text}</Text>
-  );
+  if (isUrl(props.text)) {
+    return (
+      <InfoLink link={props.text}/>
+    );
+  } else if (props.text.includes(' ')) {
+    return extractUrls(props.text).map(url => {
+      return (
+        <InfoLink key={url} link={url} />
+      );
+    });
+  } else {
+    return (
+      <Text>{props.text}</Text>
+    );
+  }
 };
 
 type InfoLinkProps = {
@@ -55,9 +67,13 @@ const InfoLink = (props: InfoLinkProps) => {
     });
   };
   return (
-    <Text onPress={openLink}>
-      {props.link}
-    </Text>
+    <View style={{textAlign: 'center'}}>
+      <Button onPress={openLink} info>
+        <Text>
+          {extractDomain(props.link)}
+        </Text>
+      </Button>
+    </View>
   );
 };
 
