@@ -5,6 +5,7 @@ import isUrl from 'is-url';
 import extractDomain from 'extract-domain';
 import {CustomTabs} from 'react-native-custom-tabs';
 import {extractUrls} from '../utils';
+import {baseFontSize} from '../styles';
 
 const movieCardBodyStyles = StyleSheet.create({
   label: {
@@ -47,7 +48,7 @@ const TextOrLink = (props: TextOrLinkProps) => {
       <View>
         {extractUrls(props.text).map(url => {
           return (
-          <InfoLink key={url} link={url} />
+          <InfoLink key={url} link={url} addVerticalMargin={true} />
           );
         })}
       </View>
@@ -61,6 +62,7 @@ const TextOrLink = (props: TextOrLinkProps) => {
 
 type InfoLinkProps = {
   link: string;
+  addVerticalMargin?: boolean;
 };
 
 const InfoLink = (props: InfoLinkProps) => {
@@ -72,7 +74,10 @@ const InfoLink = (props: InfoLinkProps) => {
   };
   return (
     <View style={{textAlign: 'center'}}>
-      <Button onPress={openLink} info>
+      <Button onPress={openLink}
+              info
+              style={props.addVerticalMargin ? {marginVertical: 0.5 * baseFontSize} : null}
+      >
         <Text>
           {extractDomain(props.link)}
         </Text>
