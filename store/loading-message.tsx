@@ -70,7 +70,7 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
         const update: any = {message, goGoofy: !this.state.goGoofy};
         update[messageGroupName] = newMessageGroup;
 
-        this.setState(update, () => console.log(this.state));
+        this.setState(update);
       }, 5 * 1000);
       this.setState({intervalId});
     });

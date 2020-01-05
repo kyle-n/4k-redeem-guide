@@ -23,7 +23,6 @@ type TextInfoPairDisplayProps = {
 
 const TextInfoPairDisplay = (props: TextInfoPairDisplayProps) => (
   <View>
-    {console.log(props)}
     <CardItem style={movieCardBodyStyles.labelContainer}>
       <Text style={movieCardBodyStyles.label}>
         {props.property}
