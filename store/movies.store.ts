@@ -51,6 +51,7 @@ export const searchMovies = (query: string): Movie[] => {
   const transformToMatchableText = (s: string): string => {
     return s.replace(/[\s-]/g, '').toLowerCase();
   };
+  const limit = 25;
 
   // setup
   const transformedQuery = transformToMatchableText(query);
@@ -60,17 +61,21 @@ export const searchMovies = (query: string): Movie[] => {
   for (let i = 0; i < movies.length; i++) {
     if (transformToMatchableText(movies[i].title).includes(transformedQuery)) {
       results.push(movies[i]);
-      continue;
+      if (results.length === limit) break;
+      else continue;
     }
 
     let continueLoop = false;
+    let breakLoop = false;
     for (let q = 0; q < Object.keys(movies[i]).length; q++) {
       if (transformToMatchableText(Object.keys(movies[i])[q]).includes(transformedQuery)) {
         results.push(movies[i]);
-        continueLoop = true;
+        if (results.length === limit) breakLoop = true;
+        else continueLoop = true;
         break;
       }
     }
+    if (breakLoop) break;
     if (continueLoop) continue;
   }
 
