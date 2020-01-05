@@ -23,6 +23,7 @@ type TextInfoPairDisplayProps = {
 
 const TextInfoPairDisplay = (props: TextInfoPairDisplayProps) => (
   <View>
+    {console.log(props)}
     <CardItem style={movieCardBodyStyles.labelContainer}>
       <Text style={movieCardBodyStyles.label}>
         {props.property}
@@ -43,7 +44,7 @@ const TextOrLink = (props: TextOrLinkProps) => {
     return (
       <InfoLink link={props.text}/>
     );
-  } else if (props.text.includes(' ')) {
+  } else if (props.text.includes(' ') && props.text.includes('http')) {
     return (
       <View>
         {extractUrls(props.text).map(url => {
@@ -73,7 +74,7 @@ const InfoLink = (props: InfoLinkProps) => {
     });
   };
   return (
-    <View style={{textAlign: 'center'}}>
+    <View>
       <Button onPress={openLink}
               info
               style={props.addVerticalMargin ? {marginVertical: 0.5 * baseFontSize} : null}
