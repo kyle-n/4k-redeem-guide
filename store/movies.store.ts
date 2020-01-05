@@ -3,19 +3,35 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {Movie} from '../models';
 
 let movies: Movie[] = [];
+const moviesKey = 'movies';
+const dateKey = 'lastSavedMoviesDate';
 
 export const initializeStore = async (): Promise<void> => {
   const downloadMovies = async (): Promise<void> => {
-    console.log('downloading movies')
     movies = await loadMovies();
-    await AsyncStorage.setItem('movies', JSON.stringify(movies));
+    await AsyncStorage.setItem(moviesKey, JSON.stringify(movies));
+    await AsyncStorage.setItem(dateKey, new Date().getTime().toString());
   };
-  
+
   try {
+
+    // checks if cache is a week old
+    const storedLastUpdatedDate = await AsyncStorage.getItem(dateKey);
+    if (!storedLastUpdatedDate) {
+      await downloadMovies();
+      return;
+    } else {
+      const lastUpdatedDate: number = parseInt(storedLastUpdatedDate);
+      if (new Date().getDate() - 7 >= new Date(lastUpdatedDate).getDate()) {
+        await downloadMovies();
+        return;
+      }
+    }
+
+    // loads movies from storage if stored, otherwise downloads them
     const storedMovies: string | null = await AsyncStorage.getItem('movies');
     if (storedMovies?.length) {
       movies = JSON.parse(<string>storedMovies);
-      console.log('loaded stored movies', storedMovies?.length)
     } else await downloadMovies();
   } catch {
     await downloadMovies();
