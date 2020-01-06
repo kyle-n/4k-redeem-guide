@@ -4,13 +4,19 @@ import {Button, Item, Text, View} from 'native-base';
 import MovieCard from '../movie-card/movie-card';
 import {StyleSheet} from 'react-native';
 import {searchMovies} from '../store';
+import {baseFontSize} from '../styles';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    borderBottomWidth: 0
   },
   containerWithButton: {
+    alignSelf: 'stretch'
+  },
+  bottomButton: {
+    marginVertical: baseFontSize,
     alignSelf: 'stretch'
   }
 });
@@ -52,10 +58,10 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
               <MovieCard key={i} movie={movie}/>
             );
           })}
+          {this.state.movies.length ? (
+            <LoadMoreButton loadMoreMovies={this.loadMoreMovies} />
+          ) : null}
         </Item>
-        {this.state.movies.length ? (
-          <LoadMoreButton loadMoreMovies={this.loadMoreMovies} />
-        ) : null}
       </View>
     );
   }
@@ -66,9 +72,11 @@ type LoadMoreButtonProps = {
 };
 
 const LoadMoreButton = (props: LoadMoreButtonProps) => (
-  <Button onPress={props.loadMoreMovies} full primary>
-    <Text>Load more</Text>
-  </Button>
+  <View style={resultsContainerStyles.bottomButton}>
+    <Button onPress={props.loadMoreMovies} full primary>
+      <Text>Load more</Text>
+    </Button>
+  </View>
 );
 
 export default ResultsContainer;
