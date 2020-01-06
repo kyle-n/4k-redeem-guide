@@ -18,28 +18,23 @@ type InputContainerProps = {
   query: string;
 };
 type InputContainerState = {
-  query: string;
   loading: boolean;
 };
 
 class InputContainer extends React.Component<InputContainerProps, InputContainerState> {
+  private loadingPeriod = 1;
+
   constructor(props: InputContainerProps) {
     super(props);
 
-    this.state = {query: '', boolean: false};
-  }
-
-  componentDidUpdate(prevProps: ReadOnly<InputContainerProps>): void {
-    if (prevProps !== this.props) {
-      this.setState({query: this.props.query});
-    }
+    this.state = {boolean: false};
   }
 
   setQuery = (query: string) => {
-    this.setState({query, loading: true}, () => this.debouncedPassToPropUpdateQuery(this.state.query));
+    this.setState({loading: true}, () => this.debouncedPassToPropUpdateQuery(query));
   };
 
-  debouncedPassToPropUpdateQuery = debounce(1 * 1000, (query: string) => {
+  debouncedPassToPropUpdateQuery = debounce(loadingPeriod * 1000, (query: string) => {
     this.props.setQuery(query);
     this.setState({loading: false})
   });
@@ -47,9 +42,9 @@ class InputContainer extends React.Component<InputContainerProps, InputContainer
   render() {
     return (
       <Item style={inputContainerStyles.wrapper}>
-        <Input value={this.state.query}
+        <Input value={this.props.query}
                onChange={(e) => this.setQuery(e.nativeEvent.text)}
-               placeholder="Search for movie titles"
+               placeholder="Search for movies"
         />
         {this.state.loading ? (<LoadingIndicator isLoading={this.state.loading} />) : null}
       </Item>
