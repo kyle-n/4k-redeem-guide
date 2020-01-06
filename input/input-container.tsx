@@ -15,6 +15,7 @@ const inputContainerStyles = StyleSheet.create({
 
 type InputContainerProps = {
   setQuery: (query: string) => void;
+  query: string;
 };
 type InputContainerState = {
   query: string;
@@ -26,6 +27,12 @@ class InputContainer extends React.Component<InputContainerProps, InputContainer
     super(props);
 
     this.state = {query: '', boolean: false};
+  }
+
+  componentDidUpdate(prevProps: ReadOnly<InputContainerProps>): void {
+    if (prevProps !== this.props) {
+      this.setState({query: this.props.query});
+    }
   }
 
   setQuery = (query: string) => {
