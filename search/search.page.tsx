@@ -47,7 +47,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
         <LoadingRedirect redirect={this.navToLoadingPage}/>
         <Content contentContainerStyle={movieCardStyles.content}>
           <InputContainer setQuery={this.setQuery} />
-          <ResultsContainer query={this.state.query} />
+          <ResultsContainer query={this.state.query} setQuery={this.setQuery} />
         </Content>
       </Container>
     );

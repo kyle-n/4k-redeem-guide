@@ -1,10 +1,11 @@
 import React from 'react';
-import {Movie} from '../models';
+import {Movie, PresetSearch} from '../models';
 import {Button, Item, Text, View} from 'native-base';
 import MovieCard from '../movie-card/movie-card';
 import {StyleSheet} from 'react-native';
 import {searchMovies} from '../store';
 import {baseFontSize} from '../styles';
+import SuggestedSearches from './suggested-searches';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -22,6 +23,7 @@ const resultsContainerStyles = StyleSheet.create({
 });
 
 type ResultsContainerProps = {
+  setQuery: Function;
   query: string;
 };
 type ResultsContainerState = {
@@ -49,6 +51,12 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
     this.setState({movies, offset: movies.length});
   };
 
+  private setSearch = (presetSearch: PresetSearch): void => {
+    if (presetSearch.query) {
+      this.props.setQuery(presetSearch.query);
+    }
+  };
+
   render() {
     return (
       <View style={resultsContainerStyles.containerWithButton}>
@@ -60,7 +68,9 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
           })}
           {this.state.movies.length ? (
             <LoadMoreButton loadMoreMovies={this.loadMoreMovies} />
-          ) : null}
+          ) : (
+            <SuggestedSearches setSearch={this.setSearch} />
+          )}
         </Item>
       </View>
     );

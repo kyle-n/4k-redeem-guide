@@ -93,4 +93,9 @@ type SheetMovie = {
 export type MoviePropertyDisplayPair = {
   displayName: string;
   moviePropertyName: string;
-}
+};
+
+export type PresetSearch = {
+  title: string;
+  query?: string;
+};
