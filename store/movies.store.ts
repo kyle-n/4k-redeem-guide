@@ -51,7 +51,7 @@ export const searchMovies = (query: string, offset: number = 0): Movie[] => {
   const transformToMatchableText = (s: string): string => {
     return s.replace(/[\s-]/g, '').toLowerCase();
   };
-  const limit = 1;
+  const limit = 15;
 
   // setup
   const transformedQuery = transformToMatchableText(query);
