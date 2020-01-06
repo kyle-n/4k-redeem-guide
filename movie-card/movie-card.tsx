@@ -10,7 +10,7 @@ type MovieCardProps = {
 
 const movieCardStyles = StyleSheet.create({
   card: {
-    width: '95%'
+    alignSelf: 'stretch'
   }
 });
 
