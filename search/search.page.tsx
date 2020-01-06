@@ -45,9 +45,13 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
   navToLoadingPage = () => this.props.navigation.navigate('LoadingPage');
 
   setQuery = (query: string): void => {
-    this.setState({isLoading: true, query}, () => {
-      this.setDebouncedQuery(this.state.query);
-    });
+    if (query.length) {
+      this.setState({isLoading: true, query}, () => {
+        this.setDebouncedQuery(this.state.query);
+      });
+    } else {
+      this.setState({query, debouncedQuery: query});
+    }
   }
 
   setDebouncedQuery = debounce(1 * 1000, (query: string) => {
