@@ -5,13 +5,16 @@ import {getMovies} from '../store';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {Movie} from '../models';
 import {StyleSheet} from 'react-native';
-import InputContainer from '../input/input-container';
 import ResultsContainer from './results-container';
+import InputBox from '../input/input-box';
+import {debounce} from 'throttle-debounce';
 
 type SearchPageProps = NavigationStackScreenProps;
 type SearchPageState = {
   movies: Movie[];
   query: string;
+  debouncedQuery: string;
+  isLoading: boolean;
 }
 
 const movieCardStyles = StyleSheet.create({
@@ -26,7 +29,9 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
     this.state = {
       movies: [],
-      query: ''
+      query: '',
+      debouncedQuery: '',
+      isLoading: false
     };
 
     props.navigation.addListener('willFocus', () => {
@@ -39,15 +44,25 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
   navToLoadingPage = () => this.props.navigation.navigate('LoadingPage');
 
-  setQuery = (query: string): void => this.setState({query});
+  setQuery = (query: string): void => {
+    this.setState({isLoading: true, query}, () => {
+      this.setDebouncedQuery(this.state.query);
+    });
+  }
+
+  setDebouncedQuery = debounce(1 * 1000, (query: string) => {
+    this.setState({debouncedQuery: query, isLoading: false});
+  });
 
   render() {
     return (
       <Container>
         <LoadingRedirect redirect={this.navToLoadingPage}/>
         <Content contentContainerStyle={movieCardStyles.content}>
-          <InputContainer setQuery={this.setQuery} query={this.state.query} />
-          <ResultsContainer query={this.state.query} setQuery={this.setQuery} />
+          <InputBox query={this.state.query}
+                    setQuery={this.setQuery}
+                    isLoading={this.state.isLoading} />
+          <ResultsContainer query={this.state.debouncedQuery} setQuery={this.setQuery} />
         </Content>
       </Container>
     );
