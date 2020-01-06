@@ -32,17 +32,23 @@ type ResultsContainerState = {
 };
 
 class ResultsContainer extends React.Component<ResultsContainerProps, ResultsContainerState> {
+  private static readonly initialState: ResultsContainerState = {movies: [], offset: 0};
+
   constructor(props: ResultsContainerProps) {
     super(props);
 
-    this.state = {movies: [], offset: 0};
+    this.state = ResultsContainer.initialState;
   }
 
   componentDidUpdate(
     prevProps: Readonly<ResultsContainerProps>
   ): void {
-    if (prevProps !== this.props && this.props.query) {
-      this.loadMoreMovies();
+    if (prevProps !== this.props) {
+      if (this.props.query) {
+        this.loadMoreMovies();
+      } else {
+        this.setState(ResultsContainer.initialState);
+      }
     }
   }
 
