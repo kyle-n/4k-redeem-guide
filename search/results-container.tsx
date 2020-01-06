@@ -9,6 +9,9 @@ const resultsContainerStyles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'column'
+  },
+  containerWithButton: {
+    alignSelf: 'stretch'
   }
 });
 
@@ -42,7 +45,7 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
 
   render() {
     return (
-      <View>
+      <View style={resultsContainerStyles.containerWithButton}>
         <Item style={resultsContainerStyles.container}>
           {this.state.movies.map((movie, i) => {
             return (
@@ -50,12 +53,22 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
             );
           })}
         </Item>
-        <Button onPress={this.loadMoreMovies} full primary>
-          <Text>Load more</Text>
-        </Button>
+        {this.state.movies.length ? (
+          <LoadMoreButton loadMoreMovies={this.loadMoreMovies} />
+        ) : null}
       </View>
     );
   }
 }
+
+type LoadMoreButtonProps = {
+  loadMoreMovies: Function;
+};
+
+const LoadMoreButton = (props: LoadMoreButtonProps) => (
+  <Button onPress={props.loadMoreMovies} full primary>
+    <Text>Load more</Text>
+  </Button>
+);
 
 export default ResultsContainer;
