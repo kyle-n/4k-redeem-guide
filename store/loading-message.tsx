@@ -15,12 +15,15 @@ const goofyMessages = [
   'Getting far from the shallows now',
   'Defending Spider-Man 3',
   'Deleting the Snyder cut',
-  'Hot Rod is an American masterpiece on the crisis in American masculinity. In this essay, I will',
+  'Hot Rod is an American masterpiece. In this essay, I will',
   'Revving mortal engines',
   'Re-sizing little women',
   'Repeatedly yelling "My man!"',
   'Dropping the "the"',
-  'Buying a boat called "Craw Daddy"'
+  'Buying a boat called "Craw Daddy"',
+  'Scrapbooking some Karen\'s boys',
+  'Making the Kessel run',
+  'Undoing all the good parts of "The Last Jedi"'
 ];
 
 type LoadingMessageProps = {
