@@ -57,26 +57,36 @@ export const searchMovies = (query: string, offset: number = 0): Movie[] => {
   const transformedQuery = transformToMatchableText(query);
   const results: Movie[] = [];
 
-  // iterate over movies
+  // manually checks properties to go faster - see https://bit.ly/2N5P4Ac
   for (let i = offset; i < movies.length; i++) {
+
+    // check strings
     if (transformToMatchableText(movies[i].title).includes(transformedQuery)) {
       results.push(movies[i]);
       if (results.length === limit) break;
       else continue;
     }
-
-    let continueLoop = false;
-    let breakLoop = false;
-    for (let q = 0; q < Object.keys(movies[i]).length; q++) {
-      if (transformToMatchableText(Object.keys(movies[i])[q]).includes(transformedQuery)) {
-        results.push(movies[i]);
-        if (results.length === limit) breakLoop = true;
-        else continueLoop = true;
-        break;
-      }
+    if (transformToMatchableText(movies[i].studio).includes(transformedQuery)) {
+      results.push(movies[i]);
+      if (results.length === limit) break;
+      else continue;
     }
-    if (breakLoop) break;
-    if (continueLoop) continue;
+    if (transformToMatchableText(movies[i].maCodeLocation).includes(transformedQuery)) {
+      results.push(movies[i]);
+      if (results.length === limit) break;
+      else continue;
+    }
+    if (transformToMatchableText(movies[i].vuduFandangoCodeLocation).includes(transformedQuery)) {
+      results.push(movies[i]);
+      if (results.length === limit) break;
+      else continue;
+    }
+
+    // check booleans
+    if (
+      
+    )
+
   }
 
   return results;
