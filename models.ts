@@ -28,9 +28,9 @@ export const sheetMovieToMovie = (sheetMovie: SheetMovie): Movie => {
   const yearPattern: RegExp = /\(\d{4}\)/;
   const yearMatches = sheetMovie.Title.match(yearPattern);
   if (yearMatches && yearMatches.length) {
-    const matchingYear = yearMatches[yearMatches.length - 1];
-    year = parseInt(matchingYear);
-    title = title.replace('(' + matchingYear + ')', '');
+    let matchingYearWithParentheses: string = yearMatches[yearMatches.length - 1];
+    year = parseInt(matchingYearWithParentheses.substring(1, matchingYearWithParentheses.length - 1));
+    title = title.replace(matchingYearWithParentheses, '').trim();
   }
   return {
     imageUrl: `http://images2.vudu.com/poster2/${sheetMovie.undefined}`,
