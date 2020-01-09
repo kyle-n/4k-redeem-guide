@@ -55,7 +55,11 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
   }
 
   private loadMoreMovies = (): void => {
-    const movies = this.state.movies.concat(searchMovies(this.props.query, this.state.offset));
+    const movies = this.state.movies.concat(searchMovies(
+      this.props.query,
+      this.props.filters,
+      this.state.offset
+    ));
     this.setState({movies, offset: movies.length});
   };
 
