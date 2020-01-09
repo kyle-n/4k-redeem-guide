@@ -1,6 +1,7 @@
 import React from 'react';
 import {Accordion, Text} from 'native-base';
 import {MovieFilters} from '../models';
+import BooleanFilter from './boolean-filter';
 
 type FilterData = {
   displayName: string;
@@ -49,6 +50,10 @@ const filters: FilterData[] = [
   }
 ];
 
+const accordionDataArray = [
+  {title: 'Filters', content: 'render content'}
+];
+
 type FilterBoxProps = {
   setFilter: (filter: string, value: boolean) => void;
   resetFilters: () => void;
@@ -58,16 +63,19 @@ type FilterBoxProps = {
 };
 
 const FilterBox = (props: FilterBoxProps) => {
-  const filterMarkup = checkmarkValues.map(checkmarkValue => {
-    if (props.filters.)
-    return {
-      name: checkmarkValue.displayName,
-      // @ts-ignore
-      value: props.filters[checkmarkValue.moviePropertyName]
-    }
-  })
+  const filterMarkup = filters.map(filter => {
+    const toggleFilter = (val: boolean): void => props.setFilter(filter.filterName, val);
+    return (
+      <BooleanFilter key={filter.filterName}
+                     name={filter.displayName}
+                     // @ts-ignore
+                     value={props.filters[filter.filterName]}
+                     onChange={toggleFilter} />
+    );
+  });
   return (
-    <Accordion dataArray={} expanded={props.visible} />
+    <Accordion dataArray={accordionDataArray}
+               expanded={props.visible ? 0 : -1} />
   );
 };
 
