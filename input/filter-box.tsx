@@ -1,9 +1,9 @@
 import React from 'react';
-import {Accordion, Text, View} from 'native-base';
+import {Accordion, Button, Text, View} from 'native-base';
 import {MovieFilters} from '../models';
 import BooleanFilter from './boolean-filter';
 import {StyleSheet} from 'react-native';
-import {baseFontSize} from '../styles';
+import {baseBackgroundColor, baseFontSize} from '../styles';
 
 type FilterData = {
   displayName: string;
@@ -98,8 +98,35 @@ const FilterBox = (props: FilterBoxProps) => {
                    <View>{filterMarkup}</View>
                  )}
                  style={filterBoxStyles.filterBox} />
+      <ResetFilterButton onPress={props.resetFilters} />
     </View>
   );
 };
+
+const resetFilterButtonStyles = StyleSheet.create({
+  container: {
+    marginVertical: baseFontSize,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    backgroundColor: 'white'
+  },
+  button: {
+    alignSelf: 'center',
+  }
+});
+
+type ResetFilterButtonProps = {
+  onPress: () => void;
+};
+
+const ResetFilterButton = (props: ResetFilterButtonProps) => (
+  <View style={resetFilterButtonStyles.container}>
+    <Button onPress={props.onPress}
+            rounded warning style={resetFilterButtonStyles.button}>
+      <Text>Reset filters</Text>
+    </Button>
+  </View>
+);
 
 export default FilterBox;
