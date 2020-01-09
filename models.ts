@@ -1,26 +1,31 @@
 import {spreadsheetDateToJsDate} from './utils';
 
-export type Movie = {
+export type MovieFilters = {
+  vuduUhd: boolean;
+  fandangoNowUhd: boolean;
+  itunesUhd: boolean;
+  itunesCodeRedeemsUhd: boolean;
+  moviesAnywhere: boolean;
+  dolbyVision: boolean;
+  hdr: boolean;
+  googlePlayUhd: boolean;
+  amazonVideoUhd: boolean;
+  microsoftUhd: boolean;
+  knownIssues: string;
+}
+
+type MovieProperties = {
   imageUrl: string;
   title: string;
   year?: number;
   studio: string;
   maCodeLocation: string;
   vuduFandangoCodeLocation: string;
-  vuduUhd: boolean;
-  fandangoNowUhd: boolean;
-  itunesUhd: boolean;
-  dolbyVision: boolean;
-  hdr: boolean;
-  itunesCodeRedeemsUhd: boolean;
-  moviesAnywhere: boolean;
-  knownIssues: string;
   modifiedAt: Date;
   uhdVerificationNumber?: number;
-  googlePlayUhd: boolean;
-  amazonVideoUhd: boolean;
-  microsoftUhd: boolean;
 }
+
+export type Movie = MovieFilters & MovieProperties;
 
 export const sheetMovieToMovie = (sheetMovie: SheetMovie): Movie => {
   let title: string = String(sheetMovie.Title);
