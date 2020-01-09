@@ -60,10 +60,9 @@ export const searchMovies = (query: string, offset: number = 0): Movie[] => {
   // manually checks properties to go faster - see https://bit.ly/2N5P4Ac
   for (let i = offset; i < movies.length; i++) {
 
-    // check strings
-
     // title
     if (
+      // string properties
       transformToMatchableText(movies[i].title).includes(transformedQuery) ||
       transformToMatchableText(movies[i].studio).includes(transformedQuery) ||
       transformToMatchableText(movies[i].maCodeLocation).includes(transformedQuery) ||
