@@ -1,6 +1,6 @@
 import loadMovies from './spreadsheet.connector';
 import AsyncStorage from '@react-native-community/async-storage';
-import {Movie} from '../models';
+import {Movie, MovieFilters} from '../models';
 
 let movies: Movie[] = [];
 const moviesKey = 'movies';
@@ -45,7 +45,11 @@ export const getMovies = (): Movie[] => {
 
 
 // need to group property types - iterate over all text props the same way, all booleans, etc
-export const searchMovies = (query: string, offset: number = 0): Movie[] => {
+export const searchMovies = (
+  query: string,
+  filters: MovieFilters,
+  offset: number = 0
+): Movie[] => {
 
   // helpers
   const transformToMatchableText = (s: string): string => {
@@ -59,6 +63,22 @@ export const searchMovies = (query: string, offset: number = 0): Movie[] => {
 
   // manually checks properties to go faster - see https://bit.ly/2N5P4Ac
   for (let i = offset; i < movies.length; i++) {
+
+    // narrow by filters
+    if (
+      filters.vuduUhd && !movies[i].vuduUhd ||
+      filters.fandangoNowUhd && !movies[i].fandangoNowUhd ||
+      filters.itunesUhd && !movies[i].itunesUhd ||
+      filters.itunesCodeRedeemsUhd && !movies[i].itunesCodeRedeemsUhd ||
+      filters.moviesAnywhere && !movies[i].moviesAnywhere ||
+      filters.dolbyVision && !movies[i].dolbyVision ||
+      filters.hdr && !movies[i].hdr ||
+      filters.googlePlayUhd && !movies[i].googlePlayUhd ||
+      filters.amazonVideoUhd && !movies[i].amazonVideoUhd ||
+      filters.microsoftUhd && !movies[i].microsoftUhd
+    ) {
+      continue;
+    }
 
     // title
     if (
