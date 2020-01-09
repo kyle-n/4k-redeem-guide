@@ -52,8 +52,9 @@ const filters: FilterData[] = [
   }
 ];
 
+// NativeBase accordion uses content to fill in a text box, but I'm rendering custom components instead
 const accordionDataArray = [
-  {title: 'Filters', content: 'render content'}
+  {title: 'Filters', content: ''}
 ];
 
 const filterBoxStyles = StyleSheet.create({
@@ -92,6 +93,9 @@ const FilterBox = (props: FilterBoxProps) => {
     <View style={filterBoxStyles.container}>
       <Accordion dataArray={accordionDataArray}
                  expanded={props.visible ? 0 : -1}
+                 renderContent={() => (
+                   <View>{filterMarkup}</View>
+                 )}
                  style={filterBoxStyles.filterBox} />
     </View>
   );
