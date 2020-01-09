@@ -79,7 +79,8 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
   toggleFilterVisibility = (): void => this.setState({showFilters: !this.state.showFilters});
 
-  setFilters = (filters: MovieFilters): void => {
+  setFilter = (property: string, value: boolean): void => {
+    const filters = Object.assign({}, this.state.filters, {[property]: value});
     this.setState({filters});
   };
 
@@ -93,8 +94,10 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
           <InputBox query={this.state.query}
                     setQuery={this.setQuery}
                     isLoading={this.state.isLoading} />
-          <FilterBox setFilters={this.setFilters}
+          <FilterBox setFilter={this.setFilter}
                      resetFilters={this.resetFilters}
+                     visible={this.state.showFilters}
+                     filters={this.state.filters}
                      toggleFilterVisibility={this.toggleFilterVisibility} />
           <ResultsContainer query={this.state.debouncedQuery} setQuery={this.setQuery} />
         </Content>
