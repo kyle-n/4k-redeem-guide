@@ -61,31 +61,18 @@ export const searchMovies = (query: string, offset: number = 0): Movie[] => {
   for (let i = offset; i < movies.length; i++) {
 
     // check strings
-    if (transformToMatchableText(movies[i].title).includes(transformedQuery)) {
-      results.push(movies[i]);
-      if (results.length === limit) break;
-      else continue;
-    }
-    if (transformToMatchableText(movies[i].studio).includes(transformedQuery)) {
-      results.push(movies[i]);
-      if (results.length === limit) break;
-      else continue;
-    }
-    if (transformToMatchableText(movies[i].maCodeLocation).includes(transformedQuery)) {
-      results.push(movies[i]);
-      if (results.length === limit) break;
-      else continue;
-    }
-    if (transformToMatchableText(movies[i].vuduFandangoCodeLocation).includes(transformedQuery)) {
-      results.push(movies[i]);
-      if (results.length === limit) break;
-      else continue;
-    }
 
-    // check booleans
+    // title
     if (
-      
-    )
+      transformToMatchableText(movies[i].title).includes(transformedQuery) ||
+      transformToMatchableText(movies[i].studio).includes(transformedQuery) ||
+      transformToMatchableText(movies[i].maCodeLocation).includes(transformedQuery) ||
+      transformToMatchableText(movies[i].vuduFandangoCodeLocation).includes(transformedQuery)
+  ) {
+      results.push(movies[i]);
+      if (results.length === limit) break;
+      else continue;
+    }
 
   }
 
