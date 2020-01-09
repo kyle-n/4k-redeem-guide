@@ -80,12 +80,13 @@ type FilterBoxProps = {
 
 const FilterBox = (props: FilterBoxProps) => {
   const filterMarkup = filters.map(filter => {
-    const toggleFilter = (val: boolean): void => props.setFilter(filter.filterName, val);
+    // @ts-ignore
+    const filterVal = props.filters[filter.filterName];
+    const toggleFilter = (): void => props.setFilter(filter.filterName, !filterVal);
     return (
       <BooleanFilter key={filter.filterName}
                      name={filter.displayName}
-                     // @ts-ignore
-                     value={props.filters[filter.filterName]}
+                     value={filterVal}
                      onChange={toggleFilter} />
     );
   });
