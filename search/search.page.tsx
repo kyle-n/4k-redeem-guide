@@ -3,11 +3,12 @@ import {Container, Content} from 'native-base';
 import LoadingRedirect from './loading-redirect';
 import {getMovies} from '../store';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
-import {Movie} from '../models';
+import {Movie, MovieFilters} from '../models';
 import {StyleSheet} from 'react-native';
 import ResultsContainer from './results-container';
 import InputBox from '../input/input-box';
 import {debounce} from 'throttle-debounce';
+import FilterBox from '../input/filter-box';
 
 type SearchPageProps = NavigationStackScreenProps;
 type SearchPageState = {
@@ -15,6 +16,8 @@ type SearchPageState = {
   query: string;
   debouncedQuery: string;
   isLoading: boolean;
+  showFilters: boolean;
+  filters: MovieFilters;
 }
 
 const movieCardStyles = StyleSheet.create({
@@ -24,6 +27,20 @@ const movieCardStyles = StyleSheet.create({
 });
 
 class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
+
+  private static readonly defaultFilters: MovieFilters = {
+    vuduUhd: false,
+    fandangoNowUhd: false,
+    itunesUhd: false,
+    itunesCodeRedeemsUhd: false,
+    moviesAnywhere: false,
+    dolbyVision: false,
+    hdr: false,
+    googlePlayUhd: false,
+    amazonVideoUhd: false,
+    microsoftUhd: false
+  };
+
   constructor(props: SearchPageProps) {
     super(props);
 
@@ -31,7 +48,9 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
       movies: [],
       query: '',
       debouncedQuery: '',
-      isLoading: false
+      isLoading: false,
+      showFilters: true,
+      filters: Object.assign({}, SearchPage.defaultFilters)
     };
 
     props.navigation.addListener('willFocus', () => {
@@ -58,6 +77,14 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
     this.setState({debouncedQuery: query, isLoading: false});
   });
 
+  toggleFilterVisibility = (): void => this.setState({showFilters: !this.state.showFilters});
+
+  setFilters = (filters: MovieFilters): void => {
+    this.setState({filters});
+  };
+
+  resetFilters = (): void => this.setState({filters: Object.assign({}, SearchPage.defaultFilters)});
+
   render() {
     return (
       <Container>
@@ -66,6 +93,9 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
           <InputBox query={this.state.query}
                     setQuery={this.setQuery}
                     isLoading={this.state.isLoading} />
+          <FilterBox setFilters={this.setFilters}
+                     resetFilters={this.resetFilters}
+                     toggleFilterVisibility={this.toggleFilterVisibility} />
           <ResultsContainer query={this.state.debouncedQuery} setQuery={this.setQuery} />
         </Content>
       </Container>

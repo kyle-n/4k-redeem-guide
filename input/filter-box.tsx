@@ -4,6 +4,8 @@ import {MovieFilters} from '../models';
 
 type FilterBoxProps = {
   setFilters: (filters: MovieFilters) => void;
+  resetFilters: () => void;
+  toggleFilterVisibility: () => void;
 };
 
 const FilterBox = (props: FilterBoxProps) => (

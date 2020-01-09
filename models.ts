@@ -11,7 +11,6 @@ export type MovieFilters = {
   googlePlayUhd: boolean;
   amazonVideoUhd: boolean;
   microsoftUhd: boolean;
-  knownIssues: string;
 }
 
 type MovieProperties = {
@@ -23,6 +22,7 @@ type MovieProperties = {
   vuduFandangoCodeLocation: string;
   modifiedAt: Date;
   uhdVerificationNumber?: number;
+  knownIssues: string;
 }
 
 export type Movie = MovieFilters & MovieProperties;
