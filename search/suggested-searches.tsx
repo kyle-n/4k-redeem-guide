@@ -49,7 +49,7 @@ const presetSearches: PresetSearch[] = [
 ];
 
 type SuggestedSearchesProps = {
-	setSearch: Function;
+	setSearch: (presetSearch: PresetSearch) => void;
 };
 
 const SuggestedSearches = (props: SuggestedSearchesProps) => (

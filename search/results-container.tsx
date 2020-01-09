@@ -26,7 +26,7 @@ type ResultsContainerProps = {
   setQuery: Function;
   query: string;
   filters: MovieFilters;
-  setFilter: (property: string, value: boolean) => void;
+  setAllFilters: (filters: MovieFilters) => void;
 };
 type ResultsContainerState = {
   movies: Movie[];
@@ -66,6 +66,9 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
   private setSearch = (presetSearch: PresetSearch): void => {
     if (presetSearch.query) {
       this.props.setQuery(presetSearch.query);
+    }
+    if (presetSearch.filters) {
+      this.props.setAllFilters(presetSearch.filters);
     }
   };
 

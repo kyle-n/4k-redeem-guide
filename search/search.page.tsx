@@ -84,6 +84,8 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
     this.setState({filters});
   };
 
+  setAllFilters = (filters: MovieFilters): void => this.setState({filters});
+
   resetFilters = (): void => this.setState({filters: Object.assign({}, SearchPage.defaultFilters)});
 
   render() {
@@ -102,7 +104,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
           <ResultsContainer query={this.state.debouncedQuery}
                             setQuery={this.setQuery}
                             filters={this.state.filters}
-                            setFilter={this.setFilter} />
+                            setAllFilters={this.setAllFilters()} />
         </Content>
       </Container>
     );
