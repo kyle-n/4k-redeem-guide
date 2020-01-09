@@ -49,7 +49,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
       query: '',
       debouncedQuery: '',
       isLoading: false,
-      showFilters: true,
+      showFilters: false,
       filters: Object.assign({}, SearchPage.defaultFilters)
     };
 

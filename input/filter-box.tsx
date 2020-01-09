@@ -1,9 +1,9 @@
 import React from 'react';
-import {Accordion, Button, Text, View} from 'native-base';
+import {Accordion, Button, Icon, Text, View} from 'native-base';
 import {MovieFilters} from '../models';
 import BooleanFilter from './boolean-filter';
 import {StyleSheet} from 'react-native';
-import {baseBackgroundColor, baseFontSize} from '../styles';
+import {baseFontSize} from '../styles';
 
 type FilterData = {
   displayName: string;
@@ -90,15 +90,20 @@ const FilterBox = (props: FilterBoxProps) => {
                      onChange={toggleFilter} />
     );
   });
+  const resetButtonDisabled = Object.values(props.filters)
+    .reduce((noneChecked, val) => noneChecked && !val, true);
+
   return (
     <View style={filterBoxStyles.container}>
       <Accordion dataArray={accordionDataArray}
                  expanded={props.visible ? 0 : -1}
                  renderContent={() => (
-                   <View>{filterMarkup}</View>
+                   <View>
+                     {filterMarkup}
+                     <ResetFilterButton onPress={props.resetFilters} disabled={resetButtonDisabled} />
+                   </View>
                  )}
                  style={filterBoxStyles.filterBox} />
-      <ResetFilterButton onPress={props.resetFilters} />
     </View>
   );
 };
@@ -113,18 +118,23 @@ const resetFilterButtonStyles = StyleSheet.create({
   },
   button: {
     alignSelf: 'center',
+    opacity: 50
   }
 });
 
 type ResetFilterButtonProps = {
   onPress: () => void;
+  disabled: boolean;
 };
 
 const ResetFilterButton = (props: ResetFilterButtonProps) => (
   <View style={resetFilterButtonStyles.container}>
-    <Button onPress={props.onPress}
-            rounded warning style={resetFilterButtonStyles.button}>
+    <Button onPress={props.onPress} disabled={props.disabled}
+            warning={!props.disabled} light={props.disabled}
+            transparent={props.disabled} rounded={!props.disabled}
+            icon iconRight style={resetFilterButtonStyles.button}>
       <Text>Reset filters</Text>
+      <Icon name="md-undo" />
     </Button>
   </View>
 );
