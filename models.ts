@@ -103,4 +103,5 @@ export type MoviePropertyDisplayPair = {
 export type PresetSearch = {
   title: string;
   query?: string;
+  filters?: MovieFilters;
 };

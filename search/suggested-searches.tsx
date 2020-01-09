@@ -9,12 +9,42 @@ const presetSearches: PresetSearch[] = [
 		query: 'John Wick'
 	},
 	{
+		title: 'Movies Anywhere films in 4K on iTunes',
+		filters: {
+			vuduUhd: false,
+			fandangoNowUhd: false,
+			itunesUhd: true,
+			itunesCodeRedeemsUhd: false,
+			moviesAnywhere: true,
+			dolbyVision: false,
+			hdr: false,
+			googlePlayUhd: false,
+			amazonVideoUhd: false,
+			microsoftUhd: false
+		}
+	},
+	{
 		title: 'Movies from 1974',
 		query: '1974'
 	},
 	{
 		title: 'Paramount films',
 		query: 'Paramount'
+	},
+	{
+		title: 'Movies with HDR and Dolby Vision',
+		filters: {
+			vuduUhd: false,
+			fandangoNowUhd: false,
+			itunesUhd: false,
+			itunesCodeRedeemsUhd: false,
+			moviesAnywhere: false,
+			dolbyVision: true,
+			hdr: true,
+			googlePlayUhd: false,
+			amazonVideoUhd: false,
+			microsoftUhd: false
+		}
 	}
 ];
 
