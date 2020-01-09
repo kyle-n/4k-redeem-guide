@@ -1,5 +1,5 @@
 import React from 'react';
-import {Movie, PresetSearch} from '../models';
+import {Movie, MovieFilters, PresetSearch} from '../models';
 import {Button, Item, Text, View} from 'native-base';
 import MovieCard from '../movie-card/movie-card';
 import {StyleSheet} from 'react-native';
@@ -25,6 +25,8 @@ const resultsContainerStyles = StyleSheet.create({
 type ResultsContainerProps = {
   setQuery: Function;
   query: string;
+  filters: MovieFilters;
+  setFilter: (property: string, value: boolean) => void;
 };
 type ResultsContainerState = {
   movies: Movie[];

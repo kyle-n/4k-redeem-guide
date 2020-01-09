@@ -99,7 +99,10 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
                      visible={this.state.showFilters}
                      filters={this.state.filters}
                      toggleFilterVisibility={this.toggleFilterVisibility} />
-          <ResultsContainer query={this.state.debouncedQuery} setQuery={this.setQuery} />
+          <ResultsContainer query={this.state.debouncedQuery}
+                            setQuery={this.setQuery}
+                            filters={this.state.filters}
+                            setFilter={this.setFilter} />
         </Content>
       </Container>
     );
