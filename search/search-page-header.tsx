@@ -30,7 +30,8 @@ class SearchPageHeader extends React.Component<SearchPageHeaderProps, SearchPage
     this.state = {size: 0};
   }
 
-  setSize = (size: CardSize): void => {
+  toggleSize = (): void => {
+    const size = this.state.size === 0 ? 1 : 0;
     this.setState({size});
   };
   
@@ -41,7 +42,7 @@ class SearchPageHeader extends React.Component<SearchPageHeaderProps, SearchPage
           <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
         </View>
         <View>
-          <SizeButton size={this.state.size} onPress={this.setSize}/>
+          <SizeButton size={this.state.size} onPress={this.toggleSize}/>
         </View>
       </View>
     );
@@ -50,13 +51,13 @@ class SearchPageHeader extends React.Component<SearchPageHeaderProps, SearchPage
 
 type SizeButtonProps = {
   size: CardSize;
-  onPress: (size: CardSize) => void;
+  onPress: () => void;
 }
 
 const SizeButton = (props: SizeButtonProps) => {
-  const iconName = props.size === 0 ? 'square-outline' : 'list';
+  const iconName = props.size === 0 ? 'expand' : 'contract';
   return (
-    <Button onPress={() => props.onPress(props.size)}
+    <Button onPress={props.onPress}
             dark transparent large>
       <Icon name={'ios-' + iconName} ios={'ios-' + iconName} android={'md-' + iconName} />
     </Button>
