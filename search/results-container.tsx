@@ -73,6 +73,9 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
   };
 
   render() {
+    const anyFilterSelected = Object.values(this.props.filters)
+      .reduce((anyEnabled, filterEnabled) => anyEnabled || filterEnabled, false);
+    const showPresetSearches = !anyFilterSelected && !this.state.movies.length;
     return (
       <View style={resultsContainerStyles.containerWithButton}>
         <Item style={resultsContainerStyles.container}>
@@ -81,10 +84,10 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
               <MovieCard key={i} movie={movie}/>
             );
           })}
-          {this.state.movies.length ? (
-            <LoadMoreButton loadMoreMovies={this.loadMoreMovies} />
-          ) : (
+          {showPresetSearches ? (
             <SuggestedSearches setSearch={this.setSearch} />
+          ) : (
+            <LoadMoreButton loadMoreMovies={this.loadMoreMovies} />
           )}
         </Item>
       </View>
@@ -93,7 +96,7 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
 }
 
 type LoadMoreButtonProps = {
-  loadMoreMovies: Function;
+  loadMoreMovies: () => void;
 };
 
 const LoadMoreButton = (props: LoadMoreButtonProps) => (
