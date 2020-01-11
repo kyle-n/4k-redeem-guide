@@ -48,21 +48,22 @@ export const getMovies = (): Movie[] => {
 export const searchMovies = (
   query: string,
   filters: MovieFilters,
-  offset: number = 0
+  config?: {offset?: number, limit?: number}
 ): Movie[] => {
 
   // helpers
   const transformToMatchableText = (s: string): string => {
     return s.replace(/[\s-]/g, '').toLowerCase();
   };
-  const limit = 15;
 
   // setup
   const transformedQuery = transformToMatchableText(query);
   const results: Movie[] = [];
+  const limit = config && config.limit ? config.limit : 15;
+  const startingIndex = config && config.offset ? config.offset : 0;
 
   // manually checks properties to go faster - see https://bit.ly/2N5P4Ac
-  for (let i = offset; i < movies.length; i++) {
+  for (let i = startingIndex; i < movies.length; i++) {
 
     // narrow by filters
     if (

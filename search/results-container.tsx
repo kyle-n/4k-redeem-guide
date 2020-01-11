@@ -33,26 +33,27 @@ type ResultsContainerProps = {
 type ResultsContainerState = {
   movies: Movie[];
   offset: number;
+  noMoreResults: boolean;
 };
 
 class ResultsContainer extends React.Component<ResultsContainerProps, ResultsContainerState> {
-  private static readonly initialState: ResultsContainerState = {movies: [], offset: 0};
+  private static readonly initialState: ResultsContainerState = {movies: [], offset: 0, noMoreResults: false};
 
   constructor(props: ResultsContainerProps) {
     super(props);
 
-    this.state = ResultsContainer.initialState;
+    this.state = Object.assign({}, ResultsContainer.initialState);
   }
 
   componentDidUpdate(
     prevProps: Readonly<ResultsContainerProps>
   ): void {
     if (prevProps !== this.props) {
-      this.setState({offset: 0}, () => {
+      this.setState({offset: 0, noMoreResults: false}, () => {
         if (this.props.query || anyValueTruthy(this.props.filters)) {
           this.loadMoreMovies(true);
         } else {
-          this.setState(ResultsContainer.initialState);
+          this.setState(Object.assign({}, ResultsContainer.initialState));
         }
       });
     }
@@ -60,12 +61,20 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
 
   private loadMoreMovies = (clearPreviousMovies?: boolean): void => {
     const doLoad = () => {
-      const movies = this.state.movies.concat(searchMovies(
-        this.props.query,
-        this.props.filters,
-        this.state.offset
-      ));
-      this.setState({movies, offset: movies.length});
+      const newMovies = searchMovies(this.props.query, this.props.filters, {offset: this.state.offset});
+      const noMoreResults = !Boolean(
+        searchMovies(
+          this.props.query,
+          this.props.filters,
+          {offset: this.state.offset + newMovies.length, limit: 1}
+        ).length
+      );
+      const movies = this.state.movies.concat(newMovies);
+      this.setState({
+        movies,
+        offset: movies.length,
+        noMoreResults
+      });
     };
 
     if (clearPreviousMovies) {
@@ -97,7 +106,8 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
             );
           })}
           {this.state.movies.length ? (
-            <LoadMoreButton loadMoreMovies={this.loadMoreMovies} />
+            <LoadMoreButton loadMoreMovies={this.loadMoreMovies}
+                            disabled={this.state.noMoreResults} />
           ) : null}
           {showNoResultsMessage ? (
             <Text>
@@ -115,11 +125,13 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
 
 type LoadMoreButtonProps = {
   loadMoreMovies: () => void;
+  disabled: boolean;
 };
 
 const LoadMoreButton = (props: LoadMoreButtonProps) => (
   <View style={resultsContainerStyles.bottomButton}>
-    <Button onPress={props.loadMoreMovies} full primary>
+    <Button onPress={props.loadMoreMovies} full primary rounded
+            disabled={props.disabled}>
       <Text>Load more</Text>
     </Button>
   </View>
