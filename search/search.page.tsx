@@ -9,6 +9,7 @@ import ResultsContainer from './results-container';
 import InputBox from '../input/input-box';
 import {debounce} from 'throttle-debounce';
 import FilterBox from '../input/filter-box';
+import {anyValueTruthy} from '../utils';
 
 type SearchPageProps = NavigationStackScreenProps;
 type SearchPageState = {
@@ -18,6 +19,7 @@ type SearchPageState = {
   isLoading: boolean;
   showFilters: boolean;
   filters: MovieFilters;
+  debouncedFilters: MovieFilters;
 }
 
 const movieCardStyles = StyleSheet.create({
@@ -41,6 +43,8 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
     microsoftUhd: false
   };
 
+  private static readonly debounceTime = 400;
+
   constructor(props: SearchPageProps) {
     super(props);
 
@@ -50,7 +54,8 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
       debouncedQuery: '',
       isLoading: false,
       showFilters: false,
-      filters: Object.assign({}, SearchPage.defaultFilters)
+      filters: Object.assign({}, SearchPage.defaultFilters),
+      debouncedFilters: Object.assign({}, SearchPage.defaultFilters)
     };
 
     props.navigation.addListener('willFocus', () => {
@@ -76,7 +81,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
     }
   }
 
-  setDebouncedQuery = debounce(1 * 1000, (query: string) => {
+  setDebouncedQuery = debounce(SearchPage.debounceTime, (query: string) => {
     this.setState({debouncedQuery: query, isLoading: false});
   });
 
@@ -84,8 +89,18 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
   setFilter = (property: string, value: boolean): void => {
     const filters = Object.assign({}, this.state.filters, {[property]: value});
-    this.setState({filters});
+    if (anyValueTruthy(filters)) {
+      this.setState({filters, isLoading: true}, () => {
+        this.setDebouncedFilters(filters);
+      });
+    } else {
+      this.setState({filters, debouncedFilters: filters});
+    }
   };
+
+  setDebouncedFilters = debounce(SearchPage.debounceTime, (filters: MovieFilters) => {
+    this.setState({debouncedFilters: filters, isLoading: false});
+  });
 
   setAllFilters = (filters: MovieFilters): void => this.setState({filters});
 

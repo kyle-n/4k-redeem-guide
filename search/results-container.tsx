@@ -47,11 +47,13 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
     prevProps: Readonly<ResultsContainerProps>
   ): void {
     if (prevProps !== this.props) {
-      if (this.props.query || anyValueTruthy(this.props.filters)) {
-        this.loadMoreMovies();
-      } else {
-        this.setState(ResultsContainer.initialState);
-      }
+      this.setState({offset: 0}, () => {
+        if (this.props.query || anyValueTruthy(this.props.filters)) {
+          this.loadMoreMovies();
+        } else {
+          this.setState(ResultsContainer.initialState);
+        }
+      });
     }
   }
 
