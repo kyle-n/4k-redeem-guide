@@ -68,17 +68,17 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
   private loadMoreMovies = (clearPreviousMovies?: boolean): void => {
     const doLoad = () => {
       const newMovies = searchMovies(this.props.query, this.props.filters, {offset: this.state.offset});
-      const noMoreResults = !Boolean(
+      const noMoreResults = Boolean(
         searchMovies(
           this.props.query,
           this.props.filters,
-          {offset: this.state.offset + newMovies.length, limit: 1}
-        ).length
+          {offset: newMovies.nextIndexToEvaluate, limit: 1}
+        ).results.length === 0
       );
-      const movies = this.state.movies.concat(newMovies);
+      const movies = this.state.movies.concat(newMovies.results);
       this.setState({
         movies,
-        offset: movies.length,
+        offset: newMovies.nextIndexToEvaluate,
         noMoreResults
       });
     };

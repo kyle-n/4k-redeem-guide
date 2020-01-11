@@ -43,13 +43,22 @@ export const getMovies = (): Movie[] => {
   return movies.slice();
 };
 
+type SearchMovieResponse = {
+  results: Movie[];
+  nextIndexToEvaluate: number;
+};
 
 // need to group property types - iterate over all text props the same way, all booleans, etc
 export const searchMovies = (
   query: string,
   filters: MovieFilters,
   config?: {offset?: number, limit?: number}
-): Movie[] => {
+): SearchMovieResponse => {
+
+  // short-circuit on searches already at end of movie list
+  if (config?.offset && config.offset >= movies.length) {
+    return {results: [], nextIndexToEvaluate: config.offset};
+  }
 
   // helpers
   const transformToMatchableText = (s: string): string => {
@@ -61,9 +70,12 @@ export const searchMovies = (
   const results: Movie[] = [];
   const limit = config && config.limit ? config.limit : 15;
   const startingIndex = config && config.offset ? config.offset : 0;
+  let nextIndexToEvaluate = startingIndex;
 
   // manually checks properties to go faster - see https://bit.ly/2N5P4Ac
   for (let i = startingIndex; i < movies.length; i++) {
+    // bump next index
+    nextIndexToEvaluate++;
 
     // narrow by filters
     if (
@@ -96,5 +108,5 @@ export const searchMovies = (
 
   }
 
-  return results;
+  return {results, nextIndexToEvaluate};
 };
