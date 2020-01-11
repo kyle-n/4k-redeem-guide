@@ -13,3 +13,9 @@ export const anyValueTruthy = (obj: Object): boolean => {
   return Object.values(obj)
     .reduce((anyTruthy, val) => anyTruthy || val, false);
 };
+
+export const samePrimitiveValues = (one: any, two: any): boolean => {
+  return Object.keys(one).reduce((allSame, key) => {
+    return allSame && two.hasOwnProperty(key) && (one[key] === two[key]);
+  }, Boolean(true)); // <- known TS bug, see https://github.com/microsoft/TypeScript/issues/30390
+};
