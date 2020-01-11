@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, CardItem, Text, View} from 'native-base';
+import {Button, CardItem, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import isUrl from 'is-url';
 import extractDomain from 'extract-domain';
@@ -80,6 +80,7 @@ const InfoLink = (props: InfoLinkProps) => {
         <Text>
           {extractDomain(props.link)}
         </Text>
+        <Icon style={{marginLeft: 0}} name="external-link" type="EvilIcons" />
       </Button>
     </View>
   );
