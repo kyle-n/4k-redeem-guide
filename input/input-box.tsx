@@ -44,7 +44,7 @@ type ClearButtonProps = {
 
 const ClearButton = (props: ClearButtonProps) => (
   <Button onPress={props.onPress} disabled={props.disabled}
-          dark={!props.disabled} light={props.disabled} transparent small>
+          dark={!props.disabled} light={props.disabled} transparent>
     <Icon name="ios-close" android="md-close" ios="ios-close" />
   </Button>
 )
