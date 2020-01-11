@@ -133,8 +133,8 @@ const ResetFilterButton = (props: ResetFilterButtonProps) => (
             warning={!props.disabled} light={props.disabled}
             transparent={props.disabled} rounded={!props.disabled}
             icon iconRight style={resetFilterButtonStyles.button}>
-      <Text>Reset filters</Text>
-      <Icon name="md-undo" />
+      <Text>Clear filters</Text>
+      <Icon name="md-close" ios="ios-close" android="md-close" />
     </Button>
   </View>
 );
