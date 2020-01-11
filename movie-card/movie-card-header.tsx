@@ -1,24 +1,26 @@
 import React from 'react';
-import {Body, CardItem, Left, Text, Thumbnail} from 'native-base';
+import {Body, CardItem, Icon, Left, Right, Text, Thumbnail} from 'native-base';
+import {Movie} from '../models';
 
 type MovieCardHeaderProps = {
-  imageUrl: string;
-  title: string;
-  studio: string;
-  year?: number;
+  movie: Movie;
+  open: boolean;
 }
 
 const MovieCardHeader = (props: MovieCardHeaderProps) => (
   <CardItem header>
     <Left>
-      <Thumbnail source={{uri: props.imageUrl}} />
+      <Thumbnail source={{uri: props.movie.imageUrl}} />
       <Body>
-        <Text>{props.title}</Text>
+        <Text>{props.movie.title}</Text>
         <Text note>
-          {props.studio}
-          {props.year ? ', ' + props.year : null}
+          {props.movie.studio}
+          {props.movie.year ? ', ' + props.movie.year : null}
         </Text>
       </Body>
+      <Right>
+        <Icon name={props.open ? 'ios-arrow-up' : 'ios-arrow-down'} />
+      </Right>
     </Left>
   </CardItem>
 );

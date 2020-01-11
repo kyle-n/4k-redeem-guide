@@ -51,10 +51,8 @@ const movieCardStyles = StyleSheet.create({
 const MovieCardLayout = (props: MovieCardLayoutProps) => (
   <Card style={movieCardStyles.card}>
     <TouchableOpacity onPress={props.onPressHeader}>
-      <MovieCardHeader imageUrl={props.movie.imageUrl}
-                       title={props.movie.title}
-                       studio={props.movie.studio}
-                       year={props.movie.year} />
+      <MovieCardHeader movie={props.movie}
+                       open={props.showCardBody} />
     </TouchableOpacity>
     {props.showCardBody ? (
       <MovieCardBody movie={props.movie} />
