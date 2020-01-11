@@ -6,8 +6,7 @@ import {StyleSheet} from 'react-native';
 import {searchMovies} from '../store';
 import {baseFontSize} from '../styles';
 import SuggestedSearches from './suggested-searches';
-import {anyValueTruthy} from '../utils';
-import loadMovies from '../store/spreadsheet.connector';
+import {anyValueTruthy, samePrimitiveValues} from '../utils';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -48,7 +47,14 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
   componentDidUpdate(
     prevProps: Readonly<ResultsContainerProps>
   ): void {
-    if (prevProps !== this.props) {
+    if (
+      // prevent infinite loop
+      prevProps !== this.props &&
+
+      // run search only if search data changes, not just the props object
+      (prevProps.query !== this.props.query ||
+      !samePrimitiveValues(prevProps.filters, this.props.filters))
+    ) {
       this.setState({offset: 0, noMoreResults: false}, () => {
         if (this.props.query || anyValueTruthy(this.props.filters)) {
           this.loadMoreMovies(true);

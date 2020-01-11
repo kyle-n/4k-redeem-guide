@@ -91,7 +91,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
     const filters = Object.assign({}, this.state.filters, {[property]: value});
     if (anyValueTruthy(filters)) {
       this.setState({filters, isLoading: true}, () => {
-        this.setDebouncedFilters(filters);
+        this.setDebouncedFilters(Object.assign({}, filters));
       });
     } else {
       this.setState({filters, debouncedFilters: filters});
