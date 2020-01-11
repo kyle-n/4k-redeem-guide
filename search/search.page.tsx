@@ -123,7 +123,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
                      toggleFilterVisibility={this.toggleFilterVisibility} />
           <ResultsContainer query={this.state.debouncedQuery}
                             setQuery={this.setQuery}
-                            filters={this.state.filters}
+                            filters={this.state.debouncedFilters}
                             setAllFilters={this.setAllFilters} />
         </Content>
       </Container>
