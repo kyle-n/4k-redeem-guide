@@ -1,6 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet} from 'react-native';
-import {Item, Input, View, Left, Icon, Body} from 'native-base';
+import {Item, Input, View, Left, Icon, Body, Button} from 'native-base';
 import {baseFontSize} from '../styles';
 
 const inputContainerStyles = StyleSheet.create({
@@ -30,9 +30,24 @@ const InputBox = (props: InputBoxProps) => (
              placeholder="Search for movies"
              autoCorrect={false}
       />
-      {props.isLoading ? (<LoadingIndicator />) : null}
+    {props.isLoading ? (<LoadingIndicator />) : null}
+    {props.query.length ? (
+      <ClearButton disabled={!props.query.length} onPress={() => props.setQuery('')} />
+    ) : null}
   </Item>
 );
+
+type ClearButtonProps = {
+  disabled: boolean;
+  onPress: () => void;
+}
+
+const ClearButton = (props: ClearButtonProps) => (
+  <Button onPress={props.onPress} disabled={props.disabled}
+          dark={!props.disabled} light={props.disabled} transparent small>
+    <Icon name="ios-close" android="md-close" ios="ios-close" />
+  </Button>
+)
 
 type LoadingIndicatorProps = {};
 
