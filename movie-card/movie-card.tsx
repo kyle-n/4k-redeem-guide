@@ -1,6 +1,6 @@
 import React from 'react';
 import {Movie} from '../models';
-import {Body, Card, CardItem, Image, Left, Text, Thumbnail} from 'native-base';
+import {Card} from 'native-base';
 import {StyleSheet} from 'react-native';
 import MovieCardBody from './movie-card-body';
 import MovieCardHeader from './movie-card-header';
