@@ -86,7 +86,8 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
 
   render() {
     const anyFilterSelected = anyValueTruthy(this.props.filters);
-    const showPresetSearches = !anyFilterSelected && !this.state.movies.length;
+    const showNoResultsMessage = (anyFilterSelected || this.props.query) && !this.state.movies.length;
+    const showPresetSearches = !anyFilterSelected && !this.state.movies.length && !showNoResultsMessage;
     return (
       <View style={resultsContainerStyles.containerWithButton}>
         <Item style={resultsContainerStyles.container}>
@@ -95,11 +96,17 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
               <MovieCard key={i} movie={movie}/>
             );
           })}
+          {this.state.movies.length ? (
+            <LoadMoreButton loadMoreMovies={this.loadMoreMovies} />
+          ) : null}
+          {showNoResultsMessage ? (
+            <Text>
+              No matches found
+            </Text>
+          ): null}
           {showPresetSearches ? (
             <SuggestedSearches setSearch={this.setSearch} />
-          ) : (
-            <LoadMoreButton loadMoreMovies={this.loadMoreMovies} />
-          )}
+          ) : null}
         </Item>
       </View>
     );
