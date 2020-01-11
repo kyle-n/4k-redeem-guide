@@ -6,6 +6,7 @@ import {StyleSheet} from 'react-native';
 import {searchMovies} from '../store';
 import {baseFontSize} from '../styles';
 import SuggestedSearches from './suggested-searches';
+import {anyValueTruthy} from '../utils';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -46,7 +47,7 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
     prevProps: Readonly<ResultsContainerProps>
   ): void {
     if (prevProps !== this.props) {
-      if (this.props.query) {
+      if (this.props.query || anyValueTruthy(this.props.filters)) {
         this.loadMoreMovies();
       } else {
         this.setState(ResultsContainer.initialState);
@@ -73,8 +74,7 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
   };
 
   render() {
-    const anyFilterSelected = Object.values(this.props.filters)
-      .reduce((anyEnabled, filterEnabled) => anyEnabled || filterEnabled, false);
+    const anyFilterSelected = anyValueTruthy(this.props.filters);
     const showPresetSearches = !anyFilterSelected && !this.state.movies.length;
     return (
       <View style={resultsContainerStyles.containerWithButton}>

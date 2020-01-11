@@ -8,3 +8,8 @@ export const spreadsheetDateToJsDate = (spreadsheetDate: number): Date => {
 export const extractUrls = (text: string): string[] => {
   return text.split(' ').filter(str => isUrl(str));
 };
+
+export const anyValueTruthy = (obj: Object): boolean => {
+  return Object.values(obj)
+    .reduce((anyTruthy, val) => anyTruthy || val, false);
+};
