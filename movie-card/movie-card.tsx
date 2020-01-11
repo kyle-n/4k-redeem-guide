@@ -3,6 +3,7 @@ import {Movie} from '../models';
 import {Body, Card, CardItem, Image, Left, Text, Thumbnail} from 'native-base';
 import {StyleSheet} from 'react-native';
 import MovieCardBody from './movie-card-body';
+import MovieCardHeader from './movie-card-header';
 
 type MovieCardProps = {
   movie: Movie;
@@ -22,28 +23,6 @@ const MovieCard = (props: MovieCardProps) => (
                      year={props.movie.year} />
     <MovieCardBody movie={props.movie} />
   </Card>
-);
-
-type MovieCardHeaderProps = {
-  imageUrl: string;
-  title: string;
-  studio: string;
-  year?: number;
-}
-
-const MovieCardHeader = (props: MovieCardHeaderProps) => (
-  <CardItem header>
-    <Left>
-      <Thumbnail source={{uri: props.imageUrl}} />
-      <Body>
-        <Text>{props.title}</Text>
-        <Text note>
-          {props.studio}
-          {props.year ? ', ' + props.year : null}
-        </Text>
-      </Body>
-    </Left>
-  </CardItem>
 );
 
 export default MovieCard;
