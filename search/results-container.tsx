@@ -7,6 +7,7 @@ import {searchMovies} from '../store';
 import {baseFontSize} from '../styles';
 import SuggestedSearches from './suggested-searches';
 import {anyValueTruthy} from '../utils';
+import loadMovies from '../store/spreadsheet.connector';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -49,7 +50,7 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
     if (prevProps !== this.props) {
       this.setState({offset: 0}, () => {
         if (this.props.query || anyValueTruthy(this.props.filters)) {
-          this.loadMoreMovies();
+          this.loadMoreMovies(true);
         } else {
           this.setState(ResultsContainer.initialState);
         }
@@ -57,13 +58,21 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
     }
   }
 
-  private loadMoreMovies = (): void => {
-    const movies = this.state.movies.concat(searchMovies(
-      this.props.query,
-      this.props.filters,
-      this.state.offset
-    ));
-    this.setState({movies, offset: movies.length});
+  private loadMoreMovies = (clearPreviousMovies?: boolean): void => {
+    const doLoad = () => {
+      const movies = this.state.movies.concat(searchMovies(
+        this.props.query,
+        this.props.filters,
+        this.state.offset
+      ));
+      this.setState({movies, offset: movies.length});
+    };
+
+    if (clearPreviousMovies) {
+      this.setState({movies: []}, doLoad);
+    } else {
+      doLoad();
+    }
   };
 
   private setSearch = (presetSearch: PresetSearch): void => {
