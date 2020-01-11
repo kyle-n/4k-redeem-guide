@@ -66,7 +66,7 @@ const filterBoxStyles = StyleSheet.create({
     flexDirection: 'column'
   },
   filterBox: {
-    alignSelf: 'stretch',
+    alignSelf: 'stretch'
   }
 });
 
