@@ -61,6 +61,9 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
     });
   }
 
+  // -----------------------------------------------------------------------------
+  // callbacks
+
   navToLoadingPage = () => this.props.navigation.navigate('LoadingPage');
 
   setQuery = (query: string): void => {
@@ -88,6 +91,8 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
   resetFilters = (): void => this.setState({filters: Object.assign({}, SearchPage.defaultFilters)});
 
+  // -----------------------------------------------------------------------------
+
   render() {
     return (
       <Container>
@@ -98,13 +103,13 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
                     isLoading={this.state.isLoading} />
           <FilterBox setFilter={this.setFilter}
                      resetFilters={this.resetFilters}
-                     visible={this.state.showFilters}
                      filters={this.state.filters}
+                     visible={this.state.showFilters}
                      toggleFilterVisibility={this.toggleFilterVisibility} />
           <ResultsContainer query={this.state.debouncedQuery}
                             setQuery={this.setQuery}
                             filters={this.state.filters}
-                            setAllFilters={this.setAllFilters()} />
+                            setAllFilters={this.setAllFilters} />
         </Content>
       </Container>
     );
