@@ -104,7 +104,11 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
   setAllFilters = (filters: MovieFilters): void => this.setState({filters});
 
-  resetFilters = (): void => this.setState({filters: Object.assign({}, SearchPage.defaultFilters)});
+  resetFilters = (): void => {
+    const filters = Object.assign({}, SearchPage.defaultFilters);
+    const debouncedFilters = Object.assign({}, SearchPage.defaultFilters);
+    this.setState({filters, debouncedFilters});
+  };
 
   // -----------------------------------------------------------------------------
 
