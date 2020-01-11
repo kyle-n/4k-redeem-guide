@@ -105,3 +105,5 @@ export type PresetSearch = {
   query?: string;
   filters?: MovieFilters;
 };
+
+export type CardSize = 'sm' | 'md' | 'lg';

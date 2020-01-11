@@ -1,5 +1,5 @@
 import React from 'react';
-import {Movie} from '../models';
+import {CardSize, Movie} from '../models';
 import {Card} from 'native-base';
 import {StyleSheet} from 'react-native';
 import MovieCardBody from './movie-card-body';
@@ -7,6 +7,7 @@ import MovieCardHeader from './movie-card-header';
 
 type MovieCardProps = {
   movie: Movie;
+  size: CardSize;
 };
 
 const movieCardStyles = StyleSheet.create({
