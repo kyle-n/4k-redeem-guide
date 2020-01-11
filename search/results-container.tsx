@@ -108,7 +108,9 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
         <Item style={resultsContainerStyles.container}>
           {this.state.movies.map((movie, i) => {
             return (
-              <MovieCard key={i} movie={movie}/>
+              <MovieCard key={i}
+                         size={0}
+                         movie={movie}/>
             );
           })}
           {this.state.movies.length ? (

@@ -11,11 +11,7 @@ type MovieCardBodyProps = {
 
 const MovieCardBody = (props: MovieCardBodyProps) => {
   return (
-    <View>
-      <TextInfoPairs movie={props.movie}/>
-      <Hr />
-      <CheckmarkChart movie={props.movie}/>
-    </View>
+    <TextInfoPairs movie={props.movie}/>
   );
 };
 
