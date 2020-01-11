@@ -1,6 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet} from 'react-native';
-import {Item, Input, View} from 'native-base';
+import {Item, Input, View, Left, Icon, Body} from 'native-base';
 import {baseFontSize} from '../styles';
 
 const inputContainerStyles = StyleSheet.create({
@@ -9,6 +9,9 @@ const inputContainerStyles = StyleSheet.create({
   },
   loadingSpinner: {
     marginHorizontal: baseFontSize
+  },
+  searchIcon: {
+    marginLeft: baseFontSize
   }
 });
 
@@ -20,11 +23,14 @@ type InputBoxProps = {
 
 const InputBox = (props: InputBoxProps) => (
 	<Item style={inputContainerStyles.wrapper}>
-    <Input value={props.query}
-           onChange={(e) => props.setQuery(e.nativeEvent.text)}
-           placeholder="Search for movies"
-    />
-    {props.isLoading ? (<LoadingIndicator />) : null}
+      <Icon name="ios-search" android="md-search" ios="ios-search"
+            style={inputContainerStyles.searchIcon} />
+      <Input value={props.query}
+             onChange={(e) => props.setQuery(e.nativeEvent.text)}
+             placeholder="Search for movies"
+             autoCorrect={false}
+      />
+      {props.isLoading ? (<LoadingIndicator />) : null}
   </Item>
 );
 
