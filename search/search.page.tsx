@@ -43,7 +43,7 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
     microsoftUhd: false
   };
 
-  private static readonly debounceTime = 400;
+  private static readonly debounceTime = 1 * 1000;
 
   constructor(props: SearchPageProps) {
     super(props);
