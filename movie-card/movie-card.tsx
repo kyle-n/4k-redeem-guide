@@ -5,16 +5,13 @@ import {StyleSheet} from 'react-native';
 import MovieCardBody from './movie-card-body';
 import MovieCardHeader from './movie-card-header';
 import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Hr} from '../shared-components';
-import CheckmarkChart from '../search/checkmark-chart';
 
 type MovieCardProps = {
   movie: Movie;
   size: CardSize;
 };
 type MovieCardState = {
-  textPairsOpen: boolean;
-  checkmarkChartOpen: boolean;
+  cardBodyOpen: boolean;
 };
 
 class MovieCard extends React.Component<MovieCardProps, MovieCardState> {
@@ -22,35 +19,27 @@ class MovieCard extends React.Component<MovieCardProps, MovieCardState> {
     super(props);
 
     this.state = {
-      textPairsOpen: props.size > 0,
-      checkmarkChartOpen: props.size > 1
+      cardBodyOpen: props.size > 0
     };
   }
 
-  toggleTextPairsOpen = () => {
-    this.setState({textPairsOpen: !this.state.textPairsOpen});
-  };
-  toggleCheckmarkChartOpen = () => {
-    this.setState({checkmarkChartOpen: !this.state.checkmarkChartOpen});
+  toggleCardDetailsOpen = (): void => {
+    this.setState({cardBodyOpen: !this.state.cardBodyOpen});
   };
 
   render() {
     return (
       <MovieCardLayout movie={this.props.movie}
-                       onPressHeader={this.toggleTextPairsOpen}
-                       onPressTextPairs={this.toggleCheckmarkChartOpen}
-                       showTextPairs={this.state.textPairsOpen}
-                       showCheckmarkChart={this.state.checkmarkChartOpen} />
+                       onPressHeader={this.toggleCardDetailsOpen}
+                       showCardBody={this.state.cardBodyOpen} />
     );
   }
 }
 
 type MovieCardLayoutProps = {
   movie: Movie;
-  showTextPairs: boolean;
-  showCheckmarkChart: boolean;
+  showCardBody: boolean;
   onPressHeader: () => void;
-  onPressTextPairs: () => void;
 };
 
 const movieCardStyles = StyleSheet.create({
@@ -67,14 +56,8 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => (
                        studio={props.movie.studio}
                        year={props.movie.year} />
     </TouchableOpacity>
-    {props.showTextPairs ? (
+    {props.showCardBody ? (
       <MovieCardBody movie={props.movie} />
-    ) : null}
-    {props.showCheckmarkChart ? (
-      <View>
-        <Hr />
-        <CheckmarkChart movie={props.movie} />
-      </View>
     ) : null}
   </Card>
 );

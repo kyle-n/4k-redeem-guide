@@ -2,8 +2,8 @@ import React from 'react';
 import {View} from 'native-base';
 import {Movie, MoviePropertyDisplayPair} from '../models';
 import TextInfoPairDisplay from './movie-card-text-info';
-import CheckmarkChart from '../search/checkmark-chart';
 import {Hr} from '../shared-components';
+import CheckmarkChart from '../search/checkmark-chart';
 
 type MovieCardBodyProps = {
   movie: Movie
@@ -11,7 +11,11 @@ type MovieCardBodyProps = {
 
 const MovieCardBody = (props: MovieCardBodyProps) => {
   return (
-    <TextInfoPairs movie={props.movie}/>
+    <View>
+      <TextInfoPairs movie={props.movie}/>
+      <Hr />
+      <CheckmarkChart movie={props.movie} />
+    </View>
   );
 };
 
