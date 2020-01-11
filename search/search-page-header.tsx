@@ -1,6 +1,6 @@
 import React from 'react';
 import {CardSize} from '../models';
-import {Body, Button, Icon, Left, Right, Text, View} from 'native-base';
+import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
 
@@ -55,11 +55,11 @@ type SizeButtonProps = {
 }
 
 const SizeButton = (props: SizeButtonProps) => {
-  const iconName = props.size === 0 ? 'expand' : 'contract';
+  const iconName = props.size === 0 ? 'th-large' : 'th-list';
   return (
     <Button onPress={props.onPress}
             dark transparent large>
-      <Icon name={'ios-' + iconName} ios={'ios-' + iconName} android={'md-' + iconName} />
+      <Icon type="FontAwesome5" name={iconName} />
     </Button>
   );
 };
