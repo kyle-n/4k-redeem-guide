@@ -8,7 +8,7 @@ import {TouchableOpacity} from 'react-native-gesture-handler';
 
 type MovieCardProps = {
   movie: Movie;
-  size: CardSize;
+  cardSize: CardSize;
 };
 type MovieCardState = {
   cardBodyOpen: boolean;
@@ -19,7 +19,7 @@ class MovieCard extends React.Component<MovieCardProps, MovieCardState> {
     super(props);
 
     this.state = {
-      cardBodyOpen: props.size > 0
+      cardBodyOpen: props.cardSize > 0
     };
   }
 
