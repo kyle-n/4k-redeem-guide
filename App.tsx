@@ -5,7 +5,7 @@ import {LoadingPage} from './store';
 import SearchPage from './search/search.page';
 import SearchPageHeader from './search/search-page-header';
 import {CardSize} from './models';
-import {Animated} from 'react-native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 type AppProps = {};
 type AppState = {
@@ -14,11 +14,15 @@ type AppState = {
 
 class App extends React.Component<AppProps, AppState>{
   private static readonly defaultCardSize = 0;
+  private static readonly cardSizePrefName = 'cardSizePref';
 
   constructor(props: AppProps) {
     super(props);
 
     this.state = {cardSize: App.defaultCardSize};
+    this.getSavedSizePref().then(cardSize => {
+      if (cardSize) this.setState({cardSize});
+    });
   }
 
   MainNavigator = createStackNavigator({
@@ -38,9 +42,20 @@ class App extends React.Component<AppProps, AppState>{
   });
   AppContainer = createAppContainer(this.MainNavigator);
 
+  getSavedSizePref = async (): Promise<CardSize | null> => {
+    const savedSizePref: string | null = await AsyncStorage.getItem(App.cardSizePrefName);
+    if (savedSizePref) {
+      return parseInt(savedSizePref) as CardSize;
+    } else return null;
+  };
+
+  saveSizePref = async (size: CardSize): Promise<void> => {
+    await AsyncStorage.setItem(App.cardSizePrefName, size.toString());
+  };
+
   toggleSize = (): void => {
     const cardSize = this.state.cardSize === 0 ? 1 : 0;
-    this.setState({cardSize});
+    this.setState({cardSize}, () => this.saveSizePref(this.state.cardSize));
   };
 
   render() {
