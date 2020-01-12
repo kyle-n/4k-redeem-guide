@@ -18,7 +18,9 @@ const searchPageHeaderStyles = StyleSheet.create({
   }
 });
 
-type SearchPageHeaderProps = {};
+type SearchPageHeaderProps = {
+  onCardSizeButtonPress: () => void;
+};
 type SearchPageHeaderState = {
   size: CardSize;
 };
@@ -30,11 +32,6 @@ class SearchPageHeader extends React.Component<SearchPageHeaderProps, SearchPage
     this.state = {size: 0};
   }
 
-  toggleSize = (): void => {
-    const size = this.state.size === 0 ? 1 : 0;
-    this.setState({size});
-  };
-  
   render() {
     return (
       <View style={searchPageHeaderStyles.container}>
