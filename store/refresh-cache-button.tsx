@@ -15,7 +15,7 @@ const RefreshCacheButton = (props: RefreshCacheButtonProps) => {
   const showAlert = () => {
     Alert.alert(
       'Refresh movie catalog?',
-      'It is recommended to do this on a good internet connection.',
+      'It will automatically refresh after a week.',
       [
         {text: 'Cancel', style: 'cancel'},
         {text: 'OK', style: 'default', onPress: clearCacheAndNavToLoadingPage}
