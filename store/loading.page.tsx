@@ -25,59 +25,71 @@ const loadingPageStyles = StyleSheet.create({
 });
 
 type LoadingPageProps = NavigationStackScreenProps;
+type LoadingPageState = {
+  showDownloadLaterMessage: boolean;
+};
 
-const LoadingPage = (props: LoadingPageProps) => {
+class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
+  constructor(props: LoadingPageProps) {
+    super(props);
 
-  let showDownloadLaterMessage = false;
+    this.state = {showDownloadLaterMessage: false};
 
-  const init = () => {
+    const checkBeforeDownload = async () => {
+      await AsyncStorage.removeItem('movies');
+      const hasCache = await hasValidLocalCache();
+      if (hasCache) {
+        this.init();
+      } else {
+        const netInfo = await NetInfo.fetch();
+        if (!netInfo.details?.isConnectionExpensive) {
+          // warn the user if they're about to download ~2.5MB on data
+          Alert.alert(
+            'Download movies on data?',
+            'This will require approximately 3 MB.',
+            [
+              {text: 'Cancel', onPress: () => this.setState({showDownloadLaterMessage: true}), style: 'cancel'},
+              {text: 'OK', onPress: () => this.init(), style: 'default'}
+            ]
+          )
+        }
+      }
+    };
+    checkBeforeDownload();
+
+  }
+
+  init = () => {
     initializeStore().then(() => {
-      props.navigation.navigate('Home');
+      this.props.navigation.navigate('Home');
     });
   };
 
-  const checkBeforeDownload = async () => {
-    await AsyncStorage.removeItem('movies');
-    const hasCache = await hasValidLocalCache();
-    if (hasCache) {
-      init();
-    } else {
-      const netInfo = await NetInfo.fetch();
-      if (!netInfo.details?.isConnectionExpensive) {
-        // warn the user if they're about to download ~2.5MB on data
-        Alert.alert(
-          'Download movies on data?',
-          'This will require approximately 3 MB.',
-          [
-            {text: 'Cancel', onPress: () => showDownloadLaterMessage = true, style: 'cancel'},
-            {text: 'OK', onPress: () => init(), style: 'default'}
-          ]
-        )
-      }
-    }
-  };
-  checkBeforeDownload();
 
-  return (
-    <View style={loadingPageStyles.topContainer}>
-      <View style={loadingPageStyles.innerContainer}>
-        {showDownloadLaterMessage ? null : (
-          <ActivityIndicator size="large" />
-        )}
+  render() {
+
+    return (
+      <View style={loadingPageStyles.topContainer}>
+        <View style={loadingPageStyles.innerContainer}>
+          {this.state.showDownloadLaterMessage ? null : (
+            <ActivityIndicator size="large" />
+          )}
+        </View>
+        <View style={loadingPageStyles.innerContainer}>
+          {this.state.showDownloadLaterMessage ? (
+            <Button onPress={() => this.setState({showDownloadLaterMessage: false}, this.init)}
+                    warning rounded large>
+              <Icon name="ios-download" ios="ios-download" android="md-download"
+                    style={{fontSize: 2 * baseFontSize}} />
+              <Text>Download movies</Text>
+            </Button>
+          ) : (
+            <LoadingMessage navigation={this.props.navigation} />
+          )}
+        </View>
       </View>
-      <View style={loadingPageStyles.innerContainer}>
-        {showDownloadLaterMessage ? (
-          <Button onPress={init}
-                  warning rounded large>
-            <Icon name="ios-download" ios="ios-download" android="md-download" />
-            <Text>Download movies</Text>
-          </Button>
-        ) : (
-          <LoadingMessage navigation={props.navigation} />
-        )}
-      </View>
-    </View>
-  );
-};
+    );
+  }
+}
 
 export default LoadingPage;
