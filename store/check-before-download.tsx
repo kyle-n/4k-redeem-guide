@@ -26,7 +26,7 @@ const CheckBeforeDownload = (props: CheckBeforeDownloadProps) => {
             {text: 'OK', onPress: () => props.onConfirm(false), style: 'default'}
           ]
         )
-      }
+      } else props.onConfirm(false);
     }
   };
   check();
