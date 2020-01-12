@@ -6,6 +6,24 @@ let movies: Movie[] = [];
 const moviesKey = 'movies';
 const dateKey = 'lastSavedMoviesDate';
 
+// checks if cache exists and is < a week old
+export const hasValidLocalCache = async (): Promise<boolean> => {
+  const storedLastUpdatedDate = await AsyncStorage.getItem(dateKey);
+  if (!storedLastUpdatedDate) {
+    return false;
+  } else {
+    const lastUpdatedDate: number = parseInt(storedLastUpdatedDate);
+    if (new Date().getDate() - 7 >= new Date(lastUpdatedDate).getDate()) {
+      return false;
+    } else {
+      const storedMovies = await AsyncStorage.getItem(moviesKey);
+      if (!storedMovies || !JSON.parse(storedMovies)?.length) {
+        return false;
+      } else return true;
+    }
+  }
+};
+
 export const initializeStore = async (): Promise<void> => {
   const downloadMovies = async (): Promise<void> => {
     movies = await loadMovies();
