@@ -20,6 +20,7 @@ type SearchPageState = {
   showFilters: boolean;
   filters: MovieFilters;
   debouncedFilters: MovieFilters;
+  screenProps: NavigationStackScreenProps;
 }
 
 const movieCardStyles = StyleSheet.create({
@@ -130,7 +131,8 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
           <ResultsContainer query={this.state.debouncedQuery}
                             setQuery={this.setQuery}
                             filters={this.state.debouncedFilters}
-                            setAllFilters={this.setAllFilters} />
+                            setAllFilters={this.setAllFilters}
+                            cardSize={(this.props.screenProps as any).cardSize} />
         </Content>
       </Container>
     );
