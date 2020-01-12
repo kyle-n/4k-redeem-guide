@@ -1,22 +1,12 @@
 import React from 'react';
-import {
-  ActivityIndicator,
-  Alert,
-  BackHandler,
-  Modal,
-  NativeEventSubscription,
-  Platform,
-  StyleSheet,
-  View
-} from 'react-native';
-import {hasValidLocalCache, initializeStore} from './movies.store';
+import {ActivityIndicator, StyleSheet, View} from 'react-native';
+import {initializeStore} from './movies.store';
 import LoadingMessage from './loading-message';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {baseFontSize} from '../styles';
-import NetInfo from '@react-native-community/netinfo';
-import AsyncStorage from '@react-native-community/async-storage';
 import {Button, Icon, Text} from 'native-base';
 import {ExitOnBackButton} from '../shared-components';
+import CheckBeforeDownload from './check-before-download';
 
 const loadingPageStyles = StyleSheet.create({
   topContainer: {
@@ -37,6 +27,7 @@ const loadingPageStyles = StyleSheet.create({
 type LoadingPageProps = NavigationStackScreenProps;
 type LoadingPageState = {
   showDownloadLaterMessage: boolean;
+  showDownloadAlert: boolean;
 };
 
 class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
@@ -44,29 +35,11 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
   constructor(props: LoadingPageProps) {
     super(props);
 
-    this.state = {showDownloadLaterMessage: false};
-
-    const checkBeforeDownload = async () => {
-      await AsyncStorage.removeItem('movies');
-      const hasCache = await hasValidLocalCache();
-      if (hasCache) {
-        this.init(hasCache);
-      } else {
-        const netInfo = await NetInfo.fetch();
-        if (!netInfo.details?.isConnectionExpensive) {
-          // warn the user if they're about to download ~2.5MB on data
-          Alert.alert(
-            'Download 3 MB on data?',
-            'It may take a few minutes on a slow connection.',
-            [
-              {text: 'Cancel', onPress: () => this.setState({showDownloadLaterMessage: true}), style: 'cancel'},
-              {text: 'OK', onPress: () => this.init(hasCache), style: 'default'}
-            ]
-          )
-        }
-      }
+    this.state = {
+      showDownloadLaterMessage: false,
+      showDownloadAlert: true
     };
-    checkBeforeDownload();
+
   }
 
   init = (hasCache: boolean) => {
@@ -82,10 +55,25 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
   };
 
   render() {
+    const onDownloadAlertCancel = () => {
+      this.setState({showDownloadAlert: false, showDownloadLaterMessage: true});
+    };
+    const onDownloadAlertConfirm = (hasCache: boolean) => {
+      this.setState({showDownloadAlert: false}, () => this.init(hasCache));
+    };
 
     return (
       <View style={loadingPageStyles.topContainer}>
+
+        {/* Back listener util */}
         <ExitOnBackButton />
+
+        {/* Hide download alert after selection */}
+        {this.state.showDownloadAlert ? (
+          <CheckBeforeDownload onCancel={onDownloadAlertCancel}
+                               onConfirm={onDownloadAlertConfirm} />
+        ) : null}
+
         <View style={loadingPageStyles.innerContainer}>
           {this.state.showDownloadLaterMessage ? null : (
             <ActivityIndicator size="large" />
