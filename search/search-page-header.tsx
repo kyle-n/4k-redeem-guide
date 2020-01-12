@@ -3,6 +3,7 @@ import {CardSize} from '../models';
 import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
+import RefreshCacheButton from '../store/refresh-cache-button';
 
 const searchPageHeaderStyles = StyleSheet.create({
   container: {
@@ -15,6 +16,10 @@ const searchPageHeaderStyles = StyleSheet.create({
   pageTitle: {
     fontSize: 2 * baseFontSize,
     padding: baseFontSize
+  },
+  buttonContainer: {
+    display: 'flex',
+    flexDirection: 'row',
   }
 });
 
@@ -28,7 +33,8 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => (
     <View>
       <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
     </View>
-    <View>
+    <View style={searchPageHeaderStyles.buttonContainer}>
+      <RefreshCacheButton />
       <SizeButton cardSize={props.cardSize} onPress={props.onCardSizeButtonPress}/>
     </View>
   </View>
@@ -43,7 +49,7 @@ const SizeButton = (props: SizeButtonProps) => {
   const iconName = props.cardSize === 0 ? 'th-large' : 'th-list';
   return (
     <Button onPress={props.onPress}
-            dark transparent large>
+            info transparent large>
       <Icon type="FontAwesome5" name={iconName} />
     </Button>
   );
