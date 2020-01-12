@@ -23,6 +23,12 @@ class MovieCard extends React.Component<MovieCardProps, MovieCardState> {
     };
   }
 
+  componentDidUpdate(prevProps: Readonly<MovieCardProps>): void {
+    if (prevProps !== this.props) {
+      this.setState({cardBodyOpen: this.props.cardSize > 0})
+    }
+  }
+
   toggleCardDetailsOpen = (): void => {
     this.setState({cardBodyOpen: !this.state.cardBodyOpen});
   };
