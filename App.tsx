@@ -9,7 +9,7 @@ import {Animated} from 'react-native';
 
 type AppProps = {};
 type AppState = {
-  size: CardSize;
+  cardSize: CardSize;
 };
 
 class App extends React.Component<AppProps, AppState>{
@@ -18,14 +18,15 @@ class App extends React.Component<AppProps, AppState>{
   constructor(props: AppProps) {
     super(props);
 
-    this.state = {size: App.defaultCardSize};
+    this.state = {cardSize: App.defaultCardSize};
   }
 
   MainNavigator = createStackNavigator({
     Home: {
       screen: SearchPage,
       navigationOptions: {
-        header: () => <SearchPageHeader onCardSizeButtonPress={this.toggleSize} />
+        header: () => (<SearchPageHeader onCardSizeButtonPress={this.toggleSize}
+                                        cardSize={this.state?.cardSize || App.defaultCardSize} />)
       }
     },
     LoadingPage: {
@@ -38,13 +39,15 @@ class App extends React.Component<AppProps, AppState>{
   AppContainer = createAppContainer(this.MainNavigator);
 
   toggleSize = (): void => {
-    const size = this.state.size === 0 ? 1 : 0;
-    this.setState({size});
+    const cardSize = this.state.cardSize === 0 ? 1 : 0;
+    this.setState({cardSize});
   };
 
   render() {
     return (
-      <this.AppContainer />
+      <this.AppContainer screenProps={{
+        cardSize: this.state?.cardSize || App.defaultCardSize
+      }} />
     );
   }
 }
