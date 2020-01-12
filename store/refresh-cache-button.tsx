@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {Ref} from 'react';
 import {Button, Icon} from 'native-base';
 import {Alert} from 'react-native';
 import {clearMovieCache} from './movies.store';
+import {withNavigation} from 'react-navigation';
+import {NavigationStackScreenProps} from 'react-navigation-stack';
 
-type RefreshCacheButtonProps = {};
+type RefreshCacheButtonProps = NavigationStackScreenProps;
 
-const RefreshCacheButton = () => {
+const RefreshCacheButton = (props: RefreshCacheButtonProps) => {
   const clearCacheAndNavToLoadingPage = async () => {
     await clearMovieCache();
+    props.navigation.navigate('LoadingPage');
   };
   const showAlert = () => {
     Alert.alert(
@@ -27,4 +30,4 @@ const RefreshCacheButton = () => {
   );
 };
 
-export default RefreshCacheButton;
+export default withNavigation(RefreshCacheButton);
