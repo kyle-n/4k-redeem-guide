@@ -20,39 +20,27 @@ const searchPageHeaderStyles = StyleSheet.create({
 
 type SearchPageHeaderProps = {
   onCardSizeButtonPress: () => void;
-};
-type SearchPageHeaderState = {
-  size: CardSize;
+  cardSize: CardSize;
 };
 
-class SearchPageHeader extends React.Component<SearchPageHeaderProps, SearchPageHeaderState> {
-  constructor(props: SearchPageHeaderProps) {
-    super(props);
-    
-    this.state = {size: 0};
-  }
-
-  render() {
-    return (
-      <View style={searchPageHeaderStyles.container}>
-        <View>
-          <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
-        </View>
-        <View>
-          <SizeButton size={this.state.size} onPress={this.toggleSize}/>
-        </View>
-      </View>
-    );
-  }
-}
+const SearchPageHeader = (props: SearchPageHeaderProps) => (
+  <View style={searchPageHeaderStyles.container}>
+    <View>
+      <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
+    </View>
+    <View>
+      <SizeButton cardSize={props.cardSize} onPress={props.onCardSizeButtonPress}/>
+    </View>
+  </View>
+)
 
 type SizeButtonProps = {
-  size: CardSize;
+  cardSize: CardSize;
   onPress: () => void;
 }
 
 const SizeButton = (props: SizeButtonProps) => {
-  const iconName = props.size === 0 ? 'th-large' : 'th-list';
+  const iconName = props.cardSize === 0 ? 'th-large' : 'th-list';
   return (
     <Button onPress={props.onPress}
             dark transparent large>
