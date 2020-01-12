@@ -1,5 +1,5 @@
 import React from 'react';
-import {Movie, MovieFilters, PresetSearch} from '../models';
+import {CardSize, Movie, MovieFilters, PresetSearch} from '../models';
 import {Button, Item, Text, View} from 'native-base';
 import MovieCard from '../movie-card/movie-card';
 import {StyleSheet} from 'react-native';
@@ -28,6 +28,7 @@ type ResultsContainerProps = {
   query: string;
   filters: MovieFilters;
   setAllFilters: (filters: MovieFilters) => void;
+  cardSize: CardSize;
 };
 type ResultsContainerState = {
   movies: Movie[];
@@ -109,7 +110,7 @@ class ResultsContainer extends React.Component<ResultsContainerProps, ResultsCon
           {this.state.movies.map((movie, i) => {
             return (
               <MovieCard key={i}
-                         size={0}
+                         cardSize={this.props.cardSize}
                          movie={movie}/>
             );
           })}
