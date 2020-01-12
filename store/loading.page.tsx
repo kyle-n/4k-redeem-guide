@@ -16,6 +16,7 @@ import {baseFontSize} from '../styles';
 import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Button, Icon, Text} from 'native-base';
+import {ExitOnBackButton} from '../shared-components';
 
 const loadingPageStyles = StyleSheet.create({
   topContainer: {
@@ -39,7 +40,6 @@ type LoadingPageState = {
 };
 
 class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
-  private backHandler: NativeEventSubscription = null as any;
 
   constructor(props: LoadingPageProps) {
     super(props);
@@ -69,24 +69,6 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
     checkBeforeDownload();
   }
 
-  componentDidMount(): void {
-    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      Alert.alert(
-        'Exit App',
-        'Exit the application?',
-        [
-          {text: 'Cancel', style: 'cancel'},
-          {text: 'OK', style: 'default', onPress: BackHandler.exitApp}
-        ]
-      );
-      return true;
-    });
-  }
-
-  componentWillUnmount(): void {
-    this.backHandler.remove();
-  }
-
   init = (hasCache: boolean) => {
     initializeStore(hasCache).then(() => {
       this.props.navigation.navigate('Home');
@@ -103,6 +85,7 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
 
     return (
       <View style={loadingPageStyles.topContainer}>
+        <ExitOnBackButton />
         <View style={loadingPageStyles.innerContainer}>
           {this.state.showDownloadLaterMessage ? null : (
             <ActivityIndicator size="large" />
