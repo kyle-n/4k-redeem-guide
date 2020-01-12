@@ -36,7 +36,7 @@ export class ExitOnBackButton extends React.Component<ExitOnBackButtonProps, Exi
   componentDidMount(): void {
     this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
       Alert.alert(
-        'Exit App',
+        'Exit',
         'Exit the application?',
         [
           {text: 'Cancel', style: 'cancel'},
