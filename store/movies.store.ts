@@ -126,3 +126,8 @@ export const searchMovies = (
 
   return {results, nextIndexToEvaluate};
 };
+
+export const clearMovieCache = async (): Promise<void> => {
+  await AsyncStorage.removeItem(moviesKey);
+  await AsyncStorage.removeItem(dateKey);
+};
