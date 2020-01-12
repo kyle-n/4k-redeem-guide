@@ -24,37 +24,35 @@ export const hasValidLocalCache = async (): Promise<boolean> => {
   }
 };
 
-export const initializeStore = async (): Promise<void> => {
+export const initializeStore = async (validCache: boolean): Promise<void> => {
+
+  // load from API
   const downloadMovies = async (): Promise<void> => {
     movies = await loadMovies();
     await AsyncStorage.setItem(moviesKey, JSON.stringify(movies));
     await AsyncStorage.setItem(dateKey, new Date().getTime().toString());
   };
 
-  try {
-
-    // checks if cache is a week old
-    const storedLastUpdatedDate = await AsyncStorage.getItem(dateKey);
-    if (!storedLastUpdatedDate) {
+  // load from AsyncStorage
+  const loadMoviesFromCache = async (): Promise<void> => {
+    try {
+      const storedMovies = await AsyncStorage.getItem(moviesKey);
+      if (storedMovies) {
+        movies = JSON.parse(storedMovies);
+      } else await downloadMovies();
+    } catch {
       await downloadMovies();
-      return;
-    } else {
-      const lastUpdatedDate: number = parseInt(storedLastUpdatedDate);
-      if (new Date().getDate() - 7 >= new Date(lastUpdatedDate).getDate()) {
-        await downloadMovies();
-        return;
-      }
     }
+  };
 
-    // loads movies from storage if stored, otherwise downloads them
-    const storedMovies: string | null = await AsyncStorage.getItem('movies');
-    if (storedMovies?.length) {
-      movies = JSON.parse(<string>storedMovies);
-    } else await downloadMovies();
-  } catch {
+  if (validCache) {
+    await loadMoviesFromCache();
+    return;
+  } else {
     await downloadMovies();
+    return;
   }
-  return;
+
 };
 
 export const getMovies = (): Movie[] => {
