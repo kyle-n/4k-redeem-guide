@@ -6,6 +6,7 @@ import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {baseFontSize} from '../styles';
 import NetInfo from '@react-native-community/netinfo';
 import AsyncStorage from '@react-native-community/async-storage';
+import {Button, Icon, Text} from 'native-base';
 
 const loadingPageStyles = StyleSheet.create({
   topContainer: {
@@ -27,7 +28,7 @@ type LoadingPageProps = NavigationStackScreenProps;
 
 const LoadingPage = (props: LoadingPageProps) => {
 
-  // setup
+  let showDownloadLaterMessage = false;
 
   const init = () => {
     initializeStore().then(() => {
@@ -35,7 +36,7 @@ const LoadingPage = (props: LoadingPageProps) => {
     });
   };
 
-  const startup = async () => {
+  const checkBeforeDownload = async () => {
     await AsyncStorage.removeItem('movies');
     const hasCache = await hasValidLocalCache();
     if (hasCache) {
@@ -48,22 +49,32 @@ const LoadingPage = (props: LoadingPageProps) => {
           'Download movies on data?',
           'This will require approximately 3 MB.',
           [
-            {text: 'Cancel', style: 'cancel'},
+            {text: 'Cancel', onPress: () => showDownloadLaterMessage = true, style: 'cancel'},
             {text: 'OK', onPress: () => init(), style: 'default'}
           ]
         )
       }
     }
   };
-  startup();
+  checkBeforeDownload();
 
   return (
     <View style={loadingPageStyles.topContainer}>
       <View style={loadingPageStyles.innerContainer}>
-        <ActivityIndicator size="large" />
+        {showDownloadLaterMessage ? null : (
+          <ActivityIndicator size="large" />
+        )}
       </View>
       <View style={loadingPageStyles.innerContainer}>
-        <LoadingMessage navigation={props.navigation} />
+        {showDownloadLaterMessage ? (
+          <Button onPress={init}
+                  warning rounded large>
+            <Icon name="ios-download" ios="ios-download" android="md-download" />
+            <Text>Download movies</Text>
+          </Button>
+        ) : (
+          <LoadingMessage navigation={props.navigation} />
+        )}
       </View>
     </View>
   );
