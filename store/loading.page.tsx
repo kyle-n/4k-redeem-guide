@@ -39,17 +39,17 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
       await AsyncStorage.removeItem('movies');
       const hasCache = await hasValidLocalCache();
       if (hasCache) {
-        this.init();
+        this.init(hasCache);
       } else {
         const netInfo = await NetInfo.fetch();
         if (!netInfo.details?.isConnectionExpensive) {
           // warn the user if they're about to download ~2.5MB on data
           Alert.alert(
-            'Download movies on data?',
-            'This will require approximately 3 MB.',
+            'Download 3 MB on data?',
+            'It may take a few minutes on a slow connection.',
             [
               {text: 'Cancel', onPress: () => this.setState({showDownloadLaterMessage: true}), style: 'cancel'},
-              {text: 'OK', onPress: () => this.init(), style: 'default'}
+              {text: 'OK', onPress: () => this.init(hasCache), style: 'default'}
             ]
           )
         }
@@ -59,12 +59,17 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
 
   }
 
-  init = () => {
-    initializeStore().then(() => {
+  init = (hasCache: boolean) => {
+    initializeStore(hasCache).then(() => {
       this.props.navigation.navigate('Home');
     });
   };
 
+  onDownloadMoviesPress = () => {
+    this.setState({showDownloadLaterMessage: false}, () => {
+      this.init(false);
+    });
+  };
 
   render() {
 
@@ -77,12 +82,7 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
         </View>
         <View style={loadingPageStyles.innerContainer}>
           {this.state.showDownloadLaterMessage ? (
-            <Button onPress={() => this.setState({showDownloadLaterMessage: false}, this.init)}
-                    warning rounded large>
-              <Icon name="ios-download" ios="ios-download" android="md-download"
-                    style={{fontSize: 2 * baseFontSize}} />
-              <Text>Download movies</Text>
-            </Button>
+            <DownloadMoviesButton onPress={this.onDownloadMoviesPress}/>
           ) : (
             <LoadingMessage navigation={this.props.navigation} />
           )}
@@ -91,5 +91,17 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
     );
   }
 }
+
+type DownloadMoviesButtonProps = {
+  onPress: () => void;
+}
+const DownloadMoviesButton = (props: DownloadMoviesButtonProps) => (
+  <Button onPress={props.onPress}
+          warning rounded large>
+    <Icon name="ios-download" ios="ios-download" android="md-download"
+          style={{fontSize: 2 * baseFontSize}} />
+    <Text>Download movies</Text>
+  </Button>
+);
 
 export default LoadingPage;
