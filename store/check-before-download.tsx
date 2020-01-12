@@ -11,7 +11,6 @@ type CheckBeforeDownloadProps = {
 
 const CheckBeforeDownload = (props: CheckBeforeDownloadProps) => {
   const check = async () => {
-    await AsyncStorage.removeItem('movies');
     const hasCache = await hasValidLocalCache();
     if (hasCache) {
       props.onConfirm(true);
