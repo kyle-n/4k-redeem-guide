@@ -1,5 +1,14 @@
 import React from 'react';
-import {ActivityIndicator, Alert, Modal, StyleSheet, View} from 'react-native';
+import {
+  ActivityIndicator,
+  Alert,
+  BackHandler,
+  Modal,
+  NativeEventSubscription,
+  Platform,
+  StyleSheet,
+  View
+} from 'react-native';
 import {hasValidLocalCache, initializeStore} from './movies.store';
 import LoadingMessage from './loading-message';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
@@ -30,6 +39,8 @@ type LoadingPageState = {
 };
 
 class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
+  private backHandler: NativeEventSubscription = null as any;
+
   constructor(props: LoadingPageProps) {
     super(props);
 
@@ -56,7 +67,24 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
       }
     };
     checkBeforeDownload();
+  }
 
+  componentDidMount(): void {
+    this.backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      Alert.alert(
+        'Exit App',
+        'Exit the application?',
+        [
+          {text: 'Cancel', style: 'cancel'},
+          {text: 'OK', style: 'default', onPress: BackHandler.exitApp}
+        ]
+      );
+      return true;
+    });
+  }
+
+  componentWillUnmount(): void {
+    this.backHandler.remove();
   }
 
   init = (hasCache: boolean) => {
