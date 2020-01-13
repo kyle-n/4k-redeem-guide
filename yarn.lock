@@ -5025,6 +5025,13 @@ react-is@^16.7.0, react-is@^16.8.1, react-is@^16.8.4, react-is@^16.8.6:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.12.0.tgz#2cc0fe0fba742d97fd527c42a13bec4eeb06241c"
   integrity sha512-rPCkf/mWBtKc97aLL9/txD8DZdemK0vkA3JMLShjlJB3Pj3s+lpf1KaBzMfQrAmhMQB0n1cU/SUGgKKBCe837Q==
 
+react-native-camera@^3.15.1:
+  version "3.15.1"
+  resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.15.1.tgz#8e4eb67cb6687b5250f849b348f0d19a01649105"
+  integrity sha512-xj1sljzFq8HVX22d2T945dsJdK/KFb3jaXUHEYGwMp/zz0ypIs3mY3NezdpyYpS1ioKKzdIcLrxz2VKzDCXaCg==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-native-custom-tabs@^0.1.7:
   version "0.1.7"
   resolved "https://registry.yarnpkg.com/react-native-custom-tabs/-/react-native-custom-tabs-0.1.7.tgz#2dfb4028b0a443610d94792b2019810f68dde525"
