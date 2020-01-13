@@ -4,6 +4,7 @@ import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
 import RefreshCacheButton from '../store/refresh-cache-button';
+import CameraButton from '../barcode-lookup/camera-button';
 
 const searchPageHeaderStyles = StyleSheet.create({
   container: {
@@ -36,6 +37,7 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => (
     <View style={searchPageHeaderStyles.buttonContainer}>
       <RefreshCacheButton />
       <SizeButton cardSize={props.cardSize} onPress={props.onCardSizeButtonPress}/>
+      <CameraButton />
     </View>
   </View>
 )
