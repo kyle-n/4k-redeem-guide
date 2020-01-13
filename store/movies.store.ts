@@ -59,10 +59,16 @@ export const getMovies = (): Movie[] => {
   return movies.slice();
 };
 
+// helpers
+const transformToMatchableText = (s: string): string => {
+  return s.replace(/[\s-]/g, '').toLowerCase();
+};
+
 type SearchMovieResponse = {
   results: Movie[];
   nextIndexToEvaluate: number;
 };
+
 
 // need to group property types - iterate over all text props the same way, all booleans, etc
 export const searchMovies = (
@@ -75,11 +81,6 @@ export const searchMovies = (
   if (config?.offset && config.offset >= movies.length) {
     return {results: [], nextIndexToEvaluate: config.offset};
   }
-
-  // helpers
-  const transformToMatchableText = (s: string): string => {
-    return s.replace(/[\s-]/g, '').toLowerCase();
-  };
 
   // setup
   const transformedQuery = transformToMatchableText(query);
@@ -125,6 +126,24 @@ export const searchMovies = (
   }
 
   return {results, nextIndexToEvaluate};
+};
+
+export const searchByTitleAndStudio = async (title: string, studio: string): Promise<Movie | null> => {
+  const transformedTitle = transformToMatchableText(title);
+  const transformedStudio = transformToMatchableText(studio);
+
+  for (let i = 0; i < movies.length; i++) {
+    const transformedMovieTitle = transformToMatchableText(movies[i].title);
+    const transformedMovieStudio = transformToMatchableText(movies[i].studio);
+    if (
+      transformedTitle.includes(transformedMovieTitle) && (
+        transformedStudio.includes(transformedMovieStudio) ||
+        transformedMovieStudio.includes(transformedStudio)
+      )
+    ) return movies[i];
+  }
+
+  return null;
 };
 
 export const clearMovieCache = async (): Promise<void> => {
