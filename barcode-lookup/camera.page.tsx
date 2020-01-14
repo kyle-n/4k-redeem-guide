@@ -22,20 +22,19 @@ const androidCamPermissions = {
   buttonNegative: 'Cancel'
 };
 
-type CameraPageProps = NavigationStackScreenProps & {
-  onBarCodeRead: () => void;
-};
+type CameraPageProps = NavigationStackScreenProps;
 
 const CameraPage = (props: CameraPageProps) => {
   let cameraRef: RNCamera | null;
+  const onBarCodeRead = props.navigation.getParam('onBarCodeRead');
   return (
     <View style={[cameraPageStyles.container, cameraPageStyles.fullSize]}>
       <RNCamera style={cameraPageStyles.fullSize}
                 ref={ref => cameraRef = ref}
                 type={RNCamera.Constants.Type.back}
                 androidCameraPermissionOptions={androidCamPermissions}
-                onBarCodeRead={props.onBarCodeRead}
-      />
+                onBarCodeRead={onBarCodeRead}
+                captureAudio={false} />
     </View>
   );
 };
