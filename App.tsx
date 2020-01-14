@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import CameraPage from './barcode-lookup/camera.page';
 import {Barcode} from 'react-native-camera';
 import {getMovieFromBarcode} from './barcode-lookup/barcode-spider.connector';
+import {throttle} from 'throttle-debounce';
 
 type AppProps = {};
 type AppState = {
@@ -29,10 +30,13 @@ class App extends React.Component<AppProps, AppState>{
   }
 
   onBarCodeRead = async (barcode: Barcode): Promise<void> => {
-    const parsedCode = parseInt(barcode.data);
-    const foundMovie = await getMovieFromBarcode(parsedCode);
+    console.log(barcode)
+    const upc = barcode.data.slice(1);
+    const foundMovie = await getMovieFromBarcode(upc);
     console.log(foundMovie)
   };
+
+  throttledBarCodeRead = throttle(10 * 1000, this.onBarCodeRead);
 
   MainNavigator = createStackNavigator({
     Home: {

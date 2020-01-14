@@ -46,10 +46,12 @@ const transformToRegularTitle = (title: string): string => {
   return title.split(pattern).slice(0, -1).join();
 };
 
-export const getMovieFromBarcode = async (barcode: number): Promise<Movie | null> => {
-  const url = baseUrl + barcode.toString();
+export const getMovieFromBarcode = async (barcode: string): Promise<Movie | null> => {
+  const url = baseUrl + barcode;
   const resp: BarcodeSpiderApiResponse = (await axios.get(url)).data;
+  console.log('got resp', resp)
 
   const regularTitle = transformToRegularTitle(resp.item_attributes.title);
+  console.log(regularTitle, 'reg title')
   return await searchByTitleAndStudio(regularTitle, resp.item_attributes.brand);
 };
