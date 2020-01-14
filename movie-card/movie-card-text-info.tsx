@@ -1,11 +1,12 @@
 import React from 'react';
 import {Button, CardItem, Icon, Text, View} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import isUrl from 'is-url';
 import extractDomain from 'extract-domain';
 import {CustomTabs} from 'react-native-custom-tabs';
 import {extractUrls} from '../utils';
 import {baseFontSize} from '../styles';
+import SafariView from 'react-native-safari-view';
 
 const movieCardBodyStyles = StyleSheet.create({
   label: {
@@ -66,11 +67,15 @@ type InfoLinkProps = {
 };
 
 const InfoLink = (props: InfoLinkProps) => {
-  const openLink = () => {
-    return CustomTabs.openURL(props.link, {
-      enableUrlBarHiding: true,
-      showPageTitle: true,
-    });
+  const openLink = (): void => {
+    if (Platform.OS === 'android') {
+      CustomTabs.openURL(props.link, {
+        enableUrlBarHiding: true,
+        showPageTitle: true,
+      });
+    } else if (Platform.OS === 'ios') {
+      SafariView.show({url: props.link});
+    }
   };
   return (
     <View style={{alignSelf: 'flex-start'}}>

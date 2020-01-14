@@ -1,5 +1,4 @@
 import React from 'react';
-import AsyncStorage from "@react-native-community/async-storage";
 import {hasValidLocalCache} from './movies.store';
 import {Alert} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
