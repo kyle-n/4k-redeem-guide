@@ -6,6 +6,9 @@ import SearchPage from './search/search.page';
 import SearchPageHeader from './search/search-page-header';
 import {CardSize} from './models';
 import AsyncStorage from '@react-native-community/async-storage';
+import CameraPage from './barcode-lookup/camera.page';
+import {Barcode} from 'react-native-camera';
+import {getMovieFromBarcode} from './barcode-lookup/barcode-spider.connector';
 
 type AppProps = {};
 type AppState = {
@@ -25,6 +28,12 @@ class App extends React.Component<AppProps, AppState>{
     });
   }
 
+  onBarCodeRead = async (barcode: Barcode): Promise<void> => {
+    const parsedCode = parseInt(barcode.data);
+    const foundMovie = await getMovieFromBarcode(parsedCode);
+    console.log(foundMovie)
+  };
+
   MainNavigator = createStackNavigator({
     Home: {
       screen: SearchPage,
@@ -35,6 +44,13 @@ class App extends React.Component<AppProps, AppState>{
     },
     LoadingPage: {
       screen: LoadingPage,
+      navigationOptions: {
+        headerShown: false
+      }
+    },
+    CameraPage: {
+      screen: CameraPage,
+      params: {onBarCodeRead: this.onBarCodeRead},
       navigationOptions: {
         headerShown: false
       }
