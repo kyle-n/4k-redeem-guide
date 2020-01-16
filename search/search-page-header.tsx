@@ -5,6 +5,7 @@ import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
 import RefreshCacheButton from '../store/refresh-cache-button';
 import CameraButton from '../barcode-lookup/camera-button';
+import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 
 const searchPageHeaderStyles = StyleSheet.create({
   container: {
@@ -12,7 +13,8 @@ const searchPageHeaderStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignContent: 'center'
+    alignContent: 'center',
+    paddingTop: getStatusBarHeight()
   },
   pageTitle: {
     fontSize: 2 * baseFontSize,
