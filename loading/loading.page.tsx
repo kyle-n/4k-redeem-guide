@@ -5,7 +5,7 @@ import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {baseFontSize} from '../styles';
 import {Button, Icon, Text} from 'native-base';
 import {ExitOnBackButton} from '../shared-components';
-import CheckBeforeDownload from '../store/check-before-download';
+import CheckBeforeDownload from './check-before-download';
 
 const loadingPageStyles = StyleSheet.create({
   topContainer: {

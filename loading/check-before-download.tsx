@@ -1,5 +1,5 @@
 import React from 'react';
-import {hasValidLocalCache} from './movies.store';
+import {hasValidLocalCache} from '../store/movies.store';
 import {Alert} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 

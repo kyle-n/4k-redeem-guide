@@ -1,7 +1,7 @@
 import React, {Ref} from 'react';
 import {Button, Icon} from 'native-base';
 import {Alert} from 'react-native';
-import {clearMovieCache} from './movies.store';
+import {clearMovieCache} from '../store/movies.store';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 

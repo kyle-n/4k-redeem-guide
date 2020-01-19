@@ -3,8 +3,8 @@ import {CardSize} from '../models';
 import {Button, Icon, Text, View} from 'native-base';
 import {Platform, StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
-import RefreshCacheButton from '../store/refresh-cache-button';
-import CameraButton from '../barcode-lookup/camera-button';
+import RefreshCacheButton from './refresh-cache-button';
+import CameraButton from './camera-button';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 
 const searchPageHeaderStyles = StyleSheet.create({
