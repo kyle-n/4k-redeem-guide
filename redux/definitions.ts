@@ -1,0 +1,9 @@
+export const SET_QUERY = 'SET_QUERY';
+export const SET_FILTERS = 'SET_FILTERS';
+export const SET_RESULTS = 'SET_RESULTS';
+export const SET_MOVIES = 'SET_MOVIES';
+export const SET_CARD_SIZE = 'SET_CARD_SIZE';
+export const SET_DEBOUNCED_QUERY = 'SET_DEBOUNCED_QUERY';
+export const SET_DEBOUNCED_FILTERS = 'SET_DEBOUNCED_FILTERS';
+export const SET_LOADING = 'SET_LOADING';
+export const SET_FILTERS_VISIBLE = 'SET_FILTERS_VISIBLE';
