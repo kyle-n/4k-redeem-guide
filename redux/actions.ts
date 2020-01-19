@@ -7,7 +7,7 @@ type ActionAndValue = {
 }
 
 export function setQuery(query: string): ActionAndValue {
-  return {action: SET_QUERY, value: query};
+  return {action: 'SET_QUERY', value: query};
 }
 
 export function clearQuery(): ActionAndValue {
