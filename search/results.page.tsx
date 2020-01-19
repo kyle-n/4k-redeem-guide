@@ -92,4 +92,4 @@ const LoadMoreButton = (props: LoadMoreButtonProps) => (
   </View>
 );
 
-export default ResultsPage;
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);
