@@ -5,12 +5,12 @@ import {getMovies} from '../store';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {Movie, MovieFilters} from '../models';
 import {StyleSheet} from 'react-native';
-import ResultsContainer from './results/results-box';
 import InputBox from './input/input-box';
 import {debounce} from 'throttle-debounce';
 import FilterBox from './input/filter-box';
 import {anyValueTruthy} from '../utils';
 import {SearchPageProps} from './search.page.container';
+import ResultsBox from './results/results-box';
 
 type SearchPageState = {
   movies: Movie[];
@@ -31,21 +31,17 @@ const movieCardStyles = StyleSheet.create({
 
 const SearchPage = (props: SearchPageProps) => (
   <Container>
-    <LoadingRedirect redirect={this.navToLoadingPage}/>
+    <LoadingRedirect redirect={props.navToLoadingPage}/>
     <Content contentContainerStyle={movieCardStyles.content}>
-      <InputBox query={this.state.query}
-                setQuery={this.setQuery}
-                isLoading={this.state.isLoading} />
-      <FilterBox setFilter={this.setFilter}
-                 resetFilters={this.resetFilters}
-                 filters={this.state.filters}
-                 visible={this.state.showFilters}
-                 toggleFilterVisibility={this.toggleFilterVisibility} />
-      <ResultsContainer query={this.state.debouncedQuery}
-                        setQuery={this.setQuery}
-                        filters={this.state.debouncedFilters}
-                        setAllFilters={this.setAllFilters}
-                        cardSize={(this.props.screenProps as any).cardSize} />
+      <InputBox query={props.query}
+                setQuery={props.setQuery}
+                isLoading={props.isLoading} />
+      <FilterBox setFilter={props.setFilters}
+                 resetFilters={props.clearFilters}
+                 filters={props.filters}
+                 visible={props.filtersVisible}
+                 toggleFilterVisibility={props.toggleFiltersVisible} />
+      <ResultsBox
     </Content>
   </Container>
 );

@@ -1,25 +1,11 @@
 import React from 'react';
-import {CardSize, GlobalState, Movie, MovieFilters, PresetSearch} from '../../models';
+import {CardSize, Movie, PresetSearch} from '../../models';
 import {Button, Item, Text, View} from 'native-base';
 import MovieCard from './movie-card/movie-card';
 import {StyleSheet} from 'react-native';
-import {searchMovies} from '../../store';
 import {baseFontSize} from '../../styles';
 import SuggestedSearches from '../suggested-searches';
-import {anyValueTruthy, samePrimitiveValues} from '../../utils';
-import {connect} from 'react-redux';
-import {setQuery, setFilters} from '../../redux/actions';
-
-const mapStateToProps = (state: GlobalState) => {
-  return {
-    cardSize: state.cardSize,
-    filters: state.filters,
-    noMoreResults: !state.hasMoreResults,
-    query: state.query,
-    results: state.results
-  };
-};
-const mapDispatchToProps = {setQuery, setFilters};
+import {anyValueTruthy} from '../../utils';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -36,21 +22,14 @@ const resultsContainerStyles = StyleSheet.create({
   }
 });
 
-type ResultsPageProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
+type ResultsPageProps = {
+  results: Movie[];
+  cardSize: CardSize;
+  noMoreResults: boolean;
+  showNoResultsMessage: boolean;
+};
 
 const ResultsBox = (props: ResultsPageProps) => {
-  const setSearch = (presetSearch: PresetSearch): void => {
-    if (presetSearch.query) {
-      props.setQuery(presetSearch.query);
-    }
-    if (presetSearch.filters) {
-      props.setFilters(presetSearch.filters);
-    }
-  };
-
-  const anyFilterSelected = anyValueTruthy(props.filters);
-  const showNoResultsMessage = (anyFilterSelected || props.query) && !props.results.length;
-  const showPresetSearches = !anyFilterSelected && !props.results.length && !showNoResultsMessage;
   return (
     <View style={resultsContainerStyles.containerWithButton}>
       <Item style={resultsContainerStyles.container}>
@@ -65,14 +44,11 @@ const ResultsBox = (props: ResultsPageProps) => {
           <LoadMoreButton loadMoreMovies={this.loadMoreMovies}
                           disabled={props.noMoreResults} />
         ) : null}
-        {showNoResultsMessage ? (
+        {props.showNoResultsMessage ? (
           <Text>
             No matches found
           </Text>
         ): null}
-        {showPresetSearches ? (
-          <SuggestedSearches setSearch={this.setSearch} />
-        ) : null}
       </Item>
     </View>
   );
@@ -92,4 +68,4 @@ const LoadMoreButton = (props: LoadMoreButtonProps) => (
   </View>
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsBox);
+export default ResultsBox;

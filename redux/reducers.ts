@@ -37,7 +37,7 @@ const initialState: GlobalState = {
   cardSize: defaultCardSize,
   filters: Object.assign({}, defaultFilters),
   filtersVisible: false,
-  hasMoreResults: false,
+  noMoreResults: false,
   isLoading: false,
   movies: [],
   offset: 0,

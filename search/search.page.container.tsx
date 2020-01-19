@@ -21,7 +21,7 @@ const mapStateToProps = (state: GlobalState) => {
     results: state.results,
     cardSize: state.cardSize,
     filtersVisible: state.filtersVisible,
-    hasMoreResults: state.hasMoreResults,
+    noMoreResults: state.noMoreResults,
     isLoading: state.isLoading
   };
 };
@@ -47,7 +47,7 @@ const SearchPageContainer = (props: SearchPageContainerProps) => (
               results={props.results}
               cardSize={props.cardSize}
               filtersVisible={props.filtersVisible}
-              hasMoreResults={props.hasMoreResults}
+              noMoreResults={props.noMoreResults}
               isLoading={props.isLoading}
               setQuery={props.setQuery}
               setFilters={props.setFilters}

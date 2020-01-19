@@ -112,7 +112,7 @@ export type GlobalState = {
   cardSize: CardSize;
   filters: MovieFilters;
   filtersVisible: boolean;
-  hasMoreResults: boolean;
+  noMoreResults: boolean;
   isLoading: boolean;
   movies: Movie[];
   offset: number;
