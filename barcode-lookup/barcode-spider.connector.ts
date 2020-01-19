@@ -1,6 +1,6 @@
 import axios from 'axios'
 import {Movie} from '../models';
-import {searchByTitleAndStudio} from '../store';
+import {searchByTitleAndStudio, searchMovies} from '../store';
 
 interface BarcodeSpiderApiResponse {
   item_response: {
@@ -46,12 +46,10 @@ const transformToRegularTitle = (title: string): string => {
   return title.split(pattern).slice(0, -1).join();
 };
 
-export const getMovieFromBarcode = async (barcode: string): Promise<Movie | null> => {
-  const url = baseUrl + barcode;
-  const resp: BarcodeSpiderApiResponse = (await axios.get(url)).data;
-  console.log('got resp', resp)
-
-  const regularTitle = transformToRegularTitle(resp.item_attributes.title);
-  console.log(regularTitle, 'reg title')
-  return await searchByTitleAndStudio(regularTitle, resp.item_attributes.brand);
+export const getMovieTitleFromBarcode = async (barcode: string): Promise<string> => {
+  // const url = baseUrl + barcode;
+  // const resp: BarcodeSpiderApiResponse = (await axios.get(url)).data;
+  //
+  // return transformToRegularTitle(resp.item_attributes.title);
+  return 'Moonlight';
 };
