@@ -19,7 +19,7 @@ export function setFilters(filters: MovieFilters): ActionAndValue {
 }
 
 export function clearFilters(): ActionAndValue {
-  return {action: 'SET_FILTERS', value: Object.assign({}, defaultFilters)};
+  return {action: 'CLEAR_FILTERS', value: null};
 }
 
 export function setMovies(movies: Movie[]): ActionAndValue {

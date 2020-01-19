@@ -1,5 +1,6 @@
 export type ActionType = 'SET_QUERY' |
   'SET_FILTERS' |
+  'CLEAR_FILTERS' |
   // 'SET_RESULTS' |
   // 'ADD_TO_RESULTS' |
   'SET_MOVIES' |

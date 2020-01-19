@@ -42,16 +42,18 @@ const reducers = (state = initialState, dispatch: ActionAndValue): State => {
       return Object.assign({}, state, {cardSize: dispatch.value});
     case 'SET_FILTERS':
       return Object.assign({}, state, {filters: dispatch.value});
+    case 'CLEAR_FILTERS':
+      return Object.assign({}, state, {filters: Object.assign({}, defaultFilters)});
     case 'SET_FILTERS_VISIBLE':
       return Object.assign({}, state, {filtersVisible: dispatch.value});
+    case 'TOGGLE_FILTERS_VISIBLE':
+      return Object.assign({}, state, {filtersVisible: !state.filtersVisible});
     case 'SET_LOADING':
       return Object.assign({}, state, {isLoading: dispatch.value});
     case 'SET_MOVIES':
       return Object.assign({}, state, {movies: dispatch.value});
     case 'SET_QUERY':
       return Object.assign({}, state, {query: dispatch.value});
-    case 'TOGGLE_FILTERS_VISIBLE':
-      return Object.assign({}, state, {filtersVisible: !state.filtersVisible});
     default:
       return state;
   }
