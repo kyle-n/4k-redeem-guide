@@ -1,11 +1,13 @@
 import React from 'react';
-import {CardSize} from '../models';
+import {CardSize, GlobalState} from '../models';
 import {Button, Icon, Text, View} from 'native-base';
 import {Platform, StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
 import RefreshCacheButton from './refresh-cache-button';
 import CameraButton from './camera-button';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
+import {connect} from 'react-redux';
+import {toggleCardSize, setQuery} from '../redux/actions';
 
 const searchPageHeaderStyles = StyleSheet.create({
   container: {
@@ -26,10 +28,14 @@ const searchPageHeaderStyles = StyleSheet.create({
   }
 });
 
-type SearchPageHeaderProps = {
-  onCardSizeButtonPress: () => void;
-  cardSize: CardSize;
+const mapStateToProps = (state: GlobalState) => {
+  return {
+    cardSize: state.cardSize
+  };
 };
+const mapDispatchToProps = {toggleCardSize, setQuery};
+
+type SearchPageHeaderProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 
 const SearchPageHeader = (props: SearchPageHeaderProps) => (
   <View style={searchPageHeaderStyles.container}>
@@ -38,7 +44,7 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => (
     </View>
     <View style={searchPageHeaderStyles.buttonContainer}>
       <RefreshCacheButton />
-      <SizeButton cardSize={props.cardSize} onPress={props.onCardSizeButtonPress}/>
+      <SizeButton cardSize={props.cardSize} onPress={props.toggleCardSize}/>
       <CameraButton />
     </View>
   </View>
@@ -59,4 +65,4 @@ const SizeButton = (props: SizeButtonProps) => {
   );
 };
 
-export default SearchPageHeader;
+export default connect(mapStateToProps, mapDispatchToProps)(SearchPageHeader);
