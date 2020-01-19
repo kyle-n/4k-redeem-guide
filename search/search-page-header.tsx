@@ -1,7 +1,7 @@
 import React from 'react';
 import {CardSize} from '../models';
 import {Button, Icon, Text, View} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
 import RefreshCacheButton from '../store/refresh-cache-button';
 import CameraButton from '../barcode-lookup/camera-button';
@@ -14,7 +14,7 @@ const searchPageHeaderStyles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignContent: 'center',
-    paddingTop: getStatusBarHeight()
+    paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0
   },
   pageTitle: {
     fontSize: 2 * baseFontSize,
