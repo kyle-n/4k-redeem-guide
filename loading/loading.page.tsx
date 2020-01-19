@@ -1,12 +1,12 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
-import {initializeStore} from './movies.store';
+import {initializeStore} from '../store/movies.store';
 import LoadingMessage from './loading-message';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {baseFontSize} from '../styles';
 import {Button, Icon, Text} from 'native-base';
 import {ExitOnBackButton} from '../shared-components';
-import CheckBeforeDownload from './check-before-download';
+import CheckBeforeDownload from '../store/check-before-download';
 import {connect} from 'react-redux';
 import {GlobalState} from '../models';
 

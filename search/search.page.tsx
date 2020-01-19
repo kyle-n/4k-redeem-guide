@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Content} from 'native-base';
-import LoadingRedirect from './loading-redirect';
+import LoadingRedirect from '../loading/loading-redirect';
 import {getMovies} from '../store';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {Movie, MovieFilters} from '../models';
