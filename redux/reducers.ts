@@ -41,6 +41,7 @@ const initialState: GlobalState = {
   isLoading: false,
   movies: [],
   offset: 0,
+  query: '',
   results: []
 };
 

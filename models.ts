@@ -116,5 +116,6 @@ export type GlobalState = {
   isLoading: boolean;
   movies: Movie[];
   offset: number;
+  query: string;
   results: Movie[];
 };
