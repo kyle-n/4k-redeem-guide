@@ -31,19 +31,6 @@ const movieCardStyles = StyleSheet.create({
 
 class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
-  private static readonly defaultFilters: MovieFilters = {
-    vuduUhd: false,
-    fandangoNowUhd: false,
-    itunesUhd: false,
-    itunesCodeRedeemsUhd: false,
-    moviesAnywhere: false,
-    dolbyVision: false,
-    hdr: false,
-    googlePlayUhd: false,
-    amazonVideoUhd: false,
-    microsoftUhd: false
-  };
-
   private static readonly debounceTime = 1 * 1000;
 
   constructor(props: SearchPageProps) {
