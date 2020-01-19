@@ -1,5 +1,6 @@
 import {CardSize, Movie, MovieFilters} from '../models';
 import {ActionAndValue} from './actions';
+import AsyncStorage from '@react-native-community/async-storage';
 
 type State = {
   cardSize: CardSize;
@@ -11,6 +12,23 @@ type State = {
   offset: number;
   results: Movie[];
 };
+
+// const defaultCardSize: CardSize = 0;
+// const cardSizePrefName = 'cardSizePref';
+// const getSavedCardSizePref = async (): Promise<CardSize> => {
+//   const savedPrefString = await AsyncStorage.getItem(cardSizePrefName);
+//   if (savedPrefString) {
+//     return parseInt(JSON.parse(savedPrefString), 10) as CardSize;
+//   } else return defaultCardSize;
+// };
+
+/*
+ * Todo
+ *  - Scan barcode
+ *  - Save and load card size pref
+ *  - Save and load whole state?
+ *  -
+ */
 
 const defaultFilters: MovieFilters = {
   vuduUhd: false,
@@ -26,7 +44,7 @@ const defaultFilters: MovieFilters = {
 };
 
 const initialState: State = {
-  cardSize: 0,
+  cardSize: defaultCardSize,
   filters: Object.assign({}, defaultFilters),
   filtersVisible: false,
   hasMoreResults: false,
