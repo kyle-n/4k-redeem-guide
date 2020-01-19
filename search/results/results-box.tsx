@@ -1,14 +1,14 @@
 import React from 'react';
-import {CardSize, GlobalState, Movie, MovieFilters, PresetSearch} from '../models';
+import {CardSize, GlobalState, Movie, MovieFilters, PresetSearch} from '../../models';
 import {Button, Item, Text, View} from 'native-base';
-import MovieCard from '../movie-card/movie-card';
+import MovieCard from '../../movie-card/movie-card';
 import {StyleSheet} from 'react-native';
-import {searchMovies} from '../store';
-import {baseFontSize} from '../styles';
-import SuggestedSearches from './suggested-searches';
-import {anyValueTruthy, samePrimitiveValues} from '../utils';
+import {searchMovies} from '../../store';
+import {baseFontSize} from '../../styles';
+import SuggestedSearches from '../suggested-searches';
+import {anyValueTruthy, samePrimitiveValues} from '../../utils';
 import {connect} from 'react-redux';
-import {setQuery, setFilters} from '../redux/actions';
+import {setQuery, setFilters} from '../../redux/actions';
 
 const mapStateToProps = (state: GlobalState) => {
   return {
@@ -38,7 +38,7 @@ const resultsContainerStyles = StyleSheet.create({
 
 type ResultsPageProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 
-const ResultsPage = (props: ResultsPageProps) => {
+const ResultsBox = (props: ResultsPageProps) => {
   const setSearch = (presetSearch: PresetSearch): void => {
     if (presetSearch.query) {
       props.setQuery(presetSearch.query);
@@ -92,4 +92,4 @@ const LoadMoreButton = (props: LoadMoreButtonProps) => (
   </View>
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsPage);
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsBox);
