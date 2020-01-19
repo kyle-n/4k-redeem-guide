@@ -1,9 +1,5 @@
-import {SET_QUERY, ActionType} from './definitions';
+import {ActionType} from './definitions';
 import {CardSize, Movie, MovieFilters} from '../models';
-import {act} from 'react-test-renderer';
-import advanceTimersByTime = jest.advanceTimersByTime;
-import {Animated} from 'react-native';
-import add = Animated.add;
 
 type ActionAndValue = {
   action: ActionType
