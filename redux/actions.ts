@@ -41,3 +41,7 @@ export function setFiltersVisible(visible: boolean): ActionAndValue {
 export function toggleFilters(): ActionAndValue {
   return {type: 'TOGGLE_FILTERS_VISIBLE', value: null};
 }
+
+export function downloadMovies(): ActionAndValue {
+ return <any>null;
+}

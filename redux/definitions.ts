@@ -1,4 +1,5 @@
 export type ActionType = 'SET_QUERY' |
+  'DOWNLOAD_MOVIES' |
   'SET_FILTERS' |
   'CLEAR_FILTERS' |
   // 'SET_RESULTS' |

@@ -1,13 +1,13 @@
 import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
-import {LoadingPage} from './store';
 import SearchPage from './search/search.page';
 import SearchPageHeader from './search/search-page-header';
 import CameraPage from './barcode-lookup/camera.page';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducers from './redux/reducers';
+import LoadingPageContainer from './loading/loading-page.container';
 
 const store = createStore(reducers);
 
@@ -19,7 +19,7 @@ const MainNavigator = createStackNavigator({
     }
   },
   LoadingPage: {
-    screen: LoadingPage,
+    screen: LoadingPageContainer,
     navigationOptions: {
       headerShown: false
     }
