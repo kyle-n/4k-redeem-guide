@@ -9,6 +9,12 @@ import AsyncStorage from '@react-native-community/async-storage';
 import CameraPage from './barcode-lookup/camera.page';
 import {Barcode} from 'react-native-camera';
 import {getMovieFromBarcode} from './barcode-lookup/barcode-spider.connector';
+import {Provider} from 'react-redux';
+import {createStore} from 'redux';
+import reducers from './redux/reducers';
+import {AppRegistry} from 'react-native';
+
+const store = createStore(reducers);
 
 type AppProps = {};
 type AppState = {
@@ -80,9 +86,11 @@ class App extends React.Component<AppProps, AppState>{
 
   render() {
     return (
-      <this.AppContainer screenProps={{
-        cardSize: this.state?.cardSize || App.defaultCardSize
-      }} />
+      <Provider store={store}>
+        <this.AppContainer screenProps={{
+          cardSize: this.state?.cardSize || App.defaultCardSize
+        }} />
+      </Provider>
     );
   }
 }
