@@ -1,6 +1,7 @@
 import {CardSize, Movie, MovieFilters} from '../models';
 import {ActionAndValue} from './actions';
 import AsyncStorage from '@react-native-community/async-storage';
+import {Reducer} from 'redux';
 
 type State = {
   cardSize: CardSize;
@@ -54,8 +55,8 @@ const initialState: State = {
   results: []
 };
 
-const reducers = (state = initialState, dispatch: ActionAndValue): State => {
-  switch (dispatch.action) {
+const reducers: Reducer<State, ActionAndValue> = (state = initialState, dispatch: ActionAndValue): State => {
+  switch (dispatch.type) {
     case 'SET_CARD_SIZE':
       return Object.assign({}, state, {cardSize: dispatch.value});
     case 'SET_FILTERS':

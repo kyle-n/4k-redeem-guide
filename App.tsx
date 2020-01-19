@@ -15,8 +15,7 @@ const MainNavigator = createStackNavigator({
   Home: {
     screen: SearchPage,
     navigationOptions: {
-      header: () => (<SearchPageHeader onCardSizeButtonPress={this.toggleSize}
-                                       cardSize={this.state?.cardSize || App.defaultCardSize} />)
+      header: () => (<SearchPageHeader />)
     }
   },
   LoadingPage: {
