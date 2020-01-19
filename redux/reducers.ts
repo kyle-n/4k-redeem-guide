@@ -49,6 +49,9 @@ const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, di
   switch (dispatch.type) {
     case 'SET_CARD_SIZE':
       return Object.assign({}, state, {cardSize: dispatch.value});
+    case 'TOGGLE_CARD_SIZE':
+      const cardSize = state.cardSize === 0 ? 1 : 0;
+      return Object.assign({}, state, {cardSize});
     case 'SET_FILTERS':
       return Object.assign({}, state, {filters: dispatch.value});
     case 'CLEAR_FILTERS':

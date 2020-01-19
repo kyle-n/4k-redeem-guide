@@ -30,6 +30,10 @@ export function setCardSize(cardSize: CardSize): ActionAndValue {
   return {type: 'SET_CARD_SIZE', value: cardSize};
 }
 
+export function toggleCardSize(): ActionAndValue {
+  return {type: 'TOGGLE_CARD_SIZE', value: null}
+}
+
 export function setIsLoading(isLoading: boolean): ActionAndValue {
   return {type: 'SET_LOADING', value: isLoading};
 }

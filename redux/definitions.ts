@@ -6,6 +6,7 @@ export type ActionType = 'SET_QUERY' |
   // 'ADD_TO_RESULTS' |
   'SET_MOVIES' |
   'SET_CARD_SIZE' |
+  'TOGGLE_CARD_SIZE' |
   // 'SET_DEBOUNCED_QUERY' |
   // 'SET_DEBOUNCED_FILTERS' |
   'SET_LOADING' |
