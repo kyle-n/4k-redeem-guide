@@ -1,6 +1,6 @@
 import React from 'react';
 import {Body, CardItem, Icon, Left, Right, Text, Thumbnail} from 'native-base';
-import {Movie} from '../models';
+import {Movie} from '../../../models';
 
 type MovieCardHeaderProps = {
   movie: Movie;

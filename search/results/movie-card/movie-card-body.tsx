@@ -1,9 +1,9 @@
 import React from 'react';
 import {View} from 'native-base';
-import {Movie, MoviePropertyDisplayPair} from '../models';
+import {Movie, MoviePropertyDisplayPair} from '../../../models';
 import TextInfoPairDisplay from './movie-card-text-info';
-import {Hr} from '../shared-components';
-import CheckmarkChart from '../search/checkmark-chart';
+import {Hr} from '../../../shared-components';
+import CheckmarkChart from '../../checkmark-chart';
 
 type MovieCardBodyProps = {
   movie: Movie

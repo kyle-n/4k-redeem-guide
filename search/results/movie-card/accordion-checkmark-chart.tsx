@@ -1,8 +1,8 @@
 import React from 'react';
-import {Movie} from '../models';
+import {Movie} from '../../../models';
 import {Accordion, View} from 'native-base';
 import {StyleSheet} from 'react-native';
-import CheckmarkChart from '../search/checkmark-chart';
+import CheckmarkChart from '../../checkmark-chart';
 
 const accordionCheckmarkChartStyles = StyleSheet.create({
   container: {

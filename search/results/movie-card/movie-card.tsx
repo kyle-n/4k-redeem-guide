@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardSize, Movie} from '../models';
+import {CardSize, Movie} from '../../../models';
 import {Card, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import MovieCardBody from './movie-card-body';

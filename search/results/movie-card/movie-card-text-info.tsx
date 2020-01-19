@@ -4,8 +4,8 @@ import {Platform, StyleSheet} from 'react-native';
 import isUrl from 'is-url';
 import extractDomain from 'extract-domain';
 import {CustomTabs} from 'react-native-custom-tabs';
-import {extractUrls} from '../utils';
-import {baseFontSize} from '../styles';
+import {extractUrls} from '../../../utils';
+import {baseFontSize} from '../../../styles';
 import SafariView from 'react-native-safari-view';
 
 const movieCardBodyStyles = StyleSheet.create({

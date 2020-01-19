@@ -6,9 +6,9 @@ import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {Movie, MovieFilters} from '../models';
 import {StyleSheet} from 'react-native';
 import ResultsContainer from './results/results-box';
-import InputBox from '../input/input-box';
+import InputBox from './input/input-box';
 import {debounce} from 'throttle-debounce';
-import FilterBox from '../input/filter-box';
+import FilterBox from './input/filter-box';
 import {anyValueTruthy} from '../utils';
 import {SearchPageProps} from './search.page.container';
 

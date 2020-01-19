@@ -1,9 +1,9 @@
 import React from 'react';
 import {Accordion, Button, Icon, Text, View} from 'native-base';
-import {MovieFilters} from '../models';
+import {MovieFilters} from '../../models';
 import BooleanFilter from './boolean-filter';
 import {StyleSheet} from 'react-native';
-import {baseFontSize} from '../styles';
+import {baseFontSize} from '../../styles';
 
 type FilterData = {
   displayName: string;

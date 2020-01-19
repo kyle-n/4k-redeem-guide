@@ -1,7 +1,7 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet} from 'react-native';
 import {Item, Input, View, Left, Icon, Body, Button} from 'native-base';
-import {baseFontSize} from '../styles';
+import {baseFontSize} from '../../styles';
 
 const inputContainerStyles = StyleSheet.create({
   wrapper: {
