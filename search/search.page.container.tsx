@@ -14,7 +14,7 @@ import {
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import SearchPage from './search.page';
 
-const mapStateToProps = (state: GlobalState): any => {
+const mapStateToProps = (state: GlobalState) => {
   return {
     query: state.query,
     filters: state.filters,
@@ -36,7 +36,9 @@ const mapDispatchToProps = {
   clearFilters
 };
 
-export type SearchPageProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
+export type SearchPageProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps) & {
+  navToLoadingPage: () => void;
+};
 type SearchPageContainerProps = SearchPageProps & NavigationStackScreenProps;
 
 const SearchPageContainer = (props: SearchPageContainerProps) => (
@@ -54,7 +56,8 @@ const SearchPageContainer = (props: SearchPageContainerProps) => (
               setIsLoading={props.setIsLoading}
               toggleFiltersVisible={props.toggleFiltersVisible}
               clearQuery={props.clearQuery}
-              clearFilters={props.clearFilters} />
+              clearFilters={props.clearFilters}
+              navToLoadingPage={() => props.navigation.navigate('LoadingPage')} />
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPageContainer);

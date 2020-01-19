@@ -29,6 +29,27 @@ const movieCardStyles = StyleSheet.create({
   }
 });
 
+const SearchPage = (props: SearchPageProps) => (
+  <Container>
+    <LoadingRedirect redirect={this.navToLoadingPage}/>
+    <Content contentContainerStyle={movieCardStyles.content}>
+      <InputBox query={this.state.query}
+                setQuery={this.setQuery}
+                isLoading={this.state.isLoading} />
+      <FilterBox setFilter={this.setFilter}
+                 resetFilters={this.resetFilters}
+                 filters={this.state.filters}
+                 visible={this.state.showFilters}
+                 toggleFilterVisibility={this.toggleFilterVisibility} />
+      <ResultsContainer query={this.state.debouncedQuery}
+                        setQuery={this.setQuery}
+                        filters={this.state.debouncedFilters}
+                        setAllFilters={this.setAllFilters}
+                        cardSize={(this.props.screenProps as any).cardSize} />
+    </Content>
+  </Container>
+);
+
 class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
   private static readonly debounceTime = 1 * 1000;
@@ -104,24 +125,6 @@ class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
 
   render() {
     return (
-      <Container>
-        <LoadingRedirect redirect={this.navToLoadingPage}/>
-        <Content contentContainerStyle={movieCardStyles.content}>
-          <InputBox query={this.state.query}
-                    setQuery={this.setQuery}
-                    isLoading={this.state.isLoading} />
-          <FilterBox setFilter={this.setFilter}
-                     resetFilters={this.resetFilters}
-                     filters={this.state.filters}
-                     visible={this.state.showFilters}
-                     toggleFilterVisibility={this.toggleFilterVisibility} />
-          <ResultsContainer query={this.state.debouncedQuery}
-                            setQuery={this.setQuery}
-                            filters={this.state.debouncedFilters}
-                            setAllFilters={this.setAllFilters}
-                            cardSize={(this.props.screenProps as any).cardSize} />
-        </Content>
-      </Container>
     );
   }
 }
