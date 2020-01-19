@@ -1,7 +1,7 @@
 import {ActionType} from './definitions';
 import {CardSize, Movie, MovieFilters} from '../models';
 
-type ActionAndValue = {
+export type ActionAndValue = {
   action: ActionType
   value: any;
 }
@@ -17,19 +17,6 @@ export function clearQuery(): ActionAndValue {
 export function setFilters(filters: MovieFilters): ActionAndValue {
   return {action: 'SET_FILTERS', value: filters};
 }
-
-const defaultFilters: MovieFilters = {
-  vuduUhd: false,
-  fandangoNowUhd: false,
-  itunesUhd: false,
-  itunesCodeRedeemsUhd: false,
-  moviesAnywhere: false,
-  dolbyVision: false,
-  hdr: false,
-  googlePlayUhd: false,
-  amazonVideoUhd: false,
-  microsoftUhd: false
-};
 
 export function clearFilters(): ActionAndValue {
   return {action: 'SET_FILTERS', value: Object.assign({}, defaultFilters)};
