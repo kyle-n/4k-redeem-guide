@@ -13,6 +13,7 @@ import {
 } from '../redux/actions';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import SearchPage from './search.page';
+import {getMovies} from '../store';
 
 const mapStateToProps = (state: GlobalState) => {
   return {
@@ -41,23 +42,32 @@ export type SearchPageProps = ReturnType<typeof mapStateToProps> & (typeof mapDi
 };
 type SearchPageContainerProps = SearchPageProps & NavigationStackScreenProps;
 
-const SearchPageContainer = (props: SearchPageContainerProps) => (
-  <SearchPage query={props.query}
-              filters={props.filters}
-              results={props.results}
-              cardSize={props.cardSize}
-              filtersVisible={props.filtersVisible}
-              noMoreResults={props.noMoreResults}
-              isLoading={props.isLoading}
-              setQuery={props.setQuery}
-              setFilters={props.setFilters}
-              setFiltersVisible={props.setFiltersVisible}
-              setCardSize={props.setCardSize}
-              setIsLoading={props.setIsLoading}
-              toggleFiltersVisible={props.toggleFiltersVisible}
-              clearQuery={props.clearQuery}
-              clearFilters={props.clearFilters}
-              navToLoadingPage={() => props.navigation.navigate('LoadingPage')} />
-);
+const SearchPageContainer = (props: SearchPageContainerProps) => {
+  props.navigation.addListener('willFocus', () => {
+    const movies = getMovies();
+    if (!movies.length) {
+      props.navToLoadingPage();
+    }
+  });
+
+  return (
+    <SearchPage query={props.query}
+                filters={props.filters}
+                results={props.results}
+                cardSize={props.cardSize}
+                filtersVisible={props.filtersVisible}
+                noMoreResults={props.noMoreResults}
+                isLoading={props.isLoading}
+                setQuery={props.setQuery}
+                setFilters={props.setFilters}
+                setFiltersVisible={props.setFiltersVisible}
+                setCardSize={props.setCardSize}
+                setIsLoading={props.setIsLoading}
+                toggleFiltersVisible={props.toggleFiltersVisible}
+                clearQuery={props.clearQuery}
+                clearFilters={props.clearFilters}
+                navToLoadingPage={() => props.navigation.navigate('LoadingPage')} />
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPageContainer);

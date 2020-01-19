@@ -1,15 +1,16 @@
 import React from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
+import thunk from 'redux-thunk';
 import SearchPageHeader from './search-header/search.page.header';
 import CameraPage from './barcode-lookup/camera.page';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
+import {applyMiddleware, createStore} from 'redux';
 import reducers from './redux/reducers';
 import LoadingPageContainer from './loading/loading.page.container';
 import SearchPageContainer from './search/search.page.container';
 
-const store = createStore(reducers);
+const store = createStore(reducers, applyMiddleware(thunk));
 
 const MainNavigator = createStackNavigator({
   Home: {

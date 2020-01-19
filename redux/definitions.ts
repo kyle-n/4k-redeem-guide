@@ -2,9 +2,11 @@ export type ActionType = 'SET_QUERY' |
   'DOWNLOAD_MOVIES' |
   'SET_FILTERS' |
   'CLEAR_FILTERS' |
-  // 'SET_RESULTS' |
+  'SET_RESULTS' |
+  'SET_NO_MORE_RESULTS' |
   // 'ADD_TO_RESULTS' |
   'SET_MOVIES' |
+  'SET_OFFSET' |
   'SET_CARD_SIZE' |
   'TOGGLE_CARD_SIZE' |
   // 'SET_DEBOUNCED_QUERY' |

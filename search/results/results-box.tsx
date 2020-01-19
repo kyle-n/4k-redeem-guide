@@ -22,14 +22,15 @@ const resultsContainerStyles = StyleSheet.create({
   }
 });
 
-type ResultsPageProps = {
+type ResultsBoxProps = {
   results: Movie[];
   cardSize: CardSize;
   noMoreResults: boolean;
-  showNoResultsMessage: boolean;
+  loadMore: () => void;
 };
 
-const ResultsBox = (props: ResultsPageProps) => {
+const ResultsBox = (props: ResultsBoxProps) => {
+  const showNoResultsMessage = props.results.length && props.noMoreResults;
   return (
     <View style={resultsContainerStyles.containerWithButton}>
       <Item style={resultsContainerStyles.container}>
@@ -41,12 +42,12 @@ const ResultsBox = (props: ResultsPageProps) => {
           );
         })}
         {props.results.length ? (
-          <LoadMoreButton loadMoreMovies={this.loadMoreMovies}
+          <LoadMoreButton onPress={props.loadMore}
                           disabled={props.noMoreResults} />
         ) : null}
-        {props.showNoResultsMessage ? (
+        {showNoResultsMessage ? (
           <Text>
-            No matches found
+            No results found
           </Text>
         ): null}
       </Item>
@@ -55,13 +56,13 @@ const ResultsBox = (props: ResultsPageProps) => {
 };
 
 type LoadMoreButtonProps = {
-  loadMoreMovies: () => void;
+  onPress: () => void;
   disabled: boolean;
 };
 
 const LoadMoreButton = (props: LoadMoreButtonProps) => (
   <View style={resultsContainerStyles.bottomButton}>
-    <Button onPress={props.loadMoreMovies} full primary rounded
+    <Button onPress={props.onPress} full primary rounded
             disabled={props.disabled}>
       <Text>Load more</Text>
     </Button>
