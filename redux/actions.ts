@@ -38,7 +38,7 @@ export function setFiltersVisible(visible: boolean): ActionAndValue {
   return {type: 'SET_FILTERS_VISIBLE', value: visible};
 }
 
-export function toggleFilters(): ActionAndValue {
+export function toggleFiltersVisible(): ActionAndValue {
   return {type: 'TOGGLE_FILTERS_VISIBLE', value: null};
 }
 

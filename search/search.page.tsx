@@ -10,8 +10,8 @@ import InputBox from '../input/input-box';
 import {debounce} from 'throttle-debounce';
 import FilterBox from '../input/filter-box';
 import {anyValueTruthy} from '../utils';
+import {SearchPageProps} from './search.page.container';
 
-type SearchPageProps = NavigationStackScreenProps;
 type SearchPageState = {
   movies: Movie[];
   query: string;

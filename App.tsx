@@ -7,7 +7,7 @@ import CameraPage from './barcode-lookup/camera.page';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
 import reducers from './redux/reducers';
-import LoadingPageContainer from './loading/loading-page.container';
+import LoadingPageContainer from './loading/loading.page.container';
 
 const store = createStore(reducers);
 
