@@ -1,20 +1,9 @@
-import {CardSize, Movie, MovieFilters} from '../models';
+import {CardSize, GlobalState, Movie, MovieFilters} from '../models';
 import {ActionAndValue} from './actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Reducer} from 'redux';
 
-type State = {
-  cardSize: CardSize;
-  filters: MovieFilters;
-  filtersVisible: boolean;
-  hasMoreResults: boolean;
-  isLoading: boolean;
-  movies: Movie[];
-  offset: number;
-  results: Movie[];
-};
-
-// const defaultCardSize: CardSize = 0;
+const defaultCardSize: CardSize = 0;
 // const cardSizePrefName = 'cardSizePref';
 // const getSavedCardSizePref = async (): Promise<CardSize> => {
 //   const savedPrefString = await AsyncStorage.getItem(cardSizePrefName);
@@ -44,7 +33,7 @@ const defaultFilters: MovieFilters = {
   microsoftUhd: false
 };
 
-const initialState: State = {
+const initialState: GlobalState = {
   cardSize: defaultCardSize,
   filters: Object.assign({}, defaultFilters),
   filtersVisible: false,
@@ -55,7 +44,7 @@ const initialState: State = {
   results: []
 };
 
-const reducers: Reducer<State, ActionAndValue> = (state = initialState, dispatch: ActionAndValue): State => {
+const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, dispatch: ActionAndValue): GlobalState => {
   switch (dispatch.type) {
     case 'SET_CARD_SIZE':
       return Object.assign({}, state, {cardSize: dispatch.value});

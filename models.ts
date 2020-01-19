@@ -107,3 +107,14 @@ export type PresetSearch = {
 };
 
 export type CardSize = 0 | 1;
+
+export type GlobalState = {
+  cardSize: CardSize;
+  filters: MovieFilters;
+  filtersVisible: boolean;
+  hasMoreResults: boolean;
+  isLoading: boolean;
+  movies: Movie[];
+  offset: number;
+  results: Movie[];
+};
