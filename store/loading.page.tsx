@@ -7,6 +7,14 @@ import {baseFontSize} from '../styles';
 import {Button, Icon, Text} from 'native-base';
 import {ExitOnBackButton} from '../shared-components';
 import CheckBeforeDownload from './check-before-download';
+import {connect} from 'react-redux';
+import {GlobalState} from '../models';
+
+const mapStateToProps = (state: GlobalState): any => {
+  return {
+
+  }
+}
 
 const loadingPageStyles = StyleSheet.create({
   topContainer: {
@@ -43,14 +51,14 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
   }
 
   init = (hasCache: boolean) => {
-    initializeStore(hasCache).then(() => {
-      this.props.navigation.navigate('Home');
-    });
+    // initializeStore(hasCache).then(() => {
+    //   this.props.navigation.navigate('Home');
+    // });
   };
 
   onDownloadMoviesPress = () => {
     this.setState({showDownloadLaterMessage: false}, () => {
-      this.init(false);
+      // this.init(false);
     });
   };
 
