@@ -3,6 +3,7 @@ import {CardSize, GlobalState, Movie, MovieFilters} from '../models';
 import {searchMovies} from '../store';
 import {debounce} from 'throttle-debounce';
 import {anyValueTruthy} from '../utils';
+import loadMovies from '../store/spreadsheet.connector';
 
 export type ActionAndValue = {
   type: ActionType
@@ -108,6 +109,11 @@ export function toggleFiltersVisible(): ActionAndValue {
   return {type: 'TOGGLE_FILTERS_VISIBLE', value: null};
 }
 
-export function downloadMovies(): ActionAndValue {
- return <any>null;
+export function downloadMovies() {
+  return async function (dispatch: Function) {
+    dispatch(setIsLoading(true));
+    const movies = await loadMovies();
+    dispatch(setMovies(movies));
+    dispatch(setIsLoading(false));
+  }
 }

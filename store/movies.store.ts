@@ -2,7 +2,6 @@ import loadMovies from './spreadsheet.connector';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Movie, MovieFilters} from '../models';
 
-let movies: Movie[] = [];
 const moviesKey = 'movies';
 const dateKey = 'lastSavedMoviesDate';
 
@@ -22,37 +21,6 @@ export const hasValidLocalCache = async (): Promise<boolean> => {
       } else return true;
     }
   }
-};
-
-export const initializeStore = async (validCache: boolean): Promise<void> => {
-
-  // load from API
-  const downloadMovies = async (): Promise<void> => {
-    movies = await loadMovies();
-    await AsyncStorage.setItem(moviesKey, JSON.stringify(movies));
-    await AsyncStorage.setItem(dateKey, new Date().getTime().toString());
-  };
-
-  // load from AsyncStorage
-  const loadMoviesFromCache = async (): Promise<void> => {
-    try {
-      const storedMovies = await AsyncStorage.getItem(moviesKey);
-      if (storedMovies) {
-        movies = JSON.parse(storedMovies);
-      } else await downloadMovies();
-    } catch {
-      await downloadMovies();
-    }
-  };
-
-  if (validCache) {
-    await loadMoviesFromCache();
-    return;
-  } else {
-    await downloadMovies();
-    return;
-  }
-
 };
 
 export const getMovies = (): Movie[] => {
