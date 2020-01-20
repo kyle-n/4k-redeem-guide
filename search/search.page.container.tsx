@@ -15,7 +15,7 @@ import {NavigationStackScreenProps} from 'react-navigation-stack';
 import SearchPage from './search.page';
 import {getMovies} from '../store';
 
-const mapStateToProps = (state: GlobalState) => {
+const mapStateToProps = (state: GlobalState): any => {
   return {
     query: state.query,
     filters: state.filters,
@@ -23,7 +23,8 @@ const mapStateToProps = (state: GlobalState) => {
     cardSize: state.cardSize,
     filtersVisible: state.filtersVisible,
     noMoreResults: state.noMoreResults,
-    isLoading: state.isLoading
+    isLoading: state.isLoading,
+    needsToDownloadMovies: !state.movies.length
   };
 };
 const mapDispatchToProps = {
@@ -37,16 +38,13 @@ const mapDispatchToProps = {
   clearFilters
 };
 
-export type SearchPageProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps) & {
-  navToLoadingPage: () => void;
-};
+export type SearchPageProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 type SearchPageContainerProps = SearchPageProps & NavigationStackScreenProps;
 
 const SearchPageContainer = (props: SearchPageContainerProps) => {
   props.navigation.addListener('willFocus', () => {
-    const movies = getMovies();
-    if (!movies.length) {
-      props.navToLoadingPage();
+    if (props.needsToDownloadMovies) {
+      props.navigation.navigate('LoadingPage');
     }
   });
 
@@ -65,8 +63,7 @@ const SearchPageContainer = (props: SearchPageContainerProps) => {
                 setIsLoading={props.setIsLoading}
                 toggleFiltersVisible={props.toggleFiltersVisible}
                 clearQuery={props.clearQuery}
-                clearFilters={props.clearFilters}
-                navToLoadingPage={() => props.navigation.navigate('LoadingPage')} />
+                clearFilters={props.clearFilters} />
   );
 };
 

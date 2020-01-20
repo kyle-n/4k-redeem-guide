@@ -43,9 +43,9 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => (
       <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
     </View>
     <View style={searchPageHeaderStyles.buttonContainer}>
-      <RefreshCacheButton />
+      {/*<RefreshCacheButton />*/}
       <SizeButton cardSize={props.cardSize} onPress={props.toggleCardSize}/>
-      <CameraButton />
+      {/*<CameraButton />*/}
     </View>
   </View>
 )
