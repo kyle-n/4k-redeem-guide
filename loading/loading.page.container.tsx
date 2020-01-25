@@ -18,7 +18,7 @@ const LoadingPageContainer = (props: LoadingPageContainerProps) => (
 
 const mapStateToProps = (state: GlobalState): any => {
   return {
-    moviesNotDownloaded: !state.movies.length && !state.isLoading
+    moviesNotDownloaded: !state.movies.length
   };
 };
 const mapDispatchToProps = {downloadMovies};

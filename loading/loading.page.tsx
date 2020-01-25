@@ -29,7 +29,7 @@ type LoadingPageProps = {
   navigation: NavigationStackProp;
 };
 type LoadingPageState = {
-  showDownloadLaterMessage: boolean;
+  downloading: boolean;
   showDownloadAlert: boolean;
 }
 
@@ -39,30 +39,32 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
     super(props);
 
     this.state = {
-      showDownloadLaterMessage: false,
+      downloading: false,
       showDownloadAlert: true
     };
 
   }
 
-  init = (hasCache: boolean) => {
-    // initializeStore(hasCache).then(() => {
-    //   this.props.navigation.navigate('Home');
-    // });
-  };
+  componentDidUpdate(
+    prevProps: Readonly<LoadingPageProps>
+  ): void {
+    if (prevProps !== this.props && !this.props.moviesNotDownloaded) {
+      this.props.navigation.navigate('Home');
+    }
+  }
 
-  onDownloadMoviesPress = () => {
-    this.setState({showDownloadLaterMessage: false}, () => {
-      // this.init(false);
+  downloadMovies = (): void => {
+    this.setState({downloading: true}, () => {
+      this.props.downloadMovies();
     });
   };
 
   render() {
-    const onDownloadAlertCancel = () => {
-      this.setState({showDownloadAlert: false, showDownloadLaterMessage: true});
+    const onDownloadAlertCancel = (): void => {
+      this.setState({showDownloadAlert: false, downloading: false});
     };
-    const onDownloadAlertConfirm = (hasCache: boolean) => {
-      this.setState({showDownloadAlert: false}, () => this.init(hasCache));
+    const onDownloadAlertConfirm = (): void => {
+      this.setState({showDownloadAlert: false}, this.downloadMovies);
     };
 
     return (
@@ -71,22 +73,25 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
         {/* Back listener util */}
         <ExitOnBackButton />
 
-        {/* Hide download alert after selection */}
+         Hide download alert after selection
         {this.state.showDownloadAlert ? (
           <CheckBeforeDownload onCancel={onDownloadAlertCancel}
                                onConfirm={onDownloadAlertConfirm} />
         ) : null}
 
+        {/* Loading spinner if downloading */}
         <View style={loadingPageStyles.innerContainer}>
-          {this.state.showDownloadLaterMessage ? null : (
+          {this.state.downloading ? (
             <ActivityIndicator size="large" />
-          )}
+          ) : null}
         </View>
+
+        {/* Loading messages if downloading, download button if not */}
         <View style={loadingPageStyles.innerContainer}>
-          {this.state.showDownloadLaterMessage ? (
-            <DownloadMoviesButton onPress={this.onDownloadMoviesPress}/>
-          ) : (
+          {this.state.downloading && !this.state.showDownloadAlert ? (
             <LoadingMessage navigation={this.props.navigation} />
+          ) : (
+            <DownloadMoviesButton onPress={this.downloadMovies}/>
           )}
         </View>
       </View>
