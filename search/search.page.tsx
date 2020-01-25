@@ -24,6 +24,7 @@ const SearchPage = (props: SearchPageProps) => {
       <Content contentContainerStyle={movieCardStyles.content}>
         <InputBox query={props.query}
                   setQuery={props.setQuery}
+                  clearQuery={props.clearQuery}
                   isLoading={props.isLoading} />
         <FilterBox setFilter={setFilter}
                    resetFilters={props.clearFilters}

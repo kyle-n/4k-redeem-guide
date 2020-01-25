@@ -17,25 +17,33 @@ const inputContainerStyles = StyleSheet.create({
 
 type InputBoxProps = {
   setQuery: (query: string) => void;
+  clearQuery: () => void;
   query: string;
   isLoading: boolean;
 };
 
-const InputBox = (props: InputBoxProps) => (
-	<Item style={inputContainerStyles.wrapper}>
+const InputBox = (props: InputBoxProps) => {
+  const setOrClearQuery = (query: string): void => {
+    if (query.length) props.setQuery(query);
+    else props.clearQuery();
+  };
+
+  return (
+    <Item style={inputContainerStyles.wrapper}>
       <Icon name="ios-search" android="md-search" ios="ios-search"
             style={inputContainerStyles.searchIcon} />
       <Input value={props.query}
-             onChange={(e) => props.setQuery(e.nativeEvent.text)}
+             onChange={(e) => setOrClearQuery(e.nativeEvent.text)}
              placeholder="Search for movies"
              autoCorrect={false}
       />
-    {props.isLoading ? (<LoadingIndicator />) : null}
-    {props.query.length ? (
-      <ClearButton disabled={!props.query.length} onPress={() => props.setQuery('')} />
-    ) : null}
-  </Item>
-);
+      {props.isLoading ? (<LoadingIndicator />) : null}
+      {props.query.length ? (
+        <ClearButton disabled={!props.query.length} onPress={props.clearQuery} />
+      ) : null}
+    </Item>
+  );
+};
 
 type ClearButtonProps = {
   disabled: boolean;
