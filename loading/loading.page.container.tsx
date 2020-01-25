@@ -10,11 +10,17 @@ type LoadingPageContainerProps = {
   downloadMovies: Function;
 } & NavigationStackScreenProps;
 
-const LoadingPageContainer = (props: LoadingPageContainerProps) => (
-  <LoadingPage moviesNotDownloaded={props.moviesNotDownloaded}
-               downloadMovies={props.downloadMovies}
-               navigation={props.navigation} />
-);
+const LoadingPageContainer = (props: LoadingPageContainerProps) => {
+  if (!props.moviesNotDownloaded) {
+    console.log('GOT MOVIES')
+    props.navigation.navigate('Home');
+  }
+  return (
+    <LoadingPage moviesNotDownloaded={props.moviesNotDownloaded}
+                 downloadMovies={props.downloadMovies}
+                 navigation={props.navigation} />
+  );
+};
 
 const mapStateToProps = (state: GlobalState): any => {
   return {

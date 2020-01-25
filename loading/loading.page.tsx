@@ -45,14 +45,6 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
 
   }
 
-  componentDidUpdate(
-    prevProps: Readonly<LoadingPageProps>
-  ): void {
-    if (prevProps !== this.props && !this.props.moviesNotDownloaded) {
-      this.props.navigation.navigate('Home');
-    }
-  }
-
   downloadMovies = (): void => {
     this.setState({downloading: true}, () => {
       this.props.downloadMovies();
@@ -73,7 +65,7 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
         {/* Back listener util */}
         <ExitOnBackButton />
 
-         Hide download alert after selection
+        {/* Download movies if on WiFi, show alert if not */}
         {this.state.showDownloadAlert ? (
           <CheckBeforeDownload onCancel={onDownloadAlertCancel}
                                onConfirm={onDownloadAlertConfirm} />
