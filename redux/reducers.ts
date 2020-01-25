@@ -49,8 +49,14 @@ const initialState: GlobalState = {
 const cacheState = debounce(1 * 1000, (state: GlobalState): void => {
   AsyncStorage.setItem('state', JSON.stringify(state));
 });
+export const getCachedState = async (): Promise<GlobalState | null> => {
+  const cachedState = await AsyncStorage.getItem('state');
+  if (cachedState) return JSON.parse(cachedState);
+  else return null;
+};
 
 const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, dispatch: ActionAndValue): GlobalState => {
+  if (!state) state = initialState;
   let newState: GlobalState;
   switch (dispatch.type) {
     case 'SET_CARD_SIZE':
