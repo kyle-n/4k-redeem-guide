@@ -21,7 +21,7 @@ const defaultCardSize: CardSize = 0;
  *  -
  */
 
-const defaultFilters: MovieFilters = {
+export const defaultFilters: MovieFilters = {
   vuduUhd: false,
   fandangoNowUhd: false,
   itunesUhd: false,
@@ -82,10 +82,6 @@ const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, di
       return newState;
     case 'SET_FILTERS':
       newState = Object.assign({}, state, {filters: dispatch.value});
-      cacheState(newState);
-      return newState;
-    case 'CLEAR_FILTERS':
-      newState = Object.assign({}, state, {filters: Object.assign({}, defaultFilters)});
       cacheState(newState);
       return newState;
     case 'SET_FILTERS_VISIBLE':

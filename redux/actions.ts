@@ -4,6 +4,7 @@ import {searchMovies} from '../store';
 import {debounce} from 'throttle-debounce';
 import {anyValueTruthy} from '../utils';
 import loadMovies from '../store/spreadsheet.connector';
+import {defaultFilters} from './reducers';
 
 export type ActionAndValue = {
   type: ActionType
@@ -83,8 +84,9 @@ export function setQuery(query: string): ActionAndValue {
 }
 
 export function clearQuery() {
-  return function (dispatch: Function) {
+  return function (dispatch: Function, getState: () => GlobalState) {
     dispatch(setQuery(''));
+    doSearchOrReset(dispatch, getState);
     return;
   }
 }
@@ -101,8 +103,12 @@ export function setFilters(filters: MovieFilters): ActionAndValue {
   return {type: 'SET_FILTERS', value: filters};
 }
 
-export function clearFilters(): ActionAndValue {
-  return {type: 'CLEAR_FILTERS', value: null};
+export function clearFilters() {
+  return function (dispatch: Function, getState: () => GlobalState) {
+    dispatch(setFilters(Object.assign({}, defaultFilters)));
+    doSearchOrReset(dispatch, getState);
+    return;
+  }
 }
 
 export function setMovies(movies: Movie[]): ActionAndValue {
