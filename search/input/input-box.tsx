@@ -27,7 +27,6 @@ const InputBox = (props: InputBoxProps) => {
     if (query.length) props.setQuery(query);
     else props.clearQuery();
   };
-  console.log(props.isLoading)
 
   return (
     <Item style={inputContainerStyles.wrapper}>

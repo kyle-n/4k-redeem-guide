@@ -10,11 +10,14 @@ export type ActionAndValue = {
   value: any;
 }
 
-const debouncedSearchMovies = debounce(2 * 1000, (dispatch: Function, currentState: GlobalState) => {
+const debouncedSearchMovies = debounce(2 * 1000, (dispatch: Function, getState: () => GlobalState) => {
 
-  const {query, filters, offset, movies} = currentState;
+  dispatch(setOffset(0));
+
+  const {query, filters, offset, movies} = getState();
 
   const resp = searchMovies(movies, query, filters, {offset});
+  console.log(resp, 'results')
 
   dispatch(setOffset(resp.nextIndexToEvaluate));
   dispatch(setResults(resp.results));
@@ -22,19 +25,22 @@ const debouncedSearchMovies = debounce(2 * 1000, (dispatch: Function, currentSta
 
   // check if more results
   const checkingMoreResp = searchMovies(movies, query, filters, {offset: resp.nextIndexToEvaluate});
+  console.log(checkingMoreResp, 'more')
   const noMore = !checkingMoreResp.results.length;
   dispatch(setNoMoreResults(noMore));
 });
 
-const doSearchOrReset = (dispatch: Function, currentState: GlobalState) => {
-  const {query, filters} = currentState;
+const doSearchOrReset = (dispatch: Function, getState: () => GlobalState) => {
+  const {query, filters} = getState();
 
   // do search
   if (query || anyValueTruthy(filters)) {
+    console.log('doing search', query)
     dispatch(setIsLoading(true));
-    debouncedSearchMovies(dispatch, currentState);
+    debouncedSearchMovies(dispatch, getState);
   // reset state
   } else {
+    console.log('resetting results')
     dispatch(setOffset(0));
     dispatch(setResults([]));
     dispatch(setNoMoreResults(false));
@@ -67,7 +73,7 @@ export function loadMoreResults() {
 export function setQueryAndSearch(query: string) {
   return function (dispatch: Function, getState: () => GlobalState) {
     dispatch(setQuery(query))
-    doSearchOrReset(dispatch, getState());
+    doSearchOrReset(dispatch, getState);
     console.log(getState(), 'after search')
     return;
   }
@@ -81,14 +87,17 @@ export function setQuery(query: string): ActionAndValue {
   return {type: 'SET_QUERY', value: query};
 }
 
-export function clearQuery(): ActionAndValue {
-  return {type: 'SET_QUERY', value: ''};
+export function clearQuery() {
+  return function (dispatch: Function) {
+    dispatch(setQuery(''));
+    return;
+  }
 }
 
 export function setFiltersAndSearch(filters: MovieFilters) {
   return function (dispatch: Function, getState: () => GlobalState) {
     dispatch(setFilters(filters));
-    doSearchOrReset(dispatch, getState());
+    doSearchOrReset(dispatch, getState);
     return;
   }
 }
