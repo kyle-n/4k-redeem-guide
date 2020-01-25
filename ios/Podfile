@@ -28,9 +28,9 @@ target 'uhdredeemguide' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
   # Custom pods
-  pod 'react-native-camera', path: '../node_modules/react-native-camera', subspecs: [
-    'BarcodeDetectorMLKit'
-  ]
+#  pod 'react-native-camera', path: '../node_modules/react-native-camera', subspecs: [
+#    'BarcodeDetectorMLKit'
+#  ]
 
   pod 'RNScreens', :path => '../node_modules/react-native-screens'
 
