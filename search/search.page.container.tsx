@@ -9,11 +9,11 @@ import {
   setIsLoading,
   toggleFiltersVisible,
   clearQuery,
-  clearFilters
+  clearFilters,
+  loadMoreResults
 } from '../redux/actions';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import SearchPage from './search.page';
-import {getMovies} from '../store';
 
 const mapStateToProps = (state: GlobalState): any => {
   return {

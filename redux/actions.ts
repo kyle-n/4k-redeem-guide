@@ -49,7 +49,7 @@ function setResults(results: Movie[]): ActionAndValue {
   return {type: 'SET_RESULTS', value: results};
 }
 
-function loadMoreResults() {
+export function loadMoreResults() {
   return function (dispatch: Function, getState: () => GlobalState) {
     const state = getState();
     dispatch(setIsLoading(true));

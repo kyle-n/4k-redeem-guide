@@ -1,6 +1,6 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet} from 'react-native';
-import {Item, Input, View, Left, Icon, Body, Button} from 'native-base';
+import {Item, Input, View, Icon, Button} from 'native-base';
 import {baseFontSize} from '../../styles';
 
 const inputContainerStyles = StyleSheet.create({
@@ -51,7 +51,7 @@ const ClearButton = (props: ClearButtonProps) => (
 
 type LoadingIndicatorProps = {};
 
-const LoadingIndicator = (props: LoadingIndicatorProps) => (
+const LoadingIndicator = () => (
   <View style={inputContainerStyles.loadingSpinner}>
     <ActivityIndicator size="small" />
   </View>
