@@ -17,7 +17,6 @@ const debouncedSearchMovies = debounce(2 * 1000, (dispatch: Function, getState: 
   const {query, filters, offset, movies} = getState();
 
   const resp = searchMovies(movies, query, filters, {offset});
-  console.log(resp, 'results')
 
   dispatch(setOffset(resp.nextIndexToEvaluate));
   dispatch(setResults(resp.results));
@@ -25,7 +24,6 @@ const debouncedSearchMovies = debounce(2 * 1000, (dispatch: Function, getState: 
 
   // check if more results
   const checkingMoreResp = searchMovies(movies, query, filters, {offset: resp.nextIndexToEvaluate});
-  console.log(checkingMoreResp, 'more')
   const noMore = !checkingMoreResp.results.length;
   dispatch(setNoMoreResults(noMore));
 });
@@ -35,12 +33,10 @@ const doSearchOrReset = (dispatch: Function, getState: () => GlobalState) => {
 
   // do search
   if (query || anyValueTruthy(filters)) {
-    console.log('doing search', query)
     dispatch(setIsLoading(true));
     debouncedSearchMovies(dispatch, getState);
   // reset state
   } else {
-    console.log('resetting results')
     dispatch(setOffset(0));
     dispatch(setResults([]));
     dispatch(setNoMoreResults(false));
@@ -74,7 +70,6 @@ export function setQueryAndSearch(query: string) {
   return function (dispatch: Function, getState: () => GlobalState) {
     dispatch(setQuery(query))
     doSearchOrReset(dispatch, getState);
-    console.log(getState(), 'after search')
     return;
   }
 }
