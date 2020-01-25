@@ -5,11 +5,13 @@ import {clearMovieCache} from '../store/movies.store';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 
-type RefreshCacheButtonProps = NavigationStackScreenProps;
+type RefreshCacheButtonProps = NavigationStackScreenProps & {
+  onPress: () => void;
+};
 
 const RefreshCacheButton = (props: RefreshCacheButtonProps) => {
   const clearCacheAndNavToLoadingPage = async () => {
-    await clearMovieCache();
+    props.onPress();
     props.navigation.navigate('LoadingPage');
   };
   const showAlert = () => {

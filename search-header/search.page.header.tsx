@@ -7,7 +7,7 @@ import RefreshCacheButton from './refresh-cache-button';
 import CameraButton from './camera-button';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import {connect} from 'react-redux';
-import {toggleCardSize, setQuery} from '../redux/actions';
+import {clearMovieCache, toggleCardSize, setQuery} from '../redux/actions';
 
 const searchPageHeaderStyles = StyleSheet.create({
   container: {
@@ -34,7 +34,7 @@ const mapStateToProps = (state: GlobalState) => {
     needsToDownloadMovies: !state.movies?.length
   };
 };
-const mapDispatchToProps = {toggleCardSize, setQuery};
+const mapDispatchToProps = {clearMovieCache, toggleCardSize, setQuery};
 
 type SearchPageHeaderProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 
@@ -45,7 +45,7 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => {
         <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
       </View>
       <View style={searchPageHeaderStyles.buttonContainer}>
-        {/*<RefreshCacheButton />*/}
+        <RefreshCacheButton onPress={props.clearMovieCache} />
         <SizeButton cardSize={props.cardSize} onPress={props.toggleCardSize}/>
         {/*<CameraButton />*/}
       </View>

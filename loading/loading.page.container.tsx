@@ -12,7 +12,6 @@ type LoadingPageContainerProps = {
 
 const LoadingPageContainer = (props: LoadingPageContainerProps) => {
   if (!props.moviesNotDownloaded) {
-    console.log('GOT MOVIES')
     props.navigation.navigate('Home');
   }
   return props.moviesNotDownloaded ? (

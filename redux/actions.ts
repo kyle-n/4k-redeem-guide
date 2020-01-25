@@ -137,3 +137,11 @@ export function downloadMovies() {
     dispatch(setIsLoading(false));
   }
 }
+
+export function clearMovieCache() {
+  return function(dispatch: Function) {
+    dispatch(setResults([]));
+    dispatch(setOffset(0));
+    dispatch(setMovies([]))
+  }
+}
