@@ -15,11 +15,11 @@ const LoadingPageContainer = (props: LoadingPageContainerProps) => {
     console.log('GOT MOVIES')
     props.navigation.navigate('Home');
   }
-  return (
+  return props.moviesNotDownloaded ? (
     <LoadingPage moviesNotDownloaded={props.moviesNotDownloaded}
                  downloadMovies={props.downloadMovies}
                  navigation={props.navigation} />
-  );
+  ) : null;
 };
 
 const mapStateToProps = (state: GlobalState): any => {

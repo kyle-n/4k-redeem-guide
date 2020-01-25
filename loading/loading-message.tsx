@@ -84,7 +84,6 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
   destroyInterval = () => {
     if (this.state.intervalId) {
       clearInterval(this.state.intervalId);
-      this.setState({intervalId: 0});
     }
   };
 
