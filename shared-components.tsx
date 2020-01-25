@@ -65,7 +65,7 @@ type BackButtonProps = NavigationStackScreenProps & {
 export const BackButton = withNavigation((props: BackButtonProps) => (
   <Button onPress={() => props.navigation.goBack()}
           style={props.style || null}
-          large rounded primary>
+          large rounded warning>
     <Icon name="ios-arrow-back" ios="ios-arrow-back" android="md-arrow-back" />
   </Button>
 ));

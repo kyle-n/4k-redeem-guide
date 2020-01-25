@@ -20,6 +20,7 @@ const cameraPageStyles = StyleSheet.create({
   },
   buttonContainer: {
     position: 'absolute',
+    bottom: baseFontSize,
     alignSelf: 'center',
     zIndex: 1,
     width: baseFontSize * 5,
@@ -69,7 +70,7 @@ const CameraPage = (props: CameraPageProps) => {
                 androidCameraPermissionOptions={androidCamPermissions}
                 onBarCodeRead={onBarCodeRead}
                 captureAudio={false} />
-      {Platform.OS === 'android' ? (
+      {Platform.OS === 'ios' ? (
         <View style={cameraPageStyles.buttonContainer}>
           <BackButton style={cameraPageStyles.button} />
         </View>
