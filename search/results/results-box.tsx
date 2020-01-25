@@ -25,10 +25,10 @@ type ResultsBoxProps = {
   cardSize: CardSize;
   noMoreResults: boolean;
   loadMore: () => void;
+  showNoResultsMessage: boolean;
 };
 
 const ResultsBox = (props: ResultsBoxProps) => {
-  const showNoResultsMessage = props.results.length && props.noMoreResults;
   return (
     <View style={resultsContainerStyles.containerWithButton}>
       <Item style={resultsContainerStyles.container}>
@@ -43,7 +43,7 @@ const ResultsBox = (props: ResultsBoxProps) => {
           <LoadMoreButton onPress={props.loadMore}
                           disabled={props.noMoreResults} />
         ) : null}
-        {showNoResultsMessage ? (
+        {props.showNoResultsMessage && !props.results.length ? (
           <Text>
             No results found
           </Text>

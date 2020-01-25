@@ -6,6 +6,7 @@ import FilterBox from './input/filter-box';
 import {SearchPageProps} from './search.page.container';
 import ResultsBox from './results/results-box';
 import {MovieFilters} from '../models';
+import {anyValueTruthy} from '../utils';
 
 const movieCardStyles = StyleSheet.create({
   content: {
@@ -34,6 +35,7 @@ const SearchPage = (props: SearchPageProps) => {
         <ResultsBox results={props.results}
                     cardSize={props.cardSize}
                     loadMore={props.loadMore}
+                    showNoResultsMessage={(props.query || anyValueTruthy(props.filters)) && !props.isLoading}
                     noMoreResults={props.noMoreResults} />
       </Content>
     </Container>
