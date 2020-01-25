@@ -9,7 +9,6 @@ import {applyMiddleware, createStore, Store} from 'redux';
 import reducers, {getCachedState} from './redux/reducers';
 import LoadingPageContainer from './loading/loading.page.container';
 import SearchPageContainer from './search/search.page.container';
-import {Text} from 'native-base';
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -58,7 +57,7 @@ class App extends React.Component<AppProps, AppState>{
       <Provider store={this.state.store}>
         <AppContainer />
       </Provider>
-    ) : (<Text>Loading</Text>);
+    ) : null;
   }
 
 }
