@@ -1,7 +1,9 @@
 import React from 'react';
-import {View} from 'native-base';
-import {Alert, BackHandler, NativeEventSubscription, StyleSheet} from 'react-native';
+import {Button, Icon, View} from 'native-base';
+import {Alert, BackHandler, NativeEventSubscription, StyleProp, StyleSheet} from 'react-native';
 import {baseFontSize} from './styles';
+import {NavigationStackScreenProps} from 'react-navigation-stack';
+import {withNavigation} from 'react-navigation';
 
 const horizontalRuleStyles = StyleSheet.create({
   container: {
@@ -56,3 +58,14 @@ export class ExitOnBackButton extends React.Component<ExitOnBackButtonProps, Exi
   }
 
 }
+
+type BackButtonProps = NavigationStackScreenProps & {
+  style?: any;
+};
+export const BackButton = withNavigation((props: BackButtonProps) => (
+  <Button onPress={() => props.navigation.goBack()}
+          style={props.style || null}
+          large rounded primary>
+    <Icon name="ios-arrow-back" ios="ios-arrow-back" android="md-arrow-back" />
+  </Button>
+));

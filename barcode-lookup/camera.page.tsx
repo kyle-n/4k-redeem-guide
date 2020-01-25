@@ -1,11 +1,13 @@
 import React from 'react';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {View} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import {BarcodeScanData} from '../models';
 import {searchByBarcode} from '../redux/actions';
 import {connect} from 'react-redux';
+import {BackButton} from '../shared-components';
+import {baseFontSize} from '../styles';
 
 const cameraPageStyles = StyleSheet.create({
   fullSize: {
@@ -16,6 +18,21 @@ const cameraPageStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column'
   },
+  buttonContainer: {
+    position: 'absolute',
+    alignSelf: 'center',
+    zIndex: 1,
+    width: baseFontSize * 5,
+    height: baseFontSize * 5,
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  button: {
+    alignSelf: 'stretch',
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
+  }
 });
 
 const androidCamPermissions = {
@@ -52,6 +69,11 @@ const CameraPage = (props: CameraPageProps) => {
                 androidCameraPermissionOptions={androidCamPermissions}
                 onBarCodeRead={onBarCodeRead}
                 captureAudio={false} />
+      {Platform.OS === 'android' ? (
+        <View style={cameraPageStyles.buttonContainer}>
+          <BackButton style={cameraPageStyles.button} />
+        </View>
+      ) : null}
     </View>
   );
 };
