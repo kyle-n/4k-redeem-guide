@@ -3,6 +3,9 @@ import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {RNCamera} from 'react-native-camera';
+import {BarcodeScanData} from '../models';
+import {searchByBarcode} from '../redux/actions';
+import {connect} from 'react-redux';
 
 const cameraPageStyles = StyleSheet.create({
   fullSize: {
@@ -22,12 +25,24 @@ const androidCamPermissions = {
   buttonNegative: 'Cancel'
 };
 
-type CameraPageProps = NavigationStackScreenProps;
+const mapDispatchToProps = {searchByBarcode};
+
+type CameraPageProps = NavigationStackScreenProps & (typeof mapDispatchToProps);
 
 const CameraPage = (props: CameraPageProps) => {
   let cameraRef: RNCamera | null;
-  const onBarCodeRead = (data: any) => {
-    console.log(data)
+
+  let barcodeRead = false;
+  const onBarCodeRead = (event: any) => {
+    if (barcodeRead) return;
+    else barcodeRead = true;
+
+    const scanData: BarcodeScanData = event;
+    let upc: string;
+    if (scanData.type.includes('EAN-13')) upc = scanData.data.slice(1);
+    else upc = scanData.data;
+    props.searchByBarcode(upc);
+    props.navigation.navigate('Home');
   };
   return (
     <View style={[cameraPageStyles.container, cameraPageStyles.fullSize]}>
@@ -41,4 +56,5 @@ const CameraPage = (props: CameraPageProps) => {
   );
 };
 
-export default CameraPage;
+// @ts-ignore
+export default connect(null, mapDispatchToProps)(CameraPage);

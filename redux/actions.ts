@@ -5,6 +5,7 @@ import {debounce} from 'throttle-debounce';
 import {anyValueTruthy} from '../utils';
 import loadMovies from '../store/spreadsheet.connector';
 import {defaultFilters} from './reducers';
+import {getMovieTitleFromBarcode} from '../barcode-lookup/barcode-spider.connector';
 
 export type ActionAndValue = {
   type: ActionType
@@ -149,5 +150,15 @@ export function clearMovieCache() {
     dispatch(setResults([]));
     dispatch(setOffset(0));
     dispatch(setMovies([]))
+  }
+}
+
+export function searchByBarcode(barcode: string) {
+  return async function (dispatch: Function) {
+    dispatch(setIsLoading(true));
+    dispatch(clearFilters());
+    dispatch(setCardSize(1));
+    const title = await getMovieTitleFromBarcode(barcode)
+    dispatch(setQueryAndSearch(title));
   }
 }
