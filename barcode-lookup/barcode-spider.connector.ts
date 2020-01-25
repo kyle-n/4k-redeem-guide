@@ -47,9 +47,8 @@ const transformToRegularTitle = (title: string): string => {
 };
 
 export const getMovieTitleFromBarcode = async (barcode: string): Promise<string> => {
-  // const url = baseUrl + barcode;
-  // const resp: BarcodeSpiderApiResponse = (await axios.get(url)).data;
-  //
-  // return transformToRegularTitle(resp.item_attributes.title);
-  return 'Moonlight';
+  const url = baseUrl + barcode;
+  const resp: BarcodeSpiderApiResponse = (await axios.get(url)).data;
+
+  return transformToRegularTitle(resp.item_attributes.title);
 };
