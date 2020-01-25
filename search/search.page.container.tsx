@@ -35,7 +35,8 @@ const mapDispatchToProps = {
   setIsLoading,
   toggleFiltersVisible,
   clearQuery,
-  clearFilters
+  clearFilters,
+  loadMoreResults
 };
 
 export type SearchPageProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
@@ -54,6 +55,7 @@ const SearchPageContainer = (props: SearchPageContainerProps) => {
                 results={props.results}
                 cardSize={props.cardSize}
                 filtersVisible={props.filtersVisible}
+                loadMore={props.loadMoreResults}
                 noMoreResults={props.noMoreResults}
                 isLoading={props.isLoading}
                 setQuery={props.setQuery}

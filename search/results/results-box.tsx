@@ -1,11 +1,9 @@
 import React from 'react';
-import {CardSize, Movie, PresetSearch} from '../../models';
+import {CardSize, Movie} from '../../models';
 import {Button, Item, Text, View} from 'native-base';
 import MovieCard from './movie-card/movie-card';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../../styles';
-import SuggestedSearches from '../suggested-searches';
-import {anyValueTruthy} from '../../utils';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {

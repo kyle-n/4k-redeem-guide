@@ -35,6 +35,7 @@ const SearchPage = (props: SearchPageProps) => {
                    toggleFilterVisibility={props.toggleFiltersVisible} />
         <ResultsBox results={props.results}
                     cardSize={props.cardSize}
+                    loadMore={props.loadMore}
                     noMoreResults={props.noMoreResults} />
       </Content>
     </Container>
