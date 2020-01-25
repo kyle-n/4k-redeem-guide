@@ -1,8 +1,12 @@
 import React from 'react';
-import {getMovies} from '../store';
 
-const LoadingRedirect = (props: any) => {
-  if (!getMovies().length) {
+type LoadingRedirectProps = {
+  redirect: Function;
+  doRedirect: boolean;
+}
+
+const LoadingRedirect = (props: LoadingRedirectProps) => {
+  if (props.doRedirect) {
     props.redirect();
   }
   return null;

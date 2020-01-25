@@ -57,6 +57,7 @@ const SearchPageContainer = (props: SearchPageContainerProps) => {
                 filtersVisible={props.filtersVisible}
                 loadMore={props.loadMoreResults}
                 noMoreResults={props.noMoreResults}
+                needsToDownloadMovies={props.needsToDownloadMovies}
                 isLoading={props.isLoading}
                 setQuery={props.setQuery}
                 setFilters={props.setFilters}

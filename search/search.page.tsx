@@ -1,7 +1,5 @@
 import React from 'react';
 import {Container, Content} from 'native-base';
-import LoadingRedirect from '../loading/loading-redirect';
-import {getMovies} from '../store';
 import {StyleSheet} from 'react-native';
 import InputBox from './input/input-box';
 import FilterBox from './input/filter-box';
@@ -23,7 +21,6 @@ const SearchPage = (props: SearchPageProps) => {
 
   return (
     <Container>
-      <LoadingRedirect redirect={props.navToLoadingPage}/>
       <Content contentContainerStyle={movieCardStyles.content}>
         <InputBox query={props.query}
                   setQuery={props.setQuery}
