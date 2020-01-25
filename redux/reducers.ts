@@ -2,6 +2,7 @@ import {CardSize, GlobalState, Movie, MovieFilters} from '../models';
 import {ActionAndValue} from './actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Reducer} from 'redux';
+import {debounce} from 'throttle-debounce';
 
 const defaultCardSize: CardSize = 0;
 // const cardSizePrefName = 'cardSizePref';
@@ -45,29 +46,54 @@ const initialState: GlobalState = {
   results: []
 };
 
+const cacheState = debounce(1 * 1000, (state: GlobalState): void => {
+  AsyncStorage.setItem('state', JSON.stringify(state));
+});
+
 const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, dispatch: ActionAndValue): GlobalState => {
+  let newState: GlobalState;
   switch (dispatch.type) {
     case 'SET_CARD_SIZE':
-      return Object.assign({}, state, {cardSize: dispatch.value});
+      newState = Object.assign({}, state, {cardSize: dispatch.value});
+      cacheState(newState);
+      return newState;
     case 'TOGGLE_CARD_SIZE':
       const cardSize = state.cardSize === 0 ? 1 : 0;
-      return Object.assign({}, state, {cardSize});
+      newState = Object.assign({}, state, {cardSize});
+      cacheState(newState);
+      return newState;
     case 'SET_FILTERS':
-      return Object.assign({}, state, {filters: dispatch.value});
+      newState = Object.assign({}, state, {filters: dispatch.value});
+      cacheState(newState);
+      return newState;
     case 'CLEAR_FILTERS':
-      return Object.assign({}, state, {filters: Object.assign({}, defaultFilters)});
+      newState = Object.assign({}, state, {filters: Object.assign({}, defaultFilters)});
+      cacheState(newState);
+      return newState;
     case 'SET_FILTERS_VISIBLE':
-      return Object.assign({}, state, {filtersVisible: dispatch.value});
+      newState = Object.assign({}, state, {filtersVisible: dispatch.value});
+      cacheState(newState);
+      return newState;
     case 'TOGGLE_FILTERS_VISIBLE':
-      return Object.assign({}, state, {filtersVisible: !state.filtersVisible});
+      newState = Object.assign({}, state, {filtersVisible: !state.filtersVisible});
+      cacheState(newState);
+      return newState;
     case 'SET_LOADING':
-      return Object.assign({}, state, {isLoading: dispatch.value});
+      newState = Object.assign({}, state, {isLoading: dispatch.value});
+      cacheState(newState);
+      return newState;
     case 'SET_MOVIES':
-      return Object.assign({}, state, {movies: dispatch.value});
+      newState = Object.assign({}, state, {movies: dispatch.value});
+      cacheState(newState);
+      return newState;
     case 'SET_QUERY':
-      return Object.assign({}, state, {query: dispatch.value});
+      newState = Object.assign({}, state, {query: dispatch.value});
+      cacheState(newState);
+      return newState;
     default:
-      return state;
+      newState = state;
+      cacheState(newState);
+      return newState;
   }
 };
 
