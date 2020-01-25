@@ -119,3 +119,21 @@ export type GlobalState = {
   query: string;
   results: number[];
 };
+
+export type BarcodeScanData = {
+  bounds: {
+    origin: {
+      x: string;
+      y: string;
+    };
+    size: {
+      width: string;
+      height: string;
+    }
+  };
+  data: string;
+  type: string;
+  target: number;
+  rawData: null;
+};
+
