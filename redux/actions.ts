@@ -12,26 +12,26 @@ export type ActionAndValue = {
 
 const debouncedSearchMovies = debounce(2 * 1000, (dispatch: Function, currentState: GlobalState) => {
 
-  const {query, filters, offset} = currentState;
-  dispatch(setIsLoading(true));
+  const {query, filters, offset, movies} = currentState;
 
-  const resp = searchMovies(query, filters, {offset});
+  const resp = searchMovies(movies, query, filters, {offset});
 
   dispatch(setOffset(resp.nextIndexToEvaluate));
   dispatch(setResults(resp.results));
   dispatch(setIsLoading(false));
 
   // check if more results
-  const checkingMoreResp = searchMovies(query, filters, {offset: resp.nextIndexToEvaluate});
+  const checkingMoreResp = searchMovies(movies, query, filters, {offset: resp.nextIndexToEvaluate});
   const noMore = !checkingMoreResp.results.length;
   dispatch(setNoMoreResults(noMore));
 });
 
 const doSearchOrReset = (dispatch: Function, currentState: GlobalState) => {
-  const {query, filters, offset} = currentState;
+  const {query, filters} = currentState;
 
   // do search
   if (query || anyValueTruthy(filters)) {
+    dispatch(setIsLoading(true));
     debouncedSearchMovies(dispatch, currentState);
   // reset state
   } else {
@@ -45,7 +45,7 @@ function setNoMoreResults(noMoreResults: boolean): ActionAndValue {
   return {type: 'SET_NO_MORE_RESULTS', value: noMoreResults};
 }
 
-function setResults(results: Movie[]): ActionAndValue {
+function setResults(results: number[]): ActionAndValue {
   return {type: 'SET_RESULTS', value: results};
 }
 
@@ -53,11 +53,11 @@ export function loadMoreResults() {
   return function (dispatch: Function, getState: () => GlobalState) {
     const state = getState();
     dispatch(setIsLoading(true));
-    const moreResults = searchMovies(state.query, state.filters, {offset: state.offset, limit: 15});
+    const moreResults = searchMovies(state.movies, state.query, state.filters, {offset: state.offset, limit: 15});
     const results = state.results.concat(moreResults.results);
     dispatch(setResults(results));
     dispatch(setOffset(moreResults.nextIndexToEvaluate));
-    const hasMoreResults = searchMovies(state.query, state.filters, {offset: state.offset, limit: 1});
+    const hasMoreResults = searchMovies(state.movies, state.query, state.filters, {offset: state.offset, limit: 1});
     dispatch(setNoMoreResults(hasMoreResults.results.length < 1));
     dispatch(setIsLoading(false));
     return;
@@ -68,6 +68,7 @@ export function setQueryAndSearch(query: string) {
   return function (dispatch: Function, getState: () => GlobalState) {
     dispatch(setQuery(query))
     doSearchOrReset(dispatch, getState());
+    console.log(getState(), 'after search')
     return;
   }
 }

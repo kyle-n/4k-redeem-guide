@@ -10,13 +10,14 @@ const transformToMatchableText = (s: string): string => {
 };
 
 type SearchMovieResponse = {
-  results: Movie[];
+  results: number[];
   nextIndexToEvaluate: number;
 };
 
 
 // need to group property types - iterate over all text props the same way, all booleans, etc
 export const searchMovies = (
+  movies: Movie[],
   query: string,
   filters: MovieFilters | null,
   config?: {offset?: number, limit?: number}
@@ -29,7 +30,7 @@ export const searchMovies = (
 
   // setup
   const transformedQuery = transformToMatchableText(query);
-  const results: Movie[] = [];
+  const results: number[] = [];
   const limit = config?.limit ? config.limit : 15;
   const startingIndex = config?.offset ? config.offset : 0;
   let nextIndexToEvaluate = startingIndex;
@@ -65,7 +66,7 @@ export const searchMovies = (
       transformToMatchableText(movies[i].maCodeLocation).includes(transformedQuery) ||
       transformToMatchableText(movies[i].vuduFandangoCodeLocation).includes(transformedQuery)
   ) {
-      results.push(movies[i]);
+      results.push(i);
       if (results.length === limit) break;
       else continue;
     }
@@ -75,7 +76,11 @@ export const searchMovies = (
   return {results, nextIndexToEvaluate};
 };
 
-export const searchByTitleAndStudio = async (title: string, studio: string): Promise<Movie | null> => {
+export const searchByTitleAndStudio = async (
+  movies: Movie[],
+  title: string,
+  studio: string
+): Promise<Movie | null> => {
   const transformedTitle = transformToMatchableText(title);
   const transformedStudio = transformToMatchableText(studio);
 

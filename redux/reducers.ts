@@ -59,6 +59,18 @@ const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, di
   if (!state) state = initialState;
   let newState: GlobalState;
   switch (dispatch.type) {
+    case 'SET_NO_MORE_RESULTS':
+      newState = Object.assign({}, state, {noMoreResults: dispatch.value})
+      cacheState(newState);
+      return newState;
+    case 'SET_OFFSET':
+      newState = Object.assign({}, state, {offset: dispatch.value});
+      cacheState(newState);
+      return newState;
+    case 'SET_RESULTS':
+      newState = Object.assign({}, state, {results: dispatch.value});
+      cacheState(newState);
+      return newState;
     case 'SET_CARD_SIZE':
       newState = Object.assign({}, state, {cardSize: dispatch.value});
       cacheState(newState);
