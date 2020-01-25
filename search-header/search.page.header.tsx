@@ -47,7 +47,7 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => {
       <View style={searchPageHeaderStyles.buttonContainer}>
         <RefreshCacheButton onPress={props.clearMovieCache} />
         <SizeButton cardSize={props.cardSize} onPress={props.toggleCardSize}/>
-        {/*<CameraButton />*/}
+        <CameraButton />
       </View>
     </View>
   )

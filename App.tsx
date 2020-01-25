@@ -25,7 +25,6 @@ const MainNavigator = createStackNavigator({
   },
   CameraPage: {
     screen: CameraPage,
-    params: {onBarCodeRead: null},
     navigationOptions: {
       headerShown: false
     }

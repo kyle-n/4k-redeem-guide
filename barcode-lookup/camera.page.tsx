@@ -26,11 +26,9 @@ type CameraPageProps = NavigationStackScreenProps;
 
 const CameraPage = (props: CameraPageProps) => {
   let cameraRef: RNCamera | null;
-  const onBarCodeRead = () => {
-    props.navigation.getParam('onBarCodeRead')();
-    props.navigation.navigate('Home');
+  const onBarCodeRead = (data: any) => {
+    console.log(data)
   };
-  setTimeout(onBarCodeRead, 1 * 1000);
   return (
     <View style={[cameraPageStyles.container, cameraPageStyles.fullSize]}>
       <RNCamera style={cameraPageStyles.fullSize}
