@@ -1,7 +1,4 @@
 import React from 'react';
-import {NavigationStackScreenProps} from 'react-navigation-stack';
-import {NavigationStackProp} from 'react-navigation-stack/src/types';
-import {NavigationParams, NavigationRoute} from 'react-navigation';
 import {Text} from 'native-base';
 
 const loadingMessages: string[] = [
@@ -53,10 +50,12 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
       message: 'Loading films',
       loadingMessages: loadingMessages.slice(),
       goofyMessages: goofyMessages.slice(),
-      goGoofy: false,
+      goGoofy: true,
       intervalId: -1
     };
+  }
 
+  componentDidMount(): void {
     const intervalId = setInterval(() => {
       let messageGroupName: string;
 
@@ -75,15 +74,15 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
     this.setState({intervalId});
   }
 
+  componentWillUnmount(): void {
+    this.destroyInterval();
+  }
+
   destroyInterval = () => {
     if (this.state.intervalId) {
       clearInterval(this.state.intervalId);
     }
   };
-
-  componentWillUnmount(): void {
-    this.destroyInterval();
-  }
 
   render() {
     return (
