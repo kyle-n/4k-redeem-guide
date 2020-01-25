@@ -11,7 +11,9 @@ type LoadingPageContainerProps = {
 } & NavigationStackScreenProps;
 
 const LoadingPageContainer = (props: LoadingPageContainerProps) => (
-  <LoadingPage moviesNotDownloaded={props.moviesNotDownloaded} downloadMovies={props.downloadMovies} />
+  <LoadingPage moviesNotDownloaded={props.moviesNotDownloaded}
+               downloadMovies={props.downloadMovies}
+               navigation={props.navigation} />
 );
 
 const mapStateToProps = (state: GlobalState): any => {

@@ -1,11 +1,11 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import LoadingMessage from './loading-message';
-import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {baseFontSize} from '../styles';
 import {Button, Icon, Text} from 'native-base';
 import {ExitOnBackButton} from '../shared-components';
 import CheckBeforeDownload from './check-before-download';
+import {NavigationStackProp} from 'react-navigation-stack';
 
 const loadingPageStyles = StyleSheet.create({
   topContainer: {
@@ -26,7 +26,12 @@ const loadingPageStyles = StyleSheet.create({
 type LoadingPageProps = {
   moviesNotDownloaded: boolean;
   downloadMovies: Function;
+  navigation: NavigationStackProp;
 };
+type LoadingPageState = {
+  showDownloadLaterMessage: boolean;
+  showDownloadAlert: boolean;
+}
 
 class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
 
