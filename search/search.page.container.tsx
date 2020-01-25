@@ -49,7 +49,7 @@ const SearchPageContainer = (props: SearchPageContainerProps) => {
     }
   });
 
-  return (
+  return props.needsToDownloadMovies ? null : (
     <SearchPage query={props.query}
                 filters={props.filters}
                 results={props.results}

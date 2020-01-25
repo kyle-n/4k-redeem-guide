@@ -30,25 +30,28 @@ const searchPageHeaderStyles = StyleSheet.create({
 
 const mapStateToProps = (state: GlobalState) => {
   return {
-    cardSize: state.cardSize
+    cardSize: state.cardSize,
+    needsToDownloadMovies: !state.movies?.length
   };
 };
 const mapDispatchToProps = {toggleCardSize, setQuery};
 
 type SearchPageHeaderProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 
-const SearchPageHeader = (props: SearchPageHeaderProps) => (
-  <View style={searchPageHeaderStyles.container}>
-    <View>
-      <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
+const SearchPageHeader = (props: SearchPageHeaderProps) => {
+  return props.needsToDownloadMovies ? (<View></View>) : (
+    <View style={searchPageHeaderStyles.container}>
+      <View>
+        <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
+      </View>
+      <View style={searchPageHeaderStyles.buttonContainer}>
+        {/*<RefreshCacheButton />*/}
+        <SizeButton cardSize={props.cardSize} onPress={props.toggleCardSize}/>
+        {/*<CameraButton />*/}
+      </View>
     </View>
-    <View style={searchPageHeaderStyles.buttonContainer}>
-      {/*<RefreshCacheButton />*/}
-      <SizeButton cardSize={props.cardSize} onPress={props.toggleCardSize}/>
-      {/*<CameraButton />*/}
-    </View>
-  </View>
-)
+  )
+};
 
 type SizeButtonProps = {
   cardSize: CardSize;

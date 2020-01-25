@@ -31,6 +31,7 @@ type LoadingPageProps = {
 type LoadingPageState = {
   downloading: boolean;
   showDownloadAlert: boolean;
+  initialRenderDone: boolean;
 }
 
 class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
@@ -40,7 +41,8 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
 
     this.state = {
       downloading: false,
-      showDownloadAlert: true
+      showDownloadAlert: true,
+      initialRenderDone: false
     };
 
   }
@@ -53,10 +55,10 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
 
   render() {
     const onDownloadAlertCancel = (): void => {
-      this.setState({showDownloadAlert: false, downloading: false});
+      this.setState({showDownloadAlert: false, downloading: false, initialRenderDone: true});
     };
     const onDownloadAlertConfirm = (): void => {
-      this.setState({showDownloadAlert: false}, this.downloadMovies);
+      this.setState({showDownloadAlert: false, initialRenderDone: true}, this.downloadMovies);
     };
 
     return (
@@ -82,8 +84,9 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
         <View style={loadingPageStyles.innerContainer}>
           {this.state.downloading && !this.state.showDownloadAlert ? (
             <LoadingMessage navigation={this.props.navigation} />
-          ) : (
-            <DownloadMoviesButton onPress={this.downloadMovies}/>
+          ) : ( this.state.initialRenderDone ? (
+              <DownloadMoviesButton onPress={this.downloadMovies}/>
+            ) : null
           )}
         </View>
       </View>
