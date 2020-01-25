@@ -49,6 +49,21 @@ function setResults(results: Movie[]): ActionAndValue {
   return {type: 'SET_RESULTS', value: results};
 }
 
+function loadMoreResults() {
+  return function (dispatch: Function, getState: () => GlobalState) {
+    const state = getState();
+    dispatch(setIsLoading(true));
+    const moreResults = searchMovies(state.query, state.filters, {offset: state.offset, limit: 15});
+    const results = state.results.concat(moreResults.results);
+    dispatch(setResults(results));
+    dispatch(setOffset(moreResults.nextIndexToEvaluate));
+    const hasMoreResults = searchMovies(state.query, state.filters, {offset: state.offset, limit: 1});
+    dispatch(setNoMoreResults(hasMoreResults.results.length < 1));
+    dispatch(setIsLoading(false));
+    return;
+  }
+}
+
 export function setQueryAndSearch(query: string) {
   return function (dispatch: Function, getState: () => GlobalState) {
     dispatch(setQuery(query))
