@@ -27,6 +27,7 @@ const InputBox = (props: InputBoxProps) => {
     if (query.length) props.setQuery(query);
     else props.clearQuery();
   };
+  console.log(props.isLoading)
 
   return (
     <Item style={inputContainerStyles.wrapper}>
@@ -56,8 +57,6 @@ const ClearButton = (props: ClearButtonProps) => (
     <Icon name="ios-close" android="md-close" ios="ios-close" />
   </Button>
 )
-
-type LoadingIndicatorProps = {};
 
 const LoadingIndicator = () => (
   <View style={inputContainerStyles.loadingSpinner}>

@@ -117,5 +117,5 @@ export type GlobalState = {
   movies: Movie[];
   offset: number;
   query: string;
-  results: Movie[];
+  results: number[];
 };

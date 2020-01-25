@@ -2,8 +2,8 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {GlobalState} from '../models';
 import {
-  setQuery,
-  setFilters,
+  setQueryAndSearch,
+  setFiltersAndSearch,
   setFiltersVisible,
   setCardSize,
   setIsLoading,
@@ -19,7 +19,7 @@ const mapStateToProps = (state: GlobalState): any => {
   return {
     query: state.query,
     filters: state.filters,
-    results: state.results,
+    results: state.results.map(index => state.movies[index]),
     cardSize: state.cardSize,
     filtersVisible: state.filtersVisible,
     noMoreResults: state.noMoreResults,
@@ -28,8 +28,8 @@ const mapStateToProps = (state: GlobalState): any => {
   };
 };
 const mapDispatchToProps = {
-  setQuery,
-  setFilters,
+  setQueryAndSearch,
+  setFiltersAndSearch,
   setFiltersVisible,
   setCardSize,
   setIsLoading,
@@ -59,8 +59,8 @@ const SearchPageContainer = (props: SearchPageContainerProps) => {
                 noMoreResults={props.noMoreResults}
                 needsToDownloadMovies={props.needsToDownloadMovies}
                 isLoading={props.isLoading}
-                setQuery={props.setQuery}
-                setFilters={props.setFilters}
+                setQuery={props.setQueryAndSearch}
+                setFilters={props.setFiltersAndSearch}
                 setFiltersVisible={props.setFiltersVisible}
                 setCardSize={props.setCardSize}
                 setIsLoading={props.setIsLoading}
