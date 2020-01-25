@@ -26,7 +26,6 @@ const loadingPageStyles = StyleSheet.create({
 type LoadingPageProps = {
   moviesNotDownloaded: boolean;
   downloadMovies: Function;
-  navigation: NavigationStackProp;
 };
 type LoadingPageState = {
   downloading: boolean;
@@ -83,7 +82,7 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
         {/* Loading messages if downloading, download button if not */}
         <View style={loadingPageStyles.innerContainer}>
           {this.state.downloading && !this.state.showDownloadAlert ? (
-            <LoadingMessage navigation={this.props.navigation} />
+            <LoadingMessage />
           ) : ( this.state.initialRenderDone ? (
               <DownloadMoviesButton onPress={this.downloadMovies}/>
             ) : null

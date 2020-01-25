@@ -26,9 +26,7 @@ const goofyMessages = [
   'Undoing all the good parts of "The Last Jedi"'
 ];
 
-type LoadingMessageProps = {
-  navigation: NavigationStackProp<NavigationRoute, NavigationParams>;
-};
+type LoadingMessageProps = {};
 type LoadingMessageState = {
   message: string;
   loadingMessages: string[];
@@ -52,33 +50,29 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
     super(props);
 
     this.state = {
-      message: '',
+      message: 'Loading films',
       loadingMessages: loadingMessages.slice(),
       goofyMessages: goofyMessages.slice(),
       goGoofy: false,
       intervalId: -1
     };
 
-    props.navigation.addListener('willFocus', () => {
-      const intervalId = setInterval(() => {
-        let messageGroupName: string;
+    const intervalId = setInterval(() => {
+      let messageGroupName: string;
 
-        if (this.state.goGoofy) messageGroupName = 'goofyMessages';
-        else messageGroupName = 'loadingMessages';
+      if (this.state.goGoofy) messageGroupName = 'goofyMessages';
+      else messageGroupName = 'loadingMessages';
 
-        let newMessageGroup: string[], message: string;
-        // @ts-ignore
-        [message, newMessageGroup] = LoadingMessage.extractMessage(this.state[messageGroupName]);
+      let newMessageGroup: string[], message: string;
+      // @ts-ignore
+      [message, newMessageGroup] = LoadingMessage.extractMessage(this.state[messageGroupName]);
 
-        const update: any = {message, goGoofy: !this.state.goGoofy};
-        update[messageGroupName] = newMessageGroup;
+      const update: any = {message, goGoofy: !this.state.goGoofy};
+      update[messageGroupName] = newMessageGroup;
 
-        this.setState(update);
-      }, 5 * 1000);
-      this.setState({intervalId});
-    });
-
-    props.navigation.addListener('willBlur', this.destroyInterval);
+      this.setState(update);
+    }, 5 * 1000);
+    this.setState({intervalId});
   }
 
   destroyInterval = () => {

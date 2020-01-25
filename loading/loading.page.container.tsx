@@ -17,8 +17,7 @@ const LoadingPageContainer = (props: LoadingPageContainerProps) => {
   }
   return props.moviesNotDownloaded ? (
     <LoadingPage moviesNotDownloaded={props.moviesNotDownloaded}
-                 downloadMovies={props.downloadMovies}
-                 navigation={props.navigation} />
+                 downloadMovies={props.downloadMovies} />
   ) : null;
 };
 
