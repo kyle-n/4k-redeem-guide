@@ -51,7 +51,11 @@ const cacheState = debounce(1 * 1000, (state: GlobalState): void => {
 });
 export const getCachedState = async (): Promise<GlobalState | null> => {
   const cachedState = await AsyncStorage.getItem('state');
-  if (cachedState) return JSON.parse(cachedState);
+  if (cachedState) {
+    const state: GlobalState = JSON.parse(cachedState);
+    state.isLoading = false; // should always be reset
+    return state;
+  }
   else return null;
 };
 
