@@ -6,6 +6,7 @@ import {anyValueTruthy} from '../utils';
 import loadMovies from '../store/spreadsheet.connector';
 import {defaultFilters} from './reducers';
 import {getMovieTitleFromBarcode} from '../barcode-lookup/barcode-spider.connector';
+import {Alert} from 'react-native';
 
 export type ActionAndValue = {
   type: ActionType
@@ -159,6 +160,10 @@ export function searchByBarcode(barcode: string) {
     dispatch(clearFilters());
     dispatch(setCardSize(1));
     const title = await getMovieTitleFromBarcode(barcode)
-    dispatch(setQueryAndSearch(title));
+    if (title) dispatch(setQueryAndSearch(title));
+    else {
+      dispatch(setIsLoading(false));
+      Alert.alert('Error', 'Could not load movie data from barcode');
+    }
   }
 }
