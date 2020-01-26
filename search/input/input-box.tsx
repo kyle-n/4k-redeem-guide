@@ -1,11 +1,12 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet} from 'react-native';
 import {Item, Input, View, Icon, Button} from 'native-base';
-import {baseFontSize} from '../../styles';
+import {baseFontSize, darkColor, lightColor, lightGray} from '../../styles';
+import {DynamicStyleSheet, DynamicValue, useDarkMode, useDynamicStyleSheet} from 'react-native-dark-mode';
 
-const inputContainerStyles = StyleSheet.create({
+const dynamicStyleSheet = new DynamicStyleSheet({
   wrapper: {
-    marginBottom: baseFontSize
+    marginBottom: baseFontSize,
   },
   loadingSpinner: {
     marginHorizontal: baseFontSize
@@ -28,6 +29,8 @@ const InputBox = (props: InputBoxProps) => {
     else props.clearQuery();
   };
 
+  const inputContainerStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  const isDark = useDarkMode();
   return (
     <Item style={inputContainerStyles.wrapper}>
       <Icon name="ios-search" android="md-search" ios="ios-search"
@@ -35,6 +38,7 @@ const InputBox = (props: InputBoxProps) => {
       <Input value={props.query}
              onChange={(e) => setOrClearQuery(e.nativeEvent.text)}
              placeholder="Search for movies"
+             placeholderTextColor={isDark ? darkColor : lightGray}
              autoCorrect={false}
       />
       {props.isLoading ? (<LoadingIndicator />) : null}
