@@ -43,7 +43,7 @@ const baseUrl = 'https://api.barcodespider.com/v1/lookup?token=' + apiKey + '&up
 const transformToRegularTitle = (title: string): string => {
   const pattern = ' [';
   if (!title.includes(pattern)) return title;
-  return title.split(pattern).slice(0, -1).join();
+  return title.split(pattern)[0];
 };
 
 export const getMovieTitleFromBarcode = async (barcode: string): Promise<string | null> => {
