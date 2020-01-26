@@ -56,9 +56,7 @@ const CameraPage = (props: CameraPageProps) => {
     else barcodeRead = true;
 
     const scanData: BarcodeScanData = event;
-    let upc: string;
-    if (scanData.type.includes('EAN-13')) upc = scanData.data.slice(1);
-    else upc = scanData.data;
+    let upc = scanData.data.slice(1);
     props.searchByBarcode(upc);
     props.navigation.navigate('Home');
   };
