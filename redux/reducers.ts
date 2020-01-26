@@ -46,17 +46,27 @@ const initialState: GlobalState = {
   results: []
 };
 
+const timestampMovieCache = (): void => {
+  AsyncStorage.setItem('movie_download_date', new Date().getTime().toString());
+};
+
 const cacheState = debounce(1 * 1000, (state: GlobalState): void => {
   AsyncStorage.setItem('state', JSON.stringify(state));
 });
 export const getCachedState = async (): Promise<GlobalState | null> => {
-  const cachedState = await AsyncStorage.getItem('state');
-  if (cachedState) {
-    const state: GlobalState = JSON.parse(cachedState);
-    state.isLoading = false; // should always be reset
-    return state;
-  }
-  else return null;
+  const cachedStateString = await AsyncStorage.getItem('state');
+  if (cachedStateString) {
+    const today = new Date();
+    const cachedDateString = await AsyncStorage.getItem('movie_download_date');
+    if (cachedDateString) {
+      const cachedDate = new Date(parseInt(cachedDateString));
+      if (today.getTime() - cachedDate.getTime() < 604800 * 1000) { // 7 days
+        const state: GlobalState = JSON.parse(cachedStateString);
+        state.isLoading = false; // should always be reset
+        return state;
+      } else return null;
+    } else return null;
+  } else return null;
 };
 
 const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, dispatch: ActionAndValue): GlobalState => {
@@ -103,6 +113,7 @@ const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, di
     case 'SET_MOVIES':
       newState = Object.assign({}, state, {movies: dispatch.value});
       cacheState(newState);
+      timestampMovieCache();
       return newState;
     case 'SET_QUERY':
       newState = Object.assign({}, state, {query: dispatch.value});
