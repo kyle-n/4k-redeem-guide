@@ -1,26 +1,29 @@
 import React from 'react';
 import {CardSize, GlobalState} from '../models';
 import {Button, Icon, Text, View} from 'native-base';
-import {Platform, StyleSheet} from 'react-native';
-import {baseFontSize} from '../styles';
+import {Platform} from 'react-native';
+import {baseFontSize, darkBackgroundColor} from '../styles';
 import RefreshCacheButton from './refresh-cache-button';
 import CameraButton from './camera-button';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import {connect} from 'react-redux';
 import {clearMovieCache, toggleCardSize, setQuery} from '../redux/actions';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 
-const searchPageHeaderStyles = StyleSheet.create({
+const dynamicStyleSheet = new DynamicStyleSheet({
   container: {
     alignSelf: 'stretch',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignContent: 'center',
-    paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0
+    paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
+    backgroundColor: new DynamicValue('white', darkBackgroundColor),
   },
   pageTitle: {
     fontSize: 2 * baseFontSize,
-    padding: baseFontSize
+    padding: baseFontSize,
+    color: new DynamicValue('black', 'white')
   },
   buttonContainer: {
     display: 'flex',
@@ -39,6 +42,7 @@ const mapDispatchToProps = {clearMovieCache, toggleCardSize, setQuery};
 type SearchPageHeaderProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 
 const SearchPageHeader = (props: SearchPageHeaderProps) => {
+  const searchPageHeaderStyles = useDynamicStyleSheet(dynamicStyleSheet);
   return props.needsToDownloadMovies ? (<View></View>) : (
     <View style={searchPageHeaderStyles.container}>
       <View>
