@@ -10,7 +10,7 @@ const CameraButton = (props: CameraButtonProps) => {
   return (
     <Button onPress={navigateToCameraPage}
             info transparent large>
-      <Icon name="ios-barcode" ios="ios-barcode" android="md-barcode" />
+      <Icon name="barcode-scan" type="MaterialCommunityIcons" />
     </Button>
   );
 };
