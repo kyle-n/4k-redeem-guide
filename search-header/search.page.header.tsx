@@ -2,7 +2,7 @@ import React from 'react';
 import {CardSize, GlobalState} from '../models';
 import {Button, Icon, Text, View} from 'native-base';
 import {Platform} from 'react-native';
-import {baseFontSize, darkBackgroundColor} from '../styles';
+import {baseFontSize, darkBackgroundColor, lightBackgroundColor} from '../styles';
 import RefreshCacheButton from './refresh-cache-button';
 import CameraButton from './camera-button';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
@@ -18,7 +18,7 @@ const dynamicStyleSheet = new DynamicStyleSheet({
     justifyContent: 'space-between',
     alignContent: 'center',
     paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
-    backgroundColor: new DynamicValue('white', darkBackgroundColor),
+    backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
   },
   pageTitle: {
     fontSize: 2 * baseFontSize,

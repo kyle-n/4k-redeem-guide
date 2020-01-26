@@ -1,6 +1,5 @@
 import React from 'react';
 import {Container, Content} from 'native-base';
-import {StyleSheet} from 'react-native';
 import InputBox from './input/input-box';
 import FilterBox from './input/filter-box';
 import {SearchPageProps} from './search.page.container';
@@ -8,7 +7,7 @@ import ResultsBox from './results/results-box';
 import {MovieFilters} from '../models';
 import {anyValueTruthy} from '../utils';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {darkBackgroundColor, darkColor, lightBackgroundColor, lightColor} from '../styles';
+import {darkColor, lightBackgroundColor, lightColor} from '../styles';
 
 const dynamicStyleSheet = new DynamicStyleSheet({
   content: {
