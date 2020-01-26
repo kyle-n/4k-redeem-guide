@@ -7,10 +7,16 @@ import {SearchPageProps} from './search.page.container';
 import ResultsBox from './results/results-box';
 import {MovieFilters} from '../models';
 import {anyValueTruthy} from '../utils';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {darkBackgroundColor, darkColor, lightBackgroundColor, lightColor} from '../styles';
 
-const movieCardStyles = StyleSheet.create({
+const dynamicStyleSheet = new DynamicStyleSheet({
   content: {
-    alignItems: 'center',
+    alignItems: 'center'
+  },
+  container: {
+    backgroundColor: new DynamicValue(lightBackgroundColor, 'rgb(28,28,30)'),
+    color: new DynamicValue(lightColor, darkColor)
   }
 });
 
@@ -20,8 +26,9 @@ const SearchPage = (props: SearchPageProps) => {
     props.setFilters(newFilters);
   };
 
+  const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
   return (
-    <Container>
+    <Container style={movieCardStyles.container}>
       <Content contentContainerStyle={movieCardStyles.content}>
         <InputBox query={props.query}
                   setQuery={props.setQuery}
