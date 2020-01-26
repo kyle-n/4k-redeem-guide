@@ -8,11 +8,11 @@ const dynamicStyleSheet = new DynamicStyleSheet({
   wrapper: {
     marginBottom: baseFontSize,
   },
-  loadingSpinner: {
-    marginHorizontal: baseFontSize
-  },
   searchIcon: {
     marginLeft: baseFontSize
+  },
+  color: {
+    color: new DynamicValue(lightColor, darkColor)
   }
 });
 
@@ -34,16 +34,19 @@ const InputBox = (props: InputBoxProps) => {
   return (
     <Item style={inputContainerStyles.wrapper}>
       <Icon name="ios-search" android="md-search" ios="ios-search"
-            style={inputContainerStyles.searchIcon} />
+            style={[inputContainerStyles.searchIcon, inputContainerStyles.color]} />
       <Input value={props.query}
              onChange={(e) => setOrClearQuery(e.nativeEvent.text)}
              placeholder="Search for movies"
+             style={[inputContainerStyles.color]}
              placeholderTextColor={isDark ? darkColor : lightGray}
              autoCorrect={false}
       />
       {props.isLoading ? (<LoadingIndicator />) : null}
       {props.query.length ? (
-        <ClearButton disabled={!props.query.length} onPress={props.clearQuery} />
+        <ClearButton disabled={!props.query.length}
+                     onPress={props.clearQuery}
+                     style={[inputContainerStyles.color]} />
       ) : null}
     </Item>
   );
@@ -52,17 +55,25 @@ const InputBox = (props: InputBoxProps) => {
 type ClearButtonProps = {
   disabled: boolean;
   onPress: () => void;
+  style: any;
 }
 
 const ClearButton = (props: ClearButtonProps) => (
   <Button onPress={props.onPress} disabled={props.disabled}
           dark={!props.disabled} light={props.disabled} transparent>
-    <Icon name="ios-close" android="md-close" ios="ios-close" />
+    <Icon name="ios-close" android="md-close" ios="ios-close"
+          style={props.style} />
   </Button>
-)
+);
+
+const loadingIndicatorStyles = StyleSheet.create({
+  loadingSpinner: {
+    marginHorizontal: baseFontSize
+  },
+});
 
 const LoadingIndicator = () => (
-  <View style={inputContainerStyles.loadingSpinner}>
+  <View style={loadingIndicatorStyles.loadingSpinner}>
     <ActivityIndicator size="small" />
   </View>
 );
