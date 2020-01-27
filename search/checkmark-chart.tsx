@@ -2,6 +2,8 @@ import React from 'react';
 import {Icon, Left, List, ListItem, Right, Text} from 'native-base';
 import {Movie, MoviePropertyDisplayPair} from '../models';
 import {StyleProp, StyleSheet} from 'react-native';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {darkBackgroundColor, darkColor, darkerLightGray, lightBackgroundColor, lightColor} from '../styles';
 
 const checkmarkValues: MoviePropertyDisplayPair[] = [
   {
@@ -69,14 +71,29 @@ type MoviePropertyStatusProps = {
   value: boolean;
 }
 
-const MoviePropertyStatus = (props: MoviePropertyStatusProps) => (
-  <ListItem>
-    <Left>
-      <Text note={!props.value}>{props.displayName}</Text>
-    </Left>
-    <Checkmark true={props.value}/>
-  </ListItem>
-);
+const dynamicStyleSheet = new DynamicStyleSheet({
+  colorText: {
+    backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
+    color: new DynamicValue(lightColor, darkColor)
+  },
+  disabledText: {
+    color: darkerLightGray
+  }
+});
+
+const MoviePropertyStatus = (props: MoviePropertyStatusProps) => {
+  const styles = useDynamicStyleSheet(dynamicStyleSheet);
+  return (
+    <ListItem>
+      <Left>
+        <Text style={props.value ? styles.colorText : styles.disabledText}>
+          {props.displayName}
+        </Text>
+      </Left>
+      <Checkmark true={props.value}/>
+    </ListItem>
+  );
+};
 
 const checkmarkStyles: StyleProp<any> = StyleSheet.create({
   icon: {
