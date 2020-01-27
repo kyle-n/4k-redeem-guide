@@ -5,7 +5,14 @@ import isUrl from 'is-url';
 import extractDomain from 'extract-domain';
 import {CustomTabs} from 'react-native-custom-tabs';
 import {extractUrls} from '../../../utils';
-import {baseFontSize, darkBackgroundColor, darkColor, lightBackgroundColor, lightColor} from '../../../styles';
+import {
+  baseFontSize,
+  darkBackgroundColor,
+  darkColor,
+  darkerLightGray,
+  lightBackgroundColor,
+  lightColor
+} from '../../../styles';
 import SafariView from 'react-native-safari-view';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 
@@ -22,6 +29,9 @@ const dynamicStyleSheet = new DynamicStyleSheet({
   colorText: {
     backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
     color: new DynamicValue(lightColor, darkColor)
+  },
+  infoText: {
+    color: new DynamicValue(lightColor, darkerLightGray)
   }
 });
 
@@ -35,7 +45,7 @@ const TextInfoPairDisplay = (props: TextInfoPairDisplayProps) => {
   return (
     <View>
       <CardItem style={[movieCardBodyStyles.labelContainer, infoPairStyles.colorText]}>
-        <Text style={movieCardBodyStyles.label}>
+        <Text style={[movieCardBodyStyles.label, infoPairStyles.colorText]}>
           {props.property}
         </Text>
       </CardItem>
@@ -67,7 +77,7 @@ const TextOrLink = (props: TextOrLinkProps) => {
     );
   } else {
     return (
-      <Text style={useDynamicStyleSheet(dynamicStyleSheet).colorText}>{props.text}</Text>
+      <Text style={useDynamicStyleSheet(dynamicStyleSheet).infoText}>{props.text}</Text>
     );
   }
 };
