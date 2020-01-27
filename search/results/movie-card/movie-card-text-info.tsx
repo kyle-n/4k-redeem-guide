@@ -5,8 +5,9 @@ import isUrl from 'is-url';
 import extractDomain from 'extract-domain';
 import {CustomTabs} from 'react-native-custom-tabs';
 import {extractUrls} from '../../../utils';
-import {baseFontSize} from '../../../styles';
+import {baseFontSize, darkBackgroundColor, darkColor, lightBackgroundColor, lightColor} from '../../../styles';
 import SafariView from 'react-native-safari-view';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const movieCardBodyStyles = StyleSheet.create({
   label: {
@@ -17,23 +18,33 @@ const movieCardBodyStyles = StyleSheet.create({
   },
 });
 
+const dynamicStyleSheet = new DynamicStyleSheet({
+  colorText: {
+    backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
+    color: new DynamicValue(lightColor, darkColor)
+  }
+});
+
 type TextInfoPairDisplayProps = {
   property: string;
   value: string;
 }
 
-const TextInfoPairDisplay = (props: TextInfoPairDisplayProps) => (
-  <View>
-    <CardItem style={movieCardBodyStyles.labelContainer}>
-      <Text style={movieCardBodyStyles.label}>
-        {props.property}
-      </Text>
-    </CardItem>
-    <CardItem>
-      <TextOrLink text={props.value}/>
-    </CardItem>
-  </View>
-);
+const TextInfoPairDisplay = (props: TextInfoPairDisplayProps) => {
+  const infoPairStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  return (
+    <View>
+      <CardItem style={[movieCardBodyStyles.labelContainer, infoPairStyles.colorText]}>
+        <Text style={movieCardBodyStyles.label}>
+          {props.property}
+        </Text>
+      </CardItem>
+      <CardItem style={infoPairStyles.colorText}>
+        <TextOrLink text={props.value}/>
+      </CardItem>
+    </View>
+  );
+};
 
 type TextOrLinkProps = {
   text: string;
@@ -56,7 +67,7 @@ const TextOrLink = (props: TextOrLinkProps) => {
     );
   } else {
     return (
-      <Text>{props.text}</Text>
+      <Text style={useDynamicStyleSheet(dynamicStyleSheet).colorText}>{props.text}</Text>
     );
   }
 };
