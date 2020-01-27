@@ -3,7 +3,14 @@ import {Icon, Left, List, ListItem, Right, Text} from 'native-base';
 import {Movie, MoviePropertyDisplayPair} from '../models';
 import {StyleProp, StyleSheet} from 'react-native';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {darkBackgroundColor, darkColor, darkerLightGray, lightBackgroundColor, lightColor} from '../styles';
+import {
+  darkBackgroundColor,
+  darkColor,
+  darkerLightGray,
+  darkLightGray,
+  lightBackgroundColor,
+  lightColor
+} from '../styles';
 
 const checkmarkValues: MoviePropertyDisplayPair[] = [
   {
@@ -77,7 +84,7 @@ const dynamicStyleSheet = new DynamicStyleSheet({
     color: new DynamicValue(lightColor, darkColor)
   },
   disabledText: {
-    color: darkerLightGray
+    color: darkLightGray
   }
 });
 
@@ -110,7 +117,7 @@ const yesIconStyle: StyleProp<any> = StyleSheet.create({
 
 const noIconStyle: StyleProp<any> = StyleSheet.create({
   icon: {
-    color: 'lightgray'
+    color: darkLightGray
   }
 });
 
