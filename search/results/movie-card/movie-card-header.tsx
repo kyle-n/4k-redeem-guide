@@ -1,14 +1,23 @@
 import React from 'react';
 import {Body, CardItem, Icon, Left, Right, Text, Thumbnail} from 'native-base';
 import {Movie} from '../../../models';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {darkBackgroundColor, darkColor, lightBackgroundColor, lightColor} from '../../../styles';
 
 type MovieCardHeaderProps = {
   movie: Movie;
   open: boolean;
 }
 
+const dynamicStyleSheet = new DynamicStyleSheet({
+  cardHeader: {
+    backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
+    color: new DynamicValue(lightColor, darkColor),
+  }
+});
+
 const MovieCardHeader = (props: MovieCardHeaderProps) => (
-  <CardItem header>
+  <CardItem header style={useDynamicStyleSheet(dynamicStyleSheet).cardHeader}>
     <Left>
       <Thumbnail source={{uri: props.movie.imageUrl}} />
       <Body>

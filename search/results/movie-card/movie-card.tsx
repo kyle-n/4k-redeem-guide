@@ -1,10 +1,12 @@
 import React from 'react';
 import {CardSize, Movie} from '../../../models';
-import {Card, View} from 'native-base';
+import {Card} from 'native-base';
 import {StyleSheet} from 'react-native';
 import MovieCardBody from './movie-card-body';
 import MovieCardHeader from './movie-card-header';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {darkBackgroundColor, darkColor, lightBackgroundColor, lightColor} from '../../../styles';
 
 type MovieCardProps = {
   movie: Movie;
@@ -48,22 +50,27 @@ type MovieCardLayoutProps = {
   onPressHeader: () => void;
 };
 
-const movieCardStyles = StyleSheet.create({
+const dynamicStyleSheet = new DynamicStyleSheet({
   card: {
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
+    backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
+    color: new DynamicValue(lightColor, darkColor)
   }
 });
 
-const MovieCardLayout = (props: MovieCardLayoutProps) => (
-  <Card style={movieCardStyles.card}>
-    <TouchableOpacity onPress={props.onPressHeader}>
-      <MovieCardHeader movie={props.movie}
-                       open={props.showCardBody} />
-    </TouchableOpacity>
-    {props.showCardBody ? (
-      <MovieCardBody movie={props.movie} />
-    ) : null}
-  </Card>
-);
+const MovieCardLayout = (props: MovieCardLayoutProps) => {
+  const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  return (
+    <Card style={movieCardStyles.card}>
+      <TouchableOpacity onPress={props.onPressHeader}>
+        <MovieCardHeader movie={props.movie}
+                         open={props.showCardBody} />
+      </TouchableOpacity>
+      {props.showCardBody ? (
+        <MovieCardBody movie={props.movie} />
+      ) : null}
+    </Card>
+  );
+};
 
 export default MovieCard;

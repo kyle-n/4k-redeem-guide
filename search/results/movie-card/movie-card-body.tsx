@@ -4,6 +4,8 @@ import {Movie, MoviePropertyDisplayPair} from '../../../models';
 import TextInfoPairDisplay from './movie-card-text-info';
 import {Hr} from '../../../shared-components';
 import CheckmarkChart from '../../checkmark-chart';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {darkBackgroundColor, darkColor, lightBackgroundColor, lightColor} from '../../../styles';
 
 type MovieCardBodyProps = {
   movie: Movie
