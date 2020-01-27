@@ -61,12 +61,13 @@ type CheckmarkChartProps = {
 
 const CheckmarkChart = (props: CheckmarkChartProps) => (
   <List>
-    {checkmarkValues.map(checkmarkValue => {
+    {checkmarkValues.map((checkmarkValue, i) => {
       // @ts-ignore
       const val = props.movie[checkmarkValue.moviePropertyName];
       return (
         <MoviePropertyStatus key={checkmarkValue.moviePropertyName}
                              displayName={checkmarkValue.displayName}
+                             last={i === checkmarkValues.length - 1}
                              value={val} />
       );
     })}
@@ -76,6 +77,7 @@ const CheckmarkChart = (props: CheckmarkChartProps) => (
 type MoviePropertyStatusProps = {
   displayName: string;
   value: boolean;
+  last?: boolean;
 }
 
 const dynamicStyleSheet = new DynamicStyleSheet({
@@ -91,7 +93,7 @@ const dynamicStyleSheet = new DynamicStyleSheet({
 const MoviePropertyStatus = (props: MoviePropertyStatusProps) => {
   const styles = useDynamicStyleSheet(dynamicStyleSheet);
   return (
-    <ListItem>
+    <ListItem style={props.last ? {borderBottomWidth: 0} : null}>
       <Left>
         <Text style={props.value ? styles.colorText : styles.disabledText}>
           {props.displayName}
