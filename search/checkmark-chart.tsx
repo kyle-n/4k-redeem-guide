@@ -128,15 +128,12 @@ type CheckmarkProps = {
 const Checkmark = (props: CheckmarkProps) => (
   <Right>
       {props.true ? (
-        <Icon name="ios-checkmark-circle"
-              ios="ios-checkmark-circle"
-              android="md-checkmark"
+        <Icon name="checkcircle"
+              type="AntDesign"
               style={[checkmarkStyles.icon, yesIconStyle.icon]}/>
       ) : (
-        <Icon name="ios-close"
-              ios="ios-close"
-              android="md-close"
-              type="Ionicons"
+        <Icon name="close"
+              type="AntDesign"
               style={[checkmarkStyles.icon, noIconStyle.icon]}/>
       )}
   </Right>
