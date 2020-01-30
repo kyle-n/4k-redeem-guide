@@ -6,7 +6,7 @@ import MovieCardBody from './movie-card-body';
 import MovieCardHeader from './movie-card-header';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {darkBackgroundColor, darkColor, lightBackgroundColor, lightColor} from '../../../styles';
+import {darkBackgroundColor, darkColor, darkLightGray, lightBackgroundColor, lightColor} from '../../../styles';
 
 type MovieCardProps = {
   movie: Movie;
@@ -54,7 +54,8 @@ const dynamicStyleSheet = new DynamicStyleSheet({
   card: {
     alignSelf: 'stretch',
     backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
-    color: new DynamicValue(lightColor, darkColor)
+    color: new DynamicValue(lightColor, darkColor),
+    borderColor: darkLightGray
   }
 });
 
