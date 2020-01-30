@@ -9,7 +9,8 @@ const resultsContainerStyles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'column',
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
+    paddingHorizontal: baseFontSize / 1.5
   },
   containerWithButton: {
     alignSelf: 'stretch'
