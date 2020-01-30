@@ -2,7 +2,7 @@ import React from 'react';
 import {CardSize, GlobalState} from '../models';
 import {Button, Icon, Text, View} from 'native-base';
 import {Platform} from 'react-native';
-import {baseFontSize, darkBackgroundColor, lightBackgroundColor} from '../styles';
+import {baseFontSize, darkBackgroundColor, lightBackgroundColor, sharedDynamicStyleSheet} from '../styles';
 import RefreshCacheButton from './refresh-cache-button';
 import CameraButton from './camera-button';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
@@ -18,7 +18,6 @@ const dynamicStyleSheet = new DynamicStyleSheet({
     justifyContent: 'space-between',
     alignContent: 'center',
     paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
-    backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
   },
   pageTitle: {
     fontSize: 2 * baseFontSize,
@@ -43,8 +42,9 @@ type SearchPageHeaderProps = ReturnType<typeof mapStateToProps> & (typeof mapDis
 
 const SearchPageHeader = (props: SearchPageHeaderProps) => {
   const searchPageHeaderStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return props.needsToDownloadMovies ? (<View></View>) : (
-    <View style={searchPageHeaderStyles.container}>
+    <View style={[searchPageHeaderStyles.container, sharedStyles.dynamicBackgroundColor]}>
       <View>
         <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
       </View>

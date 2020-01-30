@@ -2,15 +2,8 @@ import React from 'react';
 import {Icon, Left, List, ListItem, Right, Text} from 'native-base';
 import {Movie, MoviePropertyDisplayPair} from '../models';
 import {StyleProp, StyleSheet} from 'react-native';
-import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {
-  darkBackgroundColor,
-  darkColor,
-  darkerLightGray,
-  darkLightGray,
-  lightBackgroundColor,
-  lightColor
-} from '../styles';
+import {useDynamicStyleSheet} from 'react-native-dark-mode';
+import {darkLightGray, sharedDynamicStyleSheet} from '../styles';
 
 const checkmarkValues: MoviePropertyDisplayPair[] = [
   {
@@ -80,22 +73,18 @@ type MoviePropertyStatusProps = {
   last?: boolean;
 }
 
-const dynamicStyleSheet = new DynamicStyleSheet({
-  colorText: {
-    backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
-    color: new DynamicValue(lightColor, darkColor)
-  },
+const moviePropertyStatusStyles = StyleSheet.create({
   disabledText: {
     color: darkLightGray
   }
 });
 
 const MoviePropertyStatus = (props: MoviePropertyStatusProps) => {
-  const styles = useDynamicStyleSheet(dynamicStyleSheet);
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <ListItem style={props.last ? {borderBottomWidth: 0} : null}>
       <Left>
-        <Text style={props.value ? styles.colorText : styles.disabledText}>
+        <Text style={props.value ? sharedStyles.dynamicColor : moviePropertyStatusStyles.disabledText}>
           {props.displayName}
         </Text>
       </Left>

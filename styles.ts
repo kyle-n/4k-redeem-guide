@@ -1,5 +1,4 @@
 import {DynamicStyleSheet, DynamicValue} from 'react-native-dark-mode';
-import {StyleSheet} from 'react-native';
 
 export const baseFontSize = 14;
 export const lightBackgroundColor = 'rgb(242,242,247)';
@@ -19,6 +18,9 @@ export const sharedDynamicStyleSheet = new DynamicStyleSheet({
   },
   dynamicTextColor: {
     color: new DynamicValue(lightColor, darkColor)
+  },
+  dynamicBackgroundColor: {
+    backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
   },
   squareEntity: {
     borderRadius: baseFontSize / 2

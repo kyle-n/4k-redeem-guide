@@ -1,15 +1,8 @@
 import React from 'react';
-import {Body, CardItem, Icon, Left, Right, Text, Thumbnail} from 'native-base';
+import {Body, CardItem, Left, Right, Text, Thumbnail} from 'native-base';
 import {Movie} from '../../../models';
-import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {
-  baseFontSize,
-  darkBackgroundColor,
-  darkColor,
-  darkerLightGray,
-  lightBackgroundColor,
-  lightColor
-} from '../../../styles';
+import {useDynamicStyleSheet} from 'react-native-dark-mode';
+import {baseFontSize, sharedDynamicStyleSheet} from '../../../styles';
 import {DropdownIcon} from '../../../shared-components';
 
 type MovieCardHeaderProps = {
@@ -17,21 +10,14 @@ type MovieCardHeaderProps = {
   open: boolean;
 }
 
-const dynamicStyleSheet = new DynamicStyleSheet({
-  dynamicColor: {
-    backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
-    color: new DynamicValue(lightColor, darkColor),
-  }
-});
-
 const MovieCardHeader = (props: MovieCardHeaderProps) => {
-  const headerStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <CardItem header style={headerStyles.dynamicColor}>
+    <CardItem header style={sharedStyles.dynamicColor}>
       <Left>
         <Thumbnail source={{uri: props.movie.imageUrl}} />
         <Body>
-          <Text style={[headerStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
+          <Text style={[sharedStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
             {props.movie.title}
           </Text>
           <Text note>
