@@ -6,7 +6,14 @@ import MovieCardBody from './movie-card-body';
 import MovieCardHeader from './movie-card-header';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {darkBackgroundColor, darkColor, darkLightGray, lightBackgroundColor, lightColor} from '../../../styles';
+import {
+  darkBackgroundColor,
+  darkColor,
+  darkLightGray,
+  lightBackgroundColor,
+  lightColor,
+  sharedDynamicStyleSheet
+} from '../../../styles';
 
 type MovieCardProps = {
   movie: Movie;
@@ -61,8 +68,9 @@ const dynamicStyleSheet = new DynamicStyleSheet({
 
 const MovieCardLayout = (props: MovieCardLayoutProps) => {
   const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <Card style={movieCardStyles.card}>
+    <Card style={[movieCardStyles.card, sharedStyles.squareEntity]}>
       <TouchableOpacity onPress={props.onPressHeader}>
         <MovieCardHeader movie={props.movie}
                          open={props.showCardBody} />
