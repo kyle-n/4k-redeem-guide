@@ -3,15 +3,8 @@ import {Accordion, Button, Icon, Text, View} from 'native-base';
 import {MovieFilters} from '../../models';
 import BooleanFilter from './boolean-filter';
 import {StyleSheet} from 'react-native';
-import {
-  baseFontSize,
-  darkBackgroundColor,
-  darkColor,
-  lightBackgroundColor,
-  lightColor,
-  sharedDynamicStyleSheet
-} from '../../styles';
-import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {baseFontSize, sharedDynamicStyleSheet} from '../../styles';
+import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownIcon} from '../../shared-components';
 
 type FilterData = {
@@ -66,7 +59,7 @@ const accordionDataArray = [
   {title: 'Filters', content: ''}
 ];
 
-const dynamicStyleSheet = new DynamicStyleSheet({
+const filterBoxStyles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
     paddingHorizontal: 0.5 * baseFontSize,
@@ -102,8 +95,6 @@ const FilterBox = (props: FilterBoxProps) => {
   const resetButtonDisabled = Object.values(props.filters)
     .reduce((noneChecked, val) => noneChecked && !val, true);
 
-  const filterBoxStyles = useDynamicStyleSheet(dynamicStyleSheet);
-  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={filterBoxStyles.container}>
       <Accordion dataArray={accordionDataArray}

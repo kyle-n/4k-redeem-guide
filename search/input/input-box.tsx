@@ -1,18 +1,15 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet} from 'react-native';
 import {Item, Input, View, Icon, Button} from 'native-base';
-import {baseFontSize, darkColor, lightColor, lightGray} from '../../styles';
-import {DynamicStyleSheet, DynamicValue, useDarkMode, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {baseFontSize, darkColor, lightGray, sharedDynamicStyleSheet} from '../../styles';
+import {useDarkMode, useDynamicStyleSheet} from 'react-native-dark-mode';
 
-const dynamicStyleSheet = new DynamicStyleSheet({
+const inputContainerStyles = StyleSheet.create({
   wrapper: {
     marginBottom: baseFontSize,
   },
   searchIcon: {
     marginLeft: baseFontSize
-  },
-  color: {
-    color: new DynamicValue(lightColor, darkColor)
   }
 });
 
@@ -29,16 +26,16 @@ const InputBox = (props: InputBoxProps) => {
     else props.clearQuery();
   };
 
-  const inputContainerStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   const isDark = useDarkMode();
   return (
     <Item style={inputContainerStyles.wrapper}>
       <Icon name="ios-search" android="md-search" ios="ios-search"
-            style={[inputContainerStyles.searchIcon, inputContainerStyles.color]} />
+            style={[inputContainerStyles.searchIcon, sharedStyles.dynamicTextColor]} />
       <Input value={props.query}
              onChange={(e) => setOrClearQuery(e.nativeEvent.text)}
              placeholder="Search for movies"
-             style={[inputContainerStyles.color]}
+             style={[sharedStyles.dynamicTextColor]}
              placeholderTextColor={isDark ? darkColor : lightGray}
              autoCorrect={false}
       />
@@ -46,7 +43,7 @@ const InputBox = (props: InputBoxProps) => {
       {props.query.length ? (
         <ClearButton disabled={!props.query.length}
                      onPress={props.clearQuery}
-                     style={[inputContainerStyles.color]} />
+                     style={[sharedStyles.dynamicTextColor]} />
       ) : null}
     </Item>
   );
