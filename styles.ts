@@ -16,6 +16,9 @@ export const sharedDynamicStyleSheet = new DynamicStyleSheet({
     backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
     color: new DynamicValue(lightColor, darkColor),
   },
+  dynamicTextColor: {
+    color: new DynamicValue(lightColor, darkColor)
+  },
   squareEntity: {
     borderRadius: baseFontSize / 2
   }
