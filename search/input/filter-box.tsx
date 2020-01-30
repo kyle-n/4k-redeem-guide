@@ -128,8 +128,7 @@ const resetFilterButtonStyles = StyleSheet.create({
     marginVertical: baseFontSize,
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'center',
-    backgroundColor: 'white'
+    justifyContent: 'center'
   },
   button: {
     alignSelf: 'center',
