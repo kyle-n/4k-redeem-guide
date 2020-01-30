@@ -3,6 +3,7 @@ import {StyleSheet} from 'react-native';
 
 export const baseFontSize = 14;
 export const lightBackgroundColor = 'rgb(242,242,247)';
+export const darkerLightBackgroundColor = 'rgb(229,229,234)';
 export const darkBackgroundColor = 'rgb(44,44,46)'
 export const lightColor = 'black';
 export const darkColor: string = 'rgb(229,229,234)';
