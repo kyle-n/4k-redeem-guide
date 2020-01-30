@@ -2,7 +2,14 @@ import React from 'react';
 import {Body, CardItem, Icon, Left, Right, Text, Thumbnail} from 'native-base';
 import {Movie} from '../../../models';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {baseFontSize, darkBackgroundColor, darkColor, lightBackgroundColor, lightColor} from '../../../styles';
+import {
+  baseFontSize,
+  darkBackgroundColor,
+  darkColor,
+  darkerLightGray,
+  lightBackgroundColor,
+  lightColor
+} from '../../../styles';
 
 type MovieCardHeaderProps = {
   movie: Movie;
@@ -13,6 +20,9 @@ const dynamicStyleSheet = new DynamicStyleSheet({
   dynamicColor: {
     backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
     color: new DynamicValue(lightColor, darkColor),
+  },
+  darkerDynamicColor: {
+    color: new DynamicValue(lightColor, darkerLightGray)
   }
 });
 
@@ -33,7 +43,7 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
         </Body>
         <Right>
           <Icon name={props.open ? 'ios-arrow-up' : 'ios-arrow-down'}
-                style={headerStyles.dynamicColor} />
+                style={headerStyles.darkerDynamicColor} />
         </Right>
       </Left>
     </CardItem>
