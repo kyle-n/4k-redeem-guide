@@ -10,7 +10,7 @@ type MovieCardHeaderProps = {
 }
 
 const dynamicStyleSheet = new DynamicStyleSheet({
-  cardHeader: {
+  dynamicColor: {
     backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
     color: new DynamicValue(lightColor, darkColor),
   }
@@ -19,11 +19,11 @@ const dynamicStyleSheet = new DynamicStyleSheet({
 const MovieCardHeader = (props: MovieCardHeaderProps) => {
   const headerStyles = useDynamicStyleSheet(dynamicStyleSheet);
   return (
-    <CardItem header style={headerStyles.cardHeader}>
+    <CardItem header style={headerStyles.dynamicColor}>
       <Left>
         <Thumbnail source={{uri: props.movie.imageUrl}} />
         <Body>
-          <Text style={[headerStyles.cardHeader, {fontSize: baseFontSize * 1.5}]}>
+          <Text style={[headerStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
             {props.movie.title}
           </Text>
           <Text note>
@@ -32,7 +32,8 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
           </Text>
         </Body>
         <Right>
-          <Icon name={props.open ? 'ios-arrow-up' : 'ios-arrow-down'} />
+          <Icon name={props.open ? 'ios-arrow-up' : 'ios-arrow-down'}
+                style={headerStyles.dynamicColor} />
         </Right>
       </Left>
     </CardItem>
