@@ -1,11 +1,12 @@
 import React from 'react';
-import {Accordion, Button, Icon, Text, View} from 'native-base';
+import {Button, Icon, Text, View} from 'native-base';
 import {MovieFilters} from '../../models';
 import BooleanFilter from './boolean-filter';
-import {StyleSheet} from 'react-native';
+import {GestureResponderEvent, StyleSheet} from 'react-native';
 import {baseFontSize, lightGray, sharedDynamicStyleSheet} from '../../styles';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownIcon} from '../../shared-components';
+import {TouchableOpacity} from 'react-native-gesture-handler';
 
 type FilterData = {
   displayName: string;
@@ -54,11 +55,6 @@ const filters: FilterData[] = [
   }
 ];
 
-// NativeBase accordion uses content to fill in a text box, but I'm rendering custom components instead
-const accordionDataArray = [
-  {title: 'Filters', content: ''}
-];
-
 const filterBoxStyles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
@@ -97,19 +93,14 @@ const FilterBox = (props: FilterBoxProps) => {
 
   return (
     <View style={filterBoxStyles.container}>
-      <Accordion dataArray={accordionDataArray}
-                 expanded={props.visible ? 0 : -1}
-                 renderHeader={() => (
-                   <AccordionHeader onPress={props.toggleFilterVisibility}
-                                    expanded={props.visible} />
-                 )}
-                 renderContent={() => (
-                   <View>
-                     {filterMarkup}
-                     <ResetFilterButton onPress={props.resetFilters} disabled={resetButtonDisabled} />
-                   </View>
-                 )}
-                 style={filterBoxStyles.filterBox} />
+      <AccordionHeader onPress={props.toggleFilterVisibility}
+                       expanded={props.visible} />
+      {props.visible ? (
+        <View style={filterBoxStyles.filterBox}>
+          {filterMarkup}
+          <ResetFilterButton onPress={props.resetFilters} disabled={resetButtonDisabled} />
+        </View>
+      ) : null}
     </View>
   );
 };
@@ -153,24 +144,26 @@ const dynamicStyleSheet = new DynamicStyleSheet({
 });
 
 type AccordionHeaderProps = {
-  onPress: Function;
+  onPress: (event: GestureResponderEvent) => void;
   expanded: boolean;
 };
 const AccordionHeader = (props: AccordionHeaderProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   const dynamicStyles = useDynamicStyleSheet(dynamicStyleSheet);
   return (
-    <View style={[
-      headerStyles.container,
-      sharedStyles.dynamicColor,
-      sharedStyles.squareEntity,
-      dynamicStyles.dynamicBorder
-    ]}>
-      <Text style={[headerStyles.title, sharedStyles.dynamicColor]}>
-        Filters
-      </Text>
-      <DropdownIcon open={props.expanded} />
-    </View>
+    <TouchableOpacity onPress={props.onPress}>
+      <View style={[
+        headerStyles.container,
+        sharedStyles.dynamicColor,
+        sharedStyles.squareEntity,
+        dynamicStyles.dynamicBorder
+      ]}>
+        <Text style={[headerStyles.title, sharedStyles.dynamicColor]}>
+          Filters
+        </Text>
+        <DropdownIcon open={props.expanded} />
+      </View>
+    </TouchableOpacity>
   );
 };
 
