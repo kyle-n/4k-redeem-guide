@@ -3,8 +3,8 @@ import {Accordion, Button, Icon, Text, View} from 'native-base';
 import {MovieFilters} from '../../models';
 import BooleanFilter from './boolean-filter';
 import {StyleSheet} from 'react-native';
-import {baseFontSize, sharedDynamicStyleSheet} from '../../styles';
-import {useDynamicStyleSheet} from 'react-native-dark-mode';
+import {baseFontSize, lightGray, sharedDynamicStyleSheet} from '../../styles';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownIcon} from '../../shared-components';
 
 type FilterData = {
@@ -145,14 +145,27 @@ const headerStyles = StyleSheet.create({
   }
 });
 
+const dynamicStyleSheet = new DynamicStyleSheet({
+  dynamicBorder: {
+    borderWidth: new DynamicValue(1, 0),
+    borderColor: new DynamicValue(lightGray, 'black')
+  }
+});
+
 type AccordionHeaderProps = {
   onPress: Function;
   expanded: boolean;
 };
 const AccordionHeader = (props: AccordionHeaderProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  const dynamicStyles = useDynamicStyleSheet(dynamicStyleSheet);
   return (
-    <View style={[headerStyles.container, sharedStyles.dynamicColor, sharedStyles.squareEntity]}>
+    <View style={[
+      headerStyles.container,
+      sharedStyles.dynamicColor,
+      sharedStyles.squareEntity,
+      dynamicStyles.dynamicBorder
+    ]}>
       <Text style={[headerStyles.title, sharedStyles.dynamicColor]}>
         Filters
       </Text>
