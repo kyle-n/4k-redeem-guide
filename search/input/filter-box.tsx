@@ -3,7 +3,16 @@ import {Accordion, Button, Icon, Text, View} from 'native-base';
 import {MovieFilters} from '../../models';
 import BooleanFilter from './boolean-filter';
 import {StyleSheet} from 'react-native';
-import {baseFontSize} from '../../styles';
+import {
+  baseFontSize,
+  darkBackgroundColor,
+  darkColor,
+  lightBackgroundColor,
+  lightColor,
+  sharedDynamicStyleSheet
+} from '../../styles';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DropdownIcon} from '../../shared-components';
 
 type FilterData = {
   displayName: string;
@@ -57,7 +66,7 @@ const accordionDataArray = [
   {title: 'Filters', content: ''}
 ];
 
-const filterBoxStyles = StyleSheet.create({
+const dynamicStyleSheet = new DynamicStyleSheet({
   container: {
     alignSelf: 'stretch',
     paddingHorizontal: 0.5 * baseFontSize,
@@ -67,7 +76,7 @@ const filterBoxStyles = StyleSheet.create({
   },
   filterBox: {
     alignSelf: 'stretch'
-  }
+  },
 });
 
 type FilterBoxProps = {
@@ -93,10 +102,16 @@ const FilterBox = (props: FilterBoxProps) => {
   const resetButtonDisabled = Object.values(props.filters)
     .reduce((noneChecked, val) => noneChecked && !val, true);
 
+  const filterBoxStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={filterBoxStyles.container}>
       <Accordion dataArray={accordionDataArray}
                  expanded={props.visible ? 0 : -1}
+                 renderHeader={() => (
+                   <AccordionHeader onPress={props.toggleFilterVisibility}
+                                    expanded={props.visible} />
+                 )}
                  renderContent={() => (
                    <View>
                      {filterMarkup}
@@ -125,6 +140,35 @@ const resetFilterButtonStyles = StyleSheet.create({
 type ResetFilterButtonProps = {
   onPress: () => void;
   disabled: boolean;
+};
+
+const headerStyles = StyleSheet.create({
+  container: {
+    flexDirection: "row",
+    padding: 10,
+    justifyContent: "space-between",
+    alignItems: "center"
+  },
+  title: {
+    fontWeight: '600',
+    fontSize: baseFontSize * 1.5
+  }
+});
+
+type AccordionHeaderProps = {
+  onPress: Function;
+  expanded: boolean;
+};
+const AccordionHeader = (props: AccordionHeaderProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <View style={[headerStyles.container, sharedStyles.dynamicColor, sharedStyles.squareEntity]}>
+      <Text style={[headerStyles.title, sharedStyles.dynamicColor]}>
+        Filters
+      </Text>
+      <DropdownIcon open={props.expanded} />
+    </View>
+  );
 };
 
 const ResetFilterButton = (props: ResetFilterButtonProps) => (

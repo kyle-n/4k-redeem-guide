@@ -10,6 +10,7 @@ import {
   lightBackgroundColor,
   lightColor
 } from '../../../styles';
+import {DropdownIcon} from '../../../shared-components';
 
 type MovieCardHeaderProps = {
   movie: Movie;
@@ -20,9 +21,6 @@ const dynamicStyleSheet = new DynamicStyleSheet({
   dynamicColor: {
     backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
     color: new DynamicValue(lightColor, darkColor),
-  },
-  darkerDynamicColor: {
-    color: new DynamicValue(lightColor, darkerLightGray)
   }
 });
 
@@ -42,8 +40,7 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
           </Text>
         </Body>
         <Right>
-          <Icon name={props.open ? 'ios-arrow-up' : 'ios-arrow-down'}
-                style={headerStyles.darkerDynamicColor} />
+          <DropdownIcon open={props.open} />
         </Right>
       </Left>
     </CardItem>
