@@ -2,7 +2,7 @@ import React from 'react';
 import {CardSize, Movie} from '../../models';
 import {Button, Text, View} from 'native-base';
 import MovieCard from './movie-card/movie-card';
-import {StyleSheet} from 'react-native';
+import {Keyboard, StyleSheet} from 'react-native';
 import {baseFontSize, sharedDynamicStyleSheet} from '../../styles';
 import {FlatList} from 'react-native-gesture-handler';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
@@ -46,7 +46,8 @@ const ResultsBox = (props: ResultsBoxProps) => {
                                movie={itemInfo.item} />
                   );
                 }}
-                keyExtractor={getMovieKey} />
+                keyExtractor={getMovieKey}
+                onScroll={Keyboard.dismiss} />
       {props.results.length ? (
         <LoadMoreButton onPress={props.loadMore}
                         disabled={props.noMoreResults} />
