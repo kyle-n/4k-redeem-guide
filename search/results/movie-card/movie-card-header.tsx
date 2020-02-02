@@ -13,7 +13,7 @@ type MovieCardHeaderProps = {
 const MovieCardHeader = (props: MovieCardHeaderProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <CardItem header style={sharedStyles.dynamicColor}>
+    <CardItem header style={[sharedStyles.dynamicColor, sharedStyles.squareEntity]}>
       <Left>
         <Thumbnail source={{uri: props.movie.imageUrl}} />
         <Body>
