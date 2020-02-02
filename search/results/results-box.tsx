@@ -3,8 +3,9 @@ import {CardSize, Movie} from '../../models';
 import {Button, Text, View} from 'native-base';
 import MovieCard from './movie-card/movie-card';
 import {StyleSheet} from 'react-native';
-import {baseFontSize} from '../../styles';
+import {baseFontSize, sharedDynamicStyleSheet} from '../../styles';
 import {FlatList} from 'react-native-gesture-handler';
+import {useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -51,9 +52,7 @@ const ResultsBox = (props: ResultsBoxProps) => {
                         disabled={props.noMoreResults} />
       ) : null}
       {props.showNoResultsMessage && !props.results.length ? (
-        <Text>
-          No results found
-        </Text>
+        <NoResultsMessage />
       ): null}
     </View>
   );
@@ -62,6 +61,17 @@ const ResultsBox = (props: ResultsBoxProps) => {
 type LoadMoreButtonProps = {
   onPress: () => void;
   disabled: boolean;
+};
+
+const NoResultsMessage = () => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+      <Text style={sharedStyles.dynamicTextColor}>
+        No results found
+      </Text>
+    </View>
+  );
 };
 
 const LoadMoreButton = (props: LoadMoreButtonProps) => (
