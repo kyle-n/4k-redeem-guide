@@ -16,7 +16,7 @@ type MovieCardState = {
   cardBodyOpen: boolean;
 };
 
-class MovieCard extends React.Component<MovieCardProps, MovieCardState> {
+class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
   constructor(props: MovieCardProps) {
     super(props);
 

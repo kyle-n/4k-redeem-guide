@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Content} from 'native-base';
+import {View} from 'native-base';
 import InputBox from './input/input-box';
 import FilterBox from './input/filter-box';
 import {SearchPageProps} from './search.page.container';
@@ -27,8 +27,8 @@ const SearchPage = (props: SearchPageProps) => {
   const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <Container style={[movieCardStyles.container, sharedStyles.dynamicTextColor] as any[]}>
-      <Content contentContainerStyle={movieCardStyles.content}>
+    <View style={[movieCardStyles.container, sharedStyles.dynamicTextColor] as any[]}>
+      <View style={movieCardStyles.content}>
         <InputBox query={props.query}
                   setQuery={props.setQuery}
                   clearQuery={props.clearQuery}
@@ -43,8 +43,8 @@ const SearchPage = (props: SearchPageProps) => {
                     loadMore={props.loadMore}
                     showNoResultsMessage={(props.query || anyValueTruthy(props.filters)) && !props.isLoading}
                     noMoreResults={props.noMoreResults} />
-      </Content>
-    </Container>
+      </View>
+    </View>
   );
 };
 

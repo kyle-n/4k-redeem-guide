@@ -1,9 +1,10 @@
 import React from 'react';
 import {CardSize, Movie} from '../../models';
-import {Button, Item, Text, View} from 'native-base';
+import {Button, Text, View} from 'native-base';
 import MovieCard from './movie-card/movie-card';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../../styles';
+import {FlatList} from 'react-native-gesture-handler';
 
 const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -21,6 +22,10 @@ const resultsContainerStyles = StyleSheet.create({
   }
 });
 
+const getMovieKey = (movie: Movie): string => {
+  return movie.title + ' ' + movie.year;
+};
+
 type ResultsBoxProps = {
   results: Movie[];
   cardSize: CardSize;
@@ -32,24 +37,24 @@ type ResultsBoxProps = {
 const ResultsBox = (props: ResultsBoxProps) => {
   return (
     <View style={resultsContainerStyles.containerWithButton}>
-      <Item style={resultsContainerStyles.container}>
-        {props.results.map((movie, i) => {
-          return (
-            <MovieCard key={i}
-                       cardSize={props.cardSize}
-                       movie={movie}/>
-          );
-        })}
-        {props.results.length ? (
-          <LoadMoreButton onPress={props.loadMore}
-                          disabled={props.noMoreResults} />
-        ) : null}
-        {props.showNoResultsMessage && !props.results.length ? (
-          <Text>
-            No results found
-          </Text>
-        ): null}
-      </Item>
+      <FlatList data={props.results}
+                initialNumToRender={props.cardSize === 0 ? 10 : 3}
+                renderItem={(itemInfo) => {
+                  return (
+                    <MovieCard cardSize={props.cardSize}
+                               movie={itemInfo.item} />
+                  );
+                }}
+                keyExtractor={getMovieKey} />
+      {props.results.length ? (
+        <LoadMoreButton onPress={props.loadMore}
+                        disabled={props.noMoreResults} />
+      ) : null}
+      {props.showNoResultsMessage && !props.results.length ? (
+        <Text>
+          No results found
+        </Text>
+      ): null}
     </View>
   );
 };
