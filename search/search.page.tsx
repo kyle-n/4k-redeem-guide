@@ -15,6 +15,7 @@ const dynamicStyleSheet = new DynamicStyleSheet({
   },
   container: {
     backgroundColor: new DynamicValue(lightBackgroundColor, 'rgb(28,28,30)'),
+    flexGrow: 1
   }
 });
 
