@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Icon, Right, View} from 'native-base';
 import {Alert, BackHandler, NativeEventSubscription, StyleProp, StyleSheet} from 'react-native';
-import {baseFontSize, darkerLightGray, lightColor} from './styles';
+import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet} from './styles';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {withNavigation} from 'react-navigation';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
@@ -73,7 +73,11 @@ export const BackButton = withNavigation((props: BackButtonProps) => (
 
 const dropdownDynamicStyleSheet = new DynamicStyleSheet({
   darkerDynamicColor: {
-    color: new DynamicValue(lightColor, darkerLightGray)
+    color: new DynamicValue(lightColor, darkerLightGray),
+    shadowColor: new DynamicValue('white', 'black'),
+    shadowRadius: 2,
+    shadowOpacity: 10,
+    shadowOffset: {width: 0, height: 1}
   }
 });
 type DropdownIconProps = {
@@ -81,6 +85,7 @@ type DropdownIconProps = {
 }
 export const DropdownIcon = (props: DropdownIconProps) => {
   const styles = useDynamicStyleSheet(dropdownDynamicStyleSheet);
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <Icon name={props.open ? 'ios-arrow-up' : 'ios-arrow-down'}
           style={styles.darkerDynamicColor} />
