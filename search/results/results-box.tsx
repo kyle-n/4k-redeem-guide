@@ -15,7 +15,10 @@ const resultsContainerStyles = StyleSheet.create({
     paddingHorizontal: baseFontSize / 1.5
   },
   containerWithButton: {
-    alignSelf: 'stretch'
+    alignSelf: 'stretch',
+    display: 'flex',
+    flexDirection: 'column',
+    flexGrow: 1
   },
   bottomButton: {
     marginVertical: baseFontSize,
@@ -47,11 +50,13 @@ const ResultsBox = (props: ResultsBoxProps) => {
                   );
                 }}
                 keyExtractor={getMovieKey}
+                ListFooterComponent={() => {
+                  return props.results.length ? (
+                    <LoadMoreButton onPress={props.loadMore}
+                                    disabled={props.noMoreResults} />
+                  ) : null;
+                }}
                 onScroll={Keyboard.dismiss} />
-      {props.results.length ? (
-        <LoadMoreButton onPress={props.loadMore}
-                        disabled={props.noMoreResults} />
-      ) : null}
       {props.showNoResultsMessage && !props.results.length ? (
         <NoResultsMessage />
       ): null}
