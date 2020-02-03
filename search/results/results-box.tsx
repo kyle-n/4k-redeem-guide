@@ -18,7 +18,8 @@ const resultsContainerStyles = StyleSheet.create({
     alignSelf: 'stretch',
     display: 'flex',
     flexDirection: 'column',
-    flexGrow: 1
+    flexGrow: 1,
+    paddingBottom: baseFontSize * 2
   },
   bottomButton: {
     marginVertical: baseFontSize,
