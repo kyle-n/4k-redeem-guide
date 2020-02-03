@@ -7,7 +7,7 @@ import ResultsBox from './results/results-box';
 import {MovieFilters, PresetSearch} from '../models';
 import {anyValueTruthy} from '../utils';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {lightBackgroundColor, sharedDynamicStyleSheet} from '../styles';
+import {lightBackgroundColor} from '../styles';
 import SuggestedSearches from './suggested-searches';
 
 const dynamicStyleSheet = new DynamicStyleSheet({
@@ -36,7 +36,6 @@ const SearchPage = (props: SearchPageProps) => {
   };
 
   const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
-  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={[movieCardStyles.container] as any[]}>
       <View style={movieCardStyles.content}>
