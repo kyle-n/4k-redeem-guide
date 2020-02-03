@@ -29,10 +29,11 @@ const baseImageUrl = 'https://image.tmdb.org/t/p/original';
 export const getMovieImage = async (title: string, year?: number): Promise<string | null> => {
   const params = [
     `api_key=${apiKey}`,
-    `t=${title}`,
+    `query=${title}`,
+    'include_adult=false'
   ];
   if (year) {
-    params.push(`y=${year}`);
+    params.push(`year=${year}`);
   }
 
   const paramString = params.join('&');
