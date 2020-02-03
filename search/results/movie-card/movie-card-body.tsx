@@ -4,6 +4,8 @@ import {Movie, MoviePropertyDisplayPair} from '../../../models';
 import TextInfoPairDisplay from './movie-card-text-info';
 import {Hr} from '../../../shared-components';
 import CheckmarkChart from '../../checkmark-chart';
+import {ImageBackground} from 'react-native';
+import {getMovieImage} from '../../../store/omdb.connector';
 
 type MovieCardBodyProps = {
   movie: Movie
@@ -11,11 +13,14 @@ type MovieCardBodyProps = {
 
 const MovieCardBody = (props: MovieCardBodyProps) => {
   return (
-    <View>
-      <TextInfoPairs movie={props.movie}/>
-      <Hr />
-      <CheckmarkChart movie={props.movie} />
-    </View>
+    <ImageBackground source={{uri: 'https://facebook.github.io/react-native/img/opengraph.png'}}
+                     style={{width: '100%', height: 'auto'}}>
+      <View>
+        <TextInfoPairs movie={props.movie}/>
+        <Hr />
+        <CheckmarkChart movie={props.movie} />
+      </View>
+    </ImageBackground>
   );
 };
 
