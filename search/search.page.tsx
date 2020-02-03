@@ -77,9 +77,6 @@ const SearchPage = (props: SearchPageProps) => {
                       ) : null);
                     }}
                     onScroll={Keyboard.dismiss} />
-          {props.showNoResultsMessage && !props.results.length ? (
-            <NoResultsMessage />
-          ): null}
         </View>
         {!props.results.length && !props.query && !anyValueTruthy(props.filters) ? (
           <SuggestedSearches setSearch={presetSearch} />
