@@ -59,6 +59,7 @@ type TextOrLinkProps = {
 };
 
 const TextOrLink = (props: TextOrLinkProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   if (isUrl(props.text)) {
     return (
       <InfoLink link={props.text}/>
@@ -72,14 +73,16 @@ const TextOrLink = (props: TextOrLinkProps) => {
                 <InfoLink key={i} link={textSegment} addVerticalMargin={true} />
               );
             } else return (
-            <Text key={i}>{textSegment}&nbsp;</Text>
+            <Text style={sharedStyles.dynamicTextColor} key={i}>{textSegment}&nbsp;</Text>
             );
           })}
       </View>
     );
   } else {
     return (
-      <Text style={useDynamicStyleSheet(dynamicStyleSheet).infoText}>{props.text}</Text>
+      <Text style={[useDynamicStyleSheet(dynamicStyleSheet).infoText, sharedStyles.dynamicTextColor]}>
+        {props.text}
+      </Text>
     );
   }
 };
