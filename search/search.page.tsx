@@ -28,10 +28,7 @@ const SearchPage = (props: SearchPageProps) => {
 
   const presetSearch = (preset: PresetSearch): void => {
     if (preset.filters) {
-      Object.keys(preset.filters).forEach(filter => {
-        // @ts-ignore
-        props.setFilter(filter, preset.filters[filter]);
-      });
+      props.setFilters(preset.filters);
     }
     if (preset.query) {
       props.setQuery(preset.query);
@@ -41,7 +38,7 @@ const SearchPage = (props: SearchPageProps) => {
   const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <View style={[movieCardStyles.container, sharedStyles.dynamicTextColor] as any[]}>
+    <View style={[movieCardStyles.container] as any[]}>
       <View style={movieCardStyles.content}>
         <InputBox query={props.query}
                   setQuery={props.setQuery}

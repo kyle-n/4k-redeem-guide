@@ -1,7 +1,8 @@
 import React from 'react';
 import {Button, View, Text} from 'native-base';
 import {PresetSearch} from '../models';
-import {baseFontSize} from '../styles'
+import {baseFontSize, darkColor, lightColor, lightGray, sharedDynamicStyleSheet} from '../styles'
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const presetSearches: PresetSearch[] = [
 	{
@@ -53,7 +54,7 @@ type SuggestedSearchesProps = {
 };
 
 const SuggestedSearches = (props: SuggestedSearchesProps) => (
-	<View style={{alignSelf: 'stretch', display: 'flex', flexDirection: 'column', alignItems: 'flex-start'}}>
+	<View style={{alignSelf: 'stretch', display: 'flex', flexDirection: 'column', alignItems: 'flex-start', backgroundColor: 'unset'}}>
 		{presetSearches.map(presetSearch => {
 			return (
 				<SuggestedSearch presetSearch={presetSearch}
@@ -64,17 +65,27 @@ const SuggestedSearches = (props: SuggestedSearchesProps) => (
 	</View>
 );
 
+const dynamicStyleSheet = new DynamicStyleSheet({
+	button: {
+		borderColor: new DynamicValue(lightGray, 'black')
+	}
+});
+
 type SuggestedSearchProps = {
 	onPress: Function;
 	presetSearch: PresetSearch;
 };
 
-const SuggestedSearch = (props: SuggestedSearchProps) => (
-	<Button onPress={() => props.onPress(props.presetSearch)}
-					style={{marginVertical: 0.5 * baseFontSize, marginHorizontal: baseFontSize}}
-					rounded light>
-		<Text>{props.presetSearch.title}</Text>
-	</Button>
-);
+const SuggestedSearch = (props: SuggestedSearchProps) => {
+	const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+	const suggestedSearchStyles = useDynamicStyleSheet(dynamicStyleSheet);
+	return (
+		<Button onPress={() => props.onPress(props.presetSearch)}
+						style={[{marginVertical: 0.5 * baseFontSize, marginHorizontal: baseFontSize}, suggestedSearchStyles.button]}
+						rounded bordered light>
+			<Text style={sharedStyles.dynamicTextColor}>{props.presetSearch.title}</Text>
+		</Button>
+	);
+};
 
 export default SuggestedSearches;
