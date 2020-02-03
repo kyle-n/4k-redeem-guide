@@ -78,6 +78,7 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
     <Card style={[movieCardStyles.card, sharedStyles.squareEntity, sharedStyles.dynamicColor]}>
       <TouchableOpacity onPress={props.onPressHeader}>
         <MovieCardHeader movie={props.movie}
+                         backgroundImgUrl={props.backgroundImgUrl}
                          open={props.showCardBody} />
       </TouchableOpacity>
       {props.showCardBody ? (
