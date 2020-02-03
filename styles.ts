@@ -26,3 +26,19 @@ export const sharedDynamicStyleSheet = new DynamicStyleSheet({
     borderRadius: baseFontSize / 2
   }
 });
+
+export const slideFromUnder350: any = {
+  0: {
+    translateY: -100,
+    opacity: 0,
+    zIndex: -100
+  },
+  0.55: {
+    opacity: 0
+  },
+  1: {
+    translateY: 0,
+    opacity: 1,
+    zIndex: 0
+  }
+};

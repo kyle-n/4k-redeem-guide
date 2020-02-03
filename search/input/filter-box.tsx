@@ -3,10 +3,11 @@ import {Button, Icon, Text, View} from 'native-base';
 import {MovieFilters} from '../../models';
 import BooleanFilter from './boolean-filter';
 import {GestureResponderEvent, StyleSheet} from 'react-native';
-import {baseFontSize, lightGray, sharedDynamicStyleSheet} from '../../styles';
+import {baseFontSize, lightGray, sharedDynamicStyleSheet, slideFromUnder350} from '../../styles';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownIcon} from '../../shared-components';
 import {TouchableOpacity} from 'react-native-gesture-handler';
+import * as Animatable from 'react-native-animatable';
 
 type FilterData = {
   displayName: string;
@@ -96,10 +97,13 @@ const FilterBox = (props: FilterBoxProps) => {
       <AccordionHeader onPress={props.toggleFilterVisibility}
                        expanded={props.visible} />
       {props.visible ? (
-        <View style={filterBoxStyles.filterBox}>
-          {filterMarkup}
-          <ResetFilterButton onPress={props.resetFilters} disabled={resetButtonDisabled} />
-        </View>
+        <Animatable.View animation={slideFromUnder350}
+                         duration={350}>
+          <View style={filterBoxStyles.filterBox}>
+            {filterMarkup}
+            <ResetFilterButton onPress={props.resetFilters} disabled={resetButtonDisabled} />
+          </View>
+        </Animatable.View>
       ) : null}
     </View>
   );

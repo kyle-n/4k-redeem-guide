@@ -6,7 +6,7 @@ import MovieCardBody from './movie-card-body';
 import MovieCardHeader from './movie-card-header';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {baseFontSize, darkLightGray, sharedDynamicStyleSheet} from '../../../styles';
+import {baseFontSize, darkLightGray, sharedDynamicStyleSheet, slideFromUnder350} from '../../../styles';
 import {getMovieImage} from '../../../store/tmdb.connector';
 import * as Animatable from 'react-native-animatable';
 
@@ -73,22 +73,6 @@ const movieCardStyles = StyleSheet.create({
   }
 });
 
-const bodySlideDown: any = {
-  0: {
-    translateY: -100,
-    opacity: 0,
-    zIndex: -100
-  },
-  0.45: {
-    opacity: 0
-  },
-  1: {
-    translateY: 0,
-    opacity: 1,
-    zIndex: 0
-  }
-};
-
 const MovieCardLayout = (props: MovieCardLayoutProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
@@ -102,7 +86,7 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
                            open={props.showCardBody} />
         </TouchableOpacity>
         {props.showCardBody ? (
-          <Animatable.View animation={bodySlideDown}
+          <Animatable.View animation={slideFromUnder350}
                            duration={350}
                            useNativeDriver={false}>
             <MovieCardBody movie={props.movie} />
