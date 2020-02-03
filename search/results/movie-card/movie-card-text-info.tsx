@@ -72,7 +72,7 @@ const TextOrLink = (props: TextOrLinkProps) => {
                 <InfoLink key={i} link={textSegment} addVerticalMargin={true} />
               );
             } else return (
-              <Text key={i}>{textSegment}</Text>
+            <Text key={i}>{textSegment}&nbsp;</Text>
             );
           })}
       </View>
@@ -101,7 +101,7 @@ const InfoLink = (props: InfoLinkProps) => {
     }
   };
   return (
-    <View style={{alignSelf: 'flex-start'}}>
+    <View style={{alignSelf: 'flex-start', display: 'flex', flexDirection: 'row'}}>
       <Button onPress={openLink}
               info rounded
               style={props.addVerticalMargin ? {marginVertical: 0.5 * baseFontSize} : null}>
@@ -110,6 +110,7 @@ const InfoLink = (props: InfoLinkProps) => {
         </Text>
         <Icon style={{marginLeft: 0}} name="external-link" type="EvilIcons" />
       </Button>
+      <Text>&nbsp;</Text>
     </View>
   );
 };
