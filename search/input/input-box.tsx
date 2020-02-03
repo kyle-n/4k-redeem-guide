@@ -43,7 +43,7 @@ const InputBox = (props: InputBoxProps) => {
       {props.query.length ? (
         <ClearButton disabled={!props.query.length}
                      onPress={props.clearQuery}
-                     style={[sharedStyles.dynamicTextColor]} />
+                     style={[sharedStyles.dynamicTextColor, {fontSize: baseFontSize * 2}]} />
       ) : null}
     </Item>
   );
