@@ -12,6 +12,8 @@ const movieCardHeaderStyles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'flex-end',
     width: '100%',
+  },
+  containerWithImage: {
     height: baseFontSize * 12
   }
 });
@@ -26,7 +28,10 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <ImageBackground source={{uri: props.backgroundImgUrl}}
-                     style={movieCardHeaderStyles.container}>
+                     style={[
+                       movieCardHeaderStyles.container,
+                       props.backgroundImgUrl ? movieCardHeaderStyles.containerWithImage : null
+                     ]}>
       <CardItem header style={[sharedStyles.squareEntity, {backgroundColor: 'rgba(0,0,0,0)'}]}>
         <Left style={{display: 'flex', flexDirection: 'row'}}>
           <Body style={[{width: '100%', flexGrow: 7}]}>
