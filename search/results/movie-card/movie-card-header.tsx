@@ -32,13 +32,13 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
           <Body style={[{width: '100%', flexGrow: 7}]}>
             <Text>
               <Text style={[sharedStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
-                {props.movie.title}
+                &nbsp;{props.movie.title}&nbsp;
               </Text>
             </Text>
             <Text>
               <Text note style={[sharedStyles.dynamicColor]}>
-                {props.movie.studio}
-                {props.movie.year ? ', ' + props.movie.year : null}
+                &nbsp;{props.movie.studio}
+                {props.movie.year ? ', ' + props.movie.year : null}&nbsp;
               </Text>
             </Text>
           </Body>
