@@ -33,7 +33,7 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
                        props.backgroundImgUrl ? movieCardHeaderStyles.containerWithImage : null,
                      ]} imageStyle={[
                        sharedStyles.squareEntity,
-                       {borderBottomLeftRadius: 0, borderBottomRightRadius: 0}
+                       props.open ? {borderBottomLeftRadius: 0, borderBottomRightRadius: 0} : null
                      ]}>
       <CardItem header style={[sharedStyles.squareEntity, {backgroundColor: 'rgba(0,0,0,0)'}]}>
         <Left style={{display: 'flex', flexDirection: 'row'}}>
