@@ -103,7 +103,7 @@ const InfoLink = (props: InfoLinkProps) => {
   return (
     <View style={{alignSelf: 'flex-start', display: 'flex', flexDirection: 'row'}}>
       <Button onPress={openLink}
-              info rounded
+              info rounded small
               style={props.addVerticalMargin ? {marginVertical: 0.5 * baseFontSize} : null}>
         <Text>
           {extractDomain(props.link)}
