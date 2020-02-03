@@ -4,7 +4,6 @@ import {Platform, StyleSheet} from 'react-native';
 import isUrl from 'is-url';
 import extractDomain from 'extract-domain';
 import {CustomTabs} from 'react-native-custom-tabs';
-import {extractUrls} from '../../../utils';
 import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet} from '../../../styles';
 import SafariView from 'react-native-safari-view';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
@@ -45,6 +44,16 @@ const dynamicStyleSheet = new DynamicStyleSheet({
   }
 });
 
+const textOrLinkStyles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    flexWrap: 'wrap',
+    alignItems: 'center'
+  }
+});
+
 type TextOrLinkProps = {
   text: string;
 };
@@ -56,12 +65,16 @@ const TextOrLink = (props: TextOrLinkProps) => {
     );
   } else if (props.text.includes(' ') && props.text.includes('http')) {
     return (
-      <View>
-        {extractUrls(props.text).map(url => {
-          return (
-          <InfoLink key={url} link={url} addVerticalMargin={true} />
-          );
-        })}
+      <View style={textOrLinkStyles.container}>
+          {props.text.split(' ').map((textSegment, i) => {
+            if (isUrl(textSegment)) {
+              return (
+                <InfoLink key={i} link={textSegment} addVerticalMargin={true} />
+              );
+            } else return (
+              <Text key={i}>{textSegment}</Text>
+            );
+          })}
       </View>
     );
   } else {
