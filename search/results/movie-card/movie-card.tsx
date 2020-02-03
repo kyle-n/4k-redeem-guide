@@ -80,7 +80,8 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
                      duration={750}
                      useNativeDriver={true}>
       <Card style={[movieCardStyles.card, sharedStyles.squareEntity, sharedStyles.dynamicColor]}>
-        <TouchableOpacity onPress={props.onPressHeader}>
+        <TouchableOpacity onPress={props.onPressHeader}
+                          activeOpacity={props.backgroundImgUrl ? 0.8 : 0.2}>
           <MovieCardHeader movie={props.movie}
                            backgroundImgUrl={props.backgroundImgUrl}
                            open={props.showCardBody} />
