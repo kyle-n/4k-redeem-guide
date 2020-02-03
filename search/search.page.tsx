@@ -4,10 +4,11 @@ import InputBox from './input/input-box';
 import FilterBox from './input/filter-box';
 import {SearchPageProps} from './search.page.container';
 import ResultsBox from './results/results-box';
-import {MovieFilters} from '../models';
+import {MovieFilters, PresetSearch} from '../models';
 import {anyValueTruthy} from '../utils';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {lightBackgroundColor, sharedDynamicStyleSheet} from '../styles';
+import SuggestedSearches from './suggested-searches';
 
 const dynamicStyleSheet = new DynamicStyleSheet({
   content: {
@@ -23,6 +24,18 @@ const SearchPage = (props: SearchPageProps) => {
   const setFilter = (filter: string, value: boolean): void => {
     const newFilters: MovieFilters = Object.assign({}, props.filters, {[filter]: value});
     props.setFilters(newFilters);
+  };
+
+  const presetSearch = (preset: PresetSearch): void => {
+    if (preset.filters) {
+      Object.keys(preset.filters).forEach(filter => {
+        // @ts-ignore
+        props.setFilter(filter, preset.filters[filter]);
+      });
+    }
+    if (preset.query) {
+      props.setQuery(preset.query);
+    }
   };
 
   const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
@@ -44,6 +57,9 @@ const SearchPage = (props: SearchPageProps) => {
                     loadMore={props.loadMore}
                     showNoResultsMessage={(props.query || anyValueTruthy(props.filters)) && !props.isLoading}
                     noMoreResults={props.noMoreResults} />
+        {!props.results.length && !props.query && !anyValueTruthy(props.filters) ? (
+          <SuggestedSearches setSearch={presetSearch} />
+        ) : null}
       </View>
     </View>
   );
