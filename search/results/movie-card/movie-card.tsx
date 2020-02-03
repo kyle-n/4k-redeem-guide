@@ -73,6 +73,22 @@ const movieCardStyles = StyleSheet.create({
   }
 });
 
+const bodySlideDown: any = {
+  0: {
+    translateY: -100,
+    opacity: 0,
+    zIndex: -100
+  },
+  0.15: {
+    opacity: 0
+  },
+  1: {
+    translateY: 0,
+    opacity: 1,
+    zIndex: 0
+  }
+};
+
 const MovieCardLayout = (props: MovieCardLayoutProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
@@ -86,9 +102,9 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
                            open={props.showCardBody} />
         </TouchableOpacity>
         {props.showCardBody ? (
-          <Animatable.View animation="slideInDown"
+          <Animatable.View animation={bodySlideDown}
                            duration={750}
-                           useNativeDriver={true}>
+                           useNativeDriver={false}>
             <MovieCardBody movie={props.movie} />
           </Animatable.View>
         ) : null}
