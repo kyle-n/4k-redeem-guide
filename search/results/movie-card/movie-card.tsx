@@ -81,8 +81,7 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
                          open={props.showCardBody} />
       </TouchableOpacity>
       {props.showCardBody ? (
-        <MovieCardBody movie={props.movie}
-                       backgroundImgUrl={props.backgroundImgUrl} />
+        <MovieCardBody movie={props.movie} />
       ) : null}
     </Card>
   );
