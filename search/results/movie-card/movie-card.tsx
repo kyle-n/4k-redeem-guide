@@ -6,7 +6,7 @@ import MovieCardBody from './movie-card-body';
 import MovieCardHeader from './movie-card-header';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {darkLightGray, sharedDynamicStyleSheet} from '../../../styles';
+import {baseFontSize, darkLightGray, sharedDynamicStyleSheet} from '../../../styles';
 import {getMovieImage} from '../../../store/tmdb.connector';
 import * as Animatable from 'react-native-animatable';
 
@@ -78,8 +78,7 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
   return (
     <Animatable.View animation="slideInUp"
                      duration={750}
-                     useNativeDriver={true}
-    >
+                     useNativeDriver={true}>
       <Card style={[movieCardStyles.card, sharedStyles.squareEntity, sharedStyles.dynamicColor]}>
         <TouchableOpacity onPress={props.onPressHeader}>
           <MovieCardHeader movie={props.movie}
@@ -87,7 +86,11 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
                            open={props.showCardBody} />
         </TouchableOpacity>
         {props.showCardBody ? (
-          <MovieCardBody movie={props.movie} />
+          <Animatable.View animation="slideInDown"
+                           duration={750}
+                           useNativeDriver={true}>
+            <MovieCardBody movie={props.movie} />
+          </Animatable.View>
         ) : null}
       </Card>
     </Animatable.View>
