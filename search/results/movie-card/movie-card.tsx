@@ -79,7 +79,7 @@ const bodySlideDown: any = {
     opacity: 0,
     zIndex: -100
   },
-  0.15: {
+  0.45: {
     opacity: 0
   },
   1: {
@@ -103,7 +103,7 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
         </TouchableOpacity>
         {props.showCardBody ? (
           <Animatable.View animation={bodySlideDown}
-                           duration={750}
+                           duration={350}
                            useNativeDriver={false}>
             <MovieCardBody movie={props.movie} />
           </Animatable.View>
