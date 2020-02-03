@@ -28,17 +28,21 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
     <ImageBackground source={{uri: props.backgroundImgUrl}}
                      style={movieCardHeaderStyles.container}>
       <CardItem header style={[sharedStyles.squareEntity, {backgroundColor: 'rgba(0,0,0,0)'}]}>
-        <Left>
-          <Body>
-            <Text style={[sharedStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
-              {props.movie.title}
+        <Left style={{display: 'flex', flexDirection: 'row'}}>
+          <Body style={[{width: '100%', flexGrow: 7}]}>
+            <Text>
+              <Text style={[sharedStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
+                {props.movie.title}
+              </Text>
             </Text>
-            <Text note>
-              {props.movie.studio}
-              {props.movie.year ? ', ' + props.movie.year : null}
+            <Text>
+              <Text note style={[sharedStyles.dynamicColor]}>
+                {props.movie.studio}
+                {props.movie.year ? ', ' + props.movie.year : null}
+              </Text>
             </Text>
           </Body>
-          <Right>
+          <Right style={[{alignSelf: 'center', flexGrow: 1}]}>
             <DropdownIcon open={props.open} />
           </Right>
         </Left>
