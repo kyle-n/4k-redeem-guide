@@ -114,7 +114,11 @@ const resetFilterButtonStyles = StyleSheet.create({
   },
   button: {
     alignSelf: 'center',
-    opacity: 50
+    opacity: 50,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
   }
 });
 
@@ -174,7 +178,8 @@ const ResetFilterButton = (props: ResetFilterButtonProps) => (
             transparent={props.disabled} rounded={!props.disabled}
             icon iconRight style={resetFilterButtonStyles.button}>
       <Text>Clear filters</Text>
-      <Icon name="md-close" ios="ios-close" android="md-close" />
+      <Icon name="md-close" ios="ios-close" android="md-close"
+            style={{fontSize: baseFontSize * 2, alignSelf: 'center'}} />
     </Button>
   </View>
 );
