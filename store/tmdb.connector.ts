@@ -24,7 +24,7 @@ interface SearchResponse {
 
 const apiKey = 'd3298570110878db366366b8e1f2f947';
 const baseSearchUrl = 'https://api.themoviedb.org/3/search/movie?';
-const baseImageUrl = 'https://image.tmdb.org/t/p/original';
+const baseImageUrl = 'https://image.tmdb.org/t/p/w1280';
 
 export const getMovieImage = async (title: string, year?: number): Promise<string | null> => {
   const params = [
