@@ -1,13 +1,11 @@
 import React from 'react';
 import {CardSize, Movie} from '../../models';
 import {Button, Text, View} from 'native-base';
-import MovieCard from './movie-card/movie-card';
-import {Keyboard, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {baseFontSize, sharedDynamicStyleSheet} from '../../styles';
-import {FlatList} from 'react-native-gesture-handler';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 
-const resultsContainerStyles = StyleSheet.create({
+export const resultsContainerStyles = StyleSheet.create({
   container: {
     display: 'flex',
     flexDirection: 'column',
@@ -27,7 +25,7 @@ const resultsContainerStyles = StyleSheet.create({
   }
 });
 
-const getMovieKey = (movie: Movie): string => {
+export const getMovieKey = (movie: Movie): string => {
   return movie.title + ' ' + movie.year;
 };
 
@@ -39,38 +37,12 @@ type ResultsBoxProps = {
   showNoResultsMessage: boolean;
 };
 
-const ResultsBox = (props: ResultsBoxProps) => {
-  return (
-    <View style={resultsContainerStyles.containerWithButton}>
-      <FlatList data={props.results}
-                initialNumToRender={props.cardSize === 0 ? 10 : 3}
-                renderItem={(itemInfo) => {
-                  return (
-                    <MovieCard cardSize={props.cardSize}
-                               movie={itemInfo.item} />
-                  );
-                }}
-                keyExtractor={getMovieKey}
-                ListFooterComponent={() => {
-                  return props.results.length ? (
-                    <LoadMoreButton onPress={props.loadMore}
-                                    disabled={props.noMoreResults} />
-                  ) : null;
-                }}
-                onScroll={Keyboard.dismiss} />
-      {props.showNoResultsMessage && !props.results.length ? (
-        <NoResultsMessage />
-      ): null}
-    </View>
-  );
-};
-
 type LoadMoreButtonProps = {
   onPress: () => void;
   disabled: boolean;
 };
 
-const NoResultsMessage = () => {
+export const NoResultsMessage = () => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
@@ -81,7 +53,7 @@ const NoResultsMessage = () => {
   );
 };
 
-const LoadMoreButton = (props: LoadMoreButtonProps) => (
+export const LoadMoreButton = (props: LoadMoreButtonProps) => (
   <View style={resultsContainerStyles.bottomButton}>
     <Button onPress={props.onPress} full primary rounded
             disabled={props.disabled}>
@@ -89,5 +61,3 @@ const LoadMoreButton = (props: LoadMoreButtonProps) => (
     </Button>
   </View>
 );
-
-export default ResultsBox;

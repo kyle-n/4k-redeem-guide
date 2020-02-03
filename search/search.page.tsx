@@ -3,12 +3,18 @@ import {View} from 'native-base';
 import InputBox from './input/input-box';
 import FilterBox from './input/filter-box';
 import {SearchPageProps} from './search.page.container';
-import ResultsBox from './results/results-box';
 import {MovieFilters, PresetSearch} from '../models';
 import {anyValueTruthy} from '../utils';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {lightBackgroundColor} from '../styles';
 import SuggestedSearches from './suggested-searches';
+import {FlatList} from "react-native-gesture-handler";
+import MovieCard from './results/movie-card/movie-card';
+import {Keyboard} from 'react-native';
+import {resultsContainerStyles} from './results/results-box';
+import {getMovieKey} from './results/results-box';
+import {LoadMoreButton} from './results/results-box';
+import {NoResultsMessage} from './results/results-box';
 
 const dynamicStyleSheet = new DynamicStyleSheet({
   content: {
@@ -39,20 +45,40 @@ const SearchPage = (props: SearchPageProps) => {
   return (
     <View style={[movieCardStyles.container] as any[]}>
       <View style={movieCardStyles.content}>
-        <InputBox query={props.query}
-                  setQuery={props.setQuery}
-                  clearQuery={props.clearQuery}
-                  isLoading={props.isLoading} />
-        <FilterBox setFilter={setFilter}
-                   resetFilters={props.clearFilters}
-                   filters={props.filters}
-                   visible={props.filtersVisible}
-                   toggleFilterVisibility={props.toggleFiltersVisible} />
-        <ResultsBox results={props.results}
-                    cardSize={props.cardSize}
-                    loadMore={props.loadMore}
-                    showNoResultsMessage={(props.query || anyValueTruthy(props.filters)) && !props.isLoading}
-                    noMoreResults={props.noMoreResults} />
+        <View style={resultsContainerStyles.containerWithButton}>
+          <FlatList data={props.results}
+                    initialNumToRender={props.cardSize === 0 ? 10 : 3}
+                    renderItem={(itemInfo) => {
+                      return (
+                        <MovieCard cardSize={props.cardSize}
+                                   movie={itemInfo.item} />
+                      );
+                    }}
+                    keyExtractor={getMovieKey}
+                    ListHeaderComponent={() => (
+                      <View>
+                        <InputBox query={props.query}
+                                  setQuery={props.setQuery}
+                                  clearQuery={props.clearQuery}
+                                  isLoading={props.isLoading} />
+                        <FilterBox setFilter={setFilter}
+                                   resetFilters={props.clearFilters}
+                                   filters={props.filters}
+                                   visible={props.filtersVisible}
+                                   toggleFilterVisibility={props.toggleFiltersVisible} />
+                      </View>
+                    )}
+                    ListFooterComponent={() => {
+                      return props.results.length ? (
+                        <LoadMoreButton onPress={props.loadMore}
+                                        disabled={props.noMoreResults} />
+                      ) : null;
+                    }}
+                    onScroll={Keyboard.dismiss} />
+          {props.showNoResultsMessage && !props.results.length ? (
+            <NoResultsMessage />
+          ): null}
+        </View>
         {!props.results.length && !props.query && !anyValueTruthy(props.filters) ? (
           <SuggestedSearches setSearch={presetSearch} />
         ) : null}
