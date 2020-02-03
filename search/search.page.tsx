@@ -72,7 +72,9 @@ const SearchPage = (props: SearchPageProps) => {
                       return props.results.length ? (
                         <LoadMoreButton onPress={props.loadMore}
                                         disabled={props.noMoreResults} />
-                      ) : null;
+                      ) : (!props.results.length && (props.query || anyValueTruthy(props.filters)) ? (
+                        <NoResultsMessage />
+                      ) : null);
                     }}
                     onScroll={Keyboard.dismiss} />
           {props.showNoResultsMessage && !props.results.length ? (
