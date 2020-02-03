@@ -7,6 +7,7 @@ import MovieCardHeader from './movie-card-header';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {darkLightGray, sharedDynamicStyleSheet} from '../../../styles';
+import {getMovieImage} from '../../../store/tmdb.connector';
 
 type MovieCardProps = {
   movie: Movie;
@@ -14,6 +15,8 @@ type MovieCardProps = {
 };
 type MovieCardState = {
   cardBodyOpen: boolean;
+  backgroundImgUrl: string;
+  backgroundImgLoaded: boolean;
 };
 
 class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
@@ -21,8 +24,18 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
     super(props);
 
     this.state = {
-      cardBodyOpen: props.cardSize > 0
+      cardBodyOpen: props.cardSize > 0,
+      backgroundImgUrl: '',
+      backgroundImgLoaded: false
     };
+  }
+
+  componentDidMount(): void {
+    getMovieImage(this.props.movie.title, this.props.movie.year).then(url => {
+      const update: any = {backgroundImgLoaded: true};
+      if (url) update.backgroundImgUrl = url;
+      this.setState(update);
+    });
   }
 
   componentDidUpdate(prevProps: Readonly<MovieCardProps>): void {
@@ -36,15 +49,17 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
   };
 
   render() {
-    return (
+    return this.state.backgroundImgLoaded ? (
       <MovieCardLayout movie={this.props.movie}
                        onPressHeader={this.toggleCardDetailsOpen}
+                       backgroundImgUrl={this.state.backgroundImgUrl}
                        showCardBody={this.state.cardBodyOpen} />
-    );
+    ) : null;
   }
 }
 
 type MovieCardLayoutProps = {
+  backgroundImgUrl: string;
   movie: Movie;
   showCardBody: boolean;
   onPressHeader: () => void;
@@ -66,7 +81,8 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
                          open={props.showCardBody} />
       </TouchableOpacity>
       {props.showCardBody ? (
-        <MovieCardBody movie={props.movie} />
+        <MovieCardBody movie={props.movie}
+                       backgroundImgUrl={props.backgroundImgUrl} />
       ) : null}
     </Card>
   );
