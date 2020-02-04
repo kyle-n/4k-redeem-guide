@@ -21,8 +21,10 @@ const dynamicStyleSheet = new DynamicStyleSheet({
     alignItems: 'center'
   },
   container: {
-    backgroundColor: new DynamicValue(lightBackgroundColor, 'rgb(28,28,30)'),
     flexGrow: 1
+  },
+  specialBackground: {
+    backgroundColor: new DynamicValue(lightBackgroundColor, 'rgb(28,28,30)'),
   }
 });
 
@@ -43,7 +45,7 @@ const SearchPage = (props: SearchPageProps) => {
 
   const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
   return (
-    <View style={[movieCardStyles.container] as any[]}>
+    <View style={[movieCardStyles.container, movieCardStyles.specialBackground] as any[]}>
       <View style={movieCardStyles.content}>
         <View style={resultsContainerStyles.containerWithButton}>
           <FlatList data={props.results}
@@ -54,9 +56,10 @@ const SearchPage = (props: SearchPageProps) => {
                                    movie={itemInfo.item} />
                       );
                     }}
+                    stickyHeaderIndices={[0]}
                     keyExtractor={getMovieKey}
                     ListHeaderComponent={() => (
-                      <View>
+                      <View style={[movieCardStyles.specialBackground]}>
                         <InputBox query={props.query}
                                   setQuery={props.setQuery}
                                   clearQuery={props.clearQuery}
