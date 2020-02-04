@@ -10,7 +10,6 @@ import {lightBackgroundColor} from '../styles';
 import SuggestedSearches from './suggested-searches';
 import {FlatList} from "react-native-gesture-handler";
 import MovieCard from './results/movie-card/movie-card';
-import {Keyboard} from 'react-native';
 import {resultsContainerStyles} from './results/results-box';
 import {getMovieKey} from './results/results-box';
 import {LoadMoreButton} from './results/results-box';
@@ -58,7 +57,7 @@ const SearchPage = (props: SearchPageProps) => {
                     }}
                     stickyHeaderIndices={[0]}
                     keyExtractor={getMovieKey}
-                    ListHeaderComponent={() => (
+                    ListHeaderComponent={
                       <View style={[movieCardStyles.specialBackground]}>
                         <InputBox query={props.query}
                                   setQuery={props.setQuery}
@@ -70,7 +69,7 @@ const SearchPage = (props: SearchPageProps) => {
                                    visible={props.filtersVisible}
                                    toggleFilterVisibility={props.toggleFiltersVisible} />
                       </View>
-                    )}
+                    }
                     ListFooterComponent={() => {
                       return props.results.length ? (
                         <LoadMoreButton onPress={props.loadMore}
@@ -79,7 +78,7 @@ const SearchPage = (props: SearchPageProps) => {
                         <NoResultsMessage />
                       ) : null);
                     }}
-                    onScroll={Keyboard.dismiss} />
+                    keyboardDismissMode="on-drag" />
         </View>
         {!props.results.length && !props.query && !anyValueTruthy(props.filters) ? (
           <SuggestedSearches setSearch={presetSearch} />
