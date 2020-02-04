@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, View, Text} from 'native-base';
+import {Button, Text, View} from 'native-base';
 import {PresetSearch} from '../models';
-import {baseFontSize, darkColor, lightColor, lightGray, sharedDynamicStyleSheet} from '../styles'
+import {baseFontSize, darkBackgroundColor, lightBackgroundColor, lightGray, sharedDynamicStyleSheet} from '../styles'
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const presetSearches: PresetSearch[] = [
@@ -67,7 +67,8 @@ const SuggestedSearches = (props: SuggestedSearchesProps) => (
 
 const dynamicStyleSheet = new DynamicStyleSheet({
 	button: {
-		borderColor: new DynamicValue(lightGray, 'black')
+		borderColor: new DynamicValue('black', darkBackgroundColor),
+		backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor)
 	}
 });
 
