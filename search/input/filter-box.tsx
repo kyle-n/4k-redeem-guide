@@ -56,10 +56,14 @@ const filters: FilterData[] = [
   }
 ];
 
+const dynamicStyleSheet = new DynamicStyleSheet({
+  dynamicBorder: {
+    borderWidth: new DynamicValue(1, 0),
+    borderColor: new DynamicValue(lightGray, 'black')
+  }
+});
+
 const filterBoxStyles = StyleSheet.create({
-  boxSizing: {
-    // paddingHorizontal: 0.5 * baseFontSize,
-  },
   container: {
     alignSelf: 'stretch',
     paddingHorizontal: 0.5 * baseFontSize,
@@ -106,6 +110,7 @@ const FilterBox = (props: FilterBoxProps) => {
     .reduce((noneChecked, val) => noneChecked && !val, true);
 
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  const dynamicStyles = useDynamicStyleSheet(dynamicStyleSheet);
   return (
     <View style={[
       filterBoxStyles.container,
@@ -118,9 +123,9 @@ const FilterBox = (props: FilterBoxProps) => {
                          duration={350}
                          style={props.displayDropdownAbove ? [
                            filterBoxStyles.dropdownAbove,
-                           filterBoxStyles.boxSizing,
                            sharedStyles.squareEntity,
-                           sharedStyles.dynamicBackgroundColor
+                           sharedStyles.dynamicBackgroundColor,
+                           dynamicStyles.dynamicBorder
                          ] : null}>
           <View style={filterBoxStyles.filterBox}>
             {filterMarkup}
@@ -164,13 +169,6 @@ const headerStyles = StyleSheet.create({
   title: {
     fontWeight: '600',
     fontSize: baseFontSize * 1.5
-  }
-});
-
-const dynamicStyleSheet = new DynamicStyleSheet({
-  dynamicBorder: {
-    borderWidth: new DynamicValue(1, 0),
-    borderColor: new DynamicValue(lightGray, 'black')
   }
 });
 
