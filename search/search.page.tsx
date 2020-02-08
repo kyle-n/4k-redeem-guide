@@ -91,8 +91,9 @@ const SearchPageMarkup = (props: SearchPageMarkupProps) => {
   return (
     <View style={[movieCardStyles.container, movieCardStyles.specialBackground] as any[]}>
       <View style={movieCardStyles.content}>
-        <View style={resultsContainerStyles.containerWithButton}>
+        <View style={[resultsContainerStyles.containerWithButton]}>
           <FlatList data={props.parentProps.results}
+                    style={{alignSelf: 'stretch'}}
                     onLayout={props.onListRender}
                     initialNumToRender={initialRenderNumber}
                     renderItem={(itemInfo) => {

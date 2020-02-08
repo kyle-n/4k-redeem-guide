@@ -4,6 +4,7 @@ import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {baseFontSize, sharedDynamicStyleSheet, tabletMode} from '../../styles';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
+import {getBottomSpace} from 'react-native-iphone-x-helper';
 
 export const resultsContainerStyles = StyleSheet.create({
   container: {
@@ -15,9 +16,9 @@ export const resultsContainerStyles = StyleSheet.create({
   containerWithButton: {
     alignSelf: 'stretch',
     display: 'flex',
-    flexDirection: 'column',
+    flexDirection: 'row',
     flexGrow: 1,
-    paddingBottom: baseFontSize * 2
+    paddingBottom: getBottomSpace()
   },
   bottomButton: {
     marginVertical: baseFontSize,
