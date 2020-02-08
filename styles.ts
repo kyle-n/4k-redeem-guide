@@ -42,3 +42,5 @@ export const slideFromUnder350: any = {
     zIndex: 0
   }
 };
+
+export const biggerThanMobile = {query: '(min-width: 830px)'};
