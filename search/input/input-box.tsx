@@ -18,6 +18,7 @@ type InputBoxProps = {
   clearQuery: () => void;
   query: string;
   isLoading: boolean;
+  grow?: boolean;
 };
 
 const InputBox = (props: InputBoxProps) => {
@@ -29,7 +30,10 @@ const InputBox = (props: InputBoxProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   const isDark = useDarkMode();
   return (
-    <Item style={inputContainerStyles.wrapper}>
+    <Item style={[
+      inputContainerStyles.wrapper,
+      props.grow ? {flexGrow: 1} : null
+    ]}>
       <Icon name="ios-search" android="md-search" ios="ios-search"
             style={[inputContainerStyles.searchIcon, sharedStyles.dynamicTextColor]} />
       <Input value={props.query}

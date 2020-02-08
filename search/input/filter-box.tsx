@@ -75,6 +75,7 @@ type FilterBoxProps = {
   filters: MovieFilters
   visible: boolean;
   toggleFilterVisibility: () => void;
+  grow?: boolean;
 };
 
 const FilterBox = (props: FilterBoxProps) => {
@@ -93,7 +94,10 @@ const FilterBox = (props: FilterBoxProps) => {
     .reduce((noneChecked, val) => noneChecked && !val, true);
 
   return (
-    <View style={filterBoxStyles.container}>
+    <View style={[
+      filterBoxStyles.container,
+      props.grow ? {flexGrow: 1} : null
+    ]}>
       <AccordionHeader onPress={props.toggleFilterVisibility}
                        expanded={props.visible} />
       {props.visible ? (
