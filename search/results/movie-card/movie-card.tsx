@@ -13,6 +13,7 @@ import * as Animatable from 'react-native-animatable';
 type MovieCardProps = {
   movie: Movie;
   cardSize: CardSize;
+  width?: number;
 };
 type MovieCardState = {
   cardBodyOpen: boolean;
@@ -54,7 +55,8 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
       <MovieCardLayout movie={this.props.movie}
                        onPressHeader={this.toggleCardDetailsOpen}
                        backgroundImgUrl={this.state.backgroundImgUrl}
-                       showCardBody={this.state.cardBodyOpen} />
+                       showCardBody={this.state.cardBodyOpen}
+                       width={this.props.width} />
     ) : null;
   }
 }
@@ -64,6 +66,7 @@ type MovieCardLayoutProps = {
   movie: Movie;
   showCardBody: boolean;
   onPressHeader: () => void;
+  width?: number;
 };
 
 const movieCardStyles = StyleSheet.create({
@@ -78,6 +81,7 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
   return (
     <Animatable.View animation="slideInUp"
                      duration={750}
+                     style={props.width ? {width: props.width} : null}
                      useNativeDriver={true}>
       <Card style={[movieCardStyles.card, sharedStyles.squareEntity, sharedStyles.dynamicColor]}>
         <TouchableOpacity onPress={props.onPressHeader}
