@@ -44,4 +44,4 @@ export const slideFromUnder350: any = {
   }
 };
 
-export const tabletMode = Dimensions.get('window').width > 400;
+export const tabletMode = () => Dimensions.get('window').width > 400;
