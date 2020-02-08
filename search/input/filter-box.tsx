@@ -198,14 +198,16 @@ const AccordionHeader = (props: AccordionHeaderProps) => {
 
 const ResetFilterButton = (props: ResetFilterButtonProps) => (
   <View style={resetFilterButtonStyles.container}>
-    <Button onPress={props.onPress} disabled={props.disabled}
-            warning={!props.disabled} light={props.disabled}
-            transparent={props.disabled} rounded={!props.disabled}
-            icon iconRight style={resetFilterButtonStyles.button}>
-      <Text>Clear filters</Text>
-      <Icon name="md-close" ios="ios-close" android="md-close"
-            style={{fontSize: baseFontSize * 2, alignSelf: 'center'}} />
-    </Button>
+    <TouchableOpacity onPress={props.onPress} activeOpacity={0.5}>
+      <Button onPress={() => {}} disabled={props.disabled}
+              warning={!props.disabled} light={props.disabled}
+              transparent={props.disabled} rounded={!props.disabled}
+              icon iconRight style={resetFilterButtonStyles.button}>
+        <Text>Clear filters</Text>
+        <Icon name="md-close" ios="ios-close" android="md-close"
+              style={{fontSize: baseFontSize * 2, alignSelf: 'center'}} />
+      </Button>
+    </TouchableOpacity>
   </View>
 );
 
