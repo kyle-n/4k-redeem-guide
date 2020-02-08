@@ -31,7 +31,7 @@ const dynamicStyleSheet = new DynamicStyleSheet({
     padding: baseFontSize,
     color: new DynamicValue('black', 'white')
   },
-  buttonContainer: {
+  centerStyle: {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center'
@@ -53,13 +53,13 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return props.needsToDownloadMovies ? (<View></View>) : (
     <View style={[searchPageHeaderStyles.container, sharedStyles.dynamicBackgroundColor]}>
-      <View>
+      <View style={searchPageHeaderStyles.centerStyle}>
         <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
       </View>
       {tabletMode() ? (
         <TabletHeaderInputs />
       ) : null}
-      <View style={searchPageHeaderStyles.buttonContainer}>
+      <View style={searchPageHeaderStyles.centerStyle}>
         <RefreshCacheButton onPress={props.clearMovieCache} />
         <SizeButton cardSize={props.cardSize} onPress={props.toggleCardSize}/>
         <CameraButton />
