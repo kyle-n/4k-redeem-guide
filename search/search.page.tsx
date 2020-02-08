@@ -91,7 +91,7 @@ const SearchPage = (props: SearchPageProps) => {
                       return props.results.length ? (
                         <LoadMoreButton onPress={props.loadMore}
                                         disabled={props.noMoreResults} />
-                      ) : (!props.results.length && (props.query || anyValueTruthy(props.filters) && !props.isLoading) ? (
+                      ) : ((!props.results.length && (props.query || anyValueTruthy(props.filters)) && !props.isLoading) ? (
                         <NoResultsMessage />
                       ) : null);
                     }}
