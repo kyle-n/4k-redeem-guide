@@ -6,7 +6,7 @@ import {
   baseFontSize,
   darkBackgroundColor,
   lightGray,
-  sharedDynamicStyleSheet
+  sharedDynamicStyleSheet, tabletMode
 } from '../styles';
 import RefreshCacheButton from './refresh-cache-button';
 import CameraButton from './camera-button';
@@ -14,6 +14,7 @@ import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import {connect} from 'react-redux';
 import {clearMovieCache, toggleCardSize, setQuery} from '../redux/actions';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
+import TabletHeaderInputs from '../search/tablet-header-inputs';
 
 const dynamicStyleSheet = new DynamicStyleSheet({
   container: {
@@ -55,6 +56,9 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => {
       <View>
         <Text style={searchPageHeaderStyles.pageTitle}>Search</Text>
       </View>
+      {tabletMode() ? (
+        <TabletHeaderInputs />
+      ) : null}
       <View style={searchPageHeaderStyles.buttonContainer}>
         <RefreshCacheButton onPress={props.clearMovieCache} />
         <SizeButton cardSize={props.cardSize} onPress={props.toggleCardSize}/>
