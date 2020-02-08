@@ -6,7 +6,7 @@ import {SearchPageProps} from './search.page.container';
 import {MovieFilters, PresetSearch} from '../models';
 import {anyValueTruthy} from '../utils';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {lightBackgroundColor} from '../styles';
+import {lightBackgroundColor, tabletMode} from '../styles';
 import SuggestedSearches from './suggested-searches';
 import {FlatList} from "react-native-gesture-handler";
 import MovieCard from './results/movie-card/movie-card';
@@ -14,6 +14,7 @@ import {resultsContainerStyles} from './results/results-box';
 import {getMovieKey} from './results/results-box';
 import {LoadMoreButton} from './results/results-box';
 import {NoResultsMessage} from './results/results-box';
+import {Dimensions} from 'react-native';
 
 const dynamicStyleSheet = new DynamicStyleSheet({
   content: {
@@ -43,6 +44,15 @@ const SearchPage = (props: SearchPageProps) => {
   };
 
   const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
+
+  // calculate columns in flatList
+  const maxCardWidth = 400;
+  let cols = 1;
+  let colWidth: number;
+  const windowWidth = Dimensions.get('window').width;
+  cols = Math.floor(windowWidth / maxCardWidth);
+  if (cols < 1) cols = 1;
+  colWidth = Math.floor(windowWidth / cols);
   return (
     <View style={[movieCardStyles.container, movieCardStyles.specialBackground] as any[]}>
       <View style={movieCardStyles.content}>
@@ -52,11 +62,14 @@ const SearchPage = (props: SearchPageProps) => {
                     renderItem={(itemInfo) => {
                       return (
                         <MovieCard cardSize={props.cardSize}
-                                   movie={itemInfo.item} />
+                                   movie={itemInfo.item}
+                                   width={colWidth} />
                       );
                     }}
                     stickyHeaderIndices={[0]}
                     keyExtractor={getMovieKey}
+                    numColumns={cols}
+                    columnWrapperStyle={cols > 1 ? {display: 'flex', flexDirection: 'row', flexWrap: 'wrap'} : null}
                     ListHeaderComponent={
                       <View style={[movieCardStyles.specialBackground]}>
                         <InputBox query={props.query}
