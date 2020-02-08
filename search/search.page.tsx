@@ -70,7 +70,7 @@ const SearchPage = (props: SearchPageProps) => {
                       );
                     }}
                     key={cols}
-                    stickyHeaderIndices={[0]}
+                    stickyHeaderIndices={tabletMode() ? [] : [0]}
                     keyExtractor={getMovieKey}
                     numColumns={cols}
                     columnWrapperStyle={cols > 1 ? {display: 'flex', flexDirection: 'row', flexWrap: 'wrap'} : null}
@@ -91,7 +91,7 @@ const SearchPage = (props: SearchPageProps) => {
                       return props.results.length ? (
                         <LoadMoreButton onPress={props.loadMore}
                                         disabled={props.noMoreResults} />
-                      ) : (!props.results.length && (props.query || anyValueTruthy(props.filters)) ? (
+                      ) : (!props.results.length && (props.query || anyValueTruthy(props.filters) && !props.isLoading) ? (
                         <NoResultsMessage />
                       ) : null);
                     }}

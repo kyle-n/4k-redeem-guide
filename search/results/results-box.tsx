@@ -1,8 +1,8 @@
 import React from 'react';
 import {CardSize, Movie} from '../../models';
-import {Button, Text, View} from 'native-base';
+import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
-import {baseFontSize, sharedDynamicStyleSheet} from '../../styles';
+import {baseFontSize, sharedDynamicStyleSheet, tabletMode} from '../../styles';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 
 export const resultsContainerStyles = StyleSheet.create({
@@ -21,6 +21,8 @@ export const resultsContainerStyles = StyleSheet.create({
   },
   bottomButton: {
     marginVertical: baseFontSize,
+  },
+  bigButton: {
     alignSelf: 'stretch'
   }
 });
@@ -54,9 +56,13 @@ export const NoResultsMessage = () => {
 };
 
 export const LoadMoreButton = (props: LoadMoreButtonProps) => (
-  <View style={resultsContainerStyles.bottomButton}>
-    <Button onPress={props.onPress} full primary rounded
+  <View style={[
+    resultsContainerStyles.bottomButton,
+    tabletMode() ? {alignSelf: 'flex-end', marginHorizontal: baseFontSize} : resultsContainerStyles.bigButton
+  ]}>
+    <Button onPress={props.onPress} full info rounded iconLeft
             disabled={props.disabled}>
+      <Icon name="plus" type="FontAwesome5" />
       <Text>Load more</Text>
     </Button>
   </View>

@@ -82,7 +82,7 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
     <Animatable.View animation="slideInUp"
                      duration={750}
                      style={props.width ? {width: props.width} : null}
-                     useNativeDriver={true}>
+                     useNativeDriver={false}>
       <Card style={[movieCardStyles.card, sharedStyles.squareEntity, sharedStyles.dynamicColor]}>
         <TouchableOpacity onPress={props.onPressHeader}
                           activeOpacity={props.backgroundImgUrl ? 0.8 : 0.2}>
