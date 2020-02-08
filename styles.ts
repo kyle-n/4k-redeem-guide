@@ -48,5 +48,5 @@ export const tabletMode = (): boolean => {
   if (Platform.OS === 'ios') {
     return Platform.isPad;
   }
-  else return Dimensions.get('window').width > 815;
+  else return Dimensions.get('window').width > 799;
 };
