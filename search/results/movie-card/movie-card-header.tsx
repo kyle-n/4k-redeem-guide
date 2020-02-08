@@ -1,5 +1,5 @@
 import React from 'react';
-import {Body, CardItem, Left, Right, Text} from 'native-base';
+import {Body, CardItem, Left, Right, Text, View} from 'native-base';
 import {Movie} from '../../../models';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {baseFontSize, sharedDynamicStyleSheet} from '../../../styles';
@@ -13,8 +13,13 @@ const movieCardHeaderStyles = StyleSheet.create({
     justifyContent: 'flex-end',
     width: '100%',
   },
-  containerWithImage: {
+  containerHeight: {
     height: baseFontSize * 12
+  },
+  colBottom: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
   }
 });
 
@@ -30,7 +35,7 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
     <ImageBackground source={{uri: props.backgroundImgUrl}}
                      style={[
                        movieCardHeaderStyles.container,
-                       props.backgroundImgUrl ? movieCardHeaderStyles.containerWithImage : sharedStyles.dynamicBackgroundColor,
+                       props.backgroundImgUrl ? movieCardHeaderStyles.containerHeight : sharedStyles.dynamicBackgroundColor,
                      ]} imageStyle={[
                        sharedStyles.squareEntity,
                        props.open ? {borderBottomLeftRadius: 0, borderBottomRightRadius: 0} : null
@@ -38,7 +43,12 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
       <MovieCardHeaderMarkup parentProps={props} />
     </ImageBackground>
   ) : (
-    <MovieCardHeaderMarkup parentProps={props} />
+    <View style={[
+      movieCardHeaderStyles.containerHeight,
+      movieCardHeaderStyles.colBottom
+    ]}>
+      <MovieCardHeaderMarkup parentProps={props} />
+    </View>
   );
 };
 
