@@ -57,6 +57,9 @@ const filters: FilterData[] = [
 ];
 
 const filterBoxStyles = StyleSheet.create({
+  boxSizing: {
+    // paddingHorizontal: 0.5 * baseFontSize,
+  },
   container: {
     alignSelf: 'stretch',
     paddingHorizontal: 0.5 * baseFontSize,
@@ -67,6 +70,17 @@ const filterBoxStyles = StyleSheet.create({
   filterBox: {
     alignSelf: 'stretch'
   },
+  dropdownAbove: {
+    position: 'absolute',
+    top: baseFontSize * 4,
+    left: baseFontSize / 2,
+    zIndex: 200,
+    width: '100%',
+    marginHorizontal: 'auto',
+    backgroundColor: 'green',
+    borderWidth: 1,
+    borderColor: 'red'
+  }
 });
 
 type FilterBoxProps = {
@@ -76,6 +90,7 @@ type FilterBoxProps = {
   visible: boolean;
   toggleFilterVisibility: () => void;
   grow?: boolean;
+  displayDropdownAbove?: boolean;
 };
 
 const FilterBox = (props: FilterBoxProps) => {
@@ -102,7 +117,12 @@ const FilterBox = (props: FilterBoxProps) => {
                        expanded={props.visible} />
       {props.visible ? (
         <Animatable.View animation={slideFromUnder350}
-                         duration={350}>
+                         duration={350}
+                         style={props.displayDropdownAbove ? [
+                           filterBoxStyles.dropdownAbove,
+                           filterBoxStyles.boxSizing
+                         ] : null}
+        >
           <View style={filterBoxStyles.filterBox}>
             {filterMarkup}
             <ResetFilterButton onPress={props.resetFilters} disabled={resetButtonDisabled} />

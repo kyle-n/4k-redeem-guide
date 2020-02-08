@@ -52,7 +52,8 @@ const TabletHeaderInputs = (props: TabletHeaderInputsProps) => {
                  filters={props.filters}
                  visible={props.visible}
                  toggleFilterVisibility={props.toggleFiltersVisible}
-                 grow={true} />
+                 grow={true}
+                 displayDropdownAbove={true} />
     </View>
   )
 };
