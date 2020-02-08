@@ -76,10 +76,7 @@ const filterBoxStyles = StyleSheet.create({
     left: baseFontSize / 2,
     zIndex: 200,
     width: '100%',
-    marginHorizontal: 'auto',
-    backgroundColor: 'green',
-    borderWidth: 1,
-    borderColor: 'red'
+    marginHorizontal: 'auto'
   }
 });
 
@@ -108,6 +105,7 @@ const FilterBox = (props: FilterBoxProps) => {
   const resetButtonDisabled = Object.values(props.filters)
     .reduce((noneChecked, val) => noneChecked && !val, true);
 
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={[
       filterBoxStyles.container,
@@ -120,9 +118,10 @@ const FilterBox = (props: FilterBoxProps) => {
                          duration={350}
                          style={props.displayDropdownAbove ? [
                            filterBoxStyles.dropdownAbove,
-                           filterBoxStyles.boxSizing
-                         ] : null}
-        >
+                           filterBoxStyles.boxSizing,
+                           sharedStyles.squareEntity,
+                           sharedStyles.dynamicBackgroundColor
+                         ] : null}>
           <View style={filterBoxStyles.filterBox}>
             {filterMarkup}
             <ResetFilterButton onPress={props.resetFilters} disabled={resetButtonDisabled} />
