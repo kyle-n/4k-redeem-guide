@@ -3,6 +3,7 @@ import {ActionAndValue} from './actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Reducer} from 'redux';
 import {debounce} from 'throttle-debounce';
+import {tabletMode} from '../styles';
 
 const defaultCardSize: CardSize = 0;
 // const cardSizePrefName = 'cardSizePref';
@@ -35,7 +36,7 @@ export const defaultFilters: MovieFilters = {
 };
 
 const initialState: GlobalState = {
-  cardSize: defaultCardSize,
+  cardSize: tabletMode() ? 1 : defaultCardSize,
   filters: Object.assign({}, defaultFilters),
   filtersVisible: false,
   noMoreResults: false,

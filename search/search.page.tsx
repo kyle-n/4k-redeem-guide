@@ -69,6 +69,7 @@ const SearchPage = (props: SearchPageProps) => {
                                    width={colWidth} />
                       );
                     }}
+                    key={cols}
                     stickyHeaderIndices={[0]}
                     keyExtractor={getMovieKey}
                     numColumns={cols}
