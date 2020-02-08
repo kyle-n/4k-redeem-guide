@@ -74,7 +74,7 @@ const SearchPage = (props: SearchPageProps) => {
                     keyExtractor={getMovieKey}
                     numColumns={cols}
                     columnWrapperStyle={cols > 1 ? {display: 'flex', flexDirection: 'row', flexWrap: 'wrap'} : null}
-                    ListHeaderComponent={
+                    ListHeaderComponent={tabletMode() ? null : (
                       <View style={[movieCardStyles.specialBackground]}>
                         <InputBox query={props.query}
                                   setQuery={props.setQuery}
@@ -86,7 +86,7 @@ const SearchPage = (props: SearchPageProps) => {
                                    visible={props.filtersVisible}
                                    toggleFilterVisibility={props.toggleFiltersVisible} />
                       </View>
-                    }
+                    )}
                     ListFooterComponent={() => {
                       return props.results.length ? (
                         <LoadMoreButton onPress={props.loadMore}
