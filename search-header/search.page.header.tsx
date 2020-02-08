@@ -22,7 +22,6 @@ const dynamicStyleSheet = new DynamicStyleSheet({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignContent: 'center',
     paddingTop: Platform.OS === 'ios' ? getStatusBarHeight() : 0,
     borderBottomWidth: new DynamicValue(1, 0),
     borderBottomColor: new DynamicValue(lightGray, darkBackgroundColor)
@@ -35,6 +34,7 @@ const dynamicStyleSheet = new DynamicStyleSheet({
   buttonContainer: {
     display: 'flex',
     flexDirection: 'row',
+    alignItems: 'center'
   }
 });
 

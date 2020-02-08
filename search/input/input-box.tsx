@@ -6,7 +6,7 @@ import {useDarkMode, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const inputContainerStyles = StyleSheet.create({
   wrapper: {
-    marginBottom: baseFontSize,
+    marginBottom: baseFontSize
   },
   searchIcon: {
     marginLeft: baseFontSize
