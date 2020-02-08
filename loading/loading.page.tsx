@@ -120,7 +120,7 @@ type DownloadMoviesButtonProps = {
 }
 const DownloadMoviesButton = (props: DownloadMoviesButtonProps) => (
   <Button onPress={props.onPress}
-          warning rounded large>
+          warning rounded large iconLeft>
     <Icon name="ios-download" ios="ios-download" android="md-download"
           style={{fontSize: 2 * baseFontSize}} />
     <Text>Download movies</Text>
