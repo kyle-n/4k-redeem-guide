@@ -1,5 +1,7 @@
 import React from 'react';
 import {Text} from 'native-base';
+import {useDynamicStyleSheet} from 'react-native-dark-mode';
+import {sharedDynamicStyleSheet} from '../styles';
 
 const loadingMessages: string[] = [
   'Downloading 4K movie database',
@@ -86,12 +88,22 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
 
   render() {
     return (
-      <Text>
-        {this.state.message}
-        {this.state.message ? '...' : ''}
-      </Text>
+      <MessageText message={this.state.message} />
     );
   }
 }
+
+type MessageTextProps = {
+  message: string;
+};
+const MessageText = (props: MessageTextProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <Text style={[sharedStyles.dynamicTextColor]}>
+      {props.message}
+      {props.message ? '...' : ''}
+    </Text>
+  );
+};
 
 export default LoadingMessage;

@@ -1,11 +1,11 @@
 import React from 'react';
 import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import LoadingMessage from './loading-message';
-import {baseFontSize} from '../styles';
+import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
 import {Button, Icon, Text} from 'native-base';
 import {ExitOnBackButton} from '../shared-components';
 import CheckBeforeDownload from './check-before-download';
-import {NavigationStackProp} from 'react-navigation-stack';
+import {useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const loadingPageStyles = StyleSheet.create({
   topContainer: {
@@ -61,37 +61,59 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
     };
 
     return (
-      <View style={loadingPageStyles.topContainer}>
-
-        {/* Back listener util */}
-        <ExitOnBackButton />
-
-        {/* Download movies if on WiFi, show alert if not */}
-        {this.state.showDownloadAlert ? (
-          <CheckBeforeDownload onCancel={onDownloadAlertCancel}
-                               onConfirm={onDownloadAlertConfirm} />
-        ) : null}
-
-        {/* Loading spinner if downloading */}
-        <View style={loadingPageStyles.innerContainer}>
-          {this.state.downloading ? (
-            <ActivityIndicator size="large" />
-          ) : null}
-        </View>
-
-        {/* Loading messages if downloading, download button if not */}
-        <View style={loadingPageStyles.innerContainer}>
-          {this.state.downloading && !this.state.showDownloadAlert ? (
-            <LoadingMessage />
-          ) : ( this.state.initialRenderDone ? (
-              <DownloadMoviesButton onPress={this.downloadMovies}/>
-            ) : null
-          )}
-        </View>
-      </View>
+      <LoadingPageLayout downloadMovies={this.downloadMovies}
+                         onDownloadAlertCancel={onDownloadAlertCancel}
+                         onDownloadAlertConfirm={onDownloadAlertConfirm}
+                         downloading={this.state.downloading}
+                         showDownloadAlert={this.state.showDownloadAlert}
+                         initialRenderDone={this.state.initialRenderDone}
+                         />
     );
   }
 }
+
+type LoadingPageLayoutProps = {
+  onDownloadAlertCancel: () => void;
+  onDownloadAlertConfirm: () => void;
+  downloading: boolean;
+  showDownloadAlert: boolean;
+  downloadMovies: () => void;
+  initialRenderDone: boolean;
+};
+
+const LoadingPageLayout = (props: LoadingPageLayoutProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <View style={[loadingPageStyles.topContainer, sharedStyles.dynamicColor]}>
+
+      {/* Back listener util */}
+      <ExitOnBackButton />
+
+      {/* Download movies if on WiFi, show alert if not */}
+      {props.showDownloadAlert ? (
+        <CheckBeforeDownload onCancel={props.onDownloadAlertCancel}
+                             onConfirm={props.onDownloadAlertConfirm} />
+      ) : null}
+
+      {/* Loading spinner if downloading */}
+      <View style={loadingPageStyles.innerContainer}>
+        {props.downloading ? (
+          <ActivityIndicator size="large" />
+        ) : null}
+      </View>
+
+      {/* Loading messages if downloading, download button if not */}
+      <View style={loadingPageStyles.innerContainer}>
+        {props.downloading && !props.showDownloadAlert ? (
+          <LoadingMessage />
+        ) : ( props.initialRenderDone ? (
+            <DownloadMoviesButton onPress={props.downloadMovies}/>
+          ) : null
+        )}
+      </View>
+    </View>
+  );
+};
 
 type DownloadMoviesButtonProps = {
   onPress: () => void;
