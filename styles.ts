@@ -1,4 +1,5 @@
 import {DynamicStyleSheet, DynamicValue} from 'react-native-dark-mode';
+import {Dimensions} from 'react-native';
 
 export const baseFontSize = 14;
 export const lightBackgroundColor = 'rgb(242,242,247)';
@@ -43,4 +44,4 @@ export const slideFromUnder350: any = {
   }
 };
 
-export const biggerThanMobile = {query: '(min-width: 830px)'};
+export const tabletMode = Dimensions.get('window').width > 400;
