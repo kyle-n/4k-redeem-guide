@@ -28,18 +28,50 @@ const dynamicStyleSheet = new DynamicStyleSheet({
   }
 });
 
-const SearchPage = (props: SearchPageProps) => {
+type SearchPageState = {
+  isPortrait: boolean;
+};
+class SearchPage extends React.Component<SearchPageProps, SearchPageState> {
+  constructor(props: SearchPageProps) {
+    super(props);
+
+    this.state = {isPortrait: this.getIsPortrait()};
+  }
+
+  getIsPortrait = () => {
+    const { width, height } = Dimensions.get('window');
+    return height > width;
+  };
+
+  onListRender = () => {
+    const isPortrait = this.getIsPortrait();
+    if (isPortrait !== this.state.isPortrait) this.setState({isPortrait});
+  }
+
+  render() {
+    return (
+      <SearchPageMarkup parentProps={this.props} onListRender={this.onListRender} />
+    );
+  }
+
+}
+
+type SearchPageMarkupProps = {
+  parentProps: SearchPageProps;
+  onListRender: () => void;
+};
+const SearchPageMarkup = (props: SearchPageMarkupProps) => {
   const setFilter = (filter: string, value: boolean): void => {
-    const newFilters: MovieFilters = Object.assign({}, props.filters, {[filter]: value});
-    props.setFilters(newFilters);
+    const newFilters: MovieFilters = Object.assign({}, props.parentProps.filters, {[filter]: value});
+    props.parentProps.setFilters(newFilters);
   };
 
   const presetSearch = (preset: PresetSearch): void => {
     if (preset.filters) {
-      props.setFilters(preset.filters);
+      props.parentProps.setFilters(preset.filters);
     }
     if (preset.query) {
-      props.setQuery(preset.query);
+      props.parentProps.setQuery(preset.query);
     }
   };
 
@@ -54,17 +86,18 @@ const SearchPage = (props: SearchPageProps) => {
   if (cols < 1) cols = 1;
   colWidth = Math.floor(windowWidth / cols);
 
-  let initialRenderNumber = props.cardSize === 0 ? 10 : 3;
+  let initialRenderNumber = props.parentProps.cardSize === 0 ? 10 : 3;
   initialRenderNumber = initialRenderNumber * cols;
   return (
     <View style={[movieCardStyles.container, movieCardStyles.specialBackground] as any[]}>
       <View style={movieCardStyles.content}>
         <View style={resultsContainerStyles.containerWithButton}>
-          <FlatList data={props.results}
+          <FlatList data={props.parentProps.results}
+                    onLayout={props.onListRender}
                     initialNumToRender={initialRenderNumber}
                     renderItem={(itemInfo) => {
                       return (
-                        <MovieCard cardSize={props.cardSize}
+                        <MovieCard cardSize={props.parentProps.cardSize}
                                    movie={itemInfo.item}
                                    width={colWidth} />
                       );
@@ -76,28 +109,28 @@ const SearchPage = (props: SearchPageProps) => {
                     columnWrapperStyle={cols > 1 ? {display: 'flex', flexDirection: 'row', flexWrap: 'wrap'} : null}
                     ListHeaderComponent={tabletMode() ? null : (
                       <View style={[movieCardStyles.specialBackground]}>
-                        <InputBox query={props.query}
-                                  setQuery={props.setQuery}
-                                  clearQuery={props.clearQuery}
-                                  isLoading={props.isLoading} />
+                        <InputBox query={props.parentProps.query}
+                                  setQuery={props.parentProps.setQuery}
+                                  clearQuery={props.parentProps.clearQuery}
+                                  isLoading={props.parentProps.isLoading} />
                         <FilterBox setFilter={setFilter}
-                                   resetFilters={props.clearFilters}
-                                   filters={props.filters}
-                                   visible={props.filtersVisible}
-                                   toggleFilterVisibility={props.toggleFiltersVisible} />
+                                   resetFilters={props.parentProps.clearFilters}
+                                   filters={props.parentProps.filters}
+                                   visible={props.parentProps.filtersVisible}
+                                   toggleFilterVisibility={props.parentProps.toggleFiltersVisible} />
                       </View>
                     )}
                     ListFooterComponent={() => {
-                      return props.results.length ? (
-                        <LoadMoreButton onPress={props.loadMore}
-                                        disabled={props.noMoreResults} />
-                      ) : ((!props.results.length && (props.query || anyValueTruthy(props.filters)) && !props.isLoading) ? (
+                      return props.parentProps.results.length ? (
+                        <LoadMoreButton onPress={props.parentProps.loadMore}
+                                        disabled={props.parentProps.noMoreResults} />
+                      ) : ((!props.parentProps.results.length && (props.parentProps.query || anyValueTruthy(props.parentProps.filters)) && !props.parentProps.isLoading) ? (
                         <NoResultsMessage />
                       ) : null);
                     }}
                     keyboardDismissMode="on-drag" />
         </View>
-        {!props.results.length && !props.query && !anyValueTruthy(props.filters) ? (
+        {!props.parentProps.results.length && !props.parentProps.query && !anyValueTruthy(props.parentProps.filters) ? (
           <SuggestedSearches setSearch={presetSearch} />
         ) : null}
       </View>
