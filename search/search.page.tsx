@@ -53,12 +53,15 @@ const SearchPage = (props: SearchPageProps) => {
   cols = Math.floor(windowWidth / maxCardWidth);
   if (cols < 1) cols = 1;
   colWidth = Math.floor(windowWidth / cols);
+
+  let initialRenderNumber = props.cardSize === 0 ? 10 : 3;
+  initialRenderNumber = initialRenderNumber * cols;
   return (
     <View style={[movieCardStyles.container, movieCardStyles.specialBackground] as any[]}>
       <View style={movieCardStyles.content}>
         <View style={resultsContainerStyles.containerWithButton}>
           <FlatList data={props.results}
-                    initialNumToRender={props.cardSize === 0 ? 10 : 3}
+                    initialNumToRender={initialRenderNumber}
                     renderItem={(itemInfo) => {
                       return (
                         <MovieCard cardSize={props.cardSize}
