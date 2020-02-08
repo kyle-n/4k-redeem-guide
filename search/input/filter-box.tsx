@@ -67,7 +67,7 @@ const filterBoxStyles = StyleSheet.create({
   container: {
     alignSelf: 'stretch',
     paddingHorizontal: 0.5 * baseFontSize,
-    marginBottom: baseFontSize,
+    marginVertical: baseFontSize,
     display: 'flex',
     flexDirection: 'column'
   },
