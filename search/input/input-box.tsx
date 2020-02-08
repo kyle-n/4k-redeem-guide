@@ -43,12 +43,10 @@ const InputBox = (props: InputBoxProps) => {
              placeholderTextColor={isDark ? darkColor : lightGray}
              autoCorrect={false}
       />
-      {props.isLoading ? (<LoadingIndicator />) : null}
-      {props.query.length ? (
-        <ClearButton disabled={!props.query.length}
-                     onPress={props.clearQuery}
-                     style={[sharedStyles.dynamicTextColor, {fontSize: baseFontSize * 2}]} />
-      ) : null}
+      <LoadingIndicator disabled={!props.isLoading} />
+      <ClearButton disabled={!props.query.length}
+                   onPress={props.clearQuery}
+                   style={[sharedStyles.dynamicTextColor, {fontSize: baseFontSize * 2}]} />
     </Item>
   );
 };
@@ -73,9 +71,12 @@ const loadingIndicatorStyles = StyleSheet.create({
   },
 });
 
-const LoadingIndicator = () => (
+type LoadingIndicatorProps = {
+  disabled: boolean;
+};
+const LoadingIndicator = (props: LoadingIndicatorProps) => (
   <View style={loadingIndicatorStyles.loadingSpinner}>
-    <ActivityIndicator size="small" />
+    <ActivityIndicator style={props.disabled ? {opacity: 0} : null} size="small" />
   </View>
 );
 
