@@ -5,7 +5,6 @@ import {
   setQueryAndSearch,
   setFiltersAndSearch,
   setFiltersVisible,
-  setCardSize,
   setIsLoading,
   toggleFiltersVisible,
   clearQuery,
@@ -20,7 +19,6 @@ const mapStateToProps = (state: GlobalState): any => {
     query: state.query,
     filters: state.filters,
     results: state.results.map(index => state.movies[index]),
-    cardSize: state.cardSize,
     filtersVisible: state.filtersVisible,
     noMoreResults: state.noMoreResults,
     isLoading: state.isLoading,
@@ -31,7 +29,6 @@ const mapDispatchToProps = {
   setQueryAndSearch,
   setFiltersAndSearch,
   setFiltersVisible,
-  setCardSize,
   setIsLoading,
   toggleFiltersVisible,
   clearQuery,
@@ -53,7 +50,6 @@ const SearchPageContainer = (props: SearchPageContainerProps) => {
     <SearchPage query={props.query}
                 filters={props.filters}
                 results={props.results}
-                cardSize={props.cardSize}
                 filtersVisible={props.filtersVisible}
                 loadMore={props.loadMoreResults}
                 noMoreResults={props.noMoreResults}
@@ -62,7 +58,6 @@ const SearchPageContainer = (props: SearchPageContainerProps) => {
                 setQuery={props.setQueryAndSearch}
                 setFilters={props.setFiltersAndSearch}
                 setFiltersVisible={props.setFiltersVisible}
-                setCardSize={props.setCardSize}
                 setIsLoading={props.setIsLoading}
                 toggleFiltersVisible={props.toggleFiltersVisible}
                 clearQuery={props.clearQuery}

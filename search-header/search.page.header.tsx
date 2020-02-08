@@ -1,6 +1,6 @@
 import React from 'react';
-import {CardSize, GlobalState} from '../models';
-import {Button, Icon, Text, View} from 'native-base';
+import {GlobalState} from '../models';
+import {Text, View} from 'native-base';
 import {Platform} from 'react-native';
 import {
   baseFontSize,
@@ -12,7 +12,7 @@ import RefreshCacheButton from './refresh-cache-button';
 import CameraButton from './camera-button';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import {connect} from 'react-redux';
-import {clearMovieCache, toggleCardSize, setQuery} from '../redux/actions';
+import {clearMovieCache, setQuery} from '../redux/actions';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import TabletHeaderInputs from '../search/tablet-header-inputs';
 
@@ -40,11 +40,10 @@ const dynamicStyleSheet = new DynamicStyleSheet({
 
 const mapStateToProps = (state: GlobalState) => {
   return {
-    cardSize: state.cardSize,
     needsToDownloadMovies: !state.movies?.length
   };
 };
-const mapDispatchToProps = {clearMovieCache, toggleCardSize, setQuery};
+const mapDispatchToProps = {clearMovieCache, setQuery};
 
 type SearchPageHeaderProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 
@@ -61,26 +60,10 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => {
       ) : null}
       <View style={searchPageHeaderStyles.centerStyle}>
         <RefreshCacheButton onPress={props.clearMovieCache} />
-        <SizeButton cardSize={props.cardSize} onPress={props.toggleCardSize}/>
         <CameraButton />
       </View>
     </View>
   )
-};
-
-type SizeButtonProps = {
-  cardSize: CardSize;
-  onPress: () => void;
-}
-
-const SizeButton = (props: SizeButtonProps) => {
-  const iconName = props.cardSize === 0 ? 'th-large' : 'th-list';
-  return (
-    <Button onPress={props.onPress}
-            info transparent large>
-      <Icon type="FontAwesome5" name={iconName} />
-    </Button>
-  );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SearchPageHeader);

@@ -1,18 +1,9 @@
-import {CardSize, GlobalState, Movie, MovieFilters} from '../models';
+import {GlobalState, Movie, MovieFilters} from '../models';
 import {ActionAndValue} from './actions';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Reducer} from 'redux';
 import {debounce} from 'throttle-debounce';
 import {tabletMode} from '../styles';
-
-const defaultCardSize: CardSize = 0;
-// const cardSizePrefName = 'cardSizePref';
-// const getSavedCardSizePref = async (): Promise<CardSize> => {
-//   const savedPrefString = await AsyncStorage.getItem(cardSizePrefName);
-//   if (savedPrefString) {
-//     return parseInt(JSON.parse(savedPrefString), 10) as CardSize;
-//   } else return defaultCardSize;
-// };
 
 /*
  * Todo
@@ -36,7 +27,6 @@ export const defaultFilters: MovieFilters = {
 };
 
 const initialState: GlobalState = {
-  cardSize: tabletMode() ? 1 : defaultCardSize,
   filters: Object.assign({}, defaultFilters),
   filtersVisible: false,
   noMoreResults: false,
@@ -84,15 +74,6 @@ const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, di
       return newState;
     case 'SET_RESULTS':
       newState = Object.assign({}, state, {results: dispatch.value});
-      cacheState(newState);
-      return newState;
-    case 'SET_CARD_SIZE':
-      newState = Object.assign({}, state, {cardSize: dispatch.value});
-      cacheState(newState);
-      return newState;
-    case 'TOGGLE_CARD_SIZE':
-      const cardSize = state.cardSize === 0 ? 1 : 0;
-      newState = Object.assign({}, state, {cardSize});
       cacheState(newState);
       return newState;
     case 'SET_FILTERS':

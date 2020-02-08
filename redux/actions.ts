@@ -1,5 +1,5 @@
 import {ActionType} from './definitions';
-import {CardSize, GlobalState, Movie, MovieFilters} from '../models';
+import {GlobalState, Movie, MovieFilters} from '../models';
 import {searchMovies} from '../store';
 import {debounce} from 'throttle-debounce';
 import {anyValueTruthy} from '../utils';
@@ -117,14 +117,6 @@ export function setMovies(movies: Movie[]): ActionAndValue {
   return {type: 'SET_MOVIES', value: movies};
 }
 
-export function setCardSize(cardSize: CardSize): ActionAndValue {
-  return {type: 'SET_CARD_SIZE', value: cardSize};
-}
-
-export function toggleCardSize(): ActionAndValue {
-  return {type: 'TOGGLE_CARD_SIZE', value: null}
-}
-
 export function setIsLoading(isLoading: boolean): ActionAndValue {
   return {type: 'SET_LOADING', value: isLoading};
 }
@@ -158,7 +150,6 @@ export function searchByBarcode(barcode: string) {
   return async function (dispatch: Function) {
     dispatch(setIsLoading(true));
     dispatch(clearFilters());
-    dispatch(setCardSize(1));
     const title = await getMovieTitleFromBarcode(barcode)
     if (title) dispatch(setQueryAndSearch(title));
     else {

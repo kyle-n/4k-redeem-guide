@@ -1,5 +1,5 @@
 import React from 'react';
-import {CardSize, Movie} from '../../models';
+import {Movie} from '../../models';
 import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {baseFontSize, sharedDynamicStyleSheet, tabletMode} from '../../styles';
@@ -33,7 +33,6 @@ export const getMovieKey = (movie: Movie): string => {
 
 type ResultsBoxProps = {
   results: Movie[];
-  cardSize: CardSize;
   noMoreResults: boolean;
   loadMore: () => void;
   showNoResultsMessage: boolean;

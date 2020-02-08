@@ -1,18 +1,17 @@
 import React from 'react';
-import {CardSize, Movie} from '../../../models';
+import {Movie} from '../../../models';
 import {Card} from 'native-base';
 import {StyleSheet} from 'react-native';
 import MovieCardBody from './movie-card-body';
 import MovieCardHeader from './movie-card-header';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {baseFontSize, darkLightGray, sharedDynamicStyleSheet, slideFromUnder350} from '../../../styles';
+import {darkLightGray, sharedDynamicStyleSheet, slideFromUnder350} from '../../../styles';
 import {getMovieImage} from '../../../store/tmdb.connector';
 import * as Animatable from 'react-native-animatable';
 
 type MovieCardProps = {
   movie: Movie;
-  cardSize: CardSize;
   width?: number;
 };
 type MovieCardState = {
@@ -26,7 +25,7 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
     super(props);
 
     this.state = {
-      cardBodyOpen: props.cardSize > 0,
+      cardBodyOpen: false,
       backgroundImgUrl: '',
       backgroundImgLoaded: false
     };
@@ -38,12 +37,6 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
       if (url) update.backgroundImgUrl = url;
       this.setState(update);
     });
-  }
-
-  componentDidUpdate(prevProps: Readonly<MovieCardProps>): void {
-    if (prevProps !== this.props) {
-      this.setState({cardBodyOpen: this.props.cardSize > 0})
-    }
   }
 
   toggleCardDetailsOpen = (): void => {
