@@ -46,6 +46,10 @@ const presetSearches: PresetSearch[] = [
 			amazonVideoUhd: false,
 			microsoftUhd: false
 		}
+	},
+	{
+		title: 'Movies about a good liar',
+		query: 'The Good Liar'
 	}
 ];
 
