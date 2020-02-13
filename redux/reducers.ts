@@ -54,7 +54,12 @@ export const getCachedState = async (): Promise<GlobalState | null> => {
       const cachedDate = new Date(parseInt(cachedDateString));
       if (today.getTime() - cachedDate.getTime() < 604800 * 1000) { // 7 days
         const state: GlobalState = JSON.parse(cachedStateString);
-        state.isLoading = false; // should always be reset
+
+        // should always be reset
+        state.isLoading = false;
+        state.filtersVisible = false;
+        state.linksModalVisible = false;
+
         return state;
       } else return null;
     } else return null;

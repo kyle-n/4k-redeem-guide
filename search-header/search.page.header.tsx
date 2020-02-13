@@ -12,7 +12,7 @@ import RefreshCacheButton from './refresh-cache-button';
 import CameraButton from './camera-button';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import {connect} from 'react-redux';
-import {clearMovieCache, setQuery} from '../redux/actions';
+import {clearMovieCache, setQuery, toggleLinksModalVisible} from '../redux/actions';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import TabletHeaderInputs from '../search/tablet-header-inputs';
 import RedeemLinksButton from './redeem-links-button';
@@ -44,7 +44,7 @@ const mapStateToProps = (state: GlobalState) => {
     needsToDownloadMovies: !state.movies?.length
   };
 };
-const mapDispatchToProps = {clearMovieCache, setQuery};
+const mapDispatchToProps = {clearMovieCache, setQuery, toggleLinksModalVisible};
 
 type SearchPageHeaderProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 
@@ -60,7 +60,7 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => {
         <TabletHeaderInputs />
       ) : null}
       <View style={searchPageHeaderStyles.centerStyle}>
-        <RedeemLinksButton />
+        <RedeemLinksButton onPressOnTablet={props.toggleLinksModalVisible} />
         <RefreshCacheButton onPress={props.clearMovieCache} />
         <CameraButton />
       </View>
