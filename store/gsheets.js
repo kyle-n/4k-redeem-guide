@@ -115,7 +115,15 @@ export var getWorksheet;
       if (cell.row > 2) {
         const row = bodyByRow[cell.row] || createRowFromHeaders(headers);
         const key = headersByCol[cell.col];
-        row[key] = cell.value;
+        let val = cell.value;
+        const prevRowVal = row[key];
+        if (
+          key === 'Title' && prevRowVal && prevRowVal.includes && prevRowVal.includes(cell.value) &&
+          prevRowVal.toLowerCase().includes('the') && prevRowVal.length > cell.value.length
+        ) {
+          val = prevRowVal;
+        }
+        row[key] = val;
         bodyByRow[cell.row] = row;
       }
     }
