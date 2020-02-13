@@ -1,8 +1,11 @@
 import React from 'react';
 import {Button, Icon, Text, View} from 'native-base';
-import {StyleSheet} from 'react-native';
+import {Platform, StyleSheet} from 'react-native';
 import {InfoLink} from '../search/results/movie-card/movie-card-text-info';
 import {baseFontSize} from '../styles';
+import {CustomTabs} from 'react-native-custom-tabs';
+import SafariView from 'react-native-safari-view';
+import {openInAppBrowser} from '../shared-components';
 
 type RedeemLinksProps = {};
 
@@ -28,13 +31,13 @@ const links: Array<{title: string, href: string}> = [
   {title: 'Microsoft', href: ''}
 ];
 
-const RedeemLinks = (props: RedeemLinksProps) => {
+const RedeemLinks = () => {
   return (
     <View style={redeemPageStyles.container}>
       {links.map(link => {
         return (
           <View key={link.title} style={redeemPageStyles.buttonBox}>
-            <Button
+            <Button onPress={() => openInAppBrowser(link.href)}
                     info rounded iconLeft>
               <Icon name="external-link" type="EvilIcons" />
               <Text>{link.title}</Text>
@@ -43,7 +46,7 @@ const RedeemLinks = (props: RedeemLinksProps) => {
         );
       })}
     </View>
-  )
+  );
 };
 
 export default RedeemLinks;

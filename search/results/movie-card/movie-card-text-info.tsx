@@ -7,6 +7,7 @@ import {CustomTabs} from 'react-native-custom-tabs';
 import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet} from '../../../styles';
 import SafariView from 'react-native-safari-view';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {openInAppBrowser} from '../../../shared-components';
 
 const movieCardBodyStyles = StyleSheet.create({
   label: {
@@ -93,19 +94,9 @@ type InfoLinkProps = {
 };
 
 const InfoLink = (props: InfoLinkProps) => {
-  const openLink = (): void => {
-    if (Platform.OS === 'android') {
-      CustomTabs.openURL(props.link, {
-        enableUrlBarHiding: true,
-        showPageTitle: true,
-      });
-    } else if (Platform.OS === 'ios') {
-      SafariView.show({url: props.link});
-    }
-  };
   return (
     <View style={{alignSelf: 'flex-start', display: 'flex', flexDirection: 'row'}}>
-      <Button onPress={openLink}
+      <Button onPress={() => openInAppBrowser(props.link)}
               info rounded small
               style={props.addVerticalMargin ? {marginVertical: 0.5 * baseFontSize} : null}>
         <Text>
