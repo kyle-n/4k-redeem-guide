@@ -16,7 +16,7 @@ import {LoadMoreButton} from './results/results-box';
 import {NoResultsMessage} from './results/results-box';
 import {Dimensions} from 'react-native';
 
-const dynamicStyleSheet = new DynamicStyleSheet({
+export const pageDynamicStyleSheet = new DynamicStyleSheet({
   content: {
     alignItems: 'center'
   },
@@ -75,7 +75,7 @@ const SearchPageMarkup = (props: SearchPageMarkupProps) => {
     }
   };
 
-  const movieCardStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  const movieCardStyles = useDynamicStyleSheet(pageDynamicStyleSheet);
 
   // calculate columns in flatList
   const maxCardWidth = 400;

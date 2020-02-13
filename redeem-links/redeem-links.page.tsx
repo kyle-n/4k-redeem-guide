@@ -1,11 +1,10 @@
 import React from 'react';
 import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
-import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
+import {baseFontSize} from '../styles';
 import {openInAppBrowser} from '../shared-components';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-
-type RedeemLinksProps = {};
+import {pageDynamicStyleSheet} from '../search/search.page';
 
 const redeemPageStyles = StyleSheet.create({
   container: {
@@ -30,9 +29,12 @@ const links: Array<{title: string, href: string}> = [
 ];
 
 const RedeemLinks = () => {
-  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  const pageStyles = useDynamicStyleSheet(pageDynamicStyleSheet);
   return (
-    <View style={[redeemPageStyles.container, sharedStyles.dynamicBackgroundColor]}>
+    <View style={[
+      redeemPageStyles.container,
+      pageStyles.specialBackground
+    ]}>
       {links.map(link => {
         return (
           <View key={link.title} style={redeemPageStyles.buttonBox}>
