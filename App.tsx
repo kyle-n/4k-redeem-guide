@@ -10,6 +10,7 @@ import reducers, {getCachedState} from './redux/reducers';
 import LoadingPageContainer from './loading/loading.page.container';
 import SearchPageContainer from './search/search.page.container';
 import RedeemLinksPageContainer from './redeem-links/redeem-links.page.container';
+import RedeemLinksHeader from './redeem-links/redeem-links.page.header';
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -33,7 +34,8 @@ const MainNavigator = createStackNavigator({
   RedeemLinksPage: {
     screen: RedeemLinksPageContainer,
     navigationOptions: {
-      headerTitle: 'Redeem codes'
+      headerTitle: 'Redeem codes',
+      header: () => (<RedeemLinksHeader />)
     }
   }
 });

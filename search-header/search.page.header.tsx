@@ -17,7 +17,7 @@ import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-nativ
 import TabletHeaderInputs from '../search/tablet-header-inputs';
 import RedeemLinksButton from './redeem-links-button';
 
-const dynamicStyleSheet = new DynamicStyleSheet({
+export const headerDynamicSheet = new DynamicStyleSheet({
   container: {
     alignSelf: 'stretch',
     display: 'flex',
@@ -49,7 +49,7 @@ const mapDispatchToProps = {clearMovieCache, setQuery};
 type SearchPageHeaderProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 
 const SearchPageHeader = (props: SearchPageHeaderProps) => {
-  const searchPageHeaderStyles = useDynamicStyleSheet(dynamicStyleSheet);
+  const searchPageHeaderStyles = useDynamicStyleSheet(headerDynamicSheet);
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return props.needsToDownloadMovies ? (<View></View>) : (
     <View style={[searchPageHeaderStyles.container, sharedStyles.dynamicBackgroundColor]}>
