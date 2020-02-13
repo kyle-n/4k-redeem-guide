@@ -64,7 +64,8 @@ export const searchMovies = (
       transformToMatchableText(movies[i].title).includes(transformedQuery) ||
       transformToMatchableText(movies[i].studio).includes(transformedQuery) ||
       transformToMatchableText(movies[i].maCodeLocation).includes(transformedQuery) ||
-      transformToMatchableText(movies[i].vuduFandangoCodeLocation).includes(transformedQuery)
+      transformToMatchableText(movies[i].vuduFandangoCodeLocation).includes(transformedQuery) ||
+      (movies[i].year && transformToMatchableText((movies[i].year as number).toString()).includes(transformedQuery))
   ) {
       results.push(i);
       if (results.length === limit) break;
