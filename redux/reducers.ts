@@ -34,7 +34,8 @@ const initialState: GlobalState = {
   movies: [],
   offset: 0,
   query: '',
-  results: []
+  results: [],
+  linksModalVisible: false
 };
 
 const timestampMovieCache = (): void => {
@@ -99,6 +100,10 @@ const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, di
       return newState;
     case 'SET_QUERY':
       newState = Object.assign({}, state, {query: dispatch.value});
+      cacheState(newState);
+      return newState;
+    case 'TOGGLE_LINKS_MODAL_VISIBLE':
+      newState = Object.assign({}, state, {linksModalVisible: !state.linksModalVisible});
       cacheState(newState);
       return newState;
     default:

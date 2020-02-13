@@ -1,9 +1,9 @@
 import React from 'react';
 import {Modal, StyleSheet} from 'react-native';
-import {View} from 'native-base';
 import RedeemLinks from './redeem-links.page';
 import {baseFontSize} from '../styles';
 import RedeemLinksHeader from './redeem-links.page.header';
+import {connect} from 'react-redux';
 
 const modalStyles = StyleSheet.create({
   container: {

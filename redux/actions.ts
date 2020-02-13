@@ -162,3 +162,7 @@ export function searchByBarcode(barcode: string) {
     }
   }
 }
+
+export function toggleLinksModalVisible(): ActionAndValue {
+  return {type: 'TOGGLE_LINKS_MODAL_VISIBLE', value: null};
+}
