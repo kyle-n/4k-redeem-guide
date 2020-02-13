@@ -9,6 +9,7 @@ import {applyMiddleware, createStore, Store} from 'redux';
 import reducers, {getCachedState} from './redux/reducers';
 import LoadingPageContainer from './loading/loading.page.container';
 import SearchPageContainer from './search/search.page.container';
+import RedeemLinksPageContainer from './redeem-links/redeem-links.page.container';
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -27,6 +28,12 @@ const MainNavigator = createStackNavigator({
     screen: CameraPage,
     navigationOptions: {
       headerShown: false
+    }
+  },
+  RedeemLinksPage: {
+    screen: RedeemLinksPageContainer,
+    navigationOptions: {
+      
     }
   }
 });
