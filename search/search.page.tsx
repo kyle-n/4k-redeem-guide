@@ -103,7 +103,6 @@ const SearchPageMarkup = (props: SearchPageMarkupProps) => {
                       );
                     }}
                     key={cols}
-                    stickyHeaderIndices={tabletMode() ? [] : [0]}
                     keyExtractor={getMovieKey}
                     numColumns={cols}
                     columnWrapperStyle={cols > 1 ? {display: 'flex', flexDirection: 'row', flexWrap: 'wrap'} : null}
