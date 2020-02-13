@@ -2,12 +2,15 @@ import React from 'react';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {headerDynamicSheet} from '../search-header/search.page.header';
 import {Button, Icon, Text, View} from 'native-base';
-import {sharedDynamicStyleSheet} from '../styles';
+import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
 import {Platform, StyleSheet} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 
-type RedeemLinksHeaderProps = NavigationStackScreenProps;
+type RedeemLinksHeaderProps = NavigationStackScreenProps & {
+  isModal?: boolean;
+  onPressClose: () => void | undefined;
+};
 
 const RedeemLinksHeader = (props: RedeemLinksHeaderProps) => {
   const headerStyles = useDynamicStyleSheet(headerDynamicSheet);
@@ -16,24 +19,49 @@ const RedeemLinksHeader = (props: RedeemLinksHeaderProps) => {
   return (
     <View style={[
       headerStyles.container,
-      sharedStyles.dynamicColor
+      sharedStyles.dynamicColor,
+      headerStyles.centerStyle
     ]}>
-      <View style={headerStyles.centerStyle}>
-        <BackButton onPress={goBack} />
-      </View>
+      {props.isModal ? (<HiddenBackButton />) : (
+        <View style={headerStyles.centerStyle}>
+          <BackButton onPress={goBack} />
+        </View>
+      )}
       <View style={headerStyles.centerStyle}>
         <Text style={headerStyles.pageTitle}>Redeem links</Text>
       </View>
-      <View style={{opacity: 0}}>
-        <BackButton />
-      </View>
+      {props.isModal ? (
+          <CloseButton onPress={props.onPressClose} />
+      ) : (
+        <HiddenBackButton />
+      )}
     </View>
   );
 };
 
+type CloseButtonProps = {
+  onPress: () => void | undefined;
+};
+
+const CloseButton = (props: CloseButtonProps) => (
+  <View style={{margin: baseFontSize}}>
+    <Button onPress={props.onPress}
+            warning rounded large iconLeft>
+      <Icon name="ios-close" android="md-close" ios="ios-close" />
+      <Text>Close</Text>
+    </Button>
+  </View>
+);
+
 type BackButtonProps = {
   onPress?: () => void;
 }
+
+const HiddenBackButton = () => (
+  <View style={{opacity: 0}}>
+    <BackButton />
+  </View>
+)
 
 const BackButton = (props: BackButtonProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);

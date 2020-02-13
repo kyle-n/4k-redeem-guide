@@ -13,10 +13,13 @@ const modalStyles = StyleSheet.create({
 });
 
 const RedeemLinksModal = () => {
+  const closeModal = () => {
+    console.log('closed')
+  };
   return (
     <Modal animationType="slide" transparent={false} visible={true}
            presentationStyle="formSheet">
-      <RedeemLinksHeader />
+      <RedeemLinksHeader isModal={true} onPressClose={closeModal} />
       <RedeemLinks />
     </Modal>
   )
