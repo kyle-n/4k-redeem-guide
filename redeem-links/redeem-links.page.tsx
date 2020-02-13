@@ -1,8 +1,9 @@
 import React from 'react';
 import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
-import {baseFontSize} from '../styles';
+import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
 import {openInAppBrowser} from '../shared-components';
+import {useDynamicStyleSheet} from 'react-native-dark-mode';
 
 type RedeemLinksProps = {};
 
@@ -29,8 +30,9 @@ const links: Array<{title: string, href: string}> = [
 ];
 
 const RedeemLinks = () => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <View style={redeemPageStyles.container}>
+    <View style={[redeemPageStyles.container, sharedStyles.dynamicBackgroundColor]}>
       {links.map(link => {
         return (
           <View key={link.title} style={redeemPageStyles.buttonBox}>
