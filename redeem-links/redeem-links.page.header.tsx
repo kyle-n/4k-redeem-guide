@@ -7,12 +7,6 @@ import {Platform, StyleSheet} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 
-const redeemStyles = StyleSheet.create({
-  container: {
-    justifyContent: 'flex-start'
-  }
-});
-
 type RedeemLinksHeaderProps = NavigationStackScreenProps;
 
 const RedeemLinksHeader = (props: RedeemLinksHeaderProps) => {
@@ -22,8 +16,7 @@ const RedeemLinksHeader = (props: RedeemLinksHeaderProps) => {
   return (
     <View style={[
       headerStyles.container,
-      sharedStyles.dynamicColor,
-      redeemStyles.container
+      sharedStyles.dynamicColor
     ]}>
       <View style={headerStyles.centerStyle}>
         <BackButton onPress={goBack} />
@@ -31,18 +24,21 @@ const RedeemLinksHeader = (props: RedeemLinksHeaderProps) => {
       <View style={headerStyles.centerStyle}>
         <Text style={headerStyles.pageTitle}>Redeem links</Text>
       </View>
+      <View style={{opacity: 0}}>
+        <BackButton />
+      </View>
     </View>
   );
 };
 
 type BackButtonProps = {
-  onPress: () => void;
+  onPress?: () => void;
 }
 
 const BackButton = (props: BackButtonProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <Button onPress={props.onPress}
+    <Button onPress={props.onPress ? props.onPress : undefined}
             dark transparent large iconLeft={Platform.OS === 'ios'}>
       <Icon name="ios-arrow-back" ios="ios-arrow-back" android="md-arrow-back"
             style={[sharedStyles.dynamicTextColor]} />
