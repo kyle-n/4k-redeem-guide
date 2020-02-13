@@ -15,6 +15,7 @@ import {connect} from 'react-redux';
 import {clearMovieCache, setQuery} from '../redux/actions';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import TabletHeaderInputs from '../search/tablet-header-inputs';
+import RedeemLinksButton from './redeem-links-button';
 
 const dynamicStyleSheet = new DynamicStyleSheet({
   container: {
@@ -59,6 +60,7 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => {
         <TabletHeaderInputs />
       ) : null}
       <View style={searchPageHeaderStyles.centerStyle}>
+        <RedeemLinksButton />
         <RefreshCacheButton onPress={props.clearMovieCache} />
         <CameraButton />
       </View>

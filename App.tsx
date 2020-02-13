@@ -33,7 +33,7 @@ const MainNavigator = createStackNavigator({
   RedeemLinksPage: {
     screen: RedeemLinksPageContainer,
     navigationOptions: {
-      
+      headerTitle: 'Redeem codes'
     }
   }
 });
