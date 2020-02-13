@@ -1,11 +1,9 @@
 import React from 'react';
 import {Button, CardItem, Icon, Text, View} from 'native-base';
-import {Platform, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import isUrl from 'is-url';
 import extractDomain from 'extract-domain';
-import {CustomTabs} from 'react-native-custom-tabs';
 import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet} from '../../../styles';
-import SafariView from 'react-native-safari-view';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {openInAppBrowser} from '../../../shared-components';
 

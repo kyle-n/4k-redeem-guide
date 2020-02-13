@@ -1,10 +1,7 @@
 import React from 'react';
 import {Button, Icon, Text, View} from 'native-base';
-import {Platform, StyleSheet} from 'react-native';
-import {InfoLink} from '../search/results/movie-card/movie-card-text-info';
+import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
-import {CustomTabs} from 'react-native-custom-tabs';
-import SafariView from 'react-native-safari-view';
 import {openInAppBrowser} from '../shared-components';
 
 type RedeemLinksProps = {};
@@ -23,12 +20,12 @@ const redeemPageStyles = StyleSheet.create({
 });
 
 const links: Array<{title: string, href: string}> = [
-  {title: 'Movies Anywhere', href: ''},
-  {title: 'iTunes', href: ''},
-  {title: 'Vudu', href: ''},
-  {title: 'FandangoNOW', href: ''},
-  {title: 'Amazon Video', href: ''},
-  {title: 'Microsoft', href: ''}
+  {title: 'Movies Anywhere', href: 'https://moviesanywhere.com/redeem'},
+  {title: 'MovieRedeem.com (LionsGate)', href: 'https://movieredeem.com/'},
+  {title: 'Paramount Digital Copy', href: 'https://www.paramountdigitalcopy.com/'},
+  {title: 'Vudu', href: 'https://www.vudu.com/content/redeem.html?pn=generic'},
+  {title: 'FandangoNOW', href: 'https://www.fandangonow.com/redeem'},
+  {title: 'Microsoft', href: 'http://www.microsoft.com/redeem'},
 ];
 
 const RedeemLinks = () => {
