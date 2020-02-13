@@ -145,6 +145,8 @@ export function downloadMovies() {
 export function clearMovieCache() {
   return function(dispatch: Function) {
     dispatch(setResults([]));
+    dispatch(clearFilters());
+    dispatch(clearQuery());
     dispatch(setOffset(0));
     dispatch(setMovies([]))
   }
