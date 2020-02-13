@@ -14,7 +14,10 @@ import {resultsContainerStyles} from './results/results-box';
 import {getMovieKey} from './results/results-box';
 import {LoadMoreButton} from './results/results-box';
 import {NoResultsMessage} from './results/results-box';
-import {Dimensions} from 'react-native';
+import {Dimensions, Modal} from 'react-native';
+import RedeemLinksPageContainer from '../redeem-links/redeem-links.page.container';
+import RedeemLinks from '../redeem-links/redeem-links.page';
+import RedeemLinksModal from '../redeem-links/modal';
 
 export const pageDynamicStyleSheet = new DynamicStyleSheet({
   content: {
@@ -92,6 +95,7 @@ const SearchPageMarkup = (props: SearchPageMarkupProps) => {
     <View style={[movieCardStyles.container, movieCardStyles.specialBackground] as any[]}>
       <View style={movieCardStyles.content}>
         <View style={[resultsContainerStyles.containerWithButton]}>
+          <RedeemLinksModal />
           <FlatList data={props.parentProps.results}
                     style={{alignSelf: 'stretch'}}
                     onLayout={props.onListRender}
