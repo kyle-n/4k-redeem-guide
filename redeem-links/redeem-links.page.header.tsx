@@ -3,9 +3,10 @@ import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {headerDynamicSheet} from '../search-header/search.page.header';
 import {Button, Icon, Text, View} from 'native-base';
 import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
-import {Platform, StyleSheet} from 'react-native';
+import {Platform} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
+import {LargeXIcon} from '../shared-components';
 
 type RedeemLinksHeaderProps = NavigationStackScreenProps & {
   isModal?: boolean;
@@ -43,25 +44,27 @@ type CloseButtonProps = {
   onPress: () => void | undefined;
 };
 
-const CloseButton = (props: CloseButtonProps) => (
-  <View style={{margin: baseFontSize}}>
-    <Button onPress={props.onPress}
-            warning rounded large iconLeft>
-      <Icon name="ios-close" android="md-close" ios="ios-close" />
-      <Text>Close</Text>
-    </Button>
-  </View>
-);
+const CloseButton = (props: CloseButtonProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <View style={{margin: baseFontSize}}>
+      <Button onPress={props.onPress}
+              warning large bordered style={sharedStyles.squareEntity}>
+        <LargeXIcon />
+      </Button>
+    </View>
+  );
+};
 
 type BackButtonProps = {
   onPress?: () => void;
-}
+};
 
 const HiddenBackButton = () => (
   <View style={{opacity: 0}}>
     <BackButton />
   </View>
-)
+);
 
 const BackButton = (props: BackButtonProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);

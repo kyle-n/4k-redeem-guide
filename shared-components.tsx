@@ -106,6 +106,5 @@ export const openInAppBrowser = (href: string): void => {
 };
 
 export const LargeXIcon = () => (
-  <Icon name="md-close" ios="ios-close" android="md-close"
-        style={{fontSize: baseFontSize * 2, alignSelf: 'center'}} />
+  <Icon name="md-close" style={{fontSize: baseFontSize * 2, alignSelf: 'center'}} />
 );
