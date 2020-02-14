@@ -5,7 +5,7 @@ import BooleanFilter from './boolean-filter';
 import {GestureResponderEvent, StyleSheet} from 'react-native';
 import {baseFontSize, lightGray, sharedDynamicStyleSheet, slideFromUnder350} from '../../styles';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {DropdownIcon} from '../../shared-components';
+import {DropdownIcon, LargeXIcon} from '../../shared-components';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import * as Animatable from 'react-native-animatable';
 
@@ -204,8 +204,7 @@ const ResetFilterButton = (props: ResetFilterButtonProps) => (
               transparent={props.disabled} rounded={!props.disabled}
               icon iconRight style={resetFilterButtonStyles.button}>
         <Text>Clear filters</Text>
-        <Icon name="md-close" ios="ios-close" android="md-close"
-              style={{fontSize: baseFontSize * 2, alignSelf: 'center'}} />
+        <LargeXIcon />
       </Button>
     </TouchableOpacity>
   </View>

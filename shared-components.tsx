@@ -104,3 +104,8 @@ export const openInAppBrowser = (href: string): void => {
     SafariView.show({url: href});
   }
 };
+
+export const LargeXIcon = () => (
+  <Icon name="md-close" ios="ios-close" android="md-close"
+        style={{fontSize: baseFontSize * 2, alignSelf: 'center'}} />
+);
