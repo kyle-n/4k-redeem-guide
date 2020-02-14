@@ -94,17 +94,6 @@ export const DropdownIcon = (props: DropdownIconProps) => {
   );
 };
 
-export const openInAppBrowser = (href: string): void => {
-  if (Platform.OS === 'android') {
-    CustomTabs.openURL(href, {
-      enableUrlBarHiding: true,
-      showPageTitle: true,
-    });
-  } else if (Platform.OS === 'ios') {
-    SafariView.show({url: href});
-  }
-};
-
 export const LargeXIcon = () => (
   <Icon name="md-close" style={{fontSize: baseFontSize * 2, alignSelf: 'center'}} />
 );

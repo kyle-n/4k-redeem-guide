@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
-import {openInAppBrowser} from '../shared-components';
+import {openInAppBrowser} from '../utils';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {pageDynamicStyleSheet} from '../search/search.page';
 
