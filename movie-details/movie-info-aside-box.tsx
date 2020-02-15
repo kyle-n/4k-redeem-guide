@@ -7,8 +7,11 @@ import NumberFormat from 'react-number-format';
 import {StyleSheet} from 'react-native';
 
 const asideStyles = StyleSheet.create({
-  container: {
-    // fontSize: baseFontSize
+  regularText: {
+    fontSize: baseFontSize * 2
+  },
+  taglineText: {
+    fontSize: baseFontSize * 3.5
   }
 });
 
@@ -23,10 +26,9 @@ const MovieInfoAsideBox = (props: MovieInfoAsideBoxProps) => {
     <View style={[
       sharedStyles.dynamicColor,
       sharedStyles.squareEntity,
-      asideStyles.container
     ]}>
       {props.details.tagline ? (
-        <Text style={{fontSize: 2 * baseFontSize}}>
+        <Text style={asideStyles.taglineText}>
           {props.details.tagline}
         </Text>
       ) : null}
@@ -60,18 +62,37 @@ const AsideTextInfo = (props: AsideTextInfoProps) => {
   }
   return (
     <Text>
-      <Text style={{fontWeight: 'bold'}}>
-        {props.property}
-      </Text>
-      <Text>
+      <RegularText text={props.property} style={[{fontWeight: 'bold'}]} />
+      <Text style={[
+        asideStyles.regularText
+      ]}>
         &nbsp;
         {props.currency ? (
+          // @ts-ignore
           <NumberFormat prefix="$" suffix=" million" value={roundedVal}
                         thousandSeparator={true} displayType="text"
-                        renderText={num => <Text>{num}</Text>}
+                        renderText={num => <RegularText text={num} />}
           />
         ) : props.info}
       </Text>
+    </Text>
+  );
+};
+
+type RegularTextProps = {
+  text: string;
+  style?: any[];
+}
+
+const RegularText = (props: RegularTextProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  let componentStyle = [sharedStyles.dynamicColor, asideStyles.regularText];
+  if (props.style?.length) {
+    componentStyle = componentStyle.concat(props.style);
+  }
+  return (
+    <Text style={componentStyle}>
+      {props.text}
     </Text>
   );
 };
