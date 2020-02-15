@@ -11,6 +11,7 @@ import LoadingPageContainer from './loading/loading.page.container';
 import SearchPageContainer from './search/search.page.container';
 import RedeemLinksPageContainer from './redeem-links/redeem-links.page.container';
 import RedeemLinksHeader from './redeem-links/redeem-links.page.header';
+import MovieDetailsPageContainer from './movie-details/movie-details.page.container';
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -36,6 +37,12 @@ const MainNavigator = createStackNavigator({
     navigationOptions: {
       headerTitle: 'Redeem codes',
       header: () => (<RedeemLinksHeader />)
+    }
+  },
+  MovieDetailsPage: {
+    screen: MovieDetailsPageContainer,
+    navigationOptions: {
+      headerTitle: 'Movie details'
     }
   }
 });
