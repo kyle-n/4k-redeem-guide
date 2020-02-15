@@ -2,15 +2,15 @@ import React from 'react';
 import {MovieDetailsResponse} from '../store/tmdb.connector';
 import {Text, View} from 'native-base';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {sharedDynamicStyleSheet} from '../styles';
+import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
+import NumberFormat from 'react-number-format';
+import {StyleSheet} from 'react-native';
 
-const infoPairs: {key: string, property: string, currency?: boolean}[] = [
-  {key: 'release_date', property: 'Release date'},
-  {key: 'overview', property: 'Overview'},
-  {key: 'budget', property: 'Budget', currency: true},
-  {key: 'revenue', property: 'Revenue', currency: true},
-  {key: 'original_language', property: 'Original language'},
-];
+const asideStyles = StyleSheet.create({
+  container: {
+    // fontSize: baseFontSize
+  }
+});
 
 type MovieInfoAsideBoxProps = {
   details: MovieDetailsResponse;
@@ -18,32 +18,37 @@ type MovieInfoAsideBoxProps = {
 
 const MovieInfoAsideBox = (props: MovieInfoAsideBoxProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  const genres: string = props.details.genres.map(genre => genre.name).join(', ');
   return (
     <View style={[
       sharedStyles.dynamicColor,
-      sharedStyles.squareEntity
+      sharedStyles.squareEntity,
+      asideStyles.container
     ]}>
       {props.details.tagline ? (
-        <Text>
+        <Text style={{fontSize: 2 * baseFontSize}}>
           {props.details.tagline}
         </Text>
       ) : null}
-      {infoPairs.map(pair => {
-        // @ts-ignore
-        const info = props.details[pair.key];
-        return (
-          <AsideTextInfo property={pair.property}
-                         key={pair.key}
-                         info={info} />
-        );
-      })}
+      <AsideTextInfo property="Release date" info={props.details.release_date} />
+      {props.details.overview ? (
+        <AsideTextInfo property="Overview" info={props.details.overview} />
+      ) : null}
+      {genres ? (
+        <AsideTextInfo property="Genres" info={genres} />
+      ) : null}
+      {props.details.budget ? (
+        <AsideTextInfo property="Budget" info={props.details.budget} currency={true} />
+      ) : null}
+      <AsideTextInfo property="Revenue" info={props.details.revenue} currency={true} />
+      <AsideTextInfo property="Original language" info={props.details.original_language.toUpperCase()} />
     </View>
   );
 };
 
 type AsideTextInfoProps = {
   property: string;
-  info: string;
+  info: string | number;
   currency?: boolean;
 };
 
@@ -54,7 +59,13 @@ const AsideTextInfo = (props: AsideTextInfoProps) => {
         {props.property}
       </Text>
       <Text>
-        &nbsp; {props.info}
+        &nbsp;
+        {props.currency ? (
+          <Text>{props.info}</Text>
+          // <NumberFormat prefix="$" value={props.info}
+          //               thousandSeparator={true}
+          // />
+        ) : props.info}
       </Text>
     </Text>
   );
