@@ -3,17 +3,14 @@ import {getMovieDetails, MovieDetailsResponse} from '../store/tmdb.connector';
 import {Text, View} from 'native-base';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {sharedDynamicStyleSheet} from '../styles';
+import {LayoutProps} from './movie-details.page';
 
-type SideBoxProps = {
-  title: string;
-  year?: number;
-};
 type SideBoxState = {
   details: MovieDetailsResponse | null;
 };
 
-class SideBox extends React.Component<SideBoxProps, SideBoxState> {
-  constructor(props: SideBoxProps) {
+class TabletLayout extends React.Component<LayoutProps, SideBoxState> {
+  constructor(props: LayoutProps) {
     super(props);
 
     this.state = {
@@ -22,14 +19,14 @@ class SideBox extends React.Component<SideBoxProps, SideBoxState> {
   }
 
   componentDidMount(): void {
-    getMovieDetails(this.props.title, this.props.year).then(details => {
+    getMovieDetails(this.props.movie.title, this.props.movie.year).then(details => {
       this.setState({details});
     });
   }
 
   render() {
     return this.state.details ? (
-      <SideBoxMarkup details={this.state.details} />
+      <TabletLayoutMarkup details={this.state.details} />
     ) : null;
   }
 }
@@ -37,7 +34,7 @@ class SideBox extends React.Component<SideBoxProps, SideBoxState> {
 type SideBoxMarkupProps = {
   details: MovieDetailsResponse;
 };
-const SideBoxMarkup = (props: SideBoxMarkupProps) => {
+const TabletLayoutMarkup = (props: SideBoxMarkupProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={[
@@ -49,4 +46,4 @@ const SideBoxMarkup = (props: SideBoxMarkupProps) => {
   );
 };
 
-export default SideBox;
+export default TabletLayout;
