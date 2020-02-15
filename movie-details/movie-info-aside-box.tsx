@@ -53,6 +53,11 @@ type AsideTextInfoProps = {
 };
 
 const AsideTextInfo = (props: AsideTextInfoProps) => {
+  let roundedVal: number;
+  if (props.currency) {
+    roundedVal = props.info as number / 1000000;
+    roundedVal = Math.round((roundedVal + Number.EPSILON) * 100) / 100;
+  }
   return (
     <Text>
       <Text style={{fontWeight: 'bold'}}>
@@ -61,10 +66,10 @@ const AsideTextInfo = (props: AsideTextInfoProps) => {
       <Text>
         &nbsp;
         {props.currency ? (
-          <Text>{props.info}</Text>
-          // <NumberFormat prefix="$" value={props.info}
-          //               thousandSeparator={true}
-          // />
+          <NumberFormat prefix="$" suffix=" million" value={roundedVal}
+                        thousandSeparator={true} displayType="text"
+                        renderText={num => <Text>{num}</Text>}
+          />
         ) : props.info}
       </Text>
     </Text>
