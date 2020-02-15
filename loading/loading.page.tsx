@@ -52,18 +52,19 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
     });
   };
 
+  private onDownloadAlertCancel = (): void => {
+    this.setState({showDownloadAlert: false, downloading: false, initialRenderDone: true});
+  };
+  private onDownloadAlertConfirm = (): void => {
+    this.setState({showDownloadAlert: false, initialRenderDone: true}, this.downloadMovies);
+  };
+
   render() {
-    const onDownloadAlertCancel = (): void => {
-      this.setState({showDownloadAlert: false, downloading: false, initialRenderDone: true});
-    };
-    const onDownloadAlertConfirm = (): void => {
-      this.setState({showDownloadAlert: false, initialRenderDone: true}, this.downloadMovies);
-    };
 
     return (
       <LoadingPageLayout downloadMovies={this.downloadMovies}
-                         onDownloadAlertCancel={onDownloadAlertCancel}
-                         onDownloadAlertConfirm={onDownloadAlertConfirm}
+                         onDownloadAlertCancel={this.onDownloadAlertCancel}
+                         onDownloadAlertConfirm={this.onDownloadAlertConfirm}
                          downloading={this.state.downloading}
                          showDownloadAlert={this.state.showDownloadAlert}
                          initialRenderDone={this.state.initialRenderDone}
