@@ -32,12 +32,14 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
                      style={props.width ? {width: props.width} : null}
                      useNativeDriver={false}>
       <Card style={[movieCardStyles.card, sharedStyles.squareEntity, sharedStyles.dynamicColor]}>
-        <TouchableOpacity onPress={props.onPressHeader}
-                          activeOpacity={props.backgroundImgUrl ? 0.8 : 0.2}>
-          <MovieCardHeader movie={props.movie}
-                           backgroundImgUrl={props.backgroundImgUrl}
-                           open={props.showCardBody} />
-        </TouchableOpacity>
+        {props.showCardBody ? null : (
+          <TouchableOpacity onPress={props.onPressHeader}
+                            activeOpacity={props.backgroundImgUrl ? 0.8 : 0.2}>
+            <MovieCardHeader movie={props.movie}
+                             backgroundImgUrl={props.backgroundImgUrl}
+                             open={props.showCardBody} />
+          </TouchableOpacity>
+        )}
         {props.showCardBody ? (
           <Animatable.View animation={slideFromUnder350}
                            duration={350}
