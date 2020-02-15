@@ -54,29 +54,36 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
 
 type MovieCardHeaderMarkupProps = {
   parentProps: MovieCardHeaderProps;
+  biggetText?: boolean;
 };
 
 export const MovieCardHeaderMarkup = (props: MovieCardHeaderMarkupProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <CardItem header style={[sharedStyles.squareEntity, {backgroundColor: 'rgba(0,0,0,0)'}]}>
-      <MovieTitle parentProps={props.parentProps} />
+      <MovieTitle parentProps={props.parentProps} biggetText={props.biggetText} />
     </CardItem>
   );
 };
 
-export const MovieTitle = (props: MovieCardHeaderMarkupProps) => {
+const MovieTitle = (props: MovieCardHeaderMarkupProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <Left style={{display: 'flex', flexDirection: 'row'}}>
       <Body style={[{width: '100%', flexGrow: 7}]}>
         <Text>
-          <Text style={[sharedStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
+          <Text style={[
+            sharedStyles.dynamicColor,
+            props.biggetText ? {fontSize: baseFontSize * 3.5} : {fontSize: baseFontSize * 1.5}
+            ]}>
             &nbsp;{props.parentProps.movie.title}&nbsp;
           </Text>
         </Text>
         <Text>
-          <Text note style={[sharedStyles.dynamicColor]}>
+          <Text note style={[
+            sharedStyles.dynamicColor,
+            props.biggetText ? {fontSize: baseFontSize * 2} : null
+          ]}>
             &nbsp;{props.parentProps.movie.studio}
             {props.parentProps.movie.year ? ', ' + props.parentProps.movie.year : null}&nbsp;
           </Text>

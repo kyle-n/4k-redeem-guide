@@ -68,7 +68,7 @@ const layoutStyles = StyleSheet.create({
     paddingBottom: baseFontSize * 4
   },
   innermostTitleContainer: {
-    width: '50%',
+    width: '100%',
     textAlign: 'left'
   }
 });
@@ -110,7 +110,7 @@ const MovieImageSplash = (props: MovieImageSplashProps) => (
     <View style={layoutStyles.imageView}>
       <View style={layoutStyles.movieTitle}>
         <View style={layoutStyles.innermostTitleContainer}>
-          <MovieCardHeaderMarkup parentProps={{movie: props.movie, open: false, backgroundImgUrl: ''}}/>
+          <MovieCardHeaderMarkup parentProps={{movie: props.movie, open: false, backgroundImgUrl: ''}} biggetText={true} />
         </View>
       </View>
     </View>
