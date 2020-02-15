@@ -23,7 +23,7 @@ interface SearchResponse {
   }]
 }
 
-interface MovieDetailsResponse {
+export interface MovieDetailsResponse {
   adult: boolean;
   backdrop_path: string | null;
   budget: number;
