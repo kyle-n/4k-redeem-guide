@@ -9,13 +9,14 @@ import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {darkLightGray, sharedDynamicStyleSheet, slideFromUnder350} from '../../../styles';
 import {getMovieImage} from '../../../store/tmdb.connector';
 import * as Animatable from 'react-native-animatable';
+import {NavigationStackScreenProps} from 'react-navigation-stack';
+import {withNavigation} from 'react-navigation';
 
 type MovieCardProps = {
   movie: Movie;
   width?: number;
-};
+} & NavigationStackScreenProps;
 type MovieCardState = {
-  cardBodyOpen: boolean;
   backgroundImgUrl: string;
   backgroundImgLoaded: boolean;
 };
@@ -25,7 +26,6 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
     super(props);
 
     this.state = {
-      cardBodyOpen: false,
       backgroundImgUrl: '',
       backgroundImgLoaded: false
     };
@@ -39,16 +39,16 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
     });
   }
 
-  toggleCardDetailsOpen = (): void => {
-    this.setState({cardBodyOpen: !this.state.cardBodyOpen});
+  navToMovieDetails = (): void => {
+    this.props.navigation.navigate('MovieDetailsPage', {movie: this.props.movie});
   };
 
   render() {
     return this.state.backgroundImgLoaded ? (
       <MovieCardLayout movie={this.props.movie}
-                       onPressHeader={this.toggleCardDetailsOpen}
+                       onPressHeader={this.navToMovieDetails}
                        backgroundImgUrl={this.state.backgroundImgUrl}
-                       showCardBody={this.state.cardBodyOpen}
+                       showCardBody={false}
                        width={this.props.width} />
     ) : null;
   }
@@ -95,4 +95,4 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
   );
 };
 
-export default MovieCard;
+export default withNavigation(MovieCard);
