@@ -4,13 +4,12 @@ import {Text, View} from 'native-base';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {sharedDynamicStyleSheet} from '../styles';
 
-type AsideTextInfoProps = {
-  property: string;
-  info: string;
-};
-
-const infoPairs: {key: string, property: string}[] = [
-  {key: 'release_date', property: 'Release date'}
+const infoPairs: {key: string, property: string, currency?: boolean}[] = [
+  {key: 'release_date', property: 'Release date'},
+  {key: 'overview', property: 'Overview'},
+  {key: 'budget', property: 'Budget', currency: true},
+  {key: 'revenue', property: 'Revenue', currency: true},
+  {key: 'original_language', property: 'Original language'},
 ];
 
 type MovieInfoAsideBoxProps = {
@@ -40,6 +39,12 @@ const MovieInfoAsideBox = (props: MovieInfoAsideBoxProps) => {
       })}
     </View>
   );
+};
+
+type AsideTextInfoProps = {
+  property: string;
+  info: string;
+  currency?: boolean;
 };
 
 const AsideTextInfo = (props: AsideTextInfoProps) => {
