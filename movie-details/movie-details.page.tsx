@@ -1,6 +1,6 @@
 import React from 'react';
 import {Movie} from '../models';
-import MovieCard from '../search/results/movie-card/movie-card';
+import MovieCard from '../search/results/movie-card-link';
 
 type MovieDetailsPageProps = {
   movie: Movie;

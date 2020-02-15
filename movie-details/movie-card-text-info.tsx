@@ -3,9 +3,9 @@ import {Button, CardItem, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
 import isUrl from 'is-url';
 import extractDomain from 'extract-domain';
-import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet} from '../../../styles';
+import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet} from '../styles';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {openInAppBrowser} from '../../../utils';
+import {openInAppBrowser} from '../utils';
 
 const movieCardBodyStyles = StyleSheet.create({
   label: {

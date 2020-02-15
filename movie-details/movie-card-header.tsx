@@ -1,9 +1,9 @@
 import React from 'react';
 import {Body, CardItem, Left, Right, Text, View} from 'native-base';
-import {Movie} from '../../../models';
+import {Movie} from '../models';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {baseFontSize, sharedDynamicStyleSheet} from '../../../styles';
-import {DropdownIcon} from '../../../shared-components';
+import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
+import {DropdownIcon} from '../shared-components';
 import {ImageBackground, StyleSheet} from 'react-native';
 
 const movieCardHeaderStyles = StyleSheet.create({
