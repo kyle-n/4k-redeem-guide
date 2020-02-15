@@ -3,7 +3,7 @@ import {Movie} from '../models';
 import MovieCard from './movie-card';
 import {StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {sharedDynamicStyleSheet} from '../styles';
 
 const pageStyles = StyleSheet.create({
