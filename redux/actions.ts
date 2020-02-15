@@ -133,10 +133,30 @@ export function toggleFiltersVisible(): ActionAndValue {
   return {type: 'TOGGLE_FILTERS_VISIBLE', value: null};
 }
 
+async function getMoviesFromSpreadsheet(): Promise<Movie[]> {
+  function getFromSpreadsheet(resolve: (movies: Movie[]) => void): void {
+    loadMovies()
+      .then(movies => resolve(movies))
+      .catch(() => {
+        Alert.alert(
+          'Download error',
+          'An error occurred while downloading films from the spreadsheet. Try again?',
+          [
+            {text: 'OK', style: 'default', onPress: () => getFromSpreadsheet(resolve)}
+          ]
+        );
+      });
+  }
+
+  return new Promise<Movie[]>(resolve => {
+    getFromSpreadsheet(resolve);
+  });
+}
+
 export function downloadMovies() {
   return async function (dispatch: Function) {
     dispatch(setIsLoading(true));
-    const movies = await loadMovies();
+    const movies = await getMoviesFromSpreadsheet();
     dispatch(setMovies(movies));
     dispatch(setIsLoading(false));
   }
