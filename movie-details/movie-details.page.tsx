@@ -3,7 +3,8 @@ import {Movie} from '../models';
 import MovieCard from './movie-card';
 import {StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
-import {DynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {sharedDynamicStyleSheet} from '../styles';
 
 const pageStyles = StyleSheet.create({
   container: {
@@ -13,15 +14,17 @@ const pageStyles = StyleSheet.create({
   }
 });
 
-const dynamicStyles = new DynamicStyleSheet()
-
 type MovieDetailsPageProps = {
   movie: Movie;
 };
 
 const MovieDetailsPage = (props: MovieDetailsPageProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <ScrollView style={pageStyles.container}>
+    <ScrollView style={[
+      pageStyles.container,
+      sharedStyles.dynamicPageBackgroundColor
+    ]}>
       <MovieCard movie={props.movie} open={true} />
     </ScrollView>
   );
