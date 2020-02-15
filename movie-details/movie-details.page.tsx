@@ -4,13 +4,18 @@ import MovieCard from './movie-card';
 import {StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {sharedDynamicStyleSheet} from '../styles';
+import {sharedDynamicStyleSheet, tabletMode} from '../styles';
+import {View} from 'native-base';
 
 const pageStyles = StyleSheet.create({
   container: {
     overflow: 'scroll',
     alignSelf: 'stretch',
-    flex: 1
+    flex: 1,
+  },
+  tabletContainer: {
+    display: 'flex',
+    flexDirection: 'row'
   }
 });
 
@@ -25,9 +30,28 @@ const MovieDetailsPage = (props: MovieDetailsPageProps) => {
       pageStyles.container,
       sharedStyles.dynamicPageBackgroundColor
     ]}>
-      <MovieCard movie={props.movie} open={true} />
+      {tabletMode() ? (
+        <TabletLayout movie={props.movie} />
+      ) : (
+        <PhoneLayout movie={props.movie} />
+      )}
     </ScrollView>
   );
 };
+
+type LayoutProps = {
+  movie: Movie;
+};
+
+const TabletLayout = (props: LayoutProps) => (
+  <View style={[pageStyles.tabletContainer]}>
+    <PhoneLayout movie={props.movie} />
+    <View></View>
+  </View>
+);
+
+const PhoneLayout = (props: LayoutProps) => (
+  <MovieCard movie={props.movie} open={true} />
+);
 
 export default MovieDetailsPage;
