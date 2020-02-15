@@ -9,7 +9,7 @@ import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-nativ
 import {lightBackgroundColor, tabletMode} from '../styles';
 import SuggestedSearches from './suggested-searches';
 import {FlatList} from "react-native-gesture-handler";
-import MovieCard from './results/movie-card-link';
+import MovieCard from '../movie-details/movie-card';
 import {resultsContainerStyles} from './results/results-box';
 import {getMovieKey} from './results/results-box';
 import {LoadMoreButton} from './results/results-box';
