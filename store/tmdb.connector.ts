@@ -66,7 +66,7 @@ export interface MovieDetailsResponse {
 
 const apiKey = 'd3298570110878db366366b8e1f2f947';
 const baseSearchUrl = 'https://api.themoviedb.org/3/search/movie?';
-const baseDetailsUrl = 'https://api.themoviedb.org/3/movie';
+const baseDetailsUrl = 'https://api.themoviedb.org/3/movie/';
 const baseImageUrl = 'https://image.tmdb.org/t/p/w1280';
 
 const searchMovies = async (title: string, year?: number): Promise<SearchResponse | null> => {
@@ -87,10 +87,9 @@ const searchMovies = async (title: string, year?: number): Promise<SearchRespons
 const getMovie = async (movieId: number): Promise<any> => {
   const params = [
     `api_key=${apiKey}`,
-    `movie_id=${movieId}`,
   ];
-  const paramString = params.join('&');
-  const reqUrl = baseDetailsUrl + paramString;
+  const paramString = '?' + params.join('&');
+  const reqUrl = baseDetailsUrl + movieId + paramString;
   return (await axios.get(reqUrl)).data;
 };
 

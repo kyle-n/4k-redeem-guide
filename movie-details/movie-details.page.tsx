@@ -6,6 +6,7 @@ import {ScrollView} from 'react-native-gesture-handler';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {sharedDynamicStyleSheet, tabletMode} from '../styles';
 import {View} from 'native-base';
+import SideBox from './side-box';
 
 const pageStyles = StyleSheet.create({
   container: {
@@ -46,7 +47,7 @@ type LayoutProps = {
 const TabletLayout = (props: LayoutProps) => (
   <View style={[pageStyles.tabletContainer]}>
     <PhoneLayout movie={props.movie} />
-    <View></View>
+    <SideBox title={props.movie.title} year={props.movie.year} />
   </View>
 );
 
