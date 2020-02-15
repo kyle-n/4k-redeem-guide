@@ -1,12 +1,11 @@
 import React from 'react';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {headerDynamicSheet} from '../search-header/search.page.header';
-import {Button, Icon, Text, View} from 'native-base';
-import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
-import {Platform} from 'react-native';
+import {Text, View} from 'native-base';
+import {sharedDynamicStyleSheet} from '../styles';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
-import {LargeXIcon} from '../shared-components';
+import {CloseButton, HiddenBackButton, BackButton} from '../shared-components';
 
 type RedeemLinksHeaderProps = NavigationStackScreenProps & {
   isModal?: boolean;
@@ -37,44 +36,6 @@ const RedeemLinksHeader = (props: RedeemLinksHeaderProps) => {
         <HiddenBackButton />
       )}
     </View>
-  );
-};
-
-type CloseButtonProps = {
-  onPress: () => void | undefined;
-};
-
-const CloseButton = (props: CloseButtonProps) => {
-  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
-  return (
-    <View style={{margin: baseFontSize}}>
-      <Button onPress={props.onPress}
-              warning large bordered style={sharedStyles.squareEntity}>
-        <LargeXIcon />
-      </Button>
-    </View>
-  );
-};
-
-type BackButtonProps = {
-  onPress?: () => void;
-};
-
-const HiddenBackButton = () => (
-  <View style={{opacity: 0}}>
-    <BackButton />
-  </View>
-);
-
-const BackButton = (props: BackButtonProps) => {
-  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
-  return (
-    <Button onPress={props.onPress ? props.onPress : undefined}
-            dark transparent large iconLeft={Platform.OS === 'ios'}>
-      <Icon name="ios-arrow-back" ios="ios-arrow-back" android="md-arrow-back"
-            style={[sharedStyles.dynamicTextColor]} />
-      <Text style={sharedStyles.dynamicTextColor}>Back</Text>
-    </Button>
   );
 };
 

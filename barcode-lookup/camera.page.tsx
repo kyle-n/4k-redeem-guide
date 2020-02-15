@@ -1,13 +1,13 @@
 import React from 'react';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
-import {View} from 'native-base';
+import {Button, Icon, View} from 'native-base';
 import {Platform, StyleSheet} from 'react-native';
 import {RNCamera} from 'react-native-camera';
 import {BarcodeScanData} from '../models';
 import {searchByBarcode} from '../redux/actions';
 import {connect} from 'react-redux';
-import {BackButton} from '../shared-components';
 import {baseFontSize} from '../styles';
+import {withNavigation} from "react-navigation";
 
 const cameraPageStyles = StyleSheet.create({
   fullSize: {
@@ -76,6 +76,17 @@ const CameraPage = (props: CameraPageProps) => {
     </View>
   );
 };
+
+type BackButtonProps = NavigationStackScreenProps & {
+  style?: any;
+};
+const BackButton = withNavigation((props: BackButtonProps) => (
+  <Button onPress={() => props.navigation.goBack()}
+          style={props.style || null}
+          large rounded warning>
+    <Icon name="ios-arrow-back" ios="ios-arrow-back" android="md-arrow-back" />
+  </Button>
+));
 
 // @ts-ignore
 export default connect(null, mapDispatchToProps)(CameraPage);
