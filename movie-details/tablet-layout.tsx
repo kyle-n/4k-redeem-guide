@@ -8,6 +8,7 @@ import {Movie} from '../models';
 import {ImageBackground, StyleSheet} from 'react-native';
 import MovieCard from './movie-card';
 import {MovieCardHeaderMarkup, MovieTitle} from './movie-card-header';
+import MovieInfoAsideBox from './movie-info-aside-box';
 
 type SideBoxState = {
   details: MovieDetailsResponse | null;
@@ -91,7 +92,9 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
       ) : null}
       <View style={layoutStyles.item}>
         <MovieCard movie={props.movie} open={true} />
-        <Text>Two</Text>
+        {props.details ? (
+          <MovieInfoAsideBox details={props.details} />
+        ) : null}
       </View>
     </View>
   );

@@ -1,5 +1,5 @@
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {darkLightGray, sharedDynamicStyleSheet, slideFromUnder350} from '../styles';
+import {darkLightGray, sharedDynamicStyleSheet, slideFromUnder350, tabletMode} from '../styles';
 import * as Animatable from 'react-native-animatable';
 import {Card} from "native-base";
 import {TouchableOpacity} from "react-native-gesture-handler";
@@ -32,7 +32,7 @@ const MovieCardLayout = (props: MovieCardLayoutProps) => {
                      style={props.width ? {width: props.width} : null}
                      useNativeDriver={false}>
       <Card style={[movieCardStyles.card, sharedStyles.squareEntity, sharedStyles.dynamicColor]}>
-        {props.showCardBody ? null : (
+        {props.showCardBody && tabletMode() ? null : (
           <TouchableOpacity onPress={props.onPressHeader}
                             activeOpacity={props.backgroundImgUrl ? 0.8 : 0.2}>
             <MovieCardHeader movie={props.movie}
