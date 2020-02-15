@@ -50,7 +50,7 @@ const layoutStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     flex: 1,
-    height: baseFontSize * 50
+    height: baseFontSize * 40
   },
   imageView: {
     width: '100%',
