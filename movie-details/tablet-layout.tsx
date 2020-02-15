@@ -1,9 +1,12 @@
 import React from 'react';
-import {getMovieDetails, MovieDetailsResponse} from '../store/tmdb.connector';
+import {baseImageUrl, getMovieDetails, MovieDetailsResponse} from '../store/tmdb.connector';
 import {Text, View} from 'native-base';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {sharedDynamicStyleSheet} from '../styles';
+import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
 import {LayoutProps} from './movie-details.page';
+import {Movie} from '../models';
+import {ImageBackground, StyleSheet} from 'react-native';
+import MovieCard from './movie-card';
 
 type SideBoxState = {
   details: MovieDetailsResponse | null;
@@ -26,24 +29,63 @@ class TabletLayout extends React.Component<LayoutProps, SideBoxState> {
 
   render() {
     return this.state.details ? (
-      <TabletLayoutMarkup details={this.state.details} />
+      <TabletLayoutBox movie={this.props.movie} details={this.state.details} />
     ) : null;
   }
 }
 
+const layoutStyles = StyleSheet.create({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignSelf: 'stretch'
+  },
+  item: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  imageBackground: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+    height: baseFontSize * 50
+  },
+  imageView: {
+    width: '100%',
+    backgroundColor: 'rgba(0,0,0,0)'
+  }
+});
+
 type SideBoxMarkupProps = {
   details: MovieDetailsResponse;
+  movie: Movie;
 };
-const TabletLayoutMarkup = (props: SideBoxMarkupProps) => {
+const TabletLayoutBox = (props: SideBoxMarkupProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={[
       sharedStyles.squareEntity,
-      sharedStyles.dynamicColor
+      sharedStyles.dynamicColor,
+      layoutStyles.container
     ]}>
-      <Text>Yo</Text>
+      {props.details?.backdrop_path ? (
+        <ImageBackground source={{uri: baseImageUrl + props.details.backdrop_path}}
+                         style={[
+                           layoutStyles.imageBackground,
+                           layoutStyles.item
+                         ]}>
+          <View style={layoutStyles.imageView} />
+        </ImageBackground>
+      ) : null}
+      <View style={layoutStyles.item}>
+        <MovieCard movie={props.movie} open={true} />
+        <Text>Two</Text>
+      </View>
     </View>
   );
 };
+
+
 
 export default TabletLayout;
