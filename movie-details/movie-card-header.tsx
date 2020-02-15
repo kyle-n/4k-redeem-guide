@@ -74,9 +74,6 @@ const MovieCardHeaderMarkup = (props: MovieCardHeaderMarkupProps) => {
             </Text>
           </Text>
         </Body>
-        <Right style={[{alignSelf: 'center', flexGrow: 1}]}>
-          <DropdownIcon open={props.parentProps.open} />
-        </Right>
       </Left>
     </CardItem>
   )

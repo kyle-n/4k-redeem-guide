@@ -8,7 +8,7 @@ type MovieDetailsPageProps = {
 
 const MovieDetailsPage = (props: MovieDetailsPageProps) => {
   return (
-    <MovieCard movie={props.movie} />
+    <MovieCard movie={props.movie} open={true} />
   );
 };
 
