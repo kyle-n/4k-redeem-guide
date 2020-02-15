@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Icon, Text, View} from 'native-base';
 import {Alert, BackHandler, NativeEventSubscription, Platform, StyleProp, StyleSheet} from 'react-native';
-import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet} from './styles';
+import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet, tabletMode} from './styles';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {withNavigation} from 'react-navigation';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
@@ -119,7 +119,9 @@ export const BackButton = (props: BackButtonProps) => {
             dark transparent large iconLeft={Platform.OS === 'ios'}>
       <Icon name="ios-arrow-back" ios="ios-arrow-back" android="md-arrow-back"
             style={[sharedStyles.dynamicTextColor]} />
-      <Text style={sharedStyles.dynamicTextColor}>Back</Text>
+      {tabletMode() ? (
+        <Text style={sharedStyles.dynamicTextColor}>Back</Text>
+      ) : null}
     </Button>
   );
 };
