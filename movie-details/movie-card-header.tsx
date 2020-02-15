@@ -56,27 +56,34 @@ type MovieCardHeaderMarkupProps = {
   parentProps: MovieCardHeaderProps;
 };
 
-const MovieCardHeaderMarkup = (props: MovieCardHeaderMarkupProps) => {
+export const MovieCardHeaderMarkup = (props: MovieCardHeaderMarkupProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <CardItem header style={[sharedStyles.squareEntity, {backgroundColor: 'rgba(0,0,0,0)'}]}>
-      <Left style={{display: 'flex', flexDirection: 'row'}}>
-        <Body style={[{width: '100%', flexGrow: 7}]}>
-          <Text>
-            <Text style={[sharedStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
-              &nbsp;{props.parentProps.movie.title}&nbsp;
-            </Text>
-          </Text>
-          <Text>
-            <Text note style={[sharedStyles.dynamicColor]}>
-              &nbsp;{props.parentProps.movie.studio}
-              {props.parentProps.movie.year ? ', ' + props.parentProps.movie.year : null}&nbsp;
-            </Text>
-          </Text>
-        </Body>
-      </Left>
+      <MovieTitle parentProps={props.parentProps} />
     </CardItem>
-  )
+  );
+};
+
+export const MovieTitle = (props: MovieCardHeaderMarkupProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <Left style={{display: 'flex', flexDirection: 'row'}}>
+      <Body style={[{width: '100%', flexGrow: 7}]}>
+        <Text>
+          <Text style={[sharedStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
+            &nbsp;{props.parentProps.movie.title}&nbsp;
+          </Text>
+        </Text>
+        <Text>
+          <Text note style={[sharedStyles.dynamicColor]}>
+            &nbsp;{props.parentProps.movie.studio}
+            {props.parentProps.movie.year ? ', ' + props.parentProps.movie.year : null}&nbsp;
+          </Text>
+        </Text>
+      </Body>
+    </Left>
+  );
 };
 
 export default MovieCardHeader;

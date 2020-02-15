@@ -7,6 +7,7 @@ import {LayoutProps} from './movie-details.page';
 import {Movie} from '../models';
 import {ImageBackground, StyleSheet} from 'react-native';
 import MovieCard from './movie-card';
+import {MovieCardHeaderMarkup, MovieTitle} from './movie-card-header';
 
 type SideBoxState = {
   details: MovieDetailsResponse | null;
@@ -53,7 +54,22 @@ const layoutStyles = StyleSheet.create({
   },
   imageView: {
     width: '100%',
-    backgroundColor: 'rgba(0,0,0,0)'
+    backgroundColor: 'rgba(0,0,0,0)',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
+  },
+  movieTitle: {
+    width: '100%',
+    height: 8 * baseFontSize,
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    paddingBottom: baseFontSize * 4
+  },
+  innermostTitleContainer: {
+    width: '50%',
+    textAlign: 'left'
   }
 });
 
@@ -70,13 +86,8 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
       layoutStyles.container
     ]}>
       {props.details?.backdrop_path ? (
-        <ImageBackground source={{uri: baseImageUrl + props.details.backdrop_path}}
-                         style={[
-                           layoutStyles.imageBackground,
-                           layoutStyles.item
-                         ]}>
-          <View style={layoutStyles.imageView} />
-        </ImageBackground>
+        <MovieImageSplash backdropPath={props.details.backdrop_path}
+                          movie={props.movie} />
       ) : null}
       <View style={layoutStyles.item}>
         <MovieCard movie={props.movie} open={true} />
@@ -86,6 +97,24 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
   );
 };
 
-
+type MovieImageSplashProps = {
+  backdropPath: string | undefined;
+  movie: Movie;
+};
+const MovieImageSplash = (props: MovieImageSplashProps) => (
+  <ImageBackground source={{uri: baseImageUrl + props.backdropPath}}
+                   style={[
+                     layoutStyles.imageBackground,
+                     layoutStyles.item
+                   ]}>
+    <View style={layoutStyles.imageView}>
+      <View style={layoutStyles.movieTitle}>
+        <View style={layoutStyles.innermostTitleContainer}>
+          <MovieCardHeaderMarkup parentProps={{movie: props.movie, open: false, backgroundImgUrl: ''}}/>
+        </View>
+      </View>
+    </View>
+  </ImageBackground>
+);
 
 export default TabletLayout;
