@@ -1,14 +1,14 @@
 import React from 'react';
 import {Movie} from '../models';
 import {getMovieImage} from '../store/tmdb.connector';
-import {NavigationStackScreenProps} from 'react-navigation-stack';
-import {withNavigation} from 'react-navigation';
 import MovieCardLayout from './movie-card-layout';
 
 type MovieCardProps = {
   movie: Movie;
+  onPressHeader?: () => void;
+  open: boolean;
   width?: number;
-} & NavigationStackScreenProps;
+};
 type MovieCardState = {
   backgroundImgUrl: string;
   backgroundImgLoaded: boolean;
@@ -32,19 +32,15 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
     });
   }
 
-  navToMovieDetails = (): void => {
-    this.props.navigation.navigate('MovieDetailsPage', {movie: this.props.movie});
-  };
-
   render() {
     return this.state.backgroundImgLoaded ? (
       <MovieCardLayout movie={this.props.movie}
-                       onPressHeader={this.navToMovieDetails}
+                       onPressHeader={this.props.onPressHeader}
                        backgroundImgUrl={this.state.backgroundImgUrl}
-                       showCardBody={false}
+                       showCardBody={this.props.open}
                        width={this.props.width} />
     ) : null;
   }
 };
 
-export default withNavigation(MovieCard);
+export default MovieCard;

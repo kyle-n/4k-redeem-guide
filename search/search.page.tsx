@@ -18,6 +18,7 @@ import {Dimensions, Modal} from 'react-native';
 import RedeemLinksPageContainer from '../redeem-links/redeem-links.page.container';
 import RedeemLinks from '../redeem-links/redeem-links.page';
 import RedeemLinksModal from '../redeem-links/modal';
+import MovieCardLink from './results/movie-card-link';
 
 export const pageDynamicStyleSheet = new DynamicStyleSheet({
   content: {
@@ -102,8 +103,8 @@ const SearchPageMarkup = (props: SearchPageMarkupProps) => {
                     initialNumToRender={initialRenderNumber}
                     renderItem={(itemInfo) => {
                       return (
-                        <MovieCard movie={itemInfo.item}
-                                   width={colWidth} />
+                        <MovieCardLink movie={itemInfo.item}
+                                       width={colWidth} />
                       );
                     }}
                     key={cols}

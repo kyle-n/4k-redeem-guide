@@ -13,7 +13,7 @@ type MovieCardLayoutProps = {
   backgroundImgUrl: string;
   movie: Movie;
   showCardBody: boolean;
-  onPressHeader: () => void;
+  onPressHeader?: () => void;
   width?: number;
 };
 

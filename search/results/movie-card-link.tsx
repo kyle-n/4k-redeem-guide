@@ -6,14 +6,17 @@ import MovieCard from '../../movie-details/movie-card';
 
 type MovieCardLinkProps = {
   movie: Movie;
+  width: number;
 } & NavigationStackScreenProps;
 
 const MovieCardLink = (props: MovieCardLinkProps) => {
-  const navToDetailsPage = (): void => props.navigation.navigate('MovieDetailsPage', {movie: props.movie});
+  const navToDetailsPage = (): void => {
+    props.navigation.navigate('MovieDetailsPage', {movie: props.movie});
+  };
   return (
     <MovieCard movie={props.movie} onPressHeader={navToDetailsPage}
-               open={false} />
+               open={false} width={props.width} />
   );
 };
 
-export default MovieCardLink;
+export default withNavigation(MovieCardLink);
