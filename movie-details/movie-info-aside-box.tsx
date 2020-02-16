@@ -33,7 +33,10 @@ const MovieInfoAsideBox = (props: MovieInfoAsideBoxProps) => {
       asideStyles.container
     ]}>
       {props.details.tagline ? (
-        <Text style={asideStyles.taglineText}>
+        <Text style={[
+          asideStyles.taglineText,
+          sharedStyles.dynamicTextColor
+        ]}>
           {props.details.tagline}
         </Text>
       ) : null}
@@ -65,11 +68,13 @@ const AsideTextInfo = (props: AsideTextInfoProps) => {
     roundedVal = props.info as number / 1000000;
     roundedVal = Math.round((roundedVal + Number.EPSILON) * 100) / 100;
   }
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <Text style={{marginBottom: baseFontSize / 2}}>
       <RegularText text={props.property} style={[{fontWeight: 'bold'}]} />
       <Text style={[
-        asideStyles.regularText
+        asideStyles.regularText,
+        sharedStyles.dynamicTextColor
       ]}>
         &nbsp;
         {props.currency ? (
