@@ -72,6 +72,11 @@ const layoutStyles = StyleSheet.create({
   innermostTitleContainer: {
     width: '100%',
     textAlign: 'left'
+  },
+  halfWidthInItem: {
+    flexGrow: 1,
+    maxWidth: '50%',
+    margin: baseFontSize
   }
 });
 
@@ -84,7 +89,8 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
   return (
     <View style={[
       sharedStyles.squareEntity,
-      sharedStyles.dynamicColor,
+      sharedStyles.dynamicTextColor,
+      sharedStyles.dynamicPageBackgroundColor,
       layoutStyles.container
     ]}>
       {props.details?.backdrop_path ? (
@@ -92,11 +98,11 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
                           movie={props.movie} />
       ) : null}
       <View style={layoutStyles.item}>
-        <View style={{flexGrow: 1, maxWidth: '50%'}}>
+        <View style={layoutStyles.halfWidthInItem}>
           <MovieCard movie={props.movie} open={true} />
         </View>
         {props.details ? (
-          <View style={{flexGrow: 1, maxWidth: '50%'}}>
+          <View style={[layoutStyles.halfWidthInItem, {paddingTop: baseFontSize / 4}]}>
             <MovieInfoAsideBox details={props.details} />
           </View>
         ) : null}
