@@ -7,11 +7,15 @@ import NumberFormat from 'react-number-format';
 import {StyleSheet} from 'react-native';
 
 const asideStyles = StyleSheet.create({
+  container: {
+    padding: baseFontSize
+  },
   regularText: {
-    fontSize: baseFontSize * 2
+    fontSize: baseFontSize
   },
   taglineText: {
-    fontSize: baseFontSize * 3.5
+    fontSize: baseFontSize * 2.5,
+    marginBottom: baseFontSize * 2.5 / 2
   }
 });
 
@@ -26,6 +30,7 @@ const MovieInfoAsideBox = (props: MovieInfoAsideBoxProps) => {
     <View style={[
       sharedStyles.dynamicColor,
       sharedStyles.squareEntity,
+      asideStyles.container
     ]}>
       {props.details.tagline ? (
         <Text style={asideStyles.taglineText}>
@@ -61,7 +66,7 @@ const AsideTextInfo = (props: AsideTextInfoProps) => {
     roundedVal = Math.round((roundedVal + Number.EPSILON) * 100) / 100;
   }
   return (
-    <Text>
+    <Text style={{marginBottom: baseFontSize / 2}}>
       <RegularText text={props.property} style={[{fontWeight: 'bold'}]} />
       <Text style={[
         asideStyles.regularText

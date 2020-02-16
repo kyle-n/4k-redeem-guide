@@ -45,7 +45,8 @@ const layoutStyles = StyleSheet.create({
   item: {
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    maxWidth: '100%'
   },
   imageBackground: {
     display: 'flex',
@@ -91,9 +92,13 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
                           movie={props.movie} />
       ) : null}
       <View style={layoutStyles.item}>
-        <MovieCard movie={props.movie} open={true} />
+        <View style={{flexGrow: 1, maxWidth: '50%'}}>
+          <MovieCard movie={props.movie} open={true} />
+        </View>
         {props.details ? (
-          <MovieInfoAsideBox details={props.details} />
+          <View style={{flexGrow: 1, maxWidth: '50%'}}>
+            <MovieInfoAsideBox details={props.details} />
+          </View>
         ) : null}
       </View>
     </View>
