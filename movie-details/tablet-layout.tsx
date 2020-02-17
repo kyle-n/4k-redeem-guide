@@ -73,7 +73,7 @@ const layoutStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingBottom: baseFontSize * 4
+    paddingBottom: baseFontSize * 6
   },
   innermostTitleContainer: {
     width: '100%',
