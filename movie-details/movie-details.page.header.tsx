@@ -5,9 +5,17 @@ import {sharedDynamicStyleSheet} from '../styles';
 import {Text, View} from 'native-base';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
-import {BackButton, HiddenBackButton} from '../shared-components';
+import {BackButton} from '../shared-components';
+import RedeemLinksButton from '../search-header/redeem-links-button';
+import {connect} from 'react-redux';
+import {toggleLinksModalVisible} from '../redux/actions';
 
-type MovieDetailsPageHeaderProps = {} & NavigationStackScreenProps;
+const mapStateToProps = null;
+const mapDispatchToProps = {
+  toggleLinksModalVisible
+};
+
+type MovieDetailsPageHeaderProps = {} & NavigationStackScreenProps & (typeof mapDispatchToProps);
 
 const MovieDetailsPageHeader = (props: MovieDetailsPageHeaderProps) => {
   const searchHeaderStyles = useDynamicStyleSheet(headerDynamicSheet);
@@ -24,9 +32,9 @@ const MovieDetailsPageHeader = (props: MovieDetailsPageHeaderProps) => {
       <View style={searchHeaderStyles.centerStyle}>
         <Text style={searchHeaderStyles.pageTitle}>Details</Text>
       </View>
-      <HiddenBackButton />
+      <RedeemLinksButton onPressOnTablet={props.toggleLinksModalVisible} />
     </View>
   );
 };
 
-export default withNavigation(MovieDetailsPageHeader);
+export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(MovieDetailsPageHeader));
