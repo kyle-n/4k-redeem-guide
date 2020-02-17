@@ -70,6 +70,11 @@ export const searchMovies = async (
     // bump next index
     nextIndexToEvaluate++;
 
+    // skip direct matches
+    if (results.indexOf(i) !== -1) {
+      continue;
+    }
+
     // narrow by filters
     if (filters && failsFilter(filters, movies[i])) {
       continue;
