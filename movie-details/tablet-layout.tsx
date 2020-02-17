@@ -77,6 +77,7 @@ const layoutStyles = StyleSheet.create({
   },
   innermostTitleContainer: {
     width: '100%',
+    height: baseFontSize * 12,
     textAlign: 'left'
   },
   halfWidthInItem: {
