@@ -12,6 +12,7 @@ import MovieCardBody from './movie-card-body';
 
 type SideBoxState = {
   details: MovieDetailsResponse | null;
+  reqDone: boolean;
 };
 
 class TabletLayout extends React.Component<LayoutProps, SideBoxState> {
@@ -19,19 +20,23 @@ class TabletLayout extends React.Component<LayoutProps, SideBoxState> {
     super(props);
 
     this.state = {
-      details: null
+      details: null,
+      reqDone: false
     };
   }
 
   componentDidMount(): void {
-    getMovieDetails(this.props.movie.title, this.props.movie.year).then(details => {
-      this.setState({details});
-    });
+    getMovieDetails(this.props.movie.title, this.props.movie.year)
+      .then(details => {
+        this.setState({details});
+      }).finally(() => {
+        this.setState({reqDone: true})
+      });
   }
 
   render() {
-    return this.state.details ? (
-      <TabletLayoutBox movie={this.props.movie} details={this.state.details} />
+    return this.state.reqDone ? (
+      <TabletLayoutBox movie={this.props.movie} details={this.state.details} reqDone={this.state.reqDone} />
     ) : null;
   }
 }
@@ -83,9 +88,11 @@ const layoutStyles = StyleSheet.create({
 type SideBoxMarkupProps = {
   details: MovieDetailsResponse;
   movie: Movie;
+  reqDone: boolean;
 };
 const TabletLayoutBox = (props: SideBoxMarkupProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  console.log(props)
   return (
     <View style={[
       sharedStyles.squareEntity,
@@ -93,10 +100,15 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
       sharedStyles.dynamicPageBackgroundColor,
       layoutStyles.container
     ]}>
-      {props.details?.backdrop_path ? (
+
+      {props.details?.backdrop_path && props.reqDone ? (
         <MovieImageSplash backdropPath={props.details.backdrop_path}
                           movie={props.movie} />
       ) : null}
+      {!props.details?.backdrop_path && props.reqDone ? (
+        <MovieCardHeaderMarkup parentProps={{movie: props.movie, open: false, backgroundImgUrl: ''}} biggetText={true} />
+      ) : null}
+
       <View style={layoutStyles.item}>
         <View style={layoutStyles.halfWidthInItem}>
           <View style={[
