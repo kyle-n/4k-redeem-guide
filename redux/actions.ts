@@ -17,16 +17,19 @@ const debouncedSearchMovies = debounce(2 * 1000, (dispatch: Function, getState: 
 
   dispatch(setOffset(0));
 
-  const {query, filters, offset, movies, results} = getState();
+  const {query, filters, offset, movies} = getState();
 
   if (anyValueTruthy(getState().filters) || getState().query) {
-    searchMovies(movies, query, filters, results, {offset}).then(resp => {
+    searchMovies(movies, query, filters,{offset, limit: 15}).then(resp => {
       dispatch(setOffset(resp.nextIndexToEvaluate));
       dispatch(setResults(resp.results));
       dispatch(setIsLoading(false));
 
       // check if more results
-      return searchMovies(movies, query, filters, getState().results, {offset: resp.nextIndexToEvaluate});
+      return searchMovies(
+        movies, query, filters,
+        {offset: resp.nextIndexToEvaluate, previousResults: getState().results, limit: 1}
+      );
     }).then(checkingMoreResp => {
       const noMore = !checkingMoreResp.results.length;
       dispatch(setNoMoreResults(noMore));
@@ -63,12 +66,18 @@ export function loadMoreResults() {
   return async function (dispatch: Function, getState: () => GlobalState) {
     let state = getState();
     dispatch(setIsLoading(true));
-    const moreResults = await searchMovies(state.movies, state.query, state.filters, state.results, {offset: state.offset, limit: 15});
+    const moreResults = await searchMovies(
+      state.movies, state.query, state.filters,
+      {offset: state.offset, limit: 15, previousResults: state.results}
+    );
     const results = state.results.concat(moreResults.results);
     dispatch(setResults(results));
     dispatch(setOffset(moreResults.nextIndexToEvaluate));
     state = getState();
-    const hasMoreResults = await searchMovies(state.movies, state.query, state.filters, state.results, {offset: state.offset, limit: 1});
+    const hasMoreResults = await searchMovies(
+      state.movies, state.query, state.filters,
+      {offset: state.offset, limit: 1, previousResults: state.results}
+    );
     dispatch(setNoMoreResults(hasMoreResults.results.length < 1));
     dispatch(setIsLoading(false));
     return;

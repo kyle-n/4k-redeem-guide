@@ -34,8 +34,11 @@ export const searchMovies = async (
   movies: Movie[],
   query: string,
   filters: MovieFilters | null,
-  previousResults: number[],
-  config?: {offset?: number, limit?: number}
+  config?: {
+    offset?: number,
+    limit?: number,
+    previousResults?: number[]
+  }
 ): Promise<SearchMovieResponse> => {
 
   // short-circuit on searches already at end of movie list
@@ -54,7 +57,7 @@ export const searchMovies = async (
     if (filters && failsFilter(filters, movies[i])) {
       continue;
     }
-    if (previousResults.includes(i)) continue;
+    if (config?.previousResults?.includes(i)) continue;
 
     if (transformedQuery === transformToMatchableText(movies[i].title)) {
       results.push(i);
