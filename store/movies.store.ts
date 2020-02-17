@@ -16,12 +16,12 @@ type SearchMovieResponse = {
 
 
 // need to group property types - iterate over all text props the same way, all booleans, etc
-export const searchMovies = (
+export const searchMovies = async (
   movies: Movie[],
   query: string,
   filters: MovieFilters | null,
   config?: {offset?: number, limit?: number}
-): SearchMovieResponse => {
+): Promise<SearchMovieResponse> => {
 
   // short-circuit on searches already at end of movie list
   if (config?.offset && config.offset >= movies.length) {

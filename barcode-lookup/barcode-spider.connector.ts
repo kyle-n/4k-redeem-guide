@@ -1,6 +1,4 @@
 import axios from 'axios'
-import {Movie} from '../models';
-import {searchByTitleAndStudio, searchMovies} from '../store';
 
 interface BarcodeSpiderApiResponse {
   item_response: {
