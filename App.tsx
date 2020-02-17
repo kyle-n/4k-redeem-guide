@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import thunk from 'redux-thunk';
@@ -13,6 +13,7 @@ import RedeemLinksPageContainer from './redeem-links/redeem-links.page.container
 import RedeemLinksHeader from './redeem-links/redeem-links.page.header';
 import MovieDetailsPageContainer from './movie-details/movie-details.page.container';
 import MovieDetailsPageHeader from './movie-details/movie-details.page.header';
+import SplashScreen from 'react-native-splash-screen';
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -71,11 +72,16 @@ class App extends React.Component<AppProps, AppState>{
   render() {
     return this.state.store ? (
       <Provider store={this.state.store}>
+        <HideSplashScreen />
         <AppContainer />
       </Provider>
     ) : null;
   }
-
 }
+
+const HideSplashScreen = () => {
+  useEffect(() => SplashScreen.hide());
+  return null;
+};
 
 export default App;
