@@ -38,7 +38,6 @@ const InputBox = (props: InputBoxProps) => {
             style={[inputContainerStyles.searchIcon, sharedStyles.dynamicTextColor]} />
       <Input value={props.query}
              onChange={(e) => setOrClearQuery(e.nativeEvent.text)}
-             placeholder="Search for movies"
              style={[sharedStyles.dynamicTextColor]}
              placeholderTextColor={isDark ? darkColor : lightGray}
              autoCorrect={false}
