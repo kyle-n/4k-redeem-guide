@@ -95,7 +95,7 @@ export const CloseButton = (props: CloseButtonProps) => {
   return (
     <View style={{margin: baseFontSize}}>
       <Button onPress={props.onPress}
-              warning large bordered style={sharedStyles.squareEntity}>
+              info large transparent style={sharedStyles.squareEntity}>
         <LargeXIcon />
       </Button>
     </View>
