@@ -9,6 +9,7 @@ import {ImageBackground, StyleSheet} from 'react-native';
 import {MovieCardHeaderMarkup} from './movie-card-header';
 import MovieInfoAsideBox from './movie-info-aside-box';
 import MovieCardBody from './movie-card-body';
+import * as Animatable from 'react-native-animatable';
 
 type SideBoxState = {
   details: MovieDetailsResponse | null;
@@ -110,17 +111,18 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
 
       <View style={layoutStyles.item}>
         <View style={layoutStyles.halfWidthInItem}>
-          <View style={[
+          <Animatable.View style={[
             sharedStyles.squareEntity,
             {borderWidth: 1, borderColor: darkLightGray}
-          ]}>
+          ]} animation="slideInUp" duration={750}>
             <MovieCardBody movie={props.movie} roundedCorners={true} />
-          </View>
+          </Animatable.View>
         </View>
         {props.details ? (
-          <View style={[layoutStyles.halfWidthInItem, {paddingTop: baseFontSize / 4}]}>
+          <Animatable.View style={[layoutStyles.halfWidthInItem, {paddingTop: baseFontSize / 4}]}
+                           animation="slideInUp" duration={750}>
             <MovieInfoAsideBox details={props.details} />
-          </View>
+          </Animatable.View>
         ) : null}
       </View>
     </View>
@@ -139,9 +141,10 @@ const MovieImageSplash = (props: MovieImageSplashProps) => (
                    ]}>
     <View style={layoutStyles.imageView}>
       <View style={layoutStyles.movieTitle}>
-        <View style={layoutStyles.innermostTitleContainer}>
+        <Animatable.View style={layoutStyles.innermostTitleContainer}
+                         animation="slideInUp" duration={750}>
           <MovieCardHeaderMarkup parentProps={{movie: props.movie, open: false, backgroundImgUrl: ''}} biggetText={true} />
-        </View>
+        </Animatable.View>
       </View>
     </View>
   </ImageBackground>
