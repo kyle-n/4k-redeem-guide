@@ -39,9 +39,11 @@ const mapDispatchToProps = {
 export type SearchPageProps = ReturnType<typeof mapStateToProps> & (typeof mapDispatchToProps);
 type SearchPageContainerProps = SearchPageProps & NavigationStackScreenProps;
 
+let didNav = false;
 const SearchPageContainer = (props: SearchPageContainerProps) => {
   props.navigation.addListener('willFocus', () => {
-    if (props.needsToDownloadMovies) {
+    if (props.needsToDownloadMovies && !didNav) {
+      didNav = true;
       props.navigation.navigate('LoadingPage');
     }
   });
