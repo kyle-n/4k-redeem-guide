@@ -80,7 +80,7 @@ const layoutStyles = StyleSheet.create({
   },
   halfWidthInItem: {
     flexGrow: 1,
-    maxWidth: '50%',
+    maxWidth: '47%',
     margin: baseFontSize
   }
 });
