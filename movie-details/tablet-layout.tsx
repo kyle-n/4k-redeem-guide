@@ -69,7 +69,7 @@ const layoutStyles = StyleSheet.create({
   },
   movieTitle: {
     width: '100%',
-    height: 8 * baseFontSize,
+    height: 12 * baseFontSize,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
