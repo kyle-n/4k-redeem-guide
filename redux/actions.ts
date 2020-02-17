@@ -61,12 +61,13 @@ function setResults(results: number[]): ActionAndValue {
 
 export function loadMoreResults() {
   return async function (dispatch: Function, getState: () => GlobalState) {
-    const state = getState();
+    let state = getState();
     dispatch(setIsLoading(true));
     const moreResults = await searchMovies(state.movies, state.query, state.filters, {offset: state.offset, limit: 15});
     const results = state.results.concat(moreResults.results);
     dispatch(setResults(results));
     dispatch(setOffset(moreResults.nextIndexToEvaluate));
+    state = getState();
     const hasMoreResults = await searchMovies(state.movies, state.query, state.filters, {offset: state.offset, limit: 1});
     dispatch(setNoMoreResults(hasMoreResults.results.length < 1));
     dispatch(setIsLoading(false));
