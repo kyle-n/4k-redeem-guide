@@ -3,7 +3,7 @@ import {Button, Icon, Text, View} from 'native-base';
 import {MovieFilters} from '../../models';
 import BooleanFilter from './boolean-filter';
 import {GestureResponderEvent, StyleSheet} from 'react-native';
-import {baseFontSize, lightGray, sharedDynamicStyleSheet, slideFromUnder350} from '../../styles';
+import {baseFontSize, lightGray, sharedDynamicStyleSheet, slideFromUnder350, tabletMode} from '../../styles';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import {DropdownIcon, LargeXIcon} from '../../shared-components';
 import {TouchableOpacity} from 'react-native-gesture-handler';
@@ -185,7 +185,8 @@ const AccordionHeader = (props: AccordionHeaderProps) => {
         headerStyles.container,
         sharedStyles.dynamicColor,
         sharedStyles.squareEntity,
-        dynamicStyles.dynamicBorder
+        dynamicStyles.dynamicBorder,
+        tabletMode() ? {borderWidth: 1, borderColor: lightGray} : null
       ]}>
         <Text style={[headerStyles.title, sharedStyles.dynamicColor]}>
           Filters
