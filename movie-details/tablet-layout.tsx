@@ -115,7 +115,8 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
         <View style={layoutStyles.halfWidthInItem}>
           <Animatable.View style={[
             sharedStyles.squareEntity,
-            {borderWidth: 1, borderColor: darkLightGray}
+            sharedStyles.dynamicBackgroundColor,
+            {borderWidth: 1, borderColor: darkLightGray, padding: baseFontSize / 4}
           ]} animation="slideInUp" duration={750}>
             <MovieCardBody movie={props.movie} roundedCorners={true} />
           </Animatable.View>

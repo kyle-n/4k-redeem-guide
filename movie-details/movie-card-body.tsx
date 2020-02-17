@@ -15,7 +15,7 @@ type MovieCardBodyProps = {
 const MovieCardBody = (props: MovieCardBodyProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <View style={props.roundedCorners ? sharedStyles.squareEntity : null}>
+    <View style={props.roundedCorners ? {borderTopLeftRadius: baseFontSize / 2, borderTopRightRadius: baseFontSize / 2} : null}>
       <TextInfoPairs movie={props.movie} roundedCorners={props.roundedCorners} />
       <Hr />
       <CheckmarkChart movie={props.movie} />
@@ -41,10 +41,7 @@ const textInfoPairs: MoviePropertyDisplayPair[] = [
 const TextInfoPairs = (props: MovieCardBodyProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <View style={props.roundedCorners ? [
-      sharedStyles.squareEntity,
-      {padding: baseFontSize / 4}
-    ]: null}>
+    <View>
       {textInfoPairs.map(pair => {
         // @ts-ignore
         const value = props.movie[pair.moviePropertyName];
