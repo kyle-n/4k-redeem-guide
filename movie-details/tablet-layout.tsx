@@ -1,14 +1,14 @@
 import React from 'react';
 import {baseImageUrl, getMovieDetails, MovieDetailsResponse} from '../store/tmdb.connector';
-import {Text, View} from 'native-base';
+import {View} from 'native-base';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
+import {baseFontSize, darkLightGray, sharedDynamicStyleSheet} from '../styles';
 import {LayoutProps} from './movie-details.page';
 import {Movie} from '../models';
 import {ImageBackground, StyleSheet} from 'react-native';
-import MovieCard from './movie-card';
 import {MovieCardHeaderMarkup, MovieTitle} from './movie-card-header';
 import MovieInfoAsideBox from './movie-info-aside-box';
+import MovieCardBody from './movie-card-body';
 
 type SideBoxState = {
   details: MovieDetailsResponse | null;
@@ -99,7 +99,12 @@ const TabletLayoutBox = (props: SideBoxMarkupProps) => {
       ) : null}
       <View style={layoutStyles.item}>
         <View style={layoutStyles.halfWidthInItem}>
-          <MovieCard movie={props.movie} open={true} />
+          <View style={[
+            sharedStyles.squareEntity,
+            {borderWidth: 1, borderColor: darkLightGray}
+          ]}>
+            <MovieCardBody movie={props.movie} roundedCorners={true} />
+          </View>
         </View>
         {props.details ? (
           <View style={[layoutStyles.halfWidthInItem, {paddingTop: baseFontSize / 4}]}>
