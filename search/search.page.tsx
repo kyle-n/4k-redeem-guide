@@ -5,15 +5,15 @@ import FilterBox from './input/filter-box';
 import {SearchPageProps} from './search.page.container';
 import {MovieFilters, PresetSearch} from '../models';
 import {anyValueTruthy} from '../utils';
-import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {lightBackgroundColor, sharedDynamicStyleSheet, tabletMode} from '../styles';
+import {DynamicStyleSheet, useDynamicStyleSheet} from 'react-native-dark-mode';
+import {sharedDynamicStyleSheet, tabletMode} from '../styles';
 import SuggestedSearches from './suggested-searches';
 import {FlatList} from "react-native-gesture-handler";
 import {resultsContainerStyles} from './results/results-box';
 import {getMovieKey} from './results/results-box';
 import {LoadMoreButton} from './results/results-box';
 import {NoResultsMessage} from './results/results-box';
-import {Dimensions, Modal} from 'react-native';
+import {Dimensions} from 'react-native';
 import RedeemLinksModal from '../redeem-links/modal';
 import MovieCardLink from './results/movie-card-link';
 
