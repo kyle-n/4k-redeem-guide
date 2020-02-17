@@ -6,7 +6,7 @@ import {baseFontSize, darkLightGray, sharedDynamicStyleSheet} from '../styles';
 import {LayoutProps} from './movie-details.page';
 import {Movie} from '../models';
 import {ImageBackground, StyleSheet} from 'react-native';
-import {MovieCardHeaderMarkup, MovieTitle} from './movie-card-header';
+import {MovieCardHeaderMarkup} from './movie-card-header';
 import MovieInfoAsideBox from './movie-info-aside-box';
 import MovieCardBody from './movie-card-body';
 
