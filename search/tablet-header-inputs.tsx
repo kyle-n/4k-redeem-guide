@@ -4,7 +4,7 @@ import {View} from "native-base";
 import InputBox from './input/input-box';
 import FilterBox from './input/filter-box';
 import {GlobalState, MovieFilters} from '../models';
-import {setQuery, clearQuery, clearFilters, setFiltersVisible, setFiltersAndSearch, toggleFiltersVisible} from '../redux/actions';
+import {setQueryAndSearch, clearQuery, clearFilters, setFiltersVisible, setFiltersAndSearch, toggleFiltersVisible} from '../redux/actions';
 import {StyleSheet} from 'react-native';
 
 const mapStateToProps = (state: GlobalState) => {
@@ -16,7 +16,7 @@ const mapStateToProps = (state: GlobalState) => {
   };
 };
 const mapDispatchToProps = {
-  setQuery,
+  setQueryAndSearch,
   clearQuery,
   clearFilters,
   setFiltersVisible,
@@ -42,7 +42,7 @@ const TabletHeaderInputs = (props: TabletHeaderInputsProps) => {
   };
   return (
     <View style={tabletHeaderStyles.container}>
-      <InputBox setQuery={props.setQuery}
+      <InputBox setQuery={props.setQueryAndSearch}
                 clearQuery={props.clearQuery}
                 query={props.query}
                 isLoading={props.isLoading}
