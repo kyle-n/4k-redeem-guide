@@ -94,15 +94,23 @@ const getMovie = async (movieId: number): Promise<any> => {
 };
 
 export const getMovieImage = async (title: string, year?: number): Promise<string | null> => {
-  const resp = await searchMovies(title, year);
-  if (resp && resp.total_results > 0) {
-    return baseImageUrl + resp.results[0].backdrop_path;
-  } else return null;
+  try {
+    const resp = await searchMovies(title, year);
+    if (resp && resp.total_results > 0) {
+      return baseImageUrl + resp.results[0].backdrop_path;
+    } else return null;
+  } catch {
+    return null;
+  }
 };
 
 export const getMovieDetails = async (title: string, year?: number): Promise<any | null> => {
-  const searchResp = await searchMovies(title, year);
-  if (searchResp && searchResp.total_results > 0) {
-    return await getMovie(searchResp.results[0].id);
-  } else return null;
+  try {
+    const searchResp = await searchMovies(title, year);
+    if (searchResp && searchResp.total_results > 0) {
+      return await getMovie(searchResp.results[0].id);
+    } else return null;
+  } catch {
+    return null;
+  }
 };
