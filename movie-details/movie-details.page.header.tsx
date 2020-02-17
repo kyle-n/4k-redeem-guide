@@ -1,8 +1,8 @@
 import React from 'react';
 import {headerDynamicSheet} from '../search-header/search.page.header';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {sharedDynamicStyleSheet} from '../styles';
-import {Text, View} from 'native-base';
+import {sharedDynamicStyleSheet, tabletMode} from '../styles';
+import {Button, Text, View} from 'native-base';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {BackButton} from '../shared-components';
@@ -32,9 +32,20 @@ const MovieDetailsPageHeader = (props: MovieDetailsPageHeaderProps) => {
       <View style={searchHeaderStyles.centerStyle}>
         <Text style={searchHeaderStyles.pageTitle}>Details</Text>
       </View>
-      <RedeemLinksButton onPressOnTablet={props.toggleLinksModalVisible} />
+      <View style={searchHeaderStyles.centerStyle}>
+        {tabletMode() ? (
+          <HiddenBackText />
+        ) : null}
+        <RedeemLinksButton onPressOnTablet={props.toggleLinksModalVisible} />
+      </View>
     </View>
   );
 };
+
+const HiddenBackText = () => (
+  <Button style={{opacity: 0}} large transparent>
+    <Text>Back</Text>
+  </Button>
+);
 
 export default connect(mapStateToProps, mapDispatchToProps)(withNavigation(MovieDetailsPageHeader));
