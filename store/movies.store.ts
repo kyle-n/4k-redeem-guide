@@ -14,12 +14,27 @@ type SearchMovieResponse = {
   nextIndexToEvaluate: number;
 };
 
+const failsFilter = (filters: MovieFilters, movie: Movie): boolean => {
+  return (
+    filters.vuduUhd && !movie.vuduUhd ||
+    filters.fandangoNowUhd && !movie.fandangoNowUhd ||
+    filters.itunesUhd && !movie.itunesUhd ||
+    filters.itunesCodeRedeemsUhd && !movie.itunesCodeRedeemsUhd ||
+    filters.moviesAnywhere && !movie.moviesAnywhere ||
+    filters.dolbyVision && !movie.dolbyVision ||
+    filters.hdr && !movie.hdr ||
+    filters.googlePlayUhd && !movie.googlePlayUhd ||
+    filters.amazonVideoUhd && !movie.amazonVideoUhd ||
+    filters.microsoftUhd && !movie.microsoftUhd
+  )
+};
 
 // need to group property types - iterate over all text props the same way, all booleans, etc
 export const searchMovies = async (
   movies: Movie[],
   query: string,
   filters: MovieFilters | null,
+  previousResults: number[],
   config?: {offset?: number, limit?: number}
 ): Promise<SearchMovieResponse> => {
 
@@ -35,26 +50,25 @@ export const searchMovies = async (
   const startingIndex = config?.offset ? config.offset : 0;
   let nextIndexToEvaluate = startingIndex;
 
+  for (let i = startingIndex; i < movies.length; i++) {
+    if (filters && failsFilter(filters, movies[i])) {
+      continue;
+    }
+    if (previousResults.includes(i)) continue;
+
+    if (transformedQuery === transformToMatchableText(movies[i].title)) {
+      results.push(i);
+    }
+    if (results.length === limit) break;
+  }
+
   // manually checks properties to go faster - see https://bit.ly/2N5P4Ac
   for (let i = startingIndex; i < movies.length; i++) {
     // bump next index
     nextIndexToEvaluate++;
 
     // narrow by filters
-    if (
-      filters && (
-        filters.vuduUhd && !movies[i].vuduUhd ||
-        filters.fandangoNowUhd && !movies[i].fandangoNowUhd ||
-        filters.itunesUhd && !movies[i].itunesUhd ||
-        filters.itunesCodeRedeemsUhd && !movies[i].itunesCodeRedeemsUhd ||
-        filters.moviesAnywhere && !movies[i].moviesAnywhere ||
-        filters.dolbyVision && !movies[i].dolbyVision ||
-        filters.hdr && !movies[i].hdr ||
-        filters.googlePlayUhd && !movies[i].googlePlayUhd ||
-        filters.amazonVideoUhd && !movies[i].amazonVideoUhd ||
-        filters.microsoftUhd && !movies[i].microsoftUhd
-      )
-    ) {
+    if (filters && failsFilter(filters, movies[i])) {
       continue;
     }
 
