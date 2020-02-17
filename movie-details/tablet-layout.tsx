@@ -92,7 +92,6 @@ type SideBoxMarkupProps = {
 };
 const TabletLayoutBox = (props: SideBoxMarkupProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
-  console.log(props)
   return (
     <View style={[
       sharedStyles.squareEntity,
