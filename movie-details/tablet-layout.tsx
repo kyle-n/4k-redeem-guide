@@ -42,6 +42,7 @@ class TabletLayout extends React.Component<LayoutProps, SideBoxState> {
   }
 }
 
+const titleBoxHeight = baseFontSize * 6;
 const layoutStyles = StyleSheet.create({
   container: {
     display: 'flex',
@@ -69,15 +70,15 @@ const layoutStyles = StyleSheet.create({
   },
   movieTitle: {
     width: '100%',
-    height: 12 * baseFontSize,
+    height: titleBoxHeight * 2,
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    paddingBottom: baseFontSize * 6
+    paddingBottom: titleBoxHeight
   },
   innermostTitleContainer: {
     width: '100%',
-    height: baseFontSize * 12,
+    height: titleBoxHeight * 2,
     textAlign: 'left'
   },
   halfWidthInItem: {
