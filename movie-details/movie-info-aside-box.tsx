@@ -11,7 +11,7 @@ const asideStyles = StyleSheet.create({
     padding: baseFontSize
   },
   regularText: {
-    fontSize: baseFontSize
+    fontSize: baseFontSize * 1.25
   },
   taglineText: {
     fontSize: baseFontSize * 2.5,
