@@ -1,9 +1,9 @@
 import React from 'react';
 import {Body, CardItem, Left, Right, Text, View} from 'native-base';
-import {Movie} from '../../../models';
+import {Movie} from '../models';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
-import {baseFontSize, sharedDynamicStyleSheet} from '../../../styles';
-import {DropdownIcon} from '../../../shared-components';
+import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
+import {DropdownIcon} from '../shared-components';
 import {ImageBackground, StyleSheet} from 'react-native';
 
 const movieCardHeaderStyles = StyleSheet.create({
@@ -54,32 +54,43 @@ const MovieCardHeader = (props: MovieCardHeaderProps) => {
 
 type MovieCardHeaderMarkupProps = {
   parentProps: MovieCardHeaderProps;
+  biggetText?: boolean;
 };
 
-const MovieCardHeaderMarkup = (props: MovieCardHeaderMarkupProps) => {
+export const MovieCardHeaderMarkup = (props: MovieCardHeaderMarkupProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <CardItem header style={[sharedStyles.squareEntity, {backgroundColor: 'rgba(0,0,0,0)'}]}>
-      <Left style={{display: 'flex', flexDirection: 'row'}}>
-        <Body style={[{width: '100%', flexGrow: 7}]}>
-          <Text>
-            <Text style={[sharedStyles.dynamicColor, {fontSize: baseFontSize * 1.5}]}>
-              &nbsp;{props.parentProps.movie.title}&nbsp;
-            </Text>
-          </Text>
-          <Text>
-            <Text note style={[sharedStyles.dynamicColor]}>
-              &nbsp;{props.parentProps.movie.studio}
-              {props.parentProps.movie.year ? ', ' + props.parentProps.movie.year : null}&nbsp;
-            </Text>
-          </Text>
-        </Body>
-        <Right style={[{alignSelf: 'center', flexGrow: 1}]}>
-          <DropdownIcon open={props.parentProps.open} />
-        </Right>
-      </Left>
+      <MovieTitle parentProps={props.parentProps} biggetText={props.biggetText} />
     </CardItem>
-  )
+  );
+};
+
+const MovieTitle = (props: MovieCardHeaderMarkupProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <Left style={{display: 'flex', flexDirection: 'row'}}>
+      <Body style={[{width: '100%', flexGrow: 7}]}>
+        <Text>
+          <Text style={[
+            sharedStyles.dynamicColor,
+            props.biggetText ? {fontSize: baseFontSize * 3.5} : {fontSize: baseFontSize * 1.5}
+            ]}>
+            &nbsp;{props.parentProps.movie.title}&nbsp;
+          </Text>
+        </Text>
+        <Text>
+          <Text note style={[
+            sharedStyles.dynamicColor,
+            props.biggetText ? {fontSize: baseFontSize * 2} : null
+          ]}>
+            &nbsp;{props.parentProps.movie.studio}
+            {props.parentProps.movie.year ? ', ' + props.parentProps.movie.year : null}&nbsp;
+          </Text>
+        </Text>
+      </Body>
+    </Left>
+  );
 };
 
 export default MovieCardHeader;

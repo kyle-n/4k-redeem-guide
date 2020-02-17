@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, Icon, View} from 'native-base';
+import {Button, Icon, Text, View} from 'native-base';
 import {Alert, BackHandler, NativeEventSubscription, Platform, StyleProp, StyleSheet} from 'react-native';
-import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet} from './styles';
+import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet, tabletMode} from './styles';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {withNavigation} from 'react-navigation';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
@@ -62,17 +62,6 @@ export class ExitOnBackButton extends React.Component<ExitOnBackButtonProps, Exi
 
 }
 
-type BackButtonProps = NavigationStackScreenProps & {
-  style?: any;
-};
-export const BackButton = withNavigation((props: BackButtonProps) => (
-  <Button onPress={() => props.navigation.goBack()}
-          style={props.style || null}
-          large rounded warning>
-    <Icon name="ios-arrow-back" ios="ios-arrow-back" android="md-arrow-back" />
-  </Button>
-));
-
 const dropdownDynamicStyleSheet = new DynamicStyleSheet({
   darkerDynamicColor: {
     color: new DynamicValue(lightColor, darkerLightGray),
@@ -97,3 +86,42 @@ export const DropdownIcon = (props: DropdownIconProps) => {
 export const LargeXIcon = () => (
   <Icon name="md-close" style={{fontSize: baseFontSize * 2, alignSelf: 'center'}} />
 );
+
+type CloseButtonProps = {
+  onPress: () => void | undefined;
+};
+export const CloseButton = (props: CloseButtonProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <View style={{margin: baseFontSize}}>
+      <Button onPress={props.onPress}
+              warning large bordered style={sharedStyles.squareEntity}>
+        <LargeXIcon />
+      </Button>
+    </View>
+  );
+};
+
+type BackButtonProps = {
+  onPress?: () => void;
+};
+
+export const HiddenBackButton = () => (
+  <View style={{opacity: 0}}>
+    <BackButton />
+  </View>
+);
+
+export const BackButton = (props: BackButtonProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <Button onPress={props.onPress ? props.onPress : undefined}
+            dark transparent large iconLeft={Platform.OS === 'ios'}>
+      <Icon name="ios-arrow-back" ios="ios-arrow-back" android="md-arrow-back"
+            style={[sharedStyles.dynamicTextColor]} />
+      {tabletMode() ? (
+        <Text style={sharedStyles.dynamicTextColor}>Back</Text>
+      ) : null}
+    </Button>
+  );
+};

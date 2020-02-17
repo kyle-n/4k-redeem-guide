@@ -23,6 +23,9 @@ export const sharedDynamicStyleSheet = new DynamicStyleSheet({
   dynamicBackgroundColor: {
     backgroundColor: new DynamicValue(lightBackgroundColor, darkBackgroundColor),
   },
+  dynamicPageBackgroundColor: {
+    backgroundColor: new DynamicValue(lightBackgroundColor, 'rgb(28,28,30)')
+  },
   squareEntity: {
     borderRadius: baseFontSize / 2
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import {Button, Icon, Text, View} from 'native-base';
 import {StyleSheet} from 'react-native';
-import {baseFontSize} from '../styles';
+import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
 import {openInAppBrowser} from '../utils';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {pageDynamicStyleSheet} from '../search/search.page';
@@ -30,10 +30,11 @@ const links: Array<{title: string, href: string}> = [
 
 const RedeemLinks = () => {
   const pageStyles = useDynamicStyleSheet(pageDynamicStyleSheet);
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={[
       redeemPageStyles.container,
-      pageStyles.specialBackground
+      sharedStyles.dynamicPageBackgroundColor
     ]}>
       {links.map(link => {
         return (

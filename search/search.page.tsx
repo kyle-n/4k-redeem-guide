@@ -6,18 +6,16 @@ import {SearchPageProps} from './search.page.container';
 import {MovieFilters, PresetSearch} from '../models';
 import {anyValueTruthy} from '../utils';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {lightBackgroundColor, tabletMode} from '../styles';
+import {lightBackgroundColor, sharedDynamicStyleSheet, tabletMode} from '../styles';
 import SuggestedSearches from './suggested-searches';
 import {FlatList} from "react-native-gesture-handler";
-import MovieCard from './results/movie-card/movie-card';
 import {resultsContainerStyles} from './results/results-box';
 import {getMovieKey} from './results/results-box';
 import {LoadMoreButton} from './results/results-box';
 import {NoResultsMessage} from './results/results-box';
 import {Dimensions, Modal} from 'react-native';
-import RedeemLinksPageContainer from '../redeem-links/redeem-links.page.container';
-import RedeemLinks from '../redeem-links/redeem-links.page';
 import RedeemLinksModal from '../redeem-links/modal';
+import MovieCardLink from './results/movie-card-link';
 
 export const pageDynamicStyleSheet = new DynamicStyleSheet({
   content: {
@@ -26,9 +24,6 @@ export const pageDynamicStyleSheet = new DynamicStyleSheet({
   container: {
     flexGrow: 1
   },
-  specialBackground: {
-    backgroundColor: new DynamicValue(lightBackgroundColor, 'rgb(28,28,30)'),
-  }
 });
 
 type SearchPageState = {
@@ -91,8 +86,10 @@ const SearchPageMarkup = (props: SearchPageMarkupProps) => {
 
   let initialRenderNumber = 10;
   initialRenderNumber = initialRenderNumber * cols;
+
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <View style={[movieCardStyles.container, movieCardStyles.specialBackground] as any[]}>
+    <View style={[movieCardStyles.container, sharedStyles.dynamicPageBackgroundColor] as any[]}>
       <View style={movieCardStyles.content}>
         <View style={[resultsContainerStyles.containerWithButton]}>
           <RedeemLinksModal />
@@ -102,8 +99,8 @@ const SearchPageMarkup = (props: SearchPageMarkupProps) => {
                     initialNumToRender={initialRenderNumber}
                     renderItem={(itemInfo) => {
                       return (
-                        <MovieCard movie={itemInfo.item}
-                                   width={colWidth} />
+                        <MovieCardLink movie={itemInfo.item}
+                                       width={colWidth} />
                       );
                     }}
                     key={cols}
