@@ -337,8 +337,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BD35A042C576BC44F1897FFC6D890F5A"
-               BuildableName = "libPods-4K4U.a"
-               BlueprintName = "Pods-4K4U"
+               BuildableName = "libPods-uhdredeemguide.a"
+               BlueprintName = "Pods-uhdredeemguide"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -351,8 +351,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8E02286842C1FD4588E5328B5CB2DC2C"
-               BuildableName = "libPods-4K4UTests.a"
-               BlueprintName = "Pods-4K4UTests"
+               BuildableName = "libPods-uhdredeemguideTests.a"
+               BlueprintName = "Pods-uhdredeemguideTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
