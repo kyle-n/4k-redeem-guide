@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'uhdredeemguide' do
-  # Pods for uhdredeemguide
+target '4K4U' do
+  # Pods for 4K4U
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -39,7 +39,7 @@ target 'uhdredeemguide' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
-  target 'uhdredeemguideTests' do
+  target '4K4UTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -47,10 +47,10 @@ target 'uhdredeemguide' do
   use_native_modules!
 end
 
-target 'uhdredeemguide-tvOS' do
-  # Pods for uhdredeemguide-tvOS
+target '4K4U-tvOS' do
+  # Pods for 4K4U-tvOS
 
-  target 'uhdredeemguide-tvOSTests' do
+  target '4K4U-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end

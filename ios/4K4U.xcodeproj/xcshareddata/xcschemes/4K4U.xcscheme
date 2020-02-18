@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-               BuildableName = "uhdredeemguide.app"
-               BlueprintName = "uhdredeemguide"
-               ReferencedContainer = "container:uhdredeemguide.xcodeproj">
+               BuildableName = "4K4U.app"
+               BlueprintName = "4K4U"
+               ReferencedContainer = "container:4K4U.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "uhdredeemguideTests.xctest"
-               BlueprintName = "uhdredeemguideTests"
-               ReferencedContainer = "container:uhdredeemguide.xcodeproj">
+               BuildableName = "4K4UTests.xctest"
+               BlueprintName = "4K4UTests"
+               ReferencedContainer = "container:4K4U.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -337,8 +337,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "BD35A042C576BC44F1897FFC6D890F5A"
-               BuildableName = "libPods-uhdredeemguide.a"
-               BlueprintName = "Pods-uhdredeemguide"
+               BuildableName = "libPods-4K4U.a"
+               BlueprintName = "Pods-4K4U"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -351,8 +351,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8E02286842C1FD4588E5328B5CB2DC2C"
-               BuildableName = "libPods-uhdredeemguideTests.a"
-               BlueprintName = "Pods-uhdredeemguideTests"
+               BuildableName = "libPods-4K4UTests.a"
+               BlueprintName = "Pods-4K4UTests"
                ReferencedContainer = "container:Pods/Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -451,9 +451,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "uhdredeemguide.app"
-            BlueprintName = "uhdredeemguide"
-            ReferencedContainer = "container:uhdredeemguide.xcodeproj">
+            BuildableName = "4K4U.app"
+            BlueprintName = "4K4U"
+            ReferencedContainer = "container:4K4U.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <Testables>
@@ -462,9 +462,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "00E356ED1AD99517003FC87E"
-               BuildableName = "uhdredeemguideTests.xctest"
-               BlueprintName = "uhdredeemguideTests"
-               ReferencedContainer = "container:uhdredeemguide.xcodeproj">
+               BuildableName = "4K4UTests.xctest"
+               BlueprintName = "4K4UTests"
+               ReferencedContainer = "container:4K4U.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -484,9 +484,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "uhdredeemguide.app"
-            BlueprintName = "uhdredeemguide"
-            ReferencedContainer = "container:uhdredeemguide.xcodeproj">
+            BuildableName = "4K4U.app"
+            BlueprintName = "4K4U"
+            ReferencedContainer = "container:4K4U.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -501,9 +501,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "13B07F861A680F5B00A75B9A"
-            BuildableName = "uhdredeemguide.app"
-            BlueprintName = "uhdredeemguide"
-            ReferencedContainer = "container:uhdredeemguide.xcodeproj">
+            BuildableName = "4K4U.app"
+            BlueprintName = "4K4U"
+            ReferencedContainer = "container:4K4U.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

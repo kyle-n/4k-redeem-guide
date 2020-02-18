@@ -129,7 +129,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.uhdredeemguide"
+        applicationId "com.kylenazario.4k4u"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
