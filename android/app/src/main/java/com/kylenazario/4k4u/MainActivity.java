@@ -1,4 +1,4 @@
-package com.kylenazario.4k4u;
+package com.kylenazario.fourK4U;
 
 import com.facebook.react.ReactActivity;
 import com.swmansion.rnscreens.RNScreensPackage;
