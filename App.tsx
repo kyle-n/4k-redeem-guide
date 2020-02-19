@@ -15,6 +15,8 @@ import MovieDetailsPageContainer from './movie-details/movie-details.page.contai
 import MovieDetailsPageHeader from './movie-details/movie-details.page.header';
 import SplashScreen from 'react-native-splash-screen';
 
+console.disableYellowBox = true;
+
 const MainNavigator = createStackNavigator({
   Home: {
     screen: SearchPageContainer,
