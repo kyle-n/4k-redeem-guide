@@ -1,4 +1,4 @@
-package com.uhdredeemguide;
+package com.kylenazario.fourK4U;
 
 import android.app.Application;
 import android.util.Log;

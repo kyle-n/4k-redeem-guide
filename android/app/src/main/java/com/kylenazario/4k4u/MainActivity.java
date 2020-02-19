@@ -1,4 +1,4 @@
-package com.uhdredeemguide;
+package com.kylenazario.fourK4U;
 
 import com.facebook.react.ReactActivity;
 import com.swmansion.rnscreens.RNScreensPackage;
@@ -17,7 +17,7 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "uhdredeemguide";
+        return "4K4U";
     }
 
     @Override

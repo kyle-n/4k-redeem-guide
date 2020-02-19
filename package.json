@@ -1,5 +1,5 @@
 {
-  "name": "uhdredeemguide",
+  "name": "4K4U",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -18,7 +18,7 @@
     "react-native": "0.60.5",
     "react-native-animatable": "^1.3.3",
     "react-native-camera": "^3.15.1",
-    "react-native-custom-tabs": "^0.1.7",
+    "react-native-custom-tabs": "git+https://github.com/Arjan-Zuidema/react-native-custom-tabs.git",
     "react-native-dark-mode": "^0.2.2",
     "react-native-gesture-handler": "^1.5.2",
     "react-native-iphone-x-helper": "^1.2.1",

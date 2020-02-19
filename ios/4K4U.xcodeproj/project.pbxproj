@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* uhdredeemguideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* uhdredeemguideTests.m */; };
+		00E356F31AD99517003FC87E /* 4K4UTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* 4K4UTests.m */; };
 		0267CDE1DE1E4CDBBA62AE56 /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 140878D224CB4269AE235D77 /* Feather.ttf */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
@@ -15,21 +15,21 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		1CA1037253044D89AC505FE0 /* FontAwesome5_Brands.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2E15EAFC1C294B5ABF7DB58B /* FontAwesome5_Brands.ttf */; };
 		1F610C0121CF401D9CAF0455 /* MaterialIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DBCC743FE0A745458725AC4D /* MaterialIcons.ttf */; };
-		2673B12A2F25C7F57C581538 /* libPods-uhdredeemguide.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F324BBAC344E6759ED21FB /* libPods-uhdredeemguide.a */; };
+		2673B12A2F25C7F57C581538 /* libPods-4K4U.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F324BBAC344E6759ED21FB /* libPods-4K4U.a */; };
 		2955196AD0CB41A0AE56C301 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E72A3B737C2541FBAB6B1D30 /* FontAwesome5_Regular.ttf */; };
 		29663897CFD84108AFB43C73 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7DB4EC7F0CF44787B4866B02 /* Octicons.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2D9D759A29F7ABAD3453C911 /* libPods-uhdredeemguideTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF0A2D10AD007CB9248E5F /* libPods-uhdredeemguideTests.a */; };
-		2DCD954D1E0B4F2C00145EB5 /* uhdredeemguideTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* uhdredeemguideTests.m */; };
-		30A86F90AF1D473DAEDBF40B /* libPods-uhdredeemguide-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 979A926D05B37408D0D12D98 /* libPods-uhdredeemguide-tvOS.a */; };
+		2D9D759A29F7ABAD3453C911 /* libPods-4K4UTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 39AF0A2D10AD007CB9248E5F /* libPods-4K4UTests.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* 4K4UTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* 4K4UTests.m */; };
+		30A86F90AF1D473DAEDBF40B /* libPods-4K4U-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 979A926D05B37408D0D12D98 /* libPods-4K4U-tvOS.a */; };
 		3320FED2DE7C4F86A3B9C008 /* FontAwesome5_Solid.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6F050F3BDDA44F7ABD69A1E7 /* FontAwesome5_Solid.ttf */; };
 		38272CFB5CD442319D0ED749 /* rubicon-icon-font.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 527D41B2090C4479A478159D /* rubicon-icon-font.ttf */; };
 		3C37F70750CE4DB0A818A85F /* MaterialCommunityIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 98E79540AE864F05A573FDEC /* MaterialCommunityIcons.ttf */; };
 		4CD881B44C2846D1BB26EE59 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C84C86CC07314E07A5C557E4 /* SimpleLineIcons.ttf */; };
 		512B106DC04B433AAFB0783B /* FontAwesome.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5696CE61058E4B5E86335D4C /* FontAwesome.ttf */; };
-		789EFD5875322A929EAD9738 /* libPods-uhdredeemguide-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9534B70FC98C523835FE2E33 /* libPods-uhdredeemguide-tvOSTests.a */; };
+		789EFD5875322A929EAD9738 /* libPods-4K4U-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9534B70FC98C523835FE2E33 /* libPods-4K4U-tvOSTests.a */; };
 		7AFE26D5987D41FEB7832001 /* EvilIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3F3331110C54F418C776F48 /* EvilIcons.ttf */; };
 		8AB2C27D021944EBBFC08D64 /* Roboto.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ECBCC4538559451D920DA05A /* Roboto.ttf */; };
 		8BC9BDEAB2B148ACA72239D6 /* Ionicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 342656A9D65F4914B96E55CB /* Ionicons.ttf */; };
@@ -47,69 +47,69 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = uhdredeemguide;
+			remoteInfo = 4K4U;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "uhdredeemguide-tvOS";
+			remoteInfo = "4K4U-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* uhdredeemguideTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = uhdredeemguideTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* 4K4UTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 4K4UTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* uhdredeemguideTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = uhdredeemguideTests.m; sourceTree = "<group>"; };
-		0869BD1350056168C651B07E /* Pods-uhdredeemguideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uhdredeemguideTests.release.xcconfig"; path = "Target Support Files/Pods-uhdredeemguideTests/Pods-uhdredeemguideTests.release.xcconfig"; sourceTree = "<group>"; };
-		0892224BDF90597177F1ED18 /* Pods-uhdredeemguide-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uhdredeemguide-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-uhdredeemguide-tvOS/Pods-uhdredeemguide-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* uhdredeemguide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = uhdredeemguide.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = uhdredeemguide/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = uhdredeemguide/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* 4K4UTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = 4K4UTests.m; sourceTree = "<group>"; };
+		0869BD1350056168C651B07E /* Pods-4K4UTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4K4UTests.release.xcconfig"; path = "Target Support Files/Pods-4K4UTests/Pods-4K4UTests.release.xcconfig"; sourceTree = "<group>"; };
+		0892224BDF90597177F1ED18 /* Pods-4K4U-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4K4U-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-4K4U-tvOS/Pods-4K4U-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* 4K4U.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 4K4U.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = 4K4U/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = 4K4U/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = uhdredeemguide/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = uhdredeemguide/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = uhdredeemguide/main.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = 4K4U/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = 4K4U/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = 4K4U/main.m; sourceTree = "<group>"; };
 		140878D224CB4269AE235D77 /* Feather.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Feather.ttf; path = "../node_modules/native-base/Fonts/Feather.ttf"; sourceTree = "<group>"; };
 		24EB2134DAA842F5829E6FC2 /* Fontisto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Fontisto.ttf; path = "../node_modules/native-base/Fonts/Fontisto.ttf"; sourceTree = "<group>"; };
-		2548CF72718616108E29E872 /* Pods-uhdredeemguide-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uhdredeemguide-tvOS.release.xcconfig"; path = "Target Support Files/Pods-uhdredeemguide-tvOS/Pods-uhdredeemguide-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* uhdredeemguide-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uhdredeemguide-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* uhdredeemguide-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "uhdredeemguide-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2548CF72718616108E29E872 /* Pods-4K4U-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4K4U-tvOS.release.xcconfig"; path = "Target Support Files/Pods-4K4U-tvOS/Pods-4K4U-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* 4K4U-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "4K4U-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* 4K4U-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "4K4U-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E15EAFC1C294B5ABF7DB58B /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
 		31A597C53BDB4E64B7463005 /* Rubik-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Regular.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-Regular.ttf"; sourceTree = "<group>"; };
 		342656A9D65F4914B96E55CB /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/native-base/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
-		39AF0A2D10AD007CB9248E5F /* libPods-uhdredeemguideTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uhdredeemguideTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		39AF0A2D10AD007CB9248E5F /* libPods-4K4UTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-4K4UTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		44801981741B4678B0A69ACE /* Rubik-BlackItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BlackItalic.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-BlackItalic.ttf"; sourceTree = "<group>"; };
 		527D41B2090C4479A478159D /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/native-base/Fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		5696CE61058E4B5E86335D4C /* FontAwesome.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome.ttf; path = "../node_modules/native-base/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		5C5317ACC82E4925A6E591CB /* Zocial.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Zocial.ttf; path = "../node_modules/native-base/Fonts/Zocial.ttf"; sourceTree = "<group>"; };
 		6F050F3BDDA44F7ABD69A1E7 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		7DB4EC7F0CF44787B4866B02 /* Octicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Octicons.ttf; path = "../node_modules/native-base/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
-		83AA8DB0B2B397BC467AB2FA /* Pods-uhdredeemguide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uhdredeemguide.debug.xcconfig"; path = "Target Support Files/Pods-uhdredeemguide/Pods-uhdredeemguide.debug.xcconfig"; sourceTree = "<group>"; };
+		83AA8DB0B2B397BC467AB2FA /* Pods-4K4U.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4K4U.debug.xcconfig"; path = "Target Support Files/Pods-4K4U/Pods-4K4U.debug.xcconfig"; sourceTree = "<group>"; };
 		8BD748B911064C558F8553F6 /* libDBCustomTabs.a */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = archive.ar; path = libDBCustomTabs.a; sourceTree = "<group>"; };
 		91FDEF13A8154E3A9B69CEA8 /* Entypo.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Entypo.ttf; path = "../node_modules/native-base/Fonts/Entypo.ttf"; sourceTree = "<group>"; };
 		9411A9FE3B7B4317BF9064ED /* Rubik-BoldItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-BoldItalic.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-BoldItalic.ttf"; sourceTree = "<group>"; };
-		9534B70FC98C523835FE2E33 /* libPods-uhdredeemguide-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uhdredeemguide-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		979A926D05B37408D0D12D98 /* libPods-uhdredeemguide-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uhdredeemguide-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9534B70FC98C523835FE2E33 /* libPods-4K4U-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-4K4U-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		979A926D05B37408D0D12D98 /* libPods-4K4U-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-4K4U-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		98E79540AE864F05A573FDEC /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
-		9AE0C4DBB82A9FE252E28A8D /* Pods-uhdredeemguideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uhdredeemguideTests.debug.xcconfig"; path = "Target Support Files/Pods-uhdredeemguideTests/Pods-uhdredeemguideTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9AE0C4DBB82A9FE252E28A8D /* Pods-4K4UTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4K4UTests.debug.xcconfig"; path = "Target Support Files/Pods-4K4UTests/Pods-4K4UTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9C45022023144CE9BB74FDF9 /* Rubik-MediumItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-MediumItalic.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-MediumItalic.ttf"; sourceTree = "<group>"; };
-		9C6AF97A8E46FFD3D6015CC6 /* Pods-uhdredeemguide-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uhdredeemguide-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-uhdredeemguide-tvOSTests/Pods-uhdredeemguide-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		9C6AF97A8E46FFD3D6015CC6 /* Pods-4K4U-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4K4U-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-4K4U-tvOSTests/Pods-4K4U-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		9DDD52B7D18547E884A1EBC4 /* Foundation.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Foundation.ttf; path = "../node_modules/native-base/Fonts/Foundation.ttf"; sourceTree = "<group>"; };
 		A121461FF212425DBBE4A475 /* Rubik-LightItalic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-LightItalic.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-LightItalic.ttf"; sourceTree = "<group>"; };
 		A1A08DFD7D984A82B679FCB8 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/native-base/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
-		A9C46CA711F1D7026DA5103A /* Pods-uhdredeemguide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uhdredeemguide.release.xcconfig"; path = "Target Support Files/Pods-uhdredeemguide/Pods-uhdredeemguide.release.xcconfig"; sourceTree = "<group>"; };
+		A9C46CA711F1D7026DA5103A /* Pods-4K4U.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4K4U.release.xcconfig"; path = "Target Support Files/Pods-4K4U/Pods-4K4U.release.xcconfig"; sourceTree = "<group>"; };
 		B8073DC6E826486B875CFB69 /* Rubik-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Medium.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-Medium.ttf"; sourceTree = "<group>"; };
 		B8FD3097895F4AB88AD648AC /* Rubik-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Bold.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-Bold.ttf"; sourceTree = "<group>"; };
-		BD9530371F4F07C703B0B645 /* Pods-uhdredeemguide-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-uhdredeemguide-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-uhdredeemguide-tvOSTests/Pods-uhdredeemguide-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		BD9530371F4F07C703B0B645 /* Pods-4K4U-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-4K4U-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-4K4U-tvOSTests/Pods-4K4U-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C84C86CC07314E07A5C557E4 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = SimpleLineIcons.ttf; path = "../node_modules/native-base/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
 		C9C705F55F64489BA9D625B9 /* rubicon-icon-font.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "rubicon-icon-font.ttf"; path = "../node_modules/@shoutem/ui/fonts/rubicon-icon-font.ttf"; sourceTree = "<group>"; };
 		D229A5562760410CB7252ADC /* Rubik-Italic.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Rubik-Italic.ttf"; path = "../node_modules/@shoutem/ui/fonts/Rubik-Italic.ttf"; sourceTree = "<group>"; };
 		D3F3331110C54F418C776F48 /* EvilIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = EvilIcons.ttf; path = "../node_modules/native-base/Fonts/EvilIcons.ttf"; sourceTree = "<group>"; };
 		DBCC743FE0A745458725AC4D /* MaterialIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialIcons.ttf; path = "../node_modules/native-base/Fonts/MaterialIcons.ttf"; sourceTree = "<group>"; };
-		E3F324BBAC344E6759ED21FB /* libPods-uhdredeemguide.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-uhdredeemguide.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3F324BBAC344E6759ED21FB /* libPods-4K4U.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-4K4U.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E72A3B737C2541FBAB6B1D30 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Regular.ttf; path = "../node_modules/native-base/Fonts/FontAwesome5_Regular.ttf"; sourceTree = "<group>"; };
 		ECBCC4538559451D920DA05A /* Roboto.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Roboto.ttf; path = "../node_modules/native-base/Fonts/Roboto.ttf"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
@@ -124,7 +124,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2D9D759A29F7ABAD3453C911 /* libPods-uhdredeemguideTests.a in Frameworks */,
+				2D9D759A29F7ABAD3453C911 /* libPods-4K4UTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -132,7 +132,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2673B12A2F25C7F57C581538 /* libPods-uhdredeemguide.a in Frameworks */,
+				2673B12A2F25C7F57C581538 /* libPods-4K4U.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -140,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30A86F90AF1D473DAEDBF40B /* libPods-uhdredeemguide-tvOS.a in Frameworks */,
+				30A86F90AF1D473DAEDBF40B /* libPods-4K4U-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,20 +148,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				789EFD5875322A929EAD9738 /* libPods-uhdredeemguide-tvOSTests.a in Frameworks */,
+				789EFD5875322A929EAD9738 /* libPods-4K4U-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* uhdredeemguideTests */ = {
+		00E356EF1AD99517003FC87E /* 4K4UTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* uhdredeemguideTests.m */,
+				00E356F21AD99517003FC87E /* 4K4UTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = uhdredeemguideTests;
+			path = 4K4UTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -209,7 +209,7 @@
 			name = Resources;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* uhdredeemguide */ = {
+		13B07FAE1A68108700A75B9A /* 4K4U */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -220,20 +220,20 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = uhdredeemguide;
+			name = 4K4U;
 			sourceTree = "<group>";
 		};
 		2B8F231BB439303D5C8C6D39 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				83AA8DB0B2B397BC467AB2FA /* Pods-uhdredeemguide.debug.xcconfig */,
-				A9C46CA711F1D7026DA5103A /* Pods-uhdredeemguide.release.xcconfig */,
-				0892224BDF90597177F1ED18 /* Pods-uhdredeemguide-tvOS.debug.xcconfig */,
-				2548CF72718616108E29E872 /* Pods-uhdredeemguide-tvOS.release.xcconfig */,
-				BD9530371F4F07C703B0B645 /* Pods-uhdredeemguide-tvOSTests.debug.xcconfig */,
-				9C6AF97A8E46FFD3D6015CC6 /* Pods-uhdredeemguide-tvOSTests.release.xcconfig */,
-				9AE0C4DBB82A9FE252E28A8D /* Pods-uhdredeemguideTests.debug.xcconfig */,
-				0869BD1350056168C651B07E /* Pods-uhdredeemguideTests.release.xcconfig */,
+				83AA8DB0B2B397BC467AB2FA /* Pods-4K4U.debug.xcconfig */,
+				A9C46CA711F1D7026DA5103A /* Pods-4K4U.release.xcconfig */,
+				0892224BDF90597177F1ED18 /* Pods-4K4U-tvOS.debug.xcconfig */,
+				2548CF72718616108E29E872 /* Pods-4K4U-tvOS.release.xcconfig */,
+				BD9530371F4F07C703B0B645 /* Pods-4K4U-tvOSTests.debug.xcconfig */,
+				9C6AF97A8E46FFD3D6015CC6 /* Pods-4K4U-tvOSTests.release.xcconfig */,
+				9AE0C4DBB82A9FE252E28A8D /* Pods-4K4UTests.debug.xcconfig */,
+				0869BD1350056168C651B07E /* Pods-4K4UTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -243,10 +243,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				E3F324BBAC344E6759ED21FB /* libPods-uhdredeemguide.a */,
-				979A926D05B37408D0D12D98 /* libPods-uhdredeemguide-tvOS.a */,
-				9534B70FC98C523835FE2E33 /* libPods-uhdredeemguide-tvOSTests.a */,
-				39AF0A2D10AD007CB9248E5F /* libPods-uhdredeemguideTests.a */,
+				E3F324BBAC344E6759ED21FB /* libPods-4K4U.a */,
+				979A926D05B37408D0D12D98 /* libPods-4K4U-tvOS.a */,
+				9534B70FC98C523835FE2E33 /* libPods-4K4U-tvOSTests.a */,
+				39AF0A2D10AD007CB9248E5F /* libPods-4K4UTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -261,9 +261,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* uhdredeemguide */,
+				13B07FAE1A68108700A75B9A /* 4K4U */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* uhdredeemguideTests */,
+				00E356EF1AD99517003FC87E /* 4K4UTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				2B8F231BB439303D5C8C6D39 /* Pods */,
@@ -278,10 +278,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* uhdredeemguide.app */,
-				00E356EE1AD99517003FC87E /* uhdredeemguideTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* uhdredeemguide-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* uhdredeemguide-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* 4K4U.app */,
+				00E356EE1AD99517003FC87E /* 4K4UTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* 4K4U-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* 4K4U-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -297,9 +297,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* uhdredeemguideTests */ = {
+		00E356ED1AD99517003FC87E /* 4K4UTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "uhdredeemguideTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "4K4UTests" */;
 			buildPhases = (
 				613E52A75E1F0C01CD7212CF /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -311,14 +311,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = uhdredeemguideTests;
-			productName = uhdredeemguideTests;
-			productReference = 00E356EE1AD99517003FC87E /* uhdredeemguideTests.xctest */;
+			name = 4K4UTests;
+			productName = 4K4UTests;
+			productReference = 00E356EE1AD99517003FC87E /* 4K4UTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* uhdredeemguide */ = {
+		13B07F861A680F5B00A75B9A /* 4K4U */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "uhdredeemguide" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "4K4U" */;
 			buildPhases = (
 				BB5644B237EF4593C0B8B515 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -331,14 +331,14 @@
 			);
 			dependencies = (
 			);
-			name = uhdredeemguide;
-			productName = uhdredeemguide;
-			productReference = 13B07F961A680F5B00A75B9A /* uhdredeemguide.app */;
+			name = 4K4U;
+			productName = 4K4U;
+			productReference = 13B07F961A680F5B00A75B9A /* 4K4U.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* uhdredeemguide-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* 4K4U-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "uhdredeemguide-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "4K4U-tvOS" */;
 			buildPhases = (
 				C3FF782C76D1C8907FF17F62 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -351,14 +351,14 @@
 			);
 			dependencies = (
 			);
-			name = "uhdredeemguide-tvOS";
-			productName = "uhdredeemguide-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* uhdredeemguide-tvOS.app */;
+			name = "4K4U-tvOS";
+			productName = "4K4U-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* 4K4U-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* uhdredeemguide-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* 4K4U-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "uhdredeemguide-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "4K4U-tvOSTests" */;
 			buildPhases = (
 				7E0FA469BD0741C0E1421E51 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -370,9 +370,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "uhdredeemguide-tvOSTests";
-			productName = "uhdredeemguide-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* uhdredeemguide-tvOSTests.xctest */;
+			name = "4K4U-tvOSTests";
+			productName = "4K4U-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* 4K4U-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -402,7 +402,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "uhdredeemguide" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "4K4U" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -416,10 +416,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* uhdredeemguide */,
-				00E356ED1AD99517003FC87E /* uhdredeemguideTests */,
-				2D02E47A1E0B4A5D006451C7 /* uhdredeemguide-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* uhdredeemguide-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* 4K4U */,
+				00E356ED1AD99517003FC87E /* 4K4UTests */,
+				2D02E47A1E0B4A5D006451C7 /* 4K4U-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* 4K4U-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -521,7 +521,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-uhdredeemguideTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-4K4UTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -543,7 +543,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-uhdredeemguide-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-4K4U-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -565,7 +565,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-uhdredeemguide-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-4K4U-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -587,7 +587,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-uhdredeemguide-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-4K4U-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -639,7 +639,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* uhdredeemguideTests.m in Sources */,
+				00E356F31AD99517003FC87E /* 4K4UTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -665,7 +665,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* uhdredeemguideTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* 4K4UTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,12 +674,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* uhdredeemguide */;
+			target = 13B07F861A680F5B00A75B9A /* 4K4U */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* uhdredeemguide-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* 4K4U-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -691,7 +691,7 @@
 				13B07FB21A68108700A75B9A /* Base */,
 			);
 			name = LaunchScreen.xib;
-			path = uhdredeemguide;
+			path = 4K4U;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -699,7 +699,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AE0C4DBB82A9FE252E28A8D /* Pods-uhdredeemguideTests.debug.xcconfig */;
+			baseConfigurationReference = 9AE0C4DBB82A9FE252E28A8D /* Pods-4K4UTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -707,7 +707,7 @@
 					"$(inherited)",
 				);
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = uhdredeemguideTests/Info.plist;
+				INFOPLIST_FILE = 4K4UTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -718,18 +718,18 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uhdredeemguide.app/uhdredeemguide";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/4K4U.app/4K4U";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0869BD1350056168C651B07E /* Pods-uhdredeemguideTests.release.xcconfig */;
+			baseConfigurationReference = 0869BD1350056168C651B07E /* Pods-4K4UTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = uhdredeemguideTests/Info.plist;
+				INFOPLIST_FILE = 4K4UTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
@@ -740,20 +740,20 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uhdredeemguide.app/uhdredeemguide";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/4K4U.app/4K4U";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83AA8DB0B2B397BC467AB2FA /* Pods-uhdredeemguide.debug.xcconfig */;
+			baseConfigurationReference = 83AA8DB0B2B397BC467AB2FA /* Pods-4K4U.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = JMG343Q6QB;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = uhdredeemguide/Info.plist;
+				INFOPLIST_FILE = 4K4U/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -761,7 +761,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = uhdredeemguide;
+				PRODUCT_NAME = 4K4U;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -769,13 +769,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A9C46CA711F1D7026DA5103A /* Pods-uhdredeemguide.release.xcconfig */;
+			baseConfigurationReference = A9C46CA711F1D7026DA5103A /* Pods-4K4U.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = JMG343Q6QB;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = uhdredeemguide/Info.plist;
+				INFOPLIST_FILE = 4K4U/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
@@ -783,7 +783,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = uhdredeemguide;
+				PRODUCT_NAME = 4K4U;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -791,7 +791,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0892224BDF90597177F1ED18 /* Pods-uhdredeemguide-tvOS.debug.xcconfig */;
+			baseConfigurationReference = 0892224BDF90597177F1ED18 /* Pods-4K4U-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -803,7 +803,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "uhdredeemguide-tvOS/Info.plist";
+				INFOPLIST_FILE = "4K4U-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -811,7 +811,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.uhdredeemguide-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.4K4U-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -821,7 +821,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2548CF72718616108E29E872 /* Pods-uhdredeemguide-tvOS.release.xcconfig */;
+			baseConfigurationReference = 2548CF72718616108E29E872 /* Pods-4K4U-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -833,7 +833,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "uhdredeemguide-tvOS/Info.plist";
+				INFOPLIST_FILE = "4K4U-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -841,7 +841,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.uhdredeemguide-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.4K4U-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -851,7 +851,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD9530371F4F07C703B0B645 /* Pods-uhdredeemguide-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = BD9530371F4F07C703B0B645 /* Pods-4K4U-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -862,7 +862,7 @@
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "uhdredeemguide-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "4K4U-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -870,17 +870,17 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.uhdredeemguide-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.4K4U-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uhdredeemguide-tvOS.app/uhdredeemguide-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/4K4U-tvOS.app/4K4U-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9C6AF97A8E46FFD3D6015CC6 /* Pods-uhdredeemguide-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = 9C6AF97A8E46FFD3D6015CC6 /* Pods-4K4U-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -891,7 +891,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
 				HEADER_SEARCH_PATHS = "$(inherited)";
-				INFOPLIST_FILE = "uhdredeemguide-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "4K4U-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				OTHER_LDFLAGS = (
@@ -899,10 +899,10 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.uhdredeemguide-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.4K4U-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uhdredeemguide-tvOS.app/uhdredeemguide-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/4K4U-tvOS.app/4K4U-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1009,7 +1009,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "uhdredeemguideTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "4K4UTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1018,7 +1018,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "uhdredeemguide" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "4K4U" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1027,7 +1027,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "uhdredeemguide-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "4K4U-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1036,7 +1036,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "uhdredeemguide-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "4K4U-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1045,7 +1045,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "uhdredeemguide" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "4K4U" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
