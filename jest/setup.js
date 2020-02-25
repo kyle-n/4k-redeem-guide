@@ -1,5 +1,6 @@
 import {NativeModules} from 'react-native';
 import MockAsyncStorage from 'mock-async-storage';
+import RNCNetInfoMock from '@react-native-community/netinfo/jest/netinfo-mock.js';
 
 NativeModules.RNDarkMode = {
   initialMode: 'light',
@@ -10,3 +11,5 @@ NativeModules.RNDarkMode = {
 
 const mockImpl = new MockAsyncStorage();
 jest.mock('@react-native-community/async-storage', () => mockImpl);
+
+NativeModules.RNCNetInfo = RNCNetInfoMock;
