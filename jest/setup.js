@@ -23,3 +23,6 @@ jest.mock('react-native-safari-view', () => {
     show: () => {}
   }
 });
+
+// stub for animations
+jest.mock('NativeAnimatedHelper');
