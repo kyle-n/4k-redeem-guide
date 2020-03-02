@@ -1,12 +1,8 @@
 import React from 'react';
 import {Button, Icon, Text, View} from 'native-base';
-import {Alert, BackHandler, NativeEventSubscription, Platform, StyleProp, StyleSheet} from 'react-native';
+import {Alert, BackHandler, NativeEventSubscription, Platform, StyleSheet} from 'react-native';
 import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet, tabletMode} from './styles';
-import {NavigationStackScreenProps} from 'react-navigation-stack';
-import {withNavigation} from 'react-navigation';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
-import {CustomTabs} from 'react-native-custom-tabs';
-import SafariView from 'react-native-safari-view';
 
 const horizontalRuleStyles = StyleSheet.create({
   container: {
@@ -76,7 +72,6 @@ type DropdownIconProps = {
 }
 export const DropdownIcon = (props: DropdownIconProps) => {
   const styles = useDynamicStyleSheet(dropdownDynamicStyleSheet);
-  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <Icon name={props.open ? 'ios-arrow-up' : 'ios-arrow-down'}
           style={styles.darkerDynamicColor} />
