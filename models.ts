@@ -30,7 +30,7 @@ export type Movie = MovieFilters & MovieProperties;
 export const sheetMovieToMovie = (sheetMovie: SheetMovie): Movie => {
   let title: string = String(sheetMovie.Title);
   let year: number = 0;
-  const yearPattern: RegExp = /\(\d{4}\)/;
+  const yearPattern: RegExp = /\(\d{4}\s?\)/g;
   const yearMatches = sheetMovie.Title.match(yearPattern);
   if (yearMatches && yearMatches.length) {
     let matchingYearWithParentheses: string = yearMatches[yearMatches.length - 1];

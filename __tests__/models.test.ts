@@ -56,4 +56,12 @@ describe('models', () => {
     expect(convertedMovie).toEqual(mockConvertedMovie);
   });
 
+  it('can handle a movie with a year in the middle', () => {
+    const title = 'Aladdin Live Action (2019) / Aladdin Signature Collection (Bundle)';
+    const expectedTitle = 'Aladdin Live Action  / Aladdin Signature Collection (Bundle)';
+    const mockWithMiddleYear = Object.assign({}, mockSheetMovie, {Title: title});
+    const mockExpected = Object.assign({}, mockConvertedMovie, {title: expectedTitle, year: 2019});
+    expect(sheetMovieToMovie(mockWithMiddleYear)).toEqual(mockExpected);
+  });
+
 });
