@@ -49,6 +49,8 @@
     "@types/throttle-debounce": "^2.1.0",
     "babel-jest": "^24.1.0",
     "babel-plugin-transform-remove-console": "^6.9.4",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "jest": "^24.1.0",
     "metro-react-native-babel-preset": "0.54.1",
     "mock-async-storage": "^2.2.0",
