@@ -1,20 +1,19 @@
 import 'react-native';
-import React, {ReactInstance} from 'react';
-import ShallowRenderer from 'react-test-renderer/shallow';
+import React, {Component, ReactInstance} from 'react';
+import {shallow, ShallowWrapper} from 'enzyme'
 import App from '../App';
 import * as reducers from '../redux/reducers';
 
-const renderer = ShallowRenderer.createRenderer();
-
 describe('app', () => {
+  let wrapper: ShallowWrapper<any, Readonly<{}>, Component<{}, {}, any>>;
   let component: ReactInstance;
 
   beforeEach(() => {
-    renderer.render(<App />);
+    wrapper = shallow(<App />);
+    component = wrapper.instance();
   });
 
   it('renders null with null store state', () => {
-    const markup = renderer.getRenderOutput();
-    expect(markup).toBeNull();
+
   });
 });

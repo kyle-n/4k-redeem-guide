@@ -1,6 +1,8 @@
 import {NativeModules} from 'react-native';
 import MockAsyncStorage from 'mock-async-storage';
 import RNCNetInfoMock from '@react-native-community/netinfo/jest/netinfo-mock.js';
+import Enzyme from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
 
 // mock dep for RN Dark Mode
 NativeModules.RNDarkMode = {
@@ -26,3 +28,6 @@ jest.mock('react-native-safari-view', () => {
 
 // stub for animations
 jest.mock('NativeAnimatedHelper');
+
+// enzyme
+Enzyme.configure({adapter: new Adapter()});
