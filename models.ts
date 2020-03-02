@@ -69,7 +69,7 @@ export type GoogleSheetsResponse = {
 
 export type YesNo = 'YES' | 'NO';
 
-type SheetMovie = {
+export type SheetMovie = {
   '#ERROR!': YesNo;
   '#s bottom of the slip to verify UHD': number;
   'Dolby Vision or HDR': string;
