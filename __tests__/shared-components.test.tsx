@@ -1,8 +1,9 @@
 import 'react-native';
-import React, {Component} from 'react';
-import {shallow, ShallowWrapper} from 'enzyme'
-import {CloseButton, DropdownIcon, HiddenBackButton} from '../shared-components';
-import {Button, Icon, View} from 'native-base';
+import React from 'react';
+import {shallow} from 'enzyme'
+import {BackButton, CloseButton, DropdownIcon, HiddenBackButton} from '../shared-components';
+import {Button, Text, View} from 'native-base';
+import * as styles from '../styles';
 
 describe('shared components', () => {
 
@@ -26,6 +27,28 @@ describe('shared components', () => {
   it('hides the hidden back button', () => {
     const wrapper = shallow(<HiddenBackButton />);
     expect(wrapper.find(View).prop('style')).toHaveProperty('opacity', 0);
+  });
+
+  it('runs the callback for BackButton onPress', () => {
+    const mockOnPress = jest.fn();
+    const wrapper = shallow(<BackButton onPress={mockOnPress} />);
+    wrapper.find(Button).simulate('press');
+    expect(mockOnPress).toHaveBeenCalled();
+  });
+
+  it('hides back text in phone mode', () => {
+    let wrapper = shallow(<BackButton/>);
+    expect(wrapper.find(Text).length).toBe(0);
+  });
+
+  it('displays back text in tablet mode', () => {
+    const realFn = styles.tabletMode;
+    styles.tabletMode = jest.fn().mockReturnValue(true);
+
+    const wrapper = shallow(<BackButton />);
+    expect(wrapper.find(Text).length).toBe(1);
+
+    styles.tabletMode = realFn;
   });
 
 });
