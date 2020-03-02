@@ -64,4 +64,12 @@ describe('models', () => {
     expect(sheetMovieToMovie(mockWithMiddleYear)).toEqual(mockExpected);
   });
 
+  it('can handle a movie with multiple years in it', () => {
+    const title = 'Fake (2019) (2016)';
+    const expectedTitle = 'Fake (2019)'
+    const mockStart = Object.assign({}, mockSheetMovie, {Title: title});
+    const mockEnd = Object.assign({}, mockConvertedMovie, {title: expectedTitle});
+    expect(sheetMovieToMovie(mockStart)).toEqual(mockEnd);
+  });
+
 });
