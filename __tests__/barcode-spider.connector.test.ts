@@ -3,6 +3,22 @@ import axios from 'axios';
 
 describe('barcode spider connector', () => {
 
+  let mockReturnTitle: string | null = null;
+  let realFn: any;
+
+  beforeAll(() => {
+    realFn = axios.get;
+    axios.get = jest.fn(() => {
+      return new Promise(resolve => {
+        resolve({data: {item_attributes: {title: mockReturnTitle}}} as any);
+      });
+    });
+  });
+
+  afterAll(() => {
+    axios.get = realFn;
+  });
+
   it('returns titles without bracket patterns', () => {
     const mockTitle = 'test';
     expect(transformToRegularTitle(mockTitle)).toBe(mockTitle);
@@ -14,33 +30,19 @@ describe('barcode spider connector', () => {
   });
 
   it('returns null for no title in response', async () => {
-    const realFn = axios.get;
-    axios.get = jest.fn(() => {
-      return new Promise(resolve => {
-        resolve({data: {item_attributes: null}} as any);
-      });
-    });
+    mockReturnTitle = null;
 
     const title = await getMovieTitleFromBarcode('123');
 
     expect(title).toBeNull();
-
-    axios.get = realFn;
   });
 
   it('returns the title from the barcode API', async () => {
-    const realFn = axios.get;
-    axios.get = jest.fn(() => {
-      return new Promise(resolve => {
-        resolve({data: {item_attributes: {title: '123'}}} as any);
-      });
-    });
+    mockReturnTitle = '123';
 
     const title = await getMovieTitleFromBarcode('123');
 
     expect(title).toBe('123');
-
-    axios.get = realFn;
   });
 
 });
