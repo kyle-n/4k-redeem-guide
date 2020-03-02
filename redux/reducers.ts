@@ -45,7 +45,7 @@ const timestampMovieCache = (): void => {
 const cacheState = debounce(1 * 1000, (state: GlobalState): void => {
   AsyncStorage.setItem('state', JSON.stringify(state));
 });
-export const getCachedState = async (): Promise<GlobalState | null> => {
+export let getCachedState = async (): Promise<GlobalState | null> => {
   const cachedStateString = await AsyncStorage.getItem('state');
   if (cachedStateString) {
     const today = new Date();
