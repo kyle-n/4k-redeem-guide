@@ -1,8 +1,8 @@
 import 'react-native';
 import React, {Component} from 'react';
 import {shallow, ShallowWrapper} from 'enzyme'
-import {CloseButton, DropdownIcon} from '../shared-components';
-import {Button, Icon} from 'native-base';
+import {CloseButton, DropdownIcon, HiddenBackButton} from '../shared-components';
+import {Button, Icon, View} from 'native-base';
 
 describe('shared components', () => {
 
@@ -21,6 +21,11 @@ describe('shared components', () => {
     const wrapper = shallow(<CloseButton onPress={mockOnPress} />);
     wrapper.find(Button).simulate('press');
     expect(mockOnPress).toHaveBeenCalled();
+  });
+
+  it('hides the hidden back button', () => {
+    const wrapper = shallow(<HiddenBackButton />);
+    expect(wrapper.find(View).prop('style')).toHaveProperty('opacity', 0);
   });
 
 });
