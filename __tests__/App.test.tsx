@@ -1,12 +1,11 @@
 import 'react-native';
-import React, {Component, ReactInstance} from 'react';
+import React, {Component} from 'react';
 import {shallow, ShallowWrapper} from 'enzyme'
 import App from '../App';
-import * as reducers from '../redux/reducers';
 
 describe('app', () => {
   let wrapper: ShallowWrapper<any, Readonly<{}>, Component<{}, {}, any>>;
-  let component: ReactInstance;
+  let component: any;
 
   beforeEach(() => {
     wrapper = shallow(<App />);
@@ -14,6 +13,6 @@ describe('app', () => {
   });
 
   it('renders null with null store state', () => {
-    return;
+    expect(wrapper.html()).toBeNull();
   });
 });
