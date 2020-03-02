@@ -45,6 +45,22 @@ const androidCamPermissions = {
 
 const mapDispatchToProps = {searchByBarcode};
 
+export const searchBarcodeAndNavigate = (
+  searchByBarcode: (upc: string) => void,
+  navigate: () => void,
+  barcodeRead: boolean,
+  event: any
+): boolean => {
+  if (barcodeRead) return true;
+
+  const scanData: BarcodeScanData = event;
+  let upc = scanData.data.slice(1);
+  searchByBarcode(upc);
+  navigate();
+
+  return true;
+};
+
 type CameraPageProps = NavigationStackScreenProps & (typeof mapDispatchToProps);
 
 const CameraPage = (props: CameraPageProps) => {
@@ -52,13 +68,12 @@ const CameraPage = (props: CameraPageProps) => {
 
   let barcodeRead = false;
   const onBarCodeRead = (event: any) => {
-    if (barcodeRead) return;
-    else barcodeRead = true;
-
-    const scanData: BarcodeScanData = event;
-    let upc = scanData.data.slice(1);
-    props.searchByBarcode(upc);
-    props.navigation.navigate('Home');
+    barcodeRead = searchBarcodeAndNavigate(
+      props.searchByBarcode,
+      () => props.navigation.navigate('Home'),
+      barcodeRead,
+      event
+    );
   };
   return (
     <View style={[cameraPageStyles.container, cameraPageStyles.fullSize]}>
