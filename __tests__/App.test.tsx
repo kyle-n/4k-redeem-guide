@@ -14,6 +14,6 @@ describe('app', () => {
   });
 
   it('renders null with null store state', () => {
-
+    return;
   });
 });
