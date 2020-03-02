@@ -38,7 +38,7 @@ interface BarcodeSpiderApiResponse {
 const apiKey = '3f6ccdfcccd803f69c9e';
 const baseUrl = 'https://api.barcodespider.com/v1/lookup?token=' + apiKey + '&upc=';
 
-const transformToRegularTitle = (title: string): string => {
+export const transformToRegularTitle = (title: string): string => {
   const pattern = ' [';
   if (!title.includes(pattern)) return title;
   return title.split(pattern)[0];
