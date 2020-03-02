@@ -63,7 +63,7 @@ export const searchBarcodeAndNavigate = (
 
 type CameraPageProps = NavigationStackScreenProps & (typeof mapDispatchToProps);
 
-const CameraPage = (props: CameraPageProps) => {
+export const CameraPage = (props: CameraPageProps) => {
   let cameraRef: RNCamera | null;
 
   let barcodeRead = false;
@@ -85,23 +85,24 @@ const CameraPage = (props: CameraPageProps) => {
                 captureAudio={false} />
       {Platform.OS === 'ios' ? (
         <View style={cameraPageStyles.buttonContainer}>
-          <BackButton style={cameraPageStyles.button} />
+          <CameraBackButton onPress={props.navigation.goBack} style={cameraPageStyles.button} />
         </View>
       ) : null}
     </View>
   );
 };
 
-type BackButtonProps = NavigationStackScreenProps & {
+type CameraBackButtonProps = NavigationStackScreenProps & {
   style?: any;
+  onPress: () => void;
 };
-const BackButton = withNavigation((props: BackButtonProps) => (
-  <Button onPress={() => props.navigation.goBack()}
+export const CameraBackButton = (props: CameraBackButtonProps) => (
+  <Button onPress={props.onPress}
           style={props.style || null}
           large rounded warning>
     <Icon name="ios-arrow-back" ios="ios-arrow-back" android="md-arrow-back" />
   </Button>
-));
+);
 
 // @ts-ignore
 export default connect(null, mapDispatchToProps)(CameraPage);
