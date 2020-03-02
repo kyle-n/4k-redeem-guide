@@ -1,5 +1,8 @@
 import {shallow} from 'enzyme';
-import CameraPage, {searchBarcodeAndNavigate} from '../barcode-lookup/camera.page';
+import React from 'react';
+import {CameraPage, searchBarcodeAndNavigate} from '../barcode-lookup/camera.page';
+import {CameraBackButton} from '../barcode-lookup/camera.page';
+import {Platform} from 'react-native';
 
 describe('camera.page', () => {
 
@@ -37,6 +40,18 @@ describe('camera.page', () => {
     expect(barcodeRead).toBe(true);
     expect(stubSearch).not.toHaveBeenCalled();
     expect(stubNav).not.toHaveBeenCalled();
+  });
+
+  it('renders the back button on iOS on the camera screen', () => {
+    const realVal = Platform.OS;
+    Platform.OS = 'ios';
+
+    const mockNavigation: any = {goBack: jest.fn()};
+    const wrapper = shallow(<CameraPage navigation={mockNavigation} />);
+
+    expect(wrapper.find(CameraBackButton).length).toBe(1);
+
+    Platform.OS = realVal;
   });
 
 });
