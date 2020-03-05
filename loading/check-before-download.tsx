@@ -16,7 +16,7 @@ const CheckBeforeDownload = (props: CheckBeforeDownloadProps) => {
         'It may take a few minutes on a slow connection.',
         [
           {text: 'Cancel', onPress: props.onCancel, style: 'cancel'},
-          {text: 'OK', onPress: () => props.onConfirm(), style: 'default'}
+          {text: 'OK', onPress: props.onConfirm, style: 'default'}
         ]
       )
     } else props.onConfirm();
