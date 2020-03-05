@@ -8,6 +8,8 @@ import {Alert} from 'react-native';
 describe('check-before-download', () => {
   let wrapper: ShallowWrapper<any, Readonly<{}>, Component<{}, {}, any>>;
   let realFn: (requestedInterface?: string | undefined) => Promise<NetInfoState>;
+  let confirmSpy: any;
+  let cancelSpy: any;
 
   const mockNetInfo: any = {details: {isConnectionExpensive: false}};
 
@@ -19,7 +21,9 @@ describe('check-before-download', () => {
   });
 
   beforeEach(() => {
-    wrapper = shallow(<CheckBeforeDownload onCancel={jest.fn} onConfirm={jest.fn} />);
+    confirmSpy = jest.fn();
+    cancelSpy = jest.fn();
+    wrapper = shallow(<CheckBeforeDownload onCancel={cancelSpy} onConfirm={confirmSpy} />);
   });
 
   afterEach(() => {
@@ -49,12 +53,12 @@ describe('check-before-download', () => {
     NetInfo.fetch = fake;
   });
 
-  // it('does not open alert on inexpensive network connection', async () => {
-  //   jest.spyOn(Alert, 'alert');
-  //   await flushPromises();
-  //
-  //   expect(Alert.alert).not.toHaveBeenCalled();
-  //   expect(wrapper.prop('onConfirm')).toHaveBeenCalled();
-  // });
+  it('does not open alert and does auto-confirm download on inexpensive network connection', async () => {
+    jest.spyOn(Alert, 'alert');
+    await flushPromises();
+
+    expect(Alert.alert).not.toHaveBeenCalled();
+    expect(confirmSpy).toHaveBeenCalled();
+  });
 
 });
