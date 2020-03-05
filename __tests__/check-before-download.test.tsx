@@ -34,24 +34,27 @@ describe('check-before-download', () => {
     expect(wrapper.html()).toBeNull();
   });
 
-  it('opens the alert when network connection is expensive', async () => {
+  it('opens the alert and does not auto-confirm download when network connection is expensive', async () => {
     const fake = NetInfo.fetch;
     const expensiveNetInfo: any = {details: {isConnectionExpensive: true}};
     NetInfo.fetch = async () => expensiveNetInfo;
     jest.spyOn(Alert, 'alert');
-    wrapper = shallow(<CheckBeforeDownload onCancel={jest.fn} onConfirm={jest.fn} />);
+    const confirmSpy = jest.fn();
+    wrapper = shallow(<CheckBeforeDownload onCancel={jest.fn()} onConfirm={confirmSpy} />);
     await flushPromises();
 
     expect(Alert.alert).toHaveBeenCalled();
+    expect(confirmSpy).not.toHaveBeenCalled();
 
     NetInfo.fetch = fake;
   });
 
-  it('does not open alert on inexpensive network connection', async () => {
-    jest.spyOn(Alert, 'alert');
-    await flushPromises();
-
-    expect(Alert.alert).not.toHaveBeenCalled();
-  });
+  // it('does not open alert on inexpensive network connection', async () => {
+  //   jest.spyOn(Alert, 'alert');
+  //   await flushPromises();
+  //
+  //   expect(Alert.alert).not.toHaveBeenCalled();
+  //   expect(wrapper.prop('onConfirm')).toHaveBeenCalled();
+  // });
 
 });
