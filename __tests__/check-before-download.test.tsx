@@ -4,6 +4,7 @@ import {shallow, ShallowWrapper} from 'enzyme';
 import CheckBeforeDownload from '../loading/check-before-download';
 import NetInfo, {NetInfoState} from '@react-native-community/netinfo';
 import {Alert} from 'react-native';
+import {flushPromises} from '../jest/test-helpers';
 
 describe('check-before-download', () => {
   let wrapper: ShallowWrapper<any, Readonly<{}>, Component<{}, {}, any>>;
@@ -12,8 +13,6 @@ describe('check-before-download', () => {
   let cancelSpy: any;
 
   const mockNetInfo: any = {details: {isConnectionExpensive: false}};
-
-  const flushPromises = (): Promise<void> => new Promise<void>(setImmediate);
 
   beforeAll(() => {
     realFn = NetInfo.fetch;
