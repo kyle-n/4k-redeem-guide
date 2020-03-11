@@ -39,13 +39,16 @@ describe('loading message', () => {
   });
 
   it('alternates serious and goofy messages', () => {
-    wrapper = shallow(<LoadingMessage />);
-
     jest.advanceTimersByTime(6 * 1000);
 
     // once for setting intervalId, twice for updating message
-    console.log(wrapper.state())
     expect((wrapper.state() as any).goGoofy).toBe(false);
+  });
+
+  it('appends an ellipsis onto a random message', () => {
+    jest.advanceTimersByTime(6 * 1000);
+
+    expect(wrapper.html()).toContain('...');
   });
 
 });
