@@ -40,7 +40,7 @@ export type LayoutProps = {
 };
 
 const PhoneLayout = (props: LayoutProps) => (
-  <MovieCard movie={props.movie} open={true} />
+  <MovieCard movie={props.movie} />
 );
 
 export default MovieDetailsPage;

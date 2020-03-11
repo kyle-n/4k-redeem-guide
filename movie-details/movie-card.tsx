@@ -6,7 +6,6 @@ import MovieCardLayout from './movie-card-layout';
 type MovieCardProps = {
   movie: Movie;
   onPressHeader?: () => void;
-  open: boolean;
   width?: number;
 };
 type MovieCardState = {
@@ -37,7 +36,7 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
       <MovieCardLayout movie={this.props.movie}
                        onPressHeader={this.props.onPressHeader}
                        backgroundImgUrl={this.state.backgroundImgUrl}
-                       showCardBody={this.props.open}
+                       showCardBody={true}
                        width={this.props.width} />
     ) : null;
   }
