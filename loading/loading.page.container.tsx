@@ -10,7 +10,7 @@ type LoadingPageContainerProps = {
   downloadMovies: Function;
 } & NavigationStackScreenProps;
 
-const LoadingPageContainer = (props: LoadingPageContainerProps) => {
+export const LoadingPageContainer = (props: LoadingPageContainerProps) => {
   if (!props.moviesNotDownloaded) {
     props.navigation.navigate('Home');
   }
