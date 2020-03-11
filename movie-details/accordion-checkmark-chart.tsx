@@ -18,29 +18,16 @@ const accordionCheckmarkChartStyles = StyleSheet.create({
 type AccordionCheckmarkChartProps = {
   movie: Movie;
 };
-type AccordionCheckmarkChartState = {
-  open: boolean;
-};
 
-class AccordionCheckmarkChart extends React.Component<AccordionCheckmarkChartProps, AccordionCheckmarkChartState> {
-  constructor(props: AccordionCheckmarkChartProps) {
-    super(props);
-
-    this.state = {open: false};
-  }
-
-  render() {
-    return (
-      <View style={accordionCheckmarkChartStyles.container}>
-        <Accordion dataArray={[{title: 'Format and availability', content: ''}]}
-                   expanded={this.state.open ? 0 : -1}
-                   style={accordionCheckmarkChartStyles.accordion}
-                   renderContent={() => (
-                     <CheckmarkChart movie={this.props.movie} />
-                   )} />
-      </View>
-    );
-  }
-}
+const AccordionCheckmarkChart = (props: AccordionCheckmarkChartProps) => (
+  <View style={accordionCheckmarkChartStyles.container}>
+    <Accordion dataArray={[{title: 'Format and availability', content: ''}]}
+               expanded={0}
+               style={accordionCheckmarkChartStyles.accordion}
+               renderContent={() => (
+                 <CheckmarkChart movie={props.movie} />
+               )} />
+  </View>
+);
 
 export default AccordionCheckmarkChart;
