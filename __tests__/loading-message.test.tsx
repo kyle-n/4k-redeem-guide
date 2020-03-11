@@ -25,7 +25,7 @@ describe('loading message', () => {
 
   it('cycles to a new message every 5 seconds', () => {
     const realFn = LoadingMessage.prototype.setState;
-    const setStateSpy = jest.fn(() => console.log('SPY CALL'));
+    const setStateSpy = jest.fn();
     LoadingMessage.prototype.setState = setStateSpy;
 
     wrapper = shallow(<LoadingMessage />);
