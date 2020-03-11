@@ -46,7 +46,7 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
 
   }
 
-  downloadMovies = (): void => {
+  private downloadMovies = (): void => {
     this.setState({downloading: true}, () => {
       this.props.downloadMovies();
     });
@@ -82,7 +82,7 @@ type LoadingPageLayoutProps = {
   initialRenderDone: boolean;
 };
 
-const LoadingPageLayout = (props: LoadingPageLayoutProps) => {
+export const LoadingPageLayout = (props: LoadingPageLayoutProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={[loadingPageStyles.topContainer, sharedStyles.dynamicColor]}>
