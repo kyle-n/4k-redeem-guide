@@ -31,7 +31,7 @@ type LoadingMessageState = {
   loadingMessages: string[];
   goofyMessages: string[];
   goGoofy: boolean;
-  intervalId: number;
+  intervalId: any;
 };
 
 class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessageState> {
@@ -59,6 +59,7 @@ class LoadingMessage extends React.Component<LoadingMessageProps, LoadingMessage
 
   componentDidMount(): void {
     const intervalId = setInterval(() => {
+      console.log('========================== call')
       let messageGroupName: string;
 
       if (this.state.goGoofy) messageGroupName = 'goofyMessages';
