@@ -82,7 +82,7 @@ type LoadingPageLayoutProps = {
   initialRenderDone: boolean;
 };
 
-export const LoadingPageLayout = (props: LoadingPageLayoutProps) => {
+const LoadingPageLayout = (props: LoadingPageLayoutProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View style={[loadingPageStyles.topContainer, sharedStyles.dynamicColor]}>
