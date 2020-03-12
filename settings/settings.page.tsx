@@ -1,11 +1,26 @@
 import React from 'react';
-import {View} from 'native-base';
+import {Body, Container, Content, Left, ListItem, Right, Switch, Text, View} from 'native-base';
+import {DownloadIcon} from '../shared-components';
 
 type SettingsPageProps = {};
 
 const SettingsPage = (props: SettingsPageProps) => {
   return (
-    <View></View>
+    <Container>
+      <Content>
+        <ListItem icon>
+          <Left>
+            <DownloadIcon />
+          </Left>
+          <Body>
+            <Text>Auto-download movies on data</Text>
+          </Body>
+          <Right>
+            <Switch value={false} />
+          </Right>
+        </ListItem>
+      </Content>
+    </Container>
   );
 };
 

@@ -25,7 +25,7 @@ const SettingsPageHeader = (props: SettingsPageHeaderProps) => {
         <BackButton onPress={goBack} />
       </View>
       <View style={headerStyles.centerStyle}>
-        <Text style={headerStyles.pageTitle}>Redeem links</Text>
+        <Text style={headerStyles.pageTitle}>Settings</Text>
       </View>
       <View>
         <HiddenBackButton/>
