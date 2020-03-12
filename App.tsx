@@ -15,6 +15,7 @@ import MovieDetailsPageContainer from './movie-details/movie-details.page.contai
 import MovieDetailsPageHeader from './movie-details/movie-details.page.header';
 import SplashScreen from 'react-native-splash-screen';
 import SettingsPageContainer from './settings/settings.page.container';
+import SettingsPageHeader from './settings/settings.page.header';
 
 console.disableYellowBox = true;
 
@@ -53,7 +54,7 @@ const MainNavigator = createStackNavigator({
   SettingsPage: {
     screen: SettingsPageContainer,
     navigationOptions: {
-      title: 'Settings'
+      header: () => (<SettingsPageHeader />)
     }
   }
 });
