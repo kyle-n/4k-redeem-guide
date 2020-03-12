@@ -1,6 +1,8 @@
 import React from 'react';
 import {Body, Container, Content, Icon, Left, ListItem, Right, Separator, Switch, Text, View} from 'native-base';
 import {DownloadIcon} from '../shared-components';
+import {StyleSheet} from 'react-native';
+import {baseFontSize} from '../styles';
 
 type SettingsPageProps = {};
 
@@ -10,16 +12,28 @@ const SettingsPage = (props: SettingsPageProps) => {
       <Content>
         <DownloadsSettings />
         <SupportOptions />
+        <SupportMessage />
       </Content>
     </Container>
   );
 };
 
+const settingsStyles = StyleSheet.create({
+  separator: {
+    fontSize: baseFontSize * 1.5
+  },
+  messageContainer: {
+    padding: baseFontSize * 2
+  },
+  message: {
+  }
+});
+
 const DownloadsSettings = () => {
   return (
     <View>
       <Separator bordered>
-        <Text>Downloads</Text>
+        <Text style={settingsStyles.separator}>Downloads</Text>
       </Separator>
 
       <ListItem icon>
@@ -53,7 +67,7 @@ const SupportOptions = () => {
   return (
     <View>
       <Separator bordered>
-        <Text>Support me</Text>
+        <Text style={settingsStyles.separator}>Support me</Text>
       </Separator>
 
       <ListItem button>
@@ -76,5 +90,14 @@ const SupportOptions = () => {
     </View>
   );
 };
+
+const SupportMessage = () => (
+  <View style={settingsStyles.messageContainer}>
+    <Text style={settingsStyles.message}>
+      I'm one guy. I don't do this for a living, I do this because I love movies. Any support you can give will go to
+      polishing the app and paying developer fees. I really appreciate it.
+    </Text>
+  </View>
+)
 
 export default SettingsPage;
