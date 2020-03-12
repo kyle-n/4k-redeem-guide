@@ -8,7 +8,6 @@ import {
   lightGray,
   sharedDynamicStyleSheet, tabletMode
 } from '../styles';
-import RefreshCacheButton from './refresh-cache-button';
 import CameraButton from './camera-button';
 import {getStatusBarHeight} from 'react-native-iphone-x-helper';
 import {connect} from 'react-redux';
@@ -16,6 +15,7 @@ import {clearMovieCache, setQuery, toggleLinksModalVisible} from '../redux/actio
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import TabletHeaderInputs from '../search/tablet-header-inputs';
 import RedeemLinksButton from './redeem-links-button';
+import SettingsButton from './settings-button';
 
 export const headerDynamicSheet = new DynamicStyleSheet({
   container: {
@@ -60,8 +60,8 @@ const SearchPageHeader = (props: SearchPageHeaderProps) => {
         <TabletHeaderInputs />
       ) : null}
       <View style={searchPageHeaderStyles.centerStyle}>
+        <SettingsButton />
         <RedeemLinksButton onPressOnTablet={props.toggleLinksModalVisible} />
-        <RefreshCacheButton onPress={props.clearMovieCache} />
         <CameraButton />
       </View>
     </View>
