@@ -14,6 +14,7 @@ import RedeemLinksHeader from './redeem-links/redeem-links.page.header';
 import MovieDetailsPageContainer from './movie-details/movie-details.page.container';
 import MovieDetailsPageHeader from './movie-details/movie-details.page.header';
 import SplashScreen from 'react-native-splash-screen';
+import SettingsPageContainer from './settings/settings.page.container';
 
 console.disableYellowBox = true;
 
@@ -47,6 +48,12 @@ const MainNavigator = createStackNavigator({
     screen: MovieDetailsPageContainer,
     navigationOptions: {
       header: () => (<MovieDetailsPageHeader />)
+    }
+  },
+  SettingsPage: {
+    screen: SettingsPageContainer,
+    navigationOptions: {
+      title: 'Settings'
     }
   }
 });
