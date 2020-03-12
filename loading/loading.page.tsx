@@ -3,7 +3,7 @@ import {ActivityIndicator, StyleSheet, View} from 'react-native';
 import LoadingMessage from './loading-message';
 import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
 import {Button, Icon, Text} from 'native-base';
-import {ExitOnBackButton} from '../shared-components';
+import {DownloadIcon, ExitOnBackButton} from '../shared-components';
 import CheckBeforeDownload from './check-before-download';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 
@@ -122,8 +122,7 @@ type DownloadMoviesButtonProps = {
 const DownloadMoviesButton = (props: DownloadMoviesButtonProps) => (
   <Button onPress={props.onPress}
           warning rounded large iconLeft>
-    <Icon name="ios-download" ios="ios-download" android="md-download"
-          style={{fontSize: 2 * baseFontSize}} />
+    <DownloadIcon />
     <Text>Download movies</Text>
   </Button>
 );

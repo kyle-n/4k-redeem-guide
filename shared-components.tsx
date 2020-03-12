@@ -120,3 +120,8 @@ export const BackButton = (props: BackButtonProps) => {
     </Button>
   );
 };
+
+export const DownloadIcon = () => (
+  <Icon name="ios-download" ios="ios-download" android="md-download"
+        style={{fontSize: 2 * baseFontSize}} />
+);
