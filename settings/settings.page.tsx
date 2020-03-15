@@ -1,5 +1,18 @@
 import React from 'react';
-import {Body, Container, Content, Icon, Left, ListItem, Right, Separator, Switch, Text, View} from 'native-base';
+import {
+  Body,
+  Button,
+  Container,
+  Content,
+  Icon,
+  Left,
+  ListItem,
+  Right,
+  Separator,
+  Switch,
+  Text,
+  View
+} from 'native-base';
 import {DownloadIcon} from '../shared-components';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
@@ -25,7 +38,14 @@ const settingsStyles = StyleSheet.create({
   messageContainer: {
     padding: baseFontSize * 2
   },
-  message: {
+  testBorder: {
+    borderWidth: 1,
+    borderColor: 'red'
+  },
+  iconContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 });
 
@@ -38,25 +58,33 @@ const DownloadsSettings = () => {
 
       <ListItem icon>
         <Left>
-          <Icon name="radio-tower" type="Octicons" />
+          <View style={settingsStyles.iconContainer}>
+            <Icon name="radio-tower" type="MaterialCommunityIcons" />
+          </View>
         </Left>
         <Body>
           <Text>Auto-download movies on data</Text>
         </Body>
         <Right>
-          <Switch value={false} />
+          <Button info transparent>
+            <Switch value={false} />
+          </Button>
         </Right>
       </ListItem>
 
       <ListItem icon button>
         <Left>
-          <Icon name="autorenew" type="MaterialIcons" />
+          <View style={settingsStyles.iconContainer}>
+            <Icon name="autorenew" type="MaterialIcons" />
+          </View>
         </Left>
         <Body>
           <Text>Download movies now</Text>
         </Body>
         <Right>
-          <DownloadIcon />
+          <Button info transparent>
+            <DownloadIcon />
+          </Button>
         </Right>
       </ListItem>
     </View>
