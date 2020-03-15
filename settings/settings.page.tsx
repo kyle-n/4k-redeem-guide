@@ -33,6 +33,9 @@ const SettingsPage = (props: SettingsPageProps) => {
 
 const settingsStyles = StyleSheet.create({
   separator: {
+    height: baseFontSize * 3.5
+  },
+  separatorText: {
     fontSize: baseFontSize * 1.5
   },
   messageContainer: {
@@ -52,8 +55,8 @@ const settingsStyles = StyleSheet.create({
 const DownloadsSettings = () => {
   return (
     <View>
-      <Separator bordered>
-        <Text style={settingsStyles.separator}>Downloads</Text>
+      <Separator bordered style={settingsStyles.separator}>
+        <Text style={settingsStyles.separatorText}>Downloads</Text>
       </Separator>
 
       <ListItem icon>
@@ -94,8 +97,8 @@ const DownloadsSettings = () => {
 const SupportOptions = () => {
   return (
     <View>
-      <Separator bordered>
-        <Text style={settingsStyles.separator}>Support me</Text>
+      <Separator bordered style={settingsStyles.separator}>
+        <Text style={settingsStyles.separatorText}>Support me</Text>
       </Separator>
 
       <ListItem button>
@@ -121,11 +124,11 @@ const SupportOptions = () => {
 
 const SupportMessage = () => (
   <View style={settingsStyles.messageContainer}>
-    <Text style={settingsStyles.message}>
+    <Text>
       I'm one guy. I don't do this for a living, I do this because I love movies. Any support you can give will go to
       polishing the app and paying developer fees. I really appreciate it.
     </Text>
   </View>
-)
+);
 
 export default SettingsPage;
