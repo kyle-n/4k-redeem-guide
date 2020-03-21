@@ -198,6 +198,7 @@ android {
 }
 
 dependencies {
+    implementation project(':react-native-iap')
     compile project(':react-native-screens')
     compile project(':react-native-reanimated')
     compile project(':react-native-gesture-handler')

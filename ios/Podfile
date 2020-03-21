@@ -39,6 +39,8 @@ target '4K4U' do
 
   pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
+  pod 'RNIap', :path => '../node_modules/react-native-iap'
+
   target '4K4UTests' do
     inherit! :search_paths
     # Pods for testing
