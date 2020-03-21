@@ -119,7 +119,7 @@ const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, di
       return newState;
     case 'REGISTER_PURCHASE':
       const purchases = Object.assign({}, state.purchases, {[dispatch.value]: true});
-      newState = Object.assign({}, state, {purchases})
+      newState = Object.assign({}, state, {purchases});
       cacheState(newState);
       return newState;
     default:
