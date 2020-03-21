@@ -16,10 +16,10 @@ import {
 import {DownloadIcon} from '../shared-components';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
-import {Product} from 'react-native-iap';
+import RNIap, {Product} from 'react-native-iap';
 
 type SettingsPageProps = {
-  products: Product[];
+  skus: string[];
 };
 
 const SettingsPage = (props: SettingsPageProps) => {
@@ -27,7 +27,7 @@ const SettingsPage = (props: SettingsPageProps) => {
     <Container>
       <Content>
         <DownloadsSettings />
-        <SupportOptions />
+        <SupportOptions skus={props.skus} />
         <SupportMessage />
       </Content>
     </Container>
@@ -97,26 +97,38 @@ const DownloadsSettings = () => {
   );
 };
 
-const SupportOptions = () => {
+type SupportOptionsProps = {
+  skus: string[];
+};
+
+const reqPurchase = (sku: string): void => {
+  try {
+    RNIap.requestPurchase(sku);
+  } catch (e) {
+    console.log(e)
+  }
+};
+
+const SupportOptions = (props: SupportOptionsProps) => {
   return (
     <View>
       <Separator bordered style={settingsStyles.separator}>
         <Text style={settingsStyles.separatorText}>Support me</Text>
       </Separator>
 
-      <ListItem button>
+      <ListItem button onPress={() => reqPurchase(props.skus[0])}>
         <Body>
           <Text>$5 - A cup of coffee</Text>
         </Body>
       </ListItem>
 
-      <ListItem button>
+      <ListItem button onPress={() => reqPurchase(props.skus[1])}>
         <Body>
           <Text>$10 - A really nice gift, thank you!</Text>
         </Body>
       </ListItem>
 
-      <ListItem>
+      <ListItem button onPress={() => reqPurchase(props.skus[2])}>
         <Body>
           <Text>$20 - My new favorite person</Text>
         </Body>
