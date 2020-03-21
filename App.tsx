@@ -16,11 +16,9 @@ import MovieDetailsPageHeader from './movie-details/movie-details.page.header';
 import SplashScreen from 'react-native-splash-screen';
 import SettingsPageContainer from './settings/settings.page.container';
 import SettingsPageHeader from './settings/settings.page.header';
-import getSkus from './settings/iap/init-iaps';
+import InitIaps from './settings/iap/init-iaps';
 
 console.disableYellowBox = true;
-
-getSkus();
 
 const MainNavigator = createStackNavigator({
   Home: {
@@ -85,6 +83,7 @@ class App extends React.Component<AppProps, AppState>{
   render() {
     return this.state.store ? (
       <Provider store={this.state.store}>
+        <InitIaps />
         <HideSplashScreen />
         <AppContainer />
       </Provider>

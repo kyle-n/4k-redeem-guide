@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import SettingsPage from './settings.page';
 import * as RNIap from 'react-native-iap';
-import getSkus from './iap/init-iaps';
+import {getSkus} from './iap/init-iaps';
 import {Product} from 'react-native-iap';
 
 type SettingsPageContainerProps = {};
