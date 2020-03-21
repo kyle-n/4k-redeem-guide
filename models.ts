@@ -116,6 +116,11 @@ export type GlobalState = {
   query: string;
   results: number[];
   linksModalVisible: boolean;
+  purchases: {
+    five: boolean;
+    ten: boolean;
+    twenty: boolean;
+  }
 };
 
 export type BarcodeScanData = {

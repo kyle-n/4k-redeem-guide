@@ -4,6 +4,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import {Reducer} from 'redux';
 import {debounce} from 'throttle-debounce';
 import {tabletMode} from '../styles';
+import {acknowledgePurchaseAndroid} from 'react-native-iap';
 
 /*
  * Todo
@@ -35,7 +36,12 @@ const initialState: GlobalState = {
   offset: 0,
   query: '',
   results: [],
-  linksModalVisible: false
+  linksModalVisible: false,
+  purchases: {
+    five: false,
+    ten: false,
+    twenty: false
+  }
 };
 
 const timestampMovieCache = (): void => {
@@ -109,6 +115,11 @@ const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, di
       return newState;
     case 'TOGGLE_LINKS_MODAL_VISIBLE':
       newState = Object.assign({}, state, {linksModalVisible: !state.linksModalVisible});
+      cacheState(newState);
+      return newState;
+    case 'REGISTER_PURCHASE':
+      const purchases = Object.assign({}, state.purchases, {[dispatch.value]: true});
+      newState = Object.assign({}, state, {purchases})
       cacheState(newState);
       return newState;
     default:
