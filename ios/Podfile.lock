@@ -99,6 +99,8 @@ PODS:
     - React
   - RNGestureHandler (1.5.3):
     - React
+  - RNIap (4.4.2):
+    - React
   - RNReanimated (1.6.0):
     - React
   - RNScreens (2.0.0-alpha.25):
@@ -133,6 +135,7 @@ DEPENDENCIES:
   - ReactNativeDarkMode (from `../node_modules/react-native-dark-mode`)
   - "RNCAsyncStorage (from `../node_modules/@react-native-community/async-storage`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNIap (from `../node_modules/react-native-iap`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -196,6 +199,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/async-storage"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNIap:
+    :path: "../node_modules/react-native-iap"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -232,10 +237,11 @@ SPEC CHECKSUMS:
   ReactNativeDarkMode: 0178ffca3b10f6a7c9f49d6f9810232b328fa949
   RNCAsyncStorage: 8539fc80a0075fcc9c8e2dff84cd22dc5bf1dacf
   RNGestureHandler: 02905abe54e1f6e59c081a10b4bd689721e17aa6
+  RNIap: 879e4ca23228384a7e34a8d92d5942546a7f878d
   RNReanimated: e1251783216c7cb0a395314c9889d6662d86ed73
   RNScreens: 031d10e2b648afc9546f16b6a786d2efc6870310
   yoga: 312528f5bbbba37b4dcea5ef00e8b4033fdd9411
 
-PODFILE CHECKSUM: 23ebcc78f95f70b40cd89e3920dc37a84ca8a4fa
+PODFILE CHECKSUM: da18f84a87e3b787efa63071475406c53a64091e
 
 COCOAPODS: 1.8.4
