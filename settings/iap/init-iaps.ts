@@ -14,3 +14,5 @@ const itemSkus = Platform.select({
 });
 
 const getSkus = (): string[] => itemSkus as string[];
+
+export default getSkus;
