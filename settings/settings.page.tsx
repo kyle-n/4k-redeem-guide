@@ -16,8 +16,11 @@ import {
 import {DownloadIcon} from '../shared-components';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
+import {Product} from 'react-native-iap';
 
-type SettingsPageProps = {};
+type SettingsPageProps = {
+  products: Product[];
+};
 
 const SettingsPage = (props: SettingsPageProps) => {
   return (

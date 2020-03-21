@@ -10,7 +10,7 @@ const SettingsPageContainer = (props: SettingsPageContainerProps) => {
   const [products, setProducts] = useState([] as Product[]);
   RNIap.getProducts(getSkus()).then((loadedProducts: Product[]) => setProducts(loadedProducts));
   return (
-    <SettingsPage />
+    <SettingsPage products={products} />
   );
 };
 
