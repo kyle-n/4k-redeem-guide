@@ -1,9 +1,10 @@
 import React from 'react';
-import {Icon, Left, List, ListItem, Right, Text} from 'native-base';
+import {Left, List, ListItem, Text} from 'native-base';
 import {Movie, MoviePropertyDisplayPair} from '../models';
-import {StyleProp, StyleSheet} from 'react-native';
+import {StyleSheet} from 'react-native';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import {darkLightGray, sharedDynamicStyleSheet} from '../styles';
+import {Checkmark} from '../shared-components';
 
 const checkmarkValues: MoviePropertyDisplayPair[] = [
   {
@@ -92,42 +93,5 @@ const MoviePropertyStatus = (props: MoviePropertyStatusProps) => {
     </ListItem>
   );
 };
-
-const checkmarkStyles: StyleProp<any> = StyleSheet.create({
-  icon: {
-    backgroundColor: 'rgba(0,0,0,0)',
-    textAlign: 'center'
-  }
-});
-
-const yesIconStyle: StyleProp<any> = StyleSheet.create({
-  icon: {
-    color: 'green'
-  }
-});
-
-const noIconStyle: StyleProp<any> = StyleSheet.create({
-  icon: {
-    color: darkLightGray
-  }
-});
-
-type CheckmarkProps = {
-  true: boolean;
-}
-
-const Checkmark = (props: CheckmarkProps) => (
-  <Right>
-      {props.true ? (
-        <Icon name="checkcircle"
-              type="AntDesign"
-              style={[checkmarkStyles.icon, yesIconStyle.icon]}/>
-      ) : (
-        <Icon name="close"
-              type="AntDesign"
-              style={[checkmarkStyles.icon, noIconStyle.icon]}/>
-      )}
-  </Right>
-);
 
 export default CheckmarkChart;

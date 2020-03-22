@@ -130,8 +130,13 @@ const SupportOptions = (props: SupportOptionsProps) => {
             <Body>
               <Text>{skuInfo.userFacingText}</Text>
             </Body>
+            {skuInfo.purchased ? (
+              <Right>
+                <Icon name="checkcircle" type="AntDesign" />
+              </Right>
+            ) : null}
           </ListItem>
-        )
+        );
       })}
     </View>
   );

@@ -1,7 +1,7 @@
 import React from 'react';
-import {Button, Icon, Text, View} from 'native-base';
-import {Alert, BackHandler, NativeEventSubscription, Platform, StyleSheet} from 'react-native';
-import {baseFontSize, darkerLightGray, lightColor, sharedDynamicStyleSheet, tabletMode} from './styles';
+import {Button, Icon, Right, Text, View} from 'native-base';
+import {Alert, BackHandler, NativeEventSubscription, Platform, StyleProp, StyleSheet} from 'react-native';
+import {baseFontSize, darkerLightGray, darkLightGray, lightColor, sharedDynamicStyleSheet, tabletMode} from './styles';
 import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 
 const horizontalRuleStyles = StyleSheet.create({
@@ -124,4 +124,35 @@ export const BackButton = (props: BackButtonProps) => {
 export const DownloadIcon = () => (
   <Icon name="ios-download" ios="ios-download" android="md-download"
         style={{fontSize: 2 * baseFontSize}} />
+);
+
+const checkmarkStyles: StyleProp<any> = StyleSheet.create({
+  icon: {
+    backgroundColor: 'rgba(0,0,0,0)',
+    textAlign: 'center'
+  },
+  yesIcon: {
+    color: 'green'
+  },
+  noIconStyle: {
+    color: darkLightGray
+  }
+});
+
+type CheckmarkProps = {
+  true: boolean;
+}
+
+export const Checkmark = (props: CheckmarkProps) => (
+  <Right>
+    {props.true ? (
+      <Icon name="checkcircle"
+            type="AntDesign"
+            style={[checkmarkStyles.icon, checkmarkStyles.yesIcon]}/>
+    ) : (
+      <Icon name="close"
+            type="AntDesign"
+            style={[checkmarkStyles.icon, checkmarkStyles.noIconStyle]}/>
+    )}
+  </Right>
 );
