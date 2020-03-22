@@ -28,7 +28,7 @@ export const purchases = [
     // android: 'android.test.canceled',
     storeKey: 'ten',
     userFacingText: '$10 - A really nice gift, thank you!',
-    iconName: 'emoticon-cool-outline'
+    iconName: 'emoticon-excited-outline'
   },
   {
     ios: 'supportDevFor20',
@@ -36,7 +36,7 @@ export const purchases = [
     // android: 'android.test.item_unavailable',
     storeKey: 'twenty',
     userFacingText: '$20 - A true patron of movies and indie app development',
-    iconName: 'emoticon-excited-outline'
+    iconName: 'emoticon-cool-outline'
   }
 ];
 
