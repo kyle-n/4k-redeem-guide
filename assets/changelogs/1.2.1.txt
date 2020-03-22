@@ -1,17 +1,5 @@
-# 1.2.1
+# **1.2.1**
 
-This release adds a settings page for user preferences and in-app purchases.
-
-## Download settings
-
+* Moves button to re-download movies to new settings page
 * Option to auto-download movies on cellular data and not get the warning popup
-* Moves button to immediately re-download movies to this screen
-
-## Support the developer options
-
 * Three in-app-purchases to support the developer. Anything you can give is greatly appreciated!
-
-## Behind the scenes
-
-* Cleans up app code
-* Tons of unit tests to ensure code quality
