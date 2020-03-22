@@ -14,10 +14,10 @@ import {
 } from 'native-base';
 import {Checkmark} from '../shared-components';
 import {StyleSheet} from 'react-native';
-import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
+import {baseFontSize, darkBackgroundColor, darkerLightBackgroundColor, sharedDynamicStyleSheet} from '../styles';
 import RNIap from 'react-native-iap';
 import {SkuInfo} from './settings.page.container';
-import {useDynamicStyleSheet} from 'react-native-dark-mode';
+import {DynamicStyleSheet, DynamicValue, useDynamicStyleSheet} from 'react-native-dark-mode';
 import RefreshCacheButton from '../search-header/refresh-cache-button';
 
 type SettingsPageProps = {
@@ -73,7 +73,7 @@ const DownloadsSettings = (props: DownloadsSettingsProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View>
-      <Separator bordered style={settingsStyles.separator}>
+      <Separator bordered style={[settingsStyles.separator, sharedStyles.dynamicPageBackgroundColor]}>
         <Text style={[settingsStyles.separatorText]}>Downloads</Text>
       </Separator>
 
@@ -131,7 +131,7 @@ const SupportOptions = (props: SupportOptionsProps) => {
   const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View>
-      <Separator bordered style={settingsStyles.separator}>
+      <Separator bordered style={[settingsStyles.separator, sharedStyles.dynamicPageBackgroundColor]}>
         <Text style={settingsStyles.separatorText}>Support me</Text>
       </Separator>
 
