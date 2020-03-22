@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Body,
-  Button,
   Container,
   Content,
   Icon,
@@ -29,9 +28,10 @@ type SettingsPageProps = {
 };
 
 const SettingsPage = (props: SettingsPageProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
-    <Container>
-      <Content>
+    <Container style={sharedStyles.dynamicBackgroundColor}>
+      <Content style={sharedStyles.dynamicBackgroundColor}>
         <DownloadsSettings onPressDownloadIcon={props.onPressDownloadIcon}
                            autoDownloadOnData={props.autoDownloadOnData}
                            onAutoDownloadOnDataTogglePress={props.onAutoDownloadTogglePress} />
@@ -70,10 +70,11 @@ type DownloadsSettingsProps = {
 }
 
 const DownloadsSettings = (props: DownloadsSettingsProps) => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View>
       <Separator bordered style={settingsStyles.separator}>
-        <Text style={settingsStyles.separatorText}>Downloads</Text>
+        <Text style={[settingsStyles.separatorText]}>Downloads</Text>
       </Separator>
 
       <ListItem icon button>
@@ -83,7 +84,7 @@ const DownloadsSettings = (props: DownloadsSettingsProps) => {
           </View>
         </Left>
         <Body>
-          <Text>Auto-download movies on data</Text>
+          <Text style={sharedStyles.dynamicTextColor}>Auto-download movies on data</Text>
         </Body>
         <Right>
           <Switch onValueChange={props.onAutoDownloadOnDataTogglePress} value={props.autoDownloadOnData} />
@@ -97,7 +98,7 @@ const DownloadsSettings = (props: DownloadsSettingsProps) => {
           </View>
         </Left>
         <Body>
-          <Text>Download movies now</Text>
+          <Text style={sharedStyles.dynamicTextColor}>Download movies now</Text>
         </Body>
         <Right>
           <RefreshCacheButton onPress={props.onPressDownloadIcon} />
@@ -152,13 +153,16 @@ const SupportOptions = (props: SupportOptionsProps) => {
   );
 };
 
-const SupportMessage = () => (
-  <View style={settingsStyles.messageContainer}>
-    <Text>
-      I'm one guy. I don't do this for a living, I do this because I love movies. Any support you can give will go to
-      polishing the app and paying developer fees. I really appreciate it.
-    </Text>
-  </View>
-);
+const SupportMessage = () => {
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
+  return (
+    <View style={settingsStyles.messageContainer}>
+      <Text style={sharedStyles.dynamicTextColor}>
+        I'm one guy. I don't do this for a living, I do this because I love movies. Any support you can give will go to
+        polishing the app and paying developer fees. I really appreciate it.
+      </Text>
+    </View>
+  );
+};
 
 export default SettingsPage;
