@@ -3,6 +3,7 @@ import {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {registerPurchase} from '../../redux/actions';
 import RNIap, {InAppPurchase, purchaseUpdatedListener} from 'react-native-iap';
+import {PurchaseName} from '../../models';
 
 const mapStateToProps = () => {
   return {};
@@ -12,24 +13,35 @@ const mapDispatchToProps = {
   registerPurchase
 };
 
+const purchases = [
+  {
+    ios: 'supportDevFor5',
+    // android: 'support_dev_for_5',
+    android: 'android.test.purchased',
+    storeKey: 'five'
+  },
+  {
+    ios: 'supportDevFor10',
+    // android: 'support_dev_for_10',
+    android: 'android.test.canceled',
+    storeKey: 'ten'
+  },
+  {
+    ios: 'supportDevFor20',
+    // android: 'support_dev_for_20',
+    android: 'android.test.item_unavailable',
+    storeKey: 'twenty'
+  }
+];
+
 const itemSkus: string[] = Platform.select({
-  ios: [
-    'supportDevFor5',
-    'supportDevFor10',
-    'supportDevFor20',
-  ], android: [
-    'android.test.purchased',
-    'android.test.canceled',
-    'android.test.item_unavailable'
-    // 'support_dev_for_5',
-    // 'support_dev_for_10',
-    // 'support_dev_for_20'
-  ]
+  ios: purchases.map(purchase => purchase.ios),
+  android: purchases.map(purchase => purchase.android)
 }) as string[];
 
 export const getSkus = (): string[] => itemSkus;
 
-type InitIapsProps = {};
+type InitIapsProps = {} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 const InitIaps = (props: InitIapsProps) => {
 
@@ -39,10 +51,26 @@ const InitIaps = (props: InitIapsProps) => {
       try {
         await RNIap.initConnection();
         // await RNIap.consumeAllItemsAndroid();
-        const products = await RNIap.getProducts(itemSkus);
-        purchaseUpdatedListener((purchase: InAppPurchase) => {
-          console.log('purchase listener', purchase);
+        await RNIap.getProducts(itemSkus);
+
+        purchaseUpdatedListener((purchaseEvent: InAppPurchase) => {
+          if (purchaseEvent.transactionReceipt) {
+            const matchingPurchase = purchases.find(purchase => {
+              if (Platform.OS === 'android') {
+                return purchase.android === purchaseEvent.productId
+              } else if (Platform.OS === 'ios') {
+                return purchase.ios === purchaseEvent.productId;
+              } else {
+                console.warn('Unsupported platform', purchase, purchaseEvent);
+                return undefined;
+              }
+            });
+            if (matchingPurchase) {
+              props.registerPurchase(matchingPurchase.storeKey as PurchaseName);
+            }
+          }
         });
+
       } catch (e) {
         console.warn(e);
       }
@@ -53,4 +81,4 @@ const InitIaps = (props: InitIapsProps) => {
   return null;
 };
 
-export default InitIaps;
+export default connect(mapStateToProps, mapDispatchToProps)(InitIaps);
