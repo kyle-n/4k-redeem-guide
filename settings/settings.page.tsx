@@ -22,6 +22,8 @@ import {useDynamicStyleSheet} from 'react-native-dark-mode';
 import RefreshCacheButton from '../search-header/refresh-cache-button';
 
 type SettingsPageProps = {
+  autoDownloadOnData: boolean;
+  onAutoDownloadTogglePress: () => void;
   skus: SkuInfo[];
   onPressDownloadIcon: () => void;
 };
@@ -30,7 +32,9 @@ const SettingsPage = (props: SettingsPageProps) => {
   return (
     <Container>
       <Content>
-        <DownloadsSettings onPressDownloadIcon={props.onPressDownloadIcon} />
+        <DownloadsSettings onPressDownloadIcon={props.onPressDownloadIcon}
+                           autoDownloadOnData={props.autoDownloadOnData}
+                           onAutoDownloadOnDataTogglePress={props.onAutoDownloadTogglePress} />
         <SupportOptions skus={props.skus} />
         <SupportMessage />
       </Content>
@@ -61,6 +65,8 @@ const settingsStyles = StyleSheet.create({
 
 type DownloadsSettingsProps = {
   onPressDownloadIcon: () => void;
+  autoDownloadOnData: boolean;
+  onAutoDownloadOnDataTogglePress: () => void;
 }
 
 const DownloadsSettings = (props: DownloadsSettingsProps) => {
@@ -70,7 +76,7 @@ const DownloadsSettings = (props: DownloadsSettingsProps) => {
         <Text style={settingsStyles.separatorText}>Downloads</Text>
       </Separator>
 
-      <ListItem icon>
+      <ListItem icon button>
         <Left>
           <View style={settingsStyles.iconContainer}>
             <Icon name="radio-tower" type="MaterialCommunityIcons" />
@@ -80,9 +86,7 @@ const DownloadsSettings = (props: DownloadsSettingsProps) => {
           <Text>Auto-download movies on data</Text>
         </Body>
         <Right>
-          <Button info transparent>
-            <Switch value={false} />
-          </Button>
+          <Switch onValueChange={props.onAutoDownloadOnDataTogglePress} value={props.autoDownloadOnData} />
         </Right>
       </ListItem>
 

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {GlobalState, PurchaseName} from '../models';
 import {purchases} from './iap/init-iaps';
 import {Platform} from 'react-native';
-import {clearMovieCache} from '../redux/actions';
+import {clearMovieCache, toggleAutoDownloadOnData} from '../redux/actions';
 
 export type SkuInfo = {
   sku: string;
@@ -16,6 +16,7 @@ export type SkuInfo = {
 const mapStateToProps = (state: GlobalState) => {
   const skus = getSkus();
   return {
+    autoDownloadOnData: state.autoDownloadOnData,
     skus: skus.map(sku => {
       const matchingPurchase = purchases.find(purchase => {
         if (Platform.OS === 'ios') {
@@ -35,13 +36,16 @@ const mapStateToProps = (state: GlobalState) => {
   };
 };
 
-const mapDispatchToProps = {clearMovieCache};
+const mapDispatchToProps = {clearMovieCache, toggleAutoDownloadOnData};
 
 type SettingsPageContainerProps = {} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 const SettingsPageContainer = (props: SettingsPageContainerProps) => {
   return (
-    <SettingsPage skus={props.skus} onPressDownloadIcon={props.clearMovieCache} />
+    <SettingsPage autoDownloadOnData={props.autoDownloadOnData}
+                  onAutoDownloadTogglePress={props.toggleAutoDownloadOnData}
+                  skus={props.skus}
+                  onPressDownloadIcon={props.clearMovieCache} />
   );
 };
 
