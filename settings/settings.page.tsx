@@ -126,7 +126,7 @@ const SupportOptions = (props: SupportOptionsProps) => {
 
       {props.skus.map((skuInfo, i) => {
         return (
-          <ListItem button onPress={() => checkIfPurchased(i)}>
+          <ListItem key={skuInfo.sku} button onPress={() => checkIfPurchased(i)}>
             <Body>
               <Text>{skuInfo.userFacingText}</Text>
             </Body>

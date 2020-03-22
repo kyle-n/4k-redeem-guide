@@ -14,22 +14,24 @@ export type SkuInfo = {
 
 const mapStateToProps = (state: GlobalState) => {
   const skus = getSkus();
-  return skus.map(sku => {
-    const matchingPurchase = purchases.find(purchase => {
-      if (Platform.OS === 'ios') {
-        return purchase.ios === sku;
-      } else {
-        return purchase.android === sku;
-      }
-    }) as any;
-    const storeKey: PurchaseName = matchingPurchase.storeKey;
-    const purchased: boolean = state.purchases[storeKey]
-    return {
-      sku,
-      purchased,
-      userFacingText: matchingPurchase.userFacingText
-    };
-  });
+  return {
+    skus: skus.map(sku => {
+      const matchingPurchase = purchases.find(purchase => {
+        if (Platform.OS === 'ios') {
+          return purchase.ios === sku;
+        } else {
+          return purchase.android === sku;
+        }
+      }) as any;
+      const storeKey: PurchaseName = matchingPurchase.storeKey;
+      const purchased: boolean = state.purchases[storeKey]
+      return {
+        sku,
+        purchased,
+        userFacingText: matchingPurchase.userFacingText
+      };
+    })
+  };
 };
 
 const mapDispatchToProps = {};
