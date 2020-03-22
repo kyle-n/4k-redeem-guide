@@ -13,7 +13,7 @@ const mapDispatchToProps = {
   registerPurchase
 };
 
-const purchases = [
+export const purchases = [
   {
     ios: 'supportDevFor5',
     // android: 'support_dev_for_5',

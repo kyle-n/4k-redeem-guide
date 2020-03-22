@@ -17,9 +17,10 @@ import {DownloadIcon} from '../shared-components';
 import {StyleSheet} from 'react-native';
 import {baseFontSize} from '../styles';
 import RNIap, {Product} from 'react-native-iap';
+import {SkuInfo} from './settings.page.container';
 
 type SettingsPageProps = {
-  skus: string[];
+  skus: SkuInfo[];
 };
 
 const SettingsPage = (props: SettingsPageProps) => {
@@ -98,7 +99,7 @@ const DownloadsSettings = () => {
 };
 
 type SupportOptionsProps = {
-  skus: string[];
+  skus: SkuInfo[];
 };
 
 const reqPurchase = (sku: string): void => {
@@ -110,25 +111,32 @@ const reqPurchase = (sku: string): void => {
 };
 
 const SupportOptions = (props: SupportOptionsProps) => {
+  const checkIfPurchased = (index: 0 | 1 | 2): void => {
+    if (!props.skus[index].purchased) {
+      reqPurchase(props.skus[index].sku);
+    } else {
+      return;
+    }
+  }
   return (
     <View>
       <Separator bordered style={settingsStyles.separator}>
         <Text style={settingsStyles.separatorText}>Support me</Text>
       </Separator>
 
-      <ListItem button onPress={() => reqPurchase(props.skus[0])}>
+      <ListItem button onPress={() => checkIfPurchased(0)}>
         <Body>
           <Text>$5 - A cup of coffee</Text>
         </Body>
       </ListItem>
 
-      <ListItem button onPress={() => reqPurchase(props.skus[1])}>
+      <ListItem button onPress={() => checkIfPurchased(1)}>
         <Body>
           <Text>$10 - A really nice gift, thank you!</Text>
         </Body>
       </ListItem>
 
-      <ListItem button onPress={() => reqPurchase(props.skus[2])}>
+      <ListItem button onPress={() => checkIfPurchased(2)}>
         <Body>
           <Text>$20 - My new favorite person</Text>
         </Body>
