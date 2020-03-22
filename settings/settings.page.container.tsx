@@ -9,6 +9,7 @@ import {Platform} from 'react-native';
 export type SkuInfo = {
   sku: string;
   purchased: boolean;
+  userFacingText: string;
 };
 
 const mapStateToProps = (state: GlobalState) => {
@@ -20,12 +21,13 @@ const mapStateToProps = (state: GlobalState) => {
       } else {
         return purchase.android === sku;
       }
-    });
-    const storeKey: PurchaseName = (matchingPurchase as any).storeKey;
+    }) as any;
+    const storeKey: PurchaseName = matchingPurchase.storeKey;
     const purchased: boolean = state.purchases[storeKey]
     return {
       sku,
-      purchased
+      purchased,
+      userFacingText: matchingPurchase.userFacingText
     };
   });
 };

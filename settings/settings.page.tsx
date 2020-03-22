@@ -111,36 +111,28 @@ const reqPurchase = (sku: string): void => {
 };
 
 const SupportOptions = (props: SupportOptionsProps) => {
-  const checkIfPurchased = (index: 0 | 1 | 2): void => {
+  const checkIfPurchased = (index: number): void => {
     if (!props.skus[index].purchased) {
       reqPurchase(props.skus[index].sku);
     } else {
       return;
     }
-  }
+  };
   return (
     <View>
       <Separator bordered style={settingsStyles.separator}>
         <Text style={settingsStyles.separatorText}>Support me</Text>
       </Separator>
 
-      <ListItem button onPress={() => checkIfPurchased(0)}>
-        <Body>
-          <Text>$5 - A cup of coffee</Text>
-        </Body>
-      </ListItem>
-
-      <ListItem button onPress={() => checkIfPurchased(1)}>
-        <Body>
-          <Text>$10 - A really nice gift, thank you!</Text>
-        </Body>
-      </ListItem>
-
-      <ListItem button onPress={() => checkIfPurchased(2)}>
-        <Body>
-          <Text>$20 - My new favorite person</Text>
-        </Body>
-      </ListItem>
+      {props.skus.map((skuInfo, i) => {
+        return (
+          <ListItem button onPress={() => checkIfPurchased(i)}>
+            <Body>
+              <Text>{skuInfo.userFacingText}</Text>
+            </Body>
+          </ListItem>
+        )
+      })}
     </View>
   );
 };
