@@ -36,7 +36,7 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
       <MovieCardLayout movie={this.props.movie}
                        onPressHeader={this.props.onPressHeader}
                        backgroundImgUrl={this.state.backgroundImgUrl}
-                       showCardBody={true}
+                       showCardBody={false}
                        width={this.props.width} />
     ) : null;
   }
