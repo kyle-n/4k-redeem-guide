@@ -13,11 +13,12 @@ import {
   Text,
   View
 } from 'native-base';
-import {DownloadIcon} from '../shared-components';
+import {Checkmark, DownloadIcon} from '../shared-components';
 import {StyleSheet} from 'react-native';
-import {baseFontSize} from '../styles';
+import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
 import RNIap, {Product} from 'react-native-iap';
 import {SkuInfo} from './settings.page.container';
+import {useDynamicStyleSheet} from 'react-native-dark-mode';
 
 type SettingsPageProps = {
   skus: SkuInfo[];
@@ -118,6 +119,7 @@ const SupportOptions = (props: SupportOptionsProps) => {
       return;
     }
   };
+  const sharedStyles = useDynamicStyleSheet(sharedDynamicStyleSheet);
   return (
     <View>
       <Separator bordered style={settingsStyles.separator}>
@@ -128,12 +130,12 @@ const SupportOptions = (props: SupportOptionsProps) => {
         return (
           <ListItem key={skuInfo.sku} button onPress={() => checkIfPurchased(i)}>
             <Body>
-              <Text>{skuInfo.userFacingText}</Text>
+              <Text style={sharedStyles.dynamicTextColor}>
+                {skuInfo.userFacingText}
+              </Text>
             </Body>
             {skuInfo.purchased ? (
-              <Right>
-                <Icon name="checkcircle" type="AntDesign" />
-              </Right>
+              <Checkmark true={true} />
             ) : null}
           </ListItem>
         );
