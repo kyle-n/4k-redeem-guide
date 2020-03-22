@@ -15,7 +15,7 @@ const mapDispatchToProps = {
 
 export const purchases = [
   {
-    ios: 'supportDevFor5',
+    ios: 'supportDevFor5Consumable',
     android: 'support_dev_for_5',
     // android: 'android.test.purchased',
     storeKey: 'five',
@@ -23,7 +23,7 @@ export const purchases = [
     iconName: 'emoticon-outline'
   },
   {
-    ios: 'supportDevFor10',
+    ios: 'supportDevFor10Consumable',
     android: 'support_dev_for_10',
     // android: 'android.test.canceled',
     storeKey: 'ten',
@@ -31,7 +31,7 @@ export const purchases = [
     iconName: 'emoticon-excited-outline'
   },
   {
-    ios: 'supportDevFor20',
+    ios: 'supportDevFor20Consumable',
     android: 'support_dev_for_20',
     // android: 'android.test.item_unavailable',
     storeKey: 'twenty',
