@@ -1,9 +1,9 @@
-import React, {Ref} from 'react';
-import {Button, Icon} from 'native-base';
+import React from 'react';
+import {Button} from 'native-base';
 import {Alert} from 'react-native';
-import {clearMovieCache} from '../store/movies.store';
 import {withNavigation} from 'react-navigation';
 import {NavigationStackScreenProps} from 'react-navigation-stack';
+import {DownloadIcon} from '../shared-components';
 
 type RefreshCacheButtonProps = NavigationStackScreenProps & {
   onPress: () => void;
@@ -27,7 +27,7 @@ const RefreshCacheButton = (props: RefreshCacheButtonProps) => {
   return (
     <Button onPress={showAlert}
             info transparent large>
-      <Icon name="ios-refresh" ios="ios-refresh" android="md-refresh" />
+      <DownloadIcon />
     </Button>
   );
 };

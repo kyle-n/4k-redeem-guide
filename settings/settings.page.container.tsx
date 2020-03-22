@@ -1,10 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import SettingsPage from './settings.page';
 import {getSkus} from './iap/init-iaps';
 import {connect} from 'react-redux';
 import {GlobalState, PurchaseName} from '../models';
 import {purchases} from './iap/init-iaps';
 import {Platform} from 'react-native';
+import {clearMovieCache} from '../redux/actions';
 
 export type SkuInfo = {
   sku: string;
@@ -34,13 +35,13 @@ const mapStateToProps = (state: GlobalState) => {
   };
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {clearMovieCache};
 
 type SettingsPageContainerProps = {} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps;
 
 const SettingsPageContainer = (props: SettingsPageContainerProps) => {
   return (
-    <SettingsPage skus={props.skus} />
+    <SettingsPage skus={props.skus} onPressDownloadIcon={props.clearMovieCache} />
   );
 };
 

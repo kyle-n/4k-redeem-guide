@@ -13,22 +13,24 @@ import {
   Text,
   View
 } from 'native-base';
-import {Checkmark, DownloadIcon} from '../shared-components';
+import {Checkmark} from '../shared-components';
 import {StyleSheet} from 'react-native';
 import {baseFontSize, sharedDynamicStyleSheet} from '../styles';
-import RNIap, {Product} from 'react-native-iap';
+import RNIap from 'react-native-iap';
 import {SkuInfo} from './settings.page.container';
 import {useDynamicStyleSheet} from 'react-native-dark-mode';
+import RefreshCacheButton from '../search-header/refresh-cache-button';
 
 type SettingsPageProps = {
   skus: SkuInfo[];
+  onPressDownloadIcon: () => void;
 };
 
 const SettingsPage = (props: SettingsPageProps) => {
   return (
     <Container>
       <Content>
-        <DownloadsSettings />
+        <DownloadsSettings onPressDownloadIcon={props.onPressDownloadIcon} />
         <SupportOptions skus={props.skus} />
         <SupportMessage />
       </Content>
@@ -57,7 +59,11 @@ const settingsStyles = StyleSheet.create({
   }
 });
 
-const DownloadsSettings = () => {
+type DownloadsSettingsProps = {
+  onPressDownloadIcon: () => void;
+}
+
+const DownloadsSettings = (props: DownloadsSettingsProps) => {
   return (
     <View>
       <Separator bordered style={settingsStyles.separator}>
@@ -90,9 +96,7 @@ const DownloadsSettings = () => {
           <Text>Download movies now</Text>
         </Body>
         <Right>
-          <Button info transparent>
-            <DownloadIcon />
-          </Button>
+          <RefreshCacheButton onPress={props.onPressDownloadIcon} />
         </Right>
       </ListItem>
     </View>
