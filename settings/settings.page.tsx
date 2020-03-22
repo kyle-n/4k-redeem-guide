@@ -80,7 +80,7 @@ const DownloadsSettings = (props: DownloadsSettingsProps) => {
       <ListItem icon button>
         <Left>
           <View style={settingsStyles.iconContainer}>
-            <Icon name="radio-tower" type="MaterialCommunityIcons" />
+            <Icon name="radio-tower" type="MaterialCommunityIcons" style={sharedStyles.dynamicTextColor} />
           </View>
         </Left>
         <Body>
@@ -94,7 +94,7 @@ const DownloadsSettings = (props: DownloadsSettingsProps) => {
       <ListItem icon button>
         <Left>
           <View style={settingsStyles.iconContainer}>
-            <Icon name="autorenew" type="MaterialIcons" />
+            <Icon name="autorenew" type="MaterialIcons" style={sharedStyles.dynamicTextColor} />
           </View>
         </Left>
         <Body>
