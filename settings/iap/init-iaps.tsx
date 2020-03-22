@@ -35,7 +35,7 @@ export const purchases = [
     android: 'support_dev_for_20',
     // android: 'android.test.item_unavailable',
     storeKey: 'twenty',
-    userFacingText: '$20 - A true patron of movies and indie app development',
+    userFacingText: '$20 - A true patron of indie apps',
     iconName: 'emoticon-cool-outline'
   }
 ];
