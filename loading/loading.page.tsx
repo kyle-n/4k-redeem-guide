@@ -24,6 +24,7 @@ const loadingPageStyles = StyleSheet.create({
 });
 
 type LoadingPageProps = {
+  autoDownloadOnData: boolean;
   moviesNotDownloaded: boolean;
   downloadMovies: Function;
 };
@@ -65,6 +66,7 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
       <LoadingPageLayout downloadMovies={this.downloadMovies}
                          onDownloadAlertCancel={this.onDownloadAlertCancel}
                          onDownloadAlertConfirm={this.onDownloadAlertConfirm}
+                         autoDownloadOnData={this.props.autoDownloadOnData}
                          downloading={this.state.downloading}
                          showDownloadAlert={this.state.showDownloadAlert}
                          initialRenderDone={this.state.initialRenderDone}
@@ -74,6 +76,7 @@ class LoadingPage extends React.Component<LoadingPageProps, LoadingPageState> {
 }
 
 type LoadingPageLayoutProps = {
+  autoDownloadOnData: boolean;
   onDownloadAlertCancel: () => void;
   onDownloadAlertConfirm: () => void;
   downloading: boolean;
@@ -92,7 +95,8 @@ const LoadingPageLayout = (props: LoadingPageLayoutProps) => {
 
       {/* Download movies if on WiFi, show alert if not */}
       {props.showDownloadAlert ? (
-        <CheckBeforeDownload onCancel={props.onDownloadAlertCancel}
+        <CheckBeforeDownload autoDownloadOnData={props.autoDownloadOnData}
+                             onCancel={props.onDownloadAlertCancel}
                              onConfirm={props.onDownloadAlertConfirm} />
       ) : null}
 

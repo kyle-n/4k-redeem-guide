@@ -6,6 +6,7 @@ import {NavigationStackScreenProps} from 'react-navigation-stack';
 import {downloadMovies} from '../redux/actions';
 
 type LoadingPageContainerProps = {
+  autoDownloadOnData: boolean;
   moviesNotDownloaded: boolean;
   downloadMovies: Function;
 } & NavigationStackScreenProps;
@@ -16,13 +17,15 @@ export const LoadingPageContainer = (props: LoadingPageContainerProps) => {
   }
   return props.moviesNotDownloaded ? (
     <LoadingPage moviesNotDownloaded={props.moviesNotDownloaded}
+                 autoDownloadOnData={props.autoDownloadOnData}
                  downloadMovies={props.downloadMovies} />
   ) : null;
 };
 
 const mapStateToProps = (state: GlobalState): any => {
   return {
-    moviesNotDownloaded: !state.movies.length
+    moviesNotDownloaded: !state.movies.length,
+    autoDownloadOnData: state.autoDownloadOnData
   };
 };
 const mapDispatchToProps = {downloadMovies};

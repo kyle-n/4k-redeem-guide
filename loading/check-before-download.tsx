@@ -3,13 +3,14 @@ import {Alert} from 'react-native';
 import NetInfo from '@react-native-community/netinfo';
 
 type CheckBeforeDownloadProps = {
+  autoDownloadOnData: boolean;
   onCancel: () => void;
   onConfirm: () => void;
 }
 
 const CheckBeforeDownload = (props: CheckBeforeDownloadProps) => {
   NetInfo.fetch().then(netInfo => {
-    if (netInfo.details?.isConnectionExpensive) {
+    if (netInfo.details?.isConnectionExpensive && !props.autoDownloadOnData) {
       // warn the user if they're about to download ~2.5MB on data
       Alert.alert(
         'Download 3 MB on data?',
