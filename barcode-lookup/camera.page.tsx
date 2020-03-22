@@ -85,7 +85,7 @@ export const CameraPage = (props: CameraPageProps) => {
                 captureAudio={false} />
       {Platform.OS === 'ios' ? (
         <View style={cameraPageStyles.buttonContainer}>
-          <CameraBackButton onPress={props.navigation.goBack} style={cameraPageStyles.button} />
+          <CameraBackButton onPress={() => props.navigation.goBack()} style={cameraPageStyles.button} />
         </View>
       ) : null}
     </View>
