@@ -11,6 +11,7 @@ export type SkuInfo = {
   sku: string;
   purchased: boolean;
   userFacingText: string;
+  iconName: string;
 };
 
 const mapStateToProps = (state: GlobalState) => {
@@ -30,7 +31,8 @@ const mapStateToProps = (state: GlobalState) => {
       return {
         sku,
         purchased,
-        userFacingText: matchingPurchase.userFacingText
+        userFacingText: matchingPurchase.userFacingText,
+        iconName: matchingPurchase.iconName
       };
     })
   };

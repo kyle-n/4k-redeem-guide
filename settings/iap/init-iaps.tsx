@@ -19,21 +19,24 @@ export const purchases = [
     android: 'support_dev_for_5',
     // android: 'android.test.purchased',
     storeKey: 'five',
-    userFacingText: '$5 - A cup of coffee'
+    userFacingText: '$5 - A cup of coffee',
+    iconName: 'emoticon-outline'
   },
   {
     ios: 'supportDevFor10',
     android: 'support_dev_for_10',
     // android: 'android.test.canceled',
     storeKey: 'ten',
-    userFacingText: '$10 - A really nice gift, thank you!'
+    userFacingText: '$10 - A really nice gift, thank you!',
+    iconName: 'emoticon-cool-outline'
   },
   {
     ios: 'supportDevFor20',
     android: 'support_dev_for_20',
     // android: 'android.test.item_unavailable',
     storeKey: 'twenty',
-    userFacingText: '$20 - A true patron of movies and indie app development'
+    userFacingText: '$20 - A true patron of movies and indie app development',
+    iconName: 'emoticon-excited-outline'
   }
 ];
 

@@ -137,7 +137,13 @@ const SupportOptions = (props: SupportOptionsProps) => {
 
       {props.skus.map((skuInfo, i) => {
         return (
-          <ListItem key={skuInfo.sku} button onPress={() => checkIfPurchased(i)}>
+          <ListItem key={skuInfo.sku} onPress={() => checkIfPurchased(i)} button icon>
+            <Left>
+              <View style={settingsStyles.iconContainer}>
+                <Icon name={skuInfo.iconName} type="MaterialCommunityIcons"
+                      style={sharedStyles.dynamicTextColor} />
+              </View>
+            </Left>
             <Body>
               <Text style={sharedStyles.dynamicTextColor}>
                 {skuInfo.userFacingText}
