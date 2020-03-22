@@ -38,6 +38,9 @@ const settingsStyles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'center'
+  },
+  lowOpacity: {
+    opacity: 0.35
   }
 });
 
@@ -86,7 +89,7 @@ const DownloadsSettings = (props: DownloadsSettingsProps) => {
           </View>
         </Left>
         <Body>
-          <Text style={sharedStyles.dynamicTextColor}>Auto-download movies on data</Text>
+          <Text style={sharedStyles.dynamicTextColor}>Auto-download on cellular</Text>
         </Body>
         <Right>
           <Switch onValueChange={props.onAutoDownloadOnDataTogglePress} value={props.autoDownloadOnData} />
@@ -139,15 +142,21 @@ const SupportOptions = (props: SupportOptionsProps) => {
 
       {props.skus.map((skuInfo, i) => {
         return (
-          <ListItem key={skuInfo.sku} onPress={() => checkIfPurchased(i)} button icon>
+          <ListItem key={skuInfo.sku} onPress={() => checkIfPurchased(i)} button={!skuInfo.purchased} icon>
             <Left>
-              <View style={settingsStyles.iconContainer}>
+              <View style={[
+                settingsStyles.iconContainer,
+                skuInfo.purchased ? settingsStyles.lowOpacity : null
+              ]}>
                 <Icon name={skuInfo.iconName} type="MaterialCommunityIcons"
                       style={sharedStyles.dynamicTextColor} />
               </View>
             </Left>
             <Body>
-              <Text style={sharedStyles.dynamicTextColor}>
+              <Text style={[
+                sharedStyles.dynamicTextColor,
+                skuInfo.purchased ? settingsStyles.lowOpacity : null
+              ]}>
                 {skuInfo.userFacingText}
               </Text>
             </Body>
