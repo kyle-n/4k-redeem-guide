@@ -28,6 +28,7 @@ export const defaultFilters: MovieFilters = {
 };
 
 const initialState: GlobalState = {
+  autoDownloadOnData: false,
   filters: Object.assign({}, defaultFilters),
   filtersVisible: false,
   noMoreResults: false,
@@ -120,6 +121,11 @@ const reducers: Reducer<GlobalState, ActionAndValue> = (state = initialState, di
     case 'REGISTER_PURCHASE':
       const purchases = Object.assign({}, state.purchases, {[dispatch.value]: true});
       newState = Object.assign({}, state, {purchases});
+      cacheState(newState);
+      return newState;
+    case 'TOGGLE_AUTO_DOWNLOAD_ON_DATA':
+      const autoDownloadOnData = !state.autoDownloadOnData;
+      newState = Object.assign({}, state, {autoDownloadOnData});
       cacheState(newState);
       return newState;
     default:

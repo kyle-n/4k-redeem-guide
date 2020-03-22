@@ -203,3 +203,7 @@ export function toggleLinksModalVisible(): ActionAndValue {
 export function registerPurchase(purchaseId: PurchaseName): ActionAndValue {
   return {type: 'REGISTER_PURCHASE', value: purchaseId};
 }
+
+export function toggleAutoDownloadOnData(): ActionAndValue {
+  return {type: 'TOGGLE_AUTO_DOWNLOAD_ON_DATA', value: null};
+}

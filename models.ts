@@ -107,6 +107,7 @@ export type PresetSearch = {
 };
 
 export type GlobalState = {
+  autoDownloadOnData: boolean;
   filters: MovieFilters;
   filtersVisible: boolean;
   noMoreResults: boolean;
