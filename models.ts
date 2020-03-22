@@ -123,6 +123,8 @@ export type GlobalState = {
   }
 };
 
+export type PurchaseName = 'five' | 'ten' | 'twenty';
+
 export type BarcodeScanData = {
   bounds: {
     origin: {

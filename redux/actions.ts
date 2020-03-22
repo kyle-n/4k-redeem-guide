@@ -1,5 +1,5 @@
 import {ActionType} from './definitions';
-import {GlobalState, Movie, MovieFilters} from '../models';
+import {GlobalState, Movie, MovieFilters, PurchaseName} from '../models';
 import {searchMovies} from '../store';
 import {debounce} from 'throttle-debounce';
 import {anyValueTruthy} from '../utils';
@@ -200,6 +200,6 @@ export function toggleLinksModalVisible(): ActionAndValue {
   return {type: 'TOGGLE_LINKS_MODAL_VISIBLE', value: null};
 }
 
-export function registerPurchase(purchaseId: 'five' | 'ten' | 'twenty'): ActionAndValue {
+export function registerPurchase(purchaseId: PurchaseName): ActionAndValue {
   return {type: 'REGISTER_PURCHASE', value: purchaseId};
 }
