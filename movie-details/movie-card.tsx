@@ -4,6 +4,7 @@ import {getMovieImage} from '../store/tmdb.connector';
 import MovieCardLayout from './movie-card-layout';
 
 type MovieCardProps = {
+  open: boolean;
   movie: Movie;
   onPressHeader?: () => void;
   width?: number;
@@ -36,7 +37,7 @@ class MovieCard extends React.PureComponent<MovieCardProps, MovieCardState> {
       <MovieCardLayout movie={this.props.movie}
                        onPressHeader={this.props.onPressHeader}
                        backgroundImgUrl={this.state.backgroundImgUrl}
-                       showCardBody={false}
+                       showCardBody={this.props.open}
                        width={this.props.width} />
     ) : null;
   }
