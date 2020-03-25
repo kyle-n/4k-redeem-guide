@@ -1,0 +1,5 @@
+# **1.2.2**
+
+* Moves button to re-download movies to new settings page
+* Option to auto-download movies on cellular data and not get the warning popup
+* Three in-app-purchases to support the developer. Anything you can give is greatly appreciated!
