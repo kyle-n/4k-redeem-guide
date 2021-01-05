@@ -9,7 +9,7 @@
   "dependencies": {
     "@react-native-community/async-storage": "^1.7.1",
     "@react-native-community/netinfo": "^5.3.2",
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "extract-domain": "^2.2.1",
     "gsheets": "^2.0.0",
     "is-url": "^1.2.4",
