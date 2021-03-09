@@ -1,6 +1,6 @@
 # 4K Redeem Guide
 
-A simple React Native app to help you figure out where to redeem your 4K UHD Blu-ray digital code.
+A simple React Native app to help you figure out where to redeem your 4K UHD Blu-ray digital code. Available on the [App Store](https://apps.apple.com/us/app/4k-4-u/id1499701546) and [Play Store](https://play.google.com/store/apps/details?id=com.kylenazario.fourK4U&hl=en_US&gl=US).
 
 ## Background
 
